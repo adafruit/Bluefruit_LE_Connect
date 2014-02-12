@@ -107,21 +107,18 @@
 
 - (HelpViewController*)currentHelpViewController{
     
+    //Determine which help view to show based on the current view shown
+    
     HelpViewController *hvc;
-    switch (_connectionMode) {
-        case ConnectionModeNone:
-            hvc = _helpViewController;
-            break;
-        case ConnectionModePinIO:
-            hvc = _pinIoViewController.helpViewController;
-            break;
-        case ConnectionModeUART:
-            hvc = _uartViewController.helpViewController;
-            break;
-        default:
-            hvc = _helpViewController;
-            break;
-    }
+    
+    if ([_navController.topViewController isKindOfClass:[PinIOViewController class]])
+        hvc = _pinIoViewController.helpViewController;
+    
+    else if ([_navController.topViewController isKindOfClass:[UARTViewController class]])
+        hvc = _uartViewController.helpViewController;
+    
+    else
+        hvc = self.helpViewController;
     
     return hvc;
 }
@@ -227,6 +224,7 @@
 //    NSLog(@"STOP SCAN");
     
     _connectionStatus = ConnectionStatusDisconnected;
+    _connectionMode = ConnectionModeNone;
     
     [cm stopScan];
     
@@ -439,6 +437,7 @@
     }
     
     _connectionStatus = ConnectionStatusDisconnected;
+    _connectionMode = ConnectionModeNone;
     
     //make reconnection available after short delay
     [self performSelector:@selector(enableConnectionButtons) withObject:nil afterDelay:1.0f];

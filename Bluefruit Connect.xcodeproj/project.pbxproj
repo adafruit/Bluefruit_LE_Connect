@@ -525,7 +525,7 @@
 				INFOPLIST_FILE = "BLE Test/BluetoothLE Test-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "BluetoothLE Test";
-				PROVISIONING_PROFILE = "F0F391F0-C781-4C8F-8735-1CB89D26B730";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -533,14 +533,14 @@
 		F0A2C99416BBE44500F2FD12 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BLE Test/BluetoothLE Test-Prefix.pch";
 				INFOPLIST_FILE = "BLE Test/BluetoothLE Test-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "BluetoothLE Test";
-				PROVISIONING_PROFILE = "F0F391F0-C781-4C8F-8735-1CB89D26B730";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

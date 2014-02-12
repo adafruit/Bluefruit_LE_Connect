@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="4514" systemVersion="12F45" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none">
+    <dependencies>
+        <deployment defaultVersion="1552" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PinIOViewController">
+            <connections>
+                <outlet property="digitalPinCell" destination="cSa-2r-ukx" id="HVr-1C-9LJ"/>
+                <outlet property="helpViewController" destination="Gch-wB-Q9o" id="IPa-QK-nPR"/>
+                <outlet property="pinTable" destination="ose-Dg-C0z" id="57s-qk-sI8"/>
+                <outlet property="view" destination="roY-LN-xTB" id="nuz-1K-OZc"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="150" id="cSa-2r-ukx" userLabel="Pin Cell Digital" customClass="PinCell">
+            <rect key="frame" x="0.0" y="0.0" width="299" height="148"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cSa-2r-ukx" id="qc3-Is-nnW">
+                <rect key="frame" x="0.0" y="0.0" width="299" height="147"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="100" contentMode="left" text="Pin 1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gmg-kc-0UQ" userLabel="Label - Pin">
+                        <rect key="frame" x="14" y="6" width="56" height="22"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </label>
+                    <label autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="101" contentMode="left" text="Output" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rAS-MK-e0y" userLabel="Label - Mode">
+                        <rect key="frame" x="14" y="27" width="56" height="18"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </label>
+                    <label autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="102" contentMode="left" text="Low" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="IDc-PJ-uxg" userLabel="Label - Value">
+                        <rect key="frame" x="235" y="7" width="64" height="30"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </label>
+                    <segmentedControl opaque="NO" tag="104" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="1" id="Dq6-pL-PQ0" userLabel="Segmented Control - Mode">
+                        <rect key="frame" x="14" y="55" width="271" height="30"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <segments>
+                            <segment title="Input"/>
+                            <segment title="Output"/>
+                        </segments>
+                    </segmentedControl>
+                    <segmentedControl opaque="NO" tag="105" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="jzv-61-HUg" userLabel="Segmented Control - Value">
+                        <rect key="frame" x="14" y="105" width="271" height="30"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <segments>
+                            <segment title="Low"/>
+                            <segment title="High"/>
+                        </segments>
+                    </segmentedControl>
+                    <button opaque="NO" tag="103" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="HhC-Vn-mXi" userLabel="Button - Toggle Cell">
+                        <rect key="frame" x="0.0" y="0.0" width="299" height="44"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                        <state key="normal">
+                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <state key="highlighted">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
+                    <slider hidden="YES" opaque="NO" tag="106" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="255" continuous="NO" id="a0e-bK-Eb6" userLabel="Slider - Value">
+                        <rect key="frame" x="11" y="109" width="276" height="29"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="minimumTrackTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    </slider>
+                </subviews>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+        </tableViewCell>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="roY-LN-xTB">
+            <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" style="grouped" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="50" sectionHeaderHeight="10" sectionFooterHeight="10" id="ose-Dg-C0z" userLabel="Pin I/O View">
+                    <rect key="frame" x="159" y="20" width="450" height="920"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <inset key="contentInset" minX="0.0" minY="0.0" maxX="0.0" maxY="44"/>
+                    <inset key="scrollIndicatorInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="44"/>
+                    <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="cNj-uc-K0y"/>
+                        <outlet property="delegate" destination="-1" id="kn3-EP-igK"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" white="0.14999999999999999" alpha="1" colorSpace="calibratedWhite"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+        </view>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="wtP-Lx-NiH" userLabel="View - Help Pin I/O">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="376"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" indicatorStyle="white" editable="NO" usesAttributedText="YES" id="ib0-CR-IRP">
+                    <rect key="frame" x="20" y="20" width="280" height="336"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <attributedString key="attributedText">
+                        <fragment content="Pin I/O Mode Instructions:">
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="15" name="HelveticaNeue-Bold"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content">
+
+• Tap a row in the table corresponding to the </string>
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="15" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="Arduino">
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="15" name="HelveticaNeue-Bold"/>
+                                <font key="NSOriginalFont" size="15" name="HelveticaNeue-Bold"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content"> pin you want to control.
+
+• Select a pin mode: 
+   </string>
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="15" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="Input">
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="15" name="HelveticaNeue-Bold"/>
+                                <font key="NSOriginalFont" size="15" name="HelveticaNeue-Bold"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content"> - monitor pin's state
+   </string>
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="15" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="Output">
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="15" name="HelveticaNeue-Bold"/>
+                                <font key="NSOriginalFont" size="15" name="HelveticaNeue-Bold"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content"> - enable setting of pin state
+   </string>
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="15" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="Analog">
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="15" name="HelveticaNeue-Bold"/>
+                                <font key="NSOriginalFont" size="15" name="HelveticaNeue-Bold"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content"> - monitor Analog pin input
+
+• Set an Output pin's state using the </string>
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="15" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="Low">
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="15" name="HelveticaNeue-Bold"/>
+                                <font key="NSOriginalFont" size="15" name="HelveticaNeue-Bold"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="/">
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="15" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="High">
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="15" name="HelveticaNeue-Bold"/>
+                                <font key="NSOriginalFont" size="15" name="HelveticaNeue-Bold"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content"> control.
+
+• Once finished setting a pin's mode or state, you can close it by tapping the empty space near it's top - or by selecting another row.</string>
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="15" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                    </attributedString>
+                    <textInputTraits key="textInputTraits"/>
+                    <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                </textView>
+            </subviews>
+            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        </view>
+        <customObject id="Gch-wB-Q9o" customClass="HelpViewController">
+            <connections>
+                <outlet property="view" destination="wtP-Lx-NiH" id="gEL-Dr-eik"/>
+            </connections>
+        </customObject>
+    </objects>
+</document>

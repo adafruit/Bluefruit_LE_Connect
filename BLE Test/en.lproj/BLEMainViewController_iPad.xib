@@ -1,248 +1,291 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<archive type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="8.00">
-	<data>
-		<int key="IBDocument.SystemTarget">1536</int>
-		<string key="IBDocument.SystemVersion">12A206j</string>
-		<string key="IBDocument.InterfaceBuilderVersion">2519</string>
-		<string key="IBDocument.AppKitVersion">1172.1</string>
-		<string key="IBDocument.HIToolboxVersion">613.00</string>
-		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
-			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">1856</string>
-		</object>
-		<array key="IBDocument.IntegratedClassDependencies">
-			<string>IBNSLayoutConstraint</string>
-			<string>IBProxyObject</string>
-			<string>IBUIBarButtonItem</string>
-			<string>IBUINavigationBar</string>
-			<string>IBUINavigationItem</string>
-			<string>IBUIView</string>
-		</array>
-		<array key="IBDocument.PluginDependencies">
-			<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-		</array>
-		<object class="NSMutableDictionary" key="IBDocument.Metadata">
-			<string key="NS.key.0">PluginDependencyRecalculationVersion</string>
-			<integer value="1" key="NS.object.0"/>
-		</object>
-		<array class="NSMutableArray" key="IBDocument.RootObjects" id="1000">
-			<object class="IBProxyObject" id="372490531">
-				<string key="IBProxiedObjectIdentifier">IBFilesOwner</string>
-				<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-			</object>
-			<object class="IBProxyObject" id="975951072">
-				<string key="IBProxiedObjectIdentifier">IBFirstResponder</string>
-				<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-			</object>
-			<object class="IBUIView" id="191373211">
-				<reference key="NSNextResponder"/>
-				<int key="NSvFlags">274</int>
-				<array class="NSMutableArray" key="NSSubviews">
-					<object class="IBUINavigationBar" id="812863800">
-						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">290</int>
-						<string key="NSFrameSize">{768, 44}</string>
-						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
-						<bool key="IBUIOpaque">NO</bool>
-						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
-						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-						<int key="IBUIBarStyle">1</int>
-						<array key="IBUIItems">
-							<object class="IBUINavigationItem" id="677504279">
-								<reference key="IBUINavigationBar" ref="812863800"/>
-								<string key="IBUITitle">Title</string>
-								<object class="IBUIBarButtonItem" key="IBUIRightBarButtonItem" id="827738330">
-									<string key="IBUITitle">Info</string>
-									<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-									<int key="IBUIStyle">1</int>
-									<reference key="IBUINavigationItem" ref="677504279"/>
-								</object>
-								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-							</object>
-						</array>
-					</object>
-				</array>
-				<string key="NSFrame">{{0, 20}, {768, 1004}}</string>
-				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="812863800"/>
-				<object class="NSColor" key="IBUIBackgroundColor">
-					<int key="NSColorSpace">3</int>
-					<bytes key="NSWhite">MC4yNQA</bytes>
-					<object class="NSColorSpace" key="NSCustomColorSpace">
-						<int key="NSID">2</int>
-					</object>
-				</object>
-				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics">
-					<int key="IBUIStatusBarStyle">2</int>
-				</object>
-				<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-			</object>
-		</array>
-		<object class="IBObjectContainer" key="IBDocument.Objects">
-			<array class="NSMutableArray" key="connectionRecords">
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">view</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="191373211"/>
-					</object>
-					<int key="connectionID">3</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">showInfo:</string>
-						<reference key="source" ref="827738330"/>
-						<reference key="destination" ref="372490531"/>
-					</object>
-					<int key="connectionID">11</int>
-				</object>
-			</array>
-			<object class="IBMutableOrderedSet" key="objectRecords">
-				<array key="orderedObjects">
-					<object class="IBObjectRecord">
-						<int key="objectID">0</int>
-						<array key="object" id="0"/>
-						<reference key="children" ref="1000"/>
-						<nil key="parent"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">1</int>
-						<reference key="object" ref="191373211"/>
-						<array class="NSMutableArray" key="children">
-							<reference ref="812863800"/>
-							<object class="IBNSLayoutConstraint" id="278524894">
-								<reference key="firstItem" ref="812863800"/>
-								<int key="firstAttribute">6</int>
-								<int key="relation">0</int>
-								<reference key="secondItem" ref="191373211"/>
-								<int key="secondAttribute">6</int>
-								<float key="multiplier">1</float>
-								<object class="IBLayoutConstant" key="constant">
-									<double key="value">0.0</double>
-								</object>
-								<float key="priority">1000</float>
-								<reference key="containingView" ref="191373211"/>
-								<int key="scoringType">8</int>
-								<float key="scoringTypeFloat">29</float>
-								<int key="contentType">3</int>
-							</object>
-							<object class="IBNSLayoutConstraint" id="1056034120">
-								<reference key="firstItem" ref="812863800"/>
-								<int key="firstAttribute">5</int>
-								<int key="relation">0</int>
-								<reference key="secondItem" ref="191373211"/>
-								<int key="secondAttribute">5</int>
-								<float key="multiplier">1</float>
-								<object class="IBLayoutConstant" key="constant">
-									<double key="value">0.0</double>
-								</object>
-								<float key="priority">1000</float>
-								<reference key="containingView" ref="191373211"/>
-								<int key="scoringType">8</int>
-								<float key="scoringTypeFloat">29</float>
-								<int key="contentType">3</int>
-							</object>
-							<object class="IBNSLayoutConstraint" id="643006596">
-								<reference key="firstItem" ref="812863800"/>
-								<int key="firstAttribute">3</int>
-								<int key="relation">0</int>
-								<reference key="secondItem" ref="191373211"/>
-								<int key="secondAttribute">3</int>
-								<float key="multiplier">1</float>
-								<object class="IBLayoutConstant" key="constant">
-									<double key="value">0.0</double>
-								</object>
-								<float key="priority">1000</float>
-								<reference key="containingView" ref="191373211"/>
-								<int key="scoringType">8</int>
-								<float key="scoringTypeFloat">29</float>
-								<int key="contentType">3</int>
-							</object>
-						</array>
-						<reference key="parent" ref="0"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">-1</int>
-						<reference key="object" ref="372490531"/>
-						<reference key="parent" ref="0"/>
-						<string key="objectName">File's Owner</string>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">-2</int>
-						<reference key="object" ref="975951072"/>
-						<reference key="parent" ref="0"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">7</int>
-						<reference key="object" ref="812863800"/>
-						<array class="NSMutableArray" key="children">
-							<reference ref="677504279"/>
-						</array>
-						<reference key="parent" ref="191373211"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">8</int>
-						<reference key="object" ref="677504279"/>
-						<array class="NSMutableArray" key="children">
-							<reference ref="827738330"/>
-						</array>
-						<reference key="parent" ref="812863800"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">10</int>
-						<reference key="object" ref="827738330"/>
-						<reference key="parent" ref="677504279"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">12</int>
-						<reference key="object" ref="643006596"/>
-						<reference key="parent" ref="191373211"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">13</int>
-						<reference key="object" ref="1056034120"/>
-						<reference key="parent" ref="191373211"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">14</int>
-						<reference key="object" ref="278524894"/>
-						<reference key="parent" ref="191373211"/>
-					</object>
-				</array>
-			</object>
-			<dictionary class="NSMutableDictionary" key="flattenedProperties">
-				<string key="-1.CustomClassName">BLEMainViewController</string>
-				<string key="-1.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="-2.CustomClassName">UIResponder</string>
-				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="1.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<array key="1.IBViewMetadataConstraints">
-					<reference ref="643006596"/>
-					<reference ref="1056034120"/>
-					<reference ref="278524894"/>
-				</array>
-				<string key="10.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="12.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="13.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="14.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="7.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<boolean value="NO" key="7.IBViewMetadataTranslatesAutoresizingMaskIntoConstraints"/>
-				<string key="8.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			</dictionary>
-			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
-			<nil key="activeLocalization"/>
-			<dictionary class="NSMutableDictionary" key="localizations"/>
-			<nil key="sourceID"/>
-			<int key="maxID">14</int>
-		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes"/>
-		<int key="IBDocument.localizationMode">0</int>
-		<string key="IBDocument.TargetRuntimeIdentifier">IBIPadFramework</string>
-		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
-		<int key="IBDocument.defaultPropertyAccessControl">3</int>
-		<bool key="IBDocument.UseAutolayout">YES</bool>
-		<string key="IBCocoaTouchPluginVersion">1856</string>
-	</data>
-</archive>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="4514" systemVersion="12F45" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment defaultVersion="1552" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BLEMainViewController">
+            <connections>
+                <outlet property="helpViewController" destination="aFz-Si-maQ" id="YBB-Hh-CCZ"/>
+                <outlet property="infoButton" destination="dxq-E4-9Hk" id="Mlu-kO-gVx"/>
+                <outlet property="menuViewController" destination="lpy-qe-9rc" id="sis-dE-Cmc"/>
+                <outlet property="navController" destination="2cV-6T-hht" id="Gag-Q3-1II"/>
+                <outlet property="pinIoButton" destination="5PJ-DW-Uyh" id="b6B-PE-fxA"/>
+                <outlet property="uartButton" destination="zGe-ii-dKD" id="X7i-AP-9G3"/>
+                <outlet property="view" destination="c5Y-Xs-AZk" id="Aqf-gv-dEY"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <navigationController definesPresentationContext="YES" toolbarHidden="NO" id="2cV-6T-hht">
+            <extendedEdge key="edgesForExtendedLayout" top="YES"/>
+            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+            <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="7ww-ee-Cpe">
+                <rect key="frame" x="0.0" y="-44" width="0.0" height="44"/>
+                <autoresizingMask key="autoresizingMask"/>
+            </navigationBar>
+            <viewControllers>
+                <viewController title="Menu" id="lpy-qe-9rc" userLabel="View Controller - Menu">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="P40-no-5w0"/>
+                        <viewControllerLayoutGuide type="bottom" id="cWo-TB-LF5"/>
+                    </layoutGuides>
+                    <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="4GC-b1-ByN">
+                        <rect key="frame" x="0.0" y="64" width="768" height="916"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView opaque="NO" userInteractionEnabled="NO" alpha="0.40000000596046448" contentMode="center" image="Adaflower.png" translatesAutoresizingMaskIntoConstraints="NO" id="1au-MQ-iGM">
+                                <rect key="frame" x="341" y="645" width="86" height="86"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5PJ-DW-Uyh">
+                                <rect key="frame" x="324" y="216" width="120" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="kRl-1p-Z0e"/>
+                                    <constraint firstAttribute="height" constant="40" id="mNK-fA-isP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="Pin I/O"/>
+                                <connections>
+                                    <action selector="buttonTapped:" destination="-1" eventType="touchUpInside" id="mtZ-oC-48k"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zGe-ii-dKD">
+                                <rect key="frame" x="324" y="304" width="120" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="BMa-Sq-XQR"/>
+                                    <constraint firstAttribute="width" constant="120" id="f1A-wb-kGg"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="UART"/>
+                                <connections>
+                                    <action selector="buttonTapped:" destination="-1" eventType="touchUpInside" id="Mc7-7J-JZx"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="1au-MQ-iGM" secondAttribute="centerX" id="3F8-Nr-dg7"/>
+                            <constraint firstItem="zGe-ii-dKD" firstAttribute="top" secondItem="5PJ-DW-Uyh" secondAttribute="bottom" constant="48" id="F3d-tg-ZFK"/>
+                            <constraint firstAttribute="centerX" secondItem="zGe-ii-dKD" secondAttribute="centerX" id="G8r-Fe-yuq"/>
+                            <constraint firstAttribute="centerX" secondItem="5PJ-DW-Uyh" secondAttribute="centerX" id="J6J-L6-KrU"/>
+                            <constraint firstAttribute="centerX" secondItem="5PJ-DW-Uyh" secondAttribute="centerX" id="jkZ-FE-STe"/>
+                            <constraint firstItem="1au-MQ-iGM" firstAttribute="top" relation="lessThanOrEqual" secondItem="4GC-b1-ByN" secondAttribute="top" constant="673" id="mwp-dS-aeU"/>
+                            <constraint firstItem="5PJ-DW-Uyh" firstAttribute="top" secondItem="4GC-b1-ByN" secondAttribute="top" constant="216" id="rkI-QX-BLY"/>
+                            <constraint firstAttribute="centerX" secondItem="zGe-ii-dKD" secondAttribute="centerX" id="rlu-td-4l6"/>
+                            <constraint firstAttribute="bottom" secondItem="1au-MQ-iGM" secondAttribute="bottom" constant="185" id="yT9-br-ala"/>
+                        </constraints>
+                        <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Bluefruit Connect" id="Lid-fY-96U">
+                        <barButtonItem key="backBarButtonItem" title="Disconnect" id="V0r-H0-smH"/>
+                        <barButtonItem key="rightBarButtonItem" style="done" id="eq5-bk-fMq">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="dxq-E4-9Hk" userLabel="Button - Info">
+                                <rect key="frame" x="730" y="11" width="22" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="DRa-to-9sp"/>
+                                    <constraint firstAttribute="width" constant="22" id="Jqm-Uy-qtv"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="showInfo:" destination="-1" eventType="touchUpInside" id="2yX-oM-EUB"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <nil key="simulatedDestinationMetrics"/>
+                </viewController>
+            </viewControllers>
+            <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="wRa-Fy-oEj">
+                <rect key="frame" x="0.0" y="936" width="768" height="44"/>
+                <autoresizingMask key="autoresizingMask"/>
+            </toolbar>
+            <connections>
+                <outlet property="delegate" destination="-1" id="eDJ-qR-cvr"/>
+            </connections>
+        </navigationController>
+        <view clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="c5Y-Xs-AZk" userLabel="View - Main">
+            <rect key="frame" x="0.0" y="64" width="768" height="960"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <color key="backgroundColor" white="0.14999999999999999" alpha="1" colorSpace="calibratedWhite"/>
+            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+        </view>
+        <customObject id="aFz-Si-maQ" customClass="HelpViewController">
+            <connections>
+                <outlet property="delegate" destination="-1" id="sSD-Wx-wxp"/>
+                <outlet property="versionLabel" destination="s2o-eu-fmw" id="A31-vh-viJ"/>
+                <outlet property="view" destination="Kb6-iK-zuU" id="KfW-ia-Q8g"/>
+            </connections>
+        </customObject>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Kb6-iK-zuU" userLabel="View - Help Main">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="532"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="center" fixedFrame="YES" image="adafruit_logo2012-white-horiz-230w.png" translatesAutoresizingMaskIntoConstraints="NO" id="sU1-5m-SJM">
+                    <rect key="frame" x="20" y="12" width="260" height="100"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Bluefruit Connect v1.0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s2o-eu-fmw">
+                    <rect key="frame" x="100" y="114" width="200" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <size key="shadowOffset" width="0.0" height="0.0"/>
+                </label>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" scrollEnabled="NO" indicatorStyle="white" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1NA-z2-6pw">
+                    <rect key="frame" x="20" y="172" width="280" height="320"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <attributedString key="attributedText">
+                        <fragment content="Instructions:">
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="15" name="HelveticaNeue-Bold"/>
+                                <font key="NSOriginalFont" size="15" name="HelveticaNeue-Bold"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content">
+
+• Connect </string>
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="15" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="Bluefruit">
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="15" name="HelveticaNeue-Bold"/>
+                                <font key="NSOriginalFont" size="15" name="HelveticaNeue-Bold"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content=" to ">
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="15" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="Arduino">
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="15" name="HelveticaNeue-Bold"/>
+                                <font key="NSOriginalFont" size="15" name="HelveticaNeue-Bold"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content"> via this schematic: http://www.adafruit.com
+
+• Upload the sketch to </string>
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="15" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="Arduino">
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="15" name="HelveticaNeue-Bold"/>
+                                <font key="NSOriginalFont" size="15" name="HelveticaNeue-Bold"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content"> relevant to the mode you wish to use:
+
+    </string>
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="15" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="Pin I/O">
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="15" name="HelveticaNeue-Bold"/>
+                                <font key="NSOriginalFont" size="15" name="HelveticaNeue-Bold"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content"> - http://www.adafruit.com
+    </string>
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="15" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="UART">
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="15" name="HelveticaNeue-Bold"/>
+                                <font key="NSOriginalFont" size="15" name="HelveticaNeue-Bold"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content"> - http://www.adafruit.com
+
+• Tap the appropriate button on the main menu to connect to </string>
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="15" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="Bluefruit">
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="15" name="HelveticaNeue-Bold"/>
+                                <font key="NSOriginalFont" size="15" name="HelveticaNeue-Bold"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content">.
+
+• Additional help is available within each mode's screen.</string>
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="15" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                    </attributedString>
+                    <textInputTraits key="textInputTraits"/>
+                    <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                </textView>
+            </subviews>
+            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Adaflower.png" width="86" height="86"/>
+        <image name="adafruit_logo2012-white-horiz-230w.png" width="230" height="93"/>
+    </resources>
+</document>

@@ -95,12 +95,8 @@
 
 - (void)viewDidAppear:(BOOL)animated{
     
-    //set all pin modes active
-    for (PinCell *cell in cells) {
-        [self modeControlChanged:cell.modeControl];
-    }
+    [self performSelector:@selector(enableRead) withObject:self afterDelay:0.24];
     
-    [self enableRead];
 }
 
 
@@ -175,6 +171,8 @@
         [cells addObject:cell];
     }
     
+    [self enableRead];
+    
 }
 
 
@@ -198,17 +196,73 @@
 
 - (void)enableRead{
     
-    //Enable monitoring of pin values / input
-    
-    [self setDigitalStateReportingforPort:0 enabled:YES];
-    [self setDigitalStateReportingforPort:1 enabled:YES];
-    [self setDigitalStateReportingforPort:2 enabled:YES];
-    
-    //Enable analog reads
-    for (int i = 0; i<=5; i++) {
-        [self setAnalogValueReportingforAnalogPin:i enabled:YES];
+    //set all pin modes active
+    for (PinCell *cell in cells) {
+        [self modeControlChanged:cell.modeControl];
     }
     
+    //Enable monitoring of pin values / input
+    [self setDigitalStateReportingforPin:3 enabled:YES];
+    [self setDigitalStateReportingforPin:4 enabled:YES];
+    [self setDigitalStateReportingforPin:5 enabled:YES];
+    [self setDigitalStateReportingforPin:6 enabled:YES];
+    [self setDigitalStateReportingforPin:7 enabled:YES];
+    [self setDigitalStateReportingforPin:8 enabled:YES];
+    
+    //Analogs as digital
+    [self setDigitalStateReportingforPin:14 enabled:YES];
+    [self setDigitalStateReportingforPin:15 enabled:YES];
+    [self setDigitalStateReportingforPin:16 enabled:YES];
+    [self setDigitalStateReportingforPin:17 enabled:YES];
+    [self setDigitalStateReportingforPin:18 enabled:YES];
+    [self setDigitalStateReportingforPin:19 enabled:YES];
+    
+    //Enable analog reads
+//    for (int i = 0; i<=5; i++) {
+//        [self setAnalogValueReportingforAnalogPin:i enabled:YES];
+//    }
+    
+}
+
+
+- (void)setDigitalStateReportingforPin:(int)digitalPin enabled:(BOOL)enabled{
+    
+    //Enable input/output for a digital pin
+    
+    //find port for pin
+    uint8_t port;
+    uint8_t pin;
+    
+    //find pin for port
+    if (digitalPin <= 7){       //Port 0 (aka port D)
+        port = 0;
+        pin = digitalPin;
+    }
+    
+    else if (digitalPin <= 13){ //Port 1 (aka port B)
+        port = 1;
+        pin = digitalPin - 8;
+    }
+    
+    else{                       //Port 2 (aka port C)
+        port = 2;
+        pin = digitalPin - 14;
+    }
+    
+    uint8_t data0 = 0xD0 + port;        //start port 0 digital reporting (0xD0 + port#)
+    uint8_t data1 = portMasks[port];    //retrieve saved pin mask for port;
+    
+    if (enabled)
+        data1 |= (1<<pin);
+    else
+        data1 ^= (1<<pin);
+    
+    uint8_t bytes[2] = {data0, data1};
+    NSData *newData = [[NSData alloc ]initWithBytes:bytes length:2];
+    
+    [_delegate sendData:newData];
+    
+    portMasks[port] = data1;    //save new pin mask
 }
 
 
@@ -221,6 +275,7 @@
     
     uint8_t data0 = 0xD0 + port;  //start port 0 digital reporting (207 + port#)
     uint8_t data1 = (uint8_t)enabled;    //Enable
+    
     uint8_t bytes[2] = {data0, data1};
     NSData *newData = [[NSData alloc ]initWithBytes:bytes length:2];
     
@@ -368,7 +423,7 @@
     //Status byte == 144 + port#
     uint8_t port = pin / 8;
     
-    data0 = 144 + port;
+    data0 = 0x90 + port;
     
     //Data1 == pin0State + 2*pin1State + 4*pin2State + 8*pin3State + 16*pin4State + 32*pin5State
     uint8_t pinIndex = pin - (port*8);
@@ -390,6 +445,7 @@
         portMasks[port] = newMask;
         data1 = newMask;
         data2 = 0;
+        
         //Hack for firmata pin15 reporting bug?
         if (port == 1) {
             data2 = newMask>>7;

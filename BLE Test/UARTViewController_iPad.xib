@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1552" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UARTViewController">
@@ -14,7 +14,6 @@
                 <outlet property="helpViewController" destination="S3D-Le-8B7" id="MsP-j8-4p7"/>
                 <outlet property="inputField" destination="XSr-VR-VaE" id="2Zv-A1-H40"/>
                 <outlet property="inputView" destination="ihh-tz-neF" id="ahQ-VT-tgo"/>
-                <outlet property="sendButton" destination="hp7-tW-bql" id="F3m-NT-BGG"/>
                 <outlet property="view" destination="3VW-cp-9L3" id="nqj-Vi-oxK"/>
             </connections>
         </placeholder>
@@ -84,11 +83,11 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <subviews>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Message" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="XSr-VR-VaE" userLabel="Text Field - Message">
-                            <rect key="frame" x="71" y="16" width="554" height="30"/>
+                            <rect key="frame" x="71" y="16" width="622" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="Qp3-I1-oPo"/>
-                                <constraint firstAttribute="width" constant="554" id="pAD-iV-hxG"/>
+                                <constraint firstAttribute="width" constant="622" id="pAD-iV-hxG"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                             <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="alphabet" keyboardAppearance="alert" returnKeyType="done"/>
@@ -96,31 +95,13 @@
                                 <outlet property="delegate" destination="-1" id="yfJ-Wo-F6h"/>
                             </connections>
                         </textField>
-                        <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hp7-tW-bql">
-                            <rect key="frame" x="642" y="16" width="46" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="30" id="Eaz-Bc-Lnt"/>
-                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="46" id="cnA-8l-xCZ"/>
-                                <constraint firstAttribute="width" constant="46" id="qYP-2K-F8e"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                            <state key="normal" title="Send">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="sendMessage:" destination="-1" eventType="touchUpInside" id="JKX-4r-DWg"/>
-                            </connections>
-                        </button>
                     </subviews>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="61" id="9O6-D1-jqo"/>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="768" id="Clo-jz-Auz"/>
-                        <constraint firstAttribute="centerY" secondItem="hp7-tW-bql" secondAttribute="centerY" id="If9-KH-xvm"/>
                         <constraint firstItem="XSr-VR-VaE" firstAttribute="top" secondItem="ihh-tz-neF" secondAttribute="top" constant="16" id="VVa-NC-I5g"/>
-                        <constraint firstItem="XSr-VR-VaE" firstAttribute="leading" secondItem="ihh-tz-neF" secondAttribute="leading" constant="71" id="uKF-Wz-ZgX"/>
-                        <constraint firstItem="hp7-tW-bql" firstAttribute="leading" secondItem="XSr-VR-VaE" secondAttribute="trailing" constant="17" id="yfS-YF-O5f"/>
+                        <constraint firstAttribute="centerX" secondItem="XSr-VR-VaE" secondAttribute="centerX" constant="2" id="q9W-LL-36H"/>
                     </constraints>
                 </view>
             </subviews>

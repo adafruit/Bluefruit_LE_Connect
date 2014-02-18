@@ -23,11 +23,14 @@
 @property (strong, nonatomic) IBOutlet UILabel                           *headerLabel;
 @property (strong, nonatomic) IBOutlet PinCell                           *digitalPinCell;
 @property (strong, nonatomic) IBOutlet HelpViewController                *helpViewController;
+@property (strong, nonatomic) IBOutlet UITextView                        *debugConsole;
 
 - (id)initWithDelegate:(id<PinIOViewControllerDelegate>)aDelegate;
 - (void)didConnect;
 - (void)digitalControlChanged:(UISegmentedControl*)sender;
 - (void)cellButtonTapped:(UIButton*)sender;
 - (void)modeControlChanged:(id)sender;
+- (IBAction)toggleDebugConsole:(id)sender;
+- (void)receiveData:(NSData *)newData;
 
 @end

@@ -38,7 +38,7 @@ typedef enum {
 @property (strong, nonatomic) UISegmentedControl   *modeControl;
 @property (strong, nonatomic) UISegmentedControl   *digitalControl;
 @property (strong, nonatomic) UISlider             *valueSlider;
-@property (nonatomic, assign) int                  mode;
+@property (nonatomic, assign) PinMode              mode;
 @property (nonatomic, assign) int                  digitalPin;
 @property (nonatomic, assign) int                  analogPin;
 @property (nonatomic, readonly) BOOL               isDigital;
@@ -48,5 +48,6 @@ typedef enum {
 
 - (void)setReceivedValue:(int)value;
 - (void)setWrittenValue:(int)value;
+- (void)setDefaultsWithMode:(PinMode)defaultMode;
 
 @end

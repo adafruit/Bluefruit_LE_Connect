@@ -19,9 +19,10 @@
 
 @interface BLEMainViewController ()<UIAlertViewDelegate>{
     
-    CBCentralManager *cm;
-    UIAlertView     *currentAlertView;
-    UARTPeripheral *currentPeripheral;
+    CBCentralManager    *cm;
+    UIAlertView         *currentAlertView;
+    UARTPeripheral      *currentPeripheral;
+    UIBarButtonItem     *infoBarButton;
     
 }
 
@@ -51,22 +52,22 @@
     
     
     //create add'l controllers
-    self.pinIoViewController = [[PinIOViewController alloc]initWithDelegate:self];
-    
-    self.uartViewController = [[UARTViewController alloc]initWithDelegate:self];
+//    self.pinIoViewController = [[PinIOViewController alloc]initWithDelegate:self];
+//    self.uartViewController = [[UARTViewController alloc]initWithDelegate:self];
     
     
     //add info bar button to mode controllers
     NSData *archivedData = [NSKeyedArchiver archivedDataWithRootObject: _infoButton];
     UIButton *buttonCopy = [NSKeyedUnarchiver unarchiveObjectWithData: archivedData];
     [buttonCopy addTarget:self action:@selector(showInfo:) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *infobb = [[UIBarButtonItem alloc]initWithCustomView:buttonCopy];
-    self.pinIoViewController.navigationItem.rightBarButtonItem = infobb;
+    infoBarButton = [[UIBarButtonItem alloc]initWithCustomView:buttonCopy];
+//    self.pinIoViewController.navigationItem.rightBarButtonItem = infobb;
     
-    buttonCopy = [NSKeyedUnarchiver unarchiveObjectWithData: archivedData];
-    [buttonCopy addTarget:self action:@selector(showInfo:) forControlEvents:UIControlEventTouchUpInside];
-    infobb = [[UIBarButtonItem alloc]initWithCustomView:buttonCopy];
-    self.uartViewController.navigationItem.rightBarButtonItem = infobb;
+//    buttonCopy = [NSKeyedUnarchiver unarchiveObjectWithData: archivedData];
+//    [buttonCopy addTarget:self action:@selector(showInfo:) forControlEvents:UIControlEventTouchUpInside];
+//    infobb = [[UIBarButtonItem alloc]initWithCustomView:buttonCopy];
+//    self.uartViewController.navigationItem.rightBarButtonItem = infobb;
+    
 }
 
 
@@ -335,11 +336,14 @@
     
     //Pin I/O mode
     if (_connectionMode == ConnectionModePinIO) {
-        
+        self.pinIoViewController = [[PinIOViewController alloc]initWithDelegate:self];
+        _pinIoViewController.navigationItem.rightBarButtonItem = infoBarButton;
         [_pinIoViewController didConnect];
     }
     //UART mode
     else if (_connectionMode == ConnectionModeUART){
+        self.uartViewController = [[UARTViewController alloc]initWithDelegate:self];
+        _uartViewController.navigationItem.rightBarButtonItem = infoBarButton;
         [_uartViewController didConnect];
         
     }
@@ -392,12 +396,18 @@
 
 - (void)didReceiveData:(NSData*)data{
     
-    if (_connectionMode == ConnectionModeUART) {
-        [_uartViewController receiveData:data];
-    }
-    
-    else if (_connectionMode == ConnectionModePinIO){
-        //send data to PIN IO Controller
+    if (_connectionStatus == ConnectionStatusConnected || _connectionStatus == ConnectionStatusScanning) {
+        //UART
+        if (_connectionMode == ConnectionModeUART) {
+            //send data to UART Controller
+            [_uartViewController receiveData:data];
+        }
+        
+        //Pin I/O
+        else if (_connectionMode == ConnectionModePinIO){
+            //send data to PIN IO Controller
+            [_pinIoViewController receiveData:data];
+        }
     }
 }
 
@@ -438,6 +448,10 @@
     
     _connectionStatus = ConnectionStatusDisconnected;
     _connectionMode = ConnectionModeNone;
+    
+    //dereference mode controllers
+    self.pinIoViewController = nil;
+    self.uartViewController = nil;
     
     //make reconnection available after short delay
     [self performSelector:@selector(enableConnectionButtons) withObject:nil afterDelay:1.0f];

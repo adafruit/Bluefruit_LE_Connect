@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1552" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
@@ -14,7 +14,6 @@
                 <outlet property="helpViewController" destination="e9D-JV-2Hc" id="nCE-Av-DPY"/>
                 <outlet property="inputField" destination="71R-1Z-ATx" id="XfZ-Ro-WhX"/>
                 <outlet property="inputView" destination="NsD-Pj-die" id="WpS-Kl-NZp"/>
-                <outlet property="sendButton" destination="bAp-rT-RdM" id="1kO-do-Ia0"/>
                 <outlet property="view" destination="4Bs-rp-lml" id="ZfX-Zh-6aq"/>
             </connections>
         </placeholder>
@@ -72,9 +71,13 @@
                     <rect key="frame" x="0.0" y="452" width="322" height="100"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <subviews>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Message" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="71R-1Z-ATx" userLabel="Text Field - Message">
-                            <rect key="frame" x="9" y="11" width="254" height="30"/>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Message" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="71R-1Z-ATx" userLabel="Text Field - Message">
+                            <rect key="frame" x="15" y="11" width="293" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="293" id="8A1-hR-oll"/>
+                                <constraint firstAttribute="height" constant="30" id="byG-I0-6ZO"/>
+                            </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="alphabet" keyboardAppearance="alert" returnKeyType="done"/>
                             <connections>
@@ -82,19 +85,12 @@
                                 <outlet property="delegate" destination="-1" id="Jb6-om-h7E"/>
                             </connections>
                         </textField>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bAp-rT-RdM">
-                            <rect key="frame" x="271" y="11" width="46" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                            <state key="normal" title="Send">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="sendMessage:" destination="-1" eventType="touchUpInside" id="un5-cG-Lhb"/>
-                            </connections>
-                        </button>
                     </subviews>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="71R-1Z-ATx" firstAttribute="top" secondItem="NsD-Pj-die" secondAttribute="top" constant="11" id="KeT-lI-Ued"/>
+                        <constraint firstAttribute="centerX" secondItem="71R-1Z-ATx" secondAttribute="centerX" id="b1H-KA-Q0t"/>
+                    </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" white="0.14999999999999999" alpha="1" colorSpace="calibratedWhite"/>
@@ -132,7 +128,7 @@
                         <constraint firstAttribute="height" constant="44" id="k1n-RS-qLa"/>
                     </constraints>
                     <items>
-                        <navigationItem title="  " id="fsy-5V-22P" userLabel="Navigation Item - Done">
+                        <navigationItem title=" UART Help " id="fsy-5V-22P" userLabel="Navigation Item - Done">
                             <barButtonItem key="leftBarButtonItem" systemItem="done" id="y7a-sX-tAZ">
                                 <connections>
                                     <action selector="done:" destination="e9D-JV-2Hc" id="a9L-29-Z1f"/>
@@ -157,7 +153,7 @@
                         <constraint firstAttribute="width" constant="280" id="ao5-ID-zy6"/>
                     </constraints>
                     <attributedString key="attributedText">
-                        <fragment content="UART Mode Instructions:">
+                        <fragment content="Instructions:">
                             <attributes>
                                 <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <font key="NSFont" size="15" name="HelveticaNeue-Bold"/>

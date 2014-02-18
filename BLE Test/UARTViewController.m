@@ -8,6 +8,7 @@
 
 #import "UARTViewController.h"
 #import "NSString+hex.h"
+#import "NSData+hex.h"
 
 #define kKeyboardAnimationDuration 0.3f
 
@@ -22,6 +23,8 @@
     
     if (self){
         self.delegate = aDelegate;
+        self.title = @"UART";
+        self.helpViewController.title = @"UART Help";
     }
     
     return self;
@@ -75,17 +78,6 @@
 }
 
 
-- (void)viewWillAppear:(BOOL)animated{
-    
-    //clear console & update buttons
-    [self clearConsole:nil];
-    
-    //dismiss keyboard
-    [_inputField resignFirstResponder];
-    
-}
-
-
 - (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -112,33 +104,82 @@
 }
 
 
-- (void)updateConsoleWithString:(NSString*)newString type:(ConsoleDataType)type{
+- (void)updateConsoleWithIncomingData:(NSData*)newData {
     
-    UIColor *color = [UIColor blueColor];
+    //RX - message received from Bluefruit
+    
+    //convert data to string & replace ocurances of "(null)"
+    NSString *newString = [NSString stringWithUTF8String:[newData bytes]];
+//    unichar ns = 0xDB;
+//    NSString *nullSymbol = [NSString stringWithFormat:@"%C", 0x2588];   //block
+    NSString *nullSymbol = [NSString stringWithFormat:@"%C", (unichar)0x25a0];   //black square
+    
+//    newString = [newString stringByReplacingOccurrencesOfString:@"(null)" withString:nullSymbol];
+    
+    if (newString == nil) {
+        newString = nullSymbol;
+    }
+    
+    
+    //check for null character
+    
+    UIColor *color = [UIColor redColor];
     NSString *appendString = @"\n"; //each message appears on new line
     
-    switch (type) {
-        case RX:
-            color = [UIColor redColor];
+    
+    //Update ASCII text
+    UIFont * consoleFont = [self.consoleView font];
+    NSAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@%@", newString, appendString] //line breaks in ACII mode
+                                                                            attributes: @{NSForegroundColorAttributeName : color,
+                                                                                          NSFontAttributeName : consoleFont
+                                                                                          }];
+    NSMutableAttributedString *newASCIIText = [[NSMutableAttributedString alloc] initWithAttributedString:_consoleAsciiText];
+    [newASCIIText appendAttributedString:attrString];
+    _consoleAsciiText = newASCIIText;
+    
+    
+    //Update Hex text
+    NSString *newHexString = [newData hexRepresentationWithSpaces:YES];
+    attrString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@", newHexString]      //no line breaks in Hex mode
+                                                        attributes: @{
+                                                                      NSForegroundColorAttributeName : color,
+                                                                      NSFontAttributeName : consoleFont
+                                                                      }];
+    NSMutableAttributedString *newHexText = [[NSMutableAttributedString alloc] initWithAttributedString:_consoleHexText];
+    [newHexText appendAttributedString:attrString];
+    _consoleHexText = newHexText;
+    
+    //write string to console based on mode selection
+    switch (_consoleModeControl.selectedSegmentIndex) {
+        case 0:
+            //ASCII
+            _consoleView.attributedText = _consoleAsciiText;
             break;
-        case TX:
-            color = [UIColor blueColor];
-            break;
-        case LOGGING:
-            color = [UIColor grayColor];
+        case 1:
+            //Hex
+            _consoleView.attributedText = _consoleHexText;
             break;
         default:
-            color = [UIColor blackColor];
+            _consoleView.attributedText = _consoleAsciiText;
             break;
     }
     
-    //remove trailing carriage return / newline
-    //    while (([newString characterAtIndex:(newString.length-1)] == (char)13) ||   //ends with carriage return
-    //           ([newString characterAtIndex:(newString.length-1)] == (char)10)) {   //ends with new line
-    //        NSLog(@"string ends with carriage return or new line");
-    //        newString = [newString stringByReplacingCharactersInRange:NSMakeRange(newString.length-1, 1) withString:@""];
-    //    }
+    //scroll output to bottom
+    [_consoleView scrollRangeToVisible:NSMakeRange([_consoleView.text length], 0)];
+    [_consoleView setScrollEnabled:NO];
+    [_consoleView setScrollEnabled:YES];
     
+    [self updateConsoleButtons];
+    
+}
+
+
+- (void)updateConsoleWithOutgoingString:(NSString*)newString{
+    
+    //TX - message to send to Bluefruit
+    
+    UIColor *color = [UIColor blueColor];
+    NSString *appendString = @"\n"; //each message appears on new line
     
     
     //Update ASCII text
@@ -194,6 +235,17 @@
     
     [_consoleCopyButton setEnabled:enabled];
     [_consoleClearButton setEnabled:enabled];
+    
+}
+
+
+- (void)resetUI{
+    
+    //clear console & update buttons
+    [self clearConsole:nil];
+    
+    //dismiss keyboard
+    [_inputField resignFirstResponder];
     
 }
 
@@ -270,7 +322,7 @@
     [_inputField setText:@""];
     
     //reflect sent message in console
-    [self updateConsoleWithString:newString type:TX];
+    [self updateConsoleWithOutgoingString:newString];
     
 }
 
@@ -278,9 +330,9 @@
 - (void)receiveData:(NSData *)newData{
     
     //convert data to string
-    NSString *string = [NSString stringWithUTF8String:[newData bytes]];
+//    NSString *string = [NSString stringWithUTF8String:[newData bytes]];
     
-    [self updateConsoleWithString:string type:RX];
+    [self updateConsoleWithIncomingData:newData];
     
 }
 
@@ -397,7 +449,7 @@
 - (void)didConnect{
     
     //respond to connection
-    
+    [self resetUI];
 }
 
 

@@ -49,5 +49,6 @@ typedef enum {
 - (void)receiveData:(NSData*)newData;
 - (IBAction)consoleModeControlDidChange:(UISegmentedControl *)sender;
 - (void)didConnect;
+- (void)resetUI;
 
 @end

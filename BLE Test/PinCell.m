@@ -8,10 +8,20 @@
 
 #import "PinCell.h"
 
+
+@interface PinCell(){
+    
+    PinMode    defaultPinMode;
+}
+@end
+
+
 @implementation PinCell
 
 
 - (void)setReceivedValue:(int)value{
+    
+//    NSLog(@"Setting Cell: %@ Value: %d", self.pinLabel.text, value);
     
     if (_mode == kPinModeInput) {
         switch (value) {
@@ -62,13 +72,13 @@
 }
 
 
-- (void)setMode:(int)mode{
+- (void)setMode:(PinMode)mode{
     
     //Set default display values & controls
     switch (mode) {
         case kPinModeInput:
             _modeLabel.text = @"Input";
-            _valueLabel.text = @"Low";
+//            _valueLabel.text = @"Low";
             [self hideDigitalControl:YES];
             [self hideValueSlider:YES];
             break;
@@ -126,12 +136,14 @@
 }
 
 
-- (void)setDefaultState{
+- (void)setDefaultsWithMode:(PinMode)aMode{
     
-    [_modeControl setSelectedSegmentIndex:1];
-    [self setMode:kPinModeOutput];
+    defaultPinMode = aMode;
     
-    [_digitalControl setSelectedSegmentIndex:0];
+    [_modeControl setSelectedSegmentIndex:defaultPinMode];
+    [self setMode:defaultPinMode];
+    
+    [_digitalControl setSelectedSegmentIndex:kPinStateLow];
     
     [_valueSlider setValue:0.0f animated:NO];
     
@@ -185,8 +197,8 @@
         [_modeControl insertSegmentWithTitle:@"Servo" atIndex:_modeControl.numberOfSegments animated:NO];
     }
     
-    //Default to Output selected
-    [_modeControl setSelectedSegmentIndex:1];
+//    //Default to Output selected
+    [_modeControl setSelectedSegmentIndex:kPinModeInput];
 }
 
 
@@ -198,15 +210,6 @@
         [self setIsAnalog:YES];
     }
     else [self setIsAnalog:NO];
-}
-
-
-- (void)resetControls{
-    
-    _modeLabel.text = @"Output";
-    _valueLabel.text = @"Low";
-    _modeControl.selectedSegmentIndex = 1;
-    _valueSlider.value = 0.0f;
 }
 
 

@@ -31,6 +31,7 @@
     CGRect          tableVisibleBounds;
     CGRect          tableOffScreenBounds;
     BOOL            pinTableAnimating;
+    BOOL            readReportsSent;
     uint8_t         portMasks[PORT_COUNT];   //port # as index
     
 }
@@ -51,6 +52,7 @@
         self.delegate = aDelegate;
         self.title = @"Pin I/O";
         self.helpViewController.title = @"Pin I/O Help";
+        readReportsSent = NO;
     }
     
     return self;
@@ -95,7 +97,8 @@
 
 - (void)viewDidAppear:(BOOL)animated{
     
-    [self performSelector:@selector(enableRead) withObject:self afterDelay:0.24];
+    if (readReportsSent == NO)
+        [self enableReadReports];
     
 }
 
@@ -154,72 +157,103 @@
         
         cell.toggleButton = (UIButton*)[cell viewWithTag:103];
         [cell.toggleButton addTarget:self action:@selector(cellButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+        //set tag to indicate digital pin number
+        cell.toggleButton.tag = i;
         
         cell.modeControl = (UISegmentedControl*)[cell viewWithTag:104];
         [cell.modeControl addTarget:self action:@selector(modeControlChanged:) forControlEvents:UIControlEventValueChanged];
+        //set tag to indicate digital pin number
+        cell.modeControl.tag = i;
         
         cell.digitalControl = (UISegmentedControl*)[cell viewWithTag:105];
         [cell.digitalControl addTarget:self action:@selector(digitalControlChanged:) forControlEvents:UIControlEventValueChanged];
+        //set tag to indicate digital pin number
+        cell.digitalControl.tag = i;
         
         cell.valueSlider = (UISlider*)[cell viewWithTag:106];
         [cell.valueSlider addTarget:self action:@selector(valueControlChanged:) forControlEvents:UIControlEventValueChanged];
+        //set tag to indicate digital pin number
+        cell.valueSlider.tag = i;
         
         cell.delegate = self;
+        
+        if (i >= FIRST_DIGITAL_PIN && i <= LAST_DIGITAL_PIN) {
+            //setup digital pin
+            cell.digitalPin = i;
+            cell.analogPin = -1;
+            cell.pinLabel.text = [NSString stringWithFormat:@"Pin %d", cell.digitalPin];
+        }
+        else if (i >= FIRST_ANALOG_PIN && i <= LAST_ANALOG_PIN){
+            //setup analog pin
+            cell.digitalPin = i;
+            cell.analogPin = i - FIRST_ANALOG_PIN;
+            cell.pinLabel.text = [NSString stringWithFormat:@"Pin A%d", cell.analogPin];
+        }
+        else{
+            //placeholder cell
+            cell.digitalPin = -1;
+        }
         
         [cell setDefaultsWithMode:kPinModeInput];
         
         [cells addObject:cell];
     }
     
-    [self enableRead];
+//    [self enableReadReports];
     
 }
 
 
-//- (void)writeInitialModeStates{
-//    
-//    //Debug
-////    NSLog(@"cells count == %d", cells.count);
-//    
-//    //write starting modes as Input
-//    for (PinCell *cell in cells) {
-//        
-//        NSLog(@"cell label == %@", cell.pinLabel.text);
-//        
-//        [cell.modeControl setSelectedSegmentIndex:kPinModeInput];
-//        [cell setMode:kPinModeInput];
-//        [self modeControlChanged:cell.modeControl];
-//    }
-//    
-//}
-
-
-- (void)enableRead{
+- (void)enableReadReports{
     
     //set all pin modes active
     for (PinCell *cell in cells) {
-        [self modeControlChanged:cell.modeControl];
+        if (cell.digitalPin >= 0) { //placeholder cells are -1
+            
+            //set default pin mode
+            [self modeControlChanged:cell.modeControl];
+            
+        }
     }
     
+    //Set all pin read reports (done in a second pass for debugging)
+//    for (PinCell *cell in cells) {
+//        if (cell.digitalPin >= 0) { //placeholder cells are -1
+//            
+//            //set read reports enabled
+//            [self setDigitalStateReportingforPin:cell.digitalPin enabled:YES];
+//            
+//        }
+//    }
+    
+    
+    //Set read reporting as batch/per port
+    //PORT0: 0xd0 0xf8
+    uint8_t bytes[2] = {0xd0, 0x1};
+    NSData *newData = [[NSData alloc ]initWithBytes:bytes length:2];
+    portMasks[0] = bytes[1];
+    [_delegate sendData:newData];
+    
+    //PORT1: 0xd1 0xc1
+    bytes[0] = 0xd1; bytes[1] = 0x01;
+    newData = [[NSData alloc ]initWithBytes:bytes length:2];
+    portMasks[1] = bytes[1];
+    [_delegate sendData:newData];
+    
+    //PORT2: 0xd2 0xf
+    bytes[0] = 0xd2; bytes[1] = 0x1;
+    newData = [[NSData alloc ]initWithBytes:bytes length:2];
+    portMasks[2] = bytes[1];
+    [_delegate sendData:newData];
+    
+    readReportsSent = YES;
+    
     //Enable monitoring of pin values / input
-    [self setDigitalStateReportingforPin:3 enabled:YES];
-    [self setDigitalStateReportingforPin:4 enabled:YES];
-    [self setDigitalStateReportingforPin:5 enabled:YES];
-    [self setDigitalStateReportingforPin:6 enabled:YES];
-    [self setDigitalStateReportingforPin:7 enabled:YES];
-    [self setDigitalStateReportingforPin:8 enabled:YES];
-    
-    //Analogs as digital
-    [self setDigitalStateReportingforPin:14 enabled:YES];
-    [self setDigitalStateReportingforPin:15 enabled:YES];
-    [self setDigitalStateReportingforPin:16 enabled:YES];
-    [self setDigitalStateReportingforPin:17 enabled:YES];
-    [self setDigitalStateReportingforPin:18 enabled:YES];
-    [self setDigitalStateReportingforPin:19 enabled:YES];
-    
-    //Enable analog reads
-//    for (int i = 0; i<=5; i++) {
-//        [self setAnalogValueReportingforAnalogPin:i enabled:YES];
+//    for (int i = FIRST_DIGITAL_PIN; i < LAST_DIGITAL_PIN; i++) {
+//        [self setDigitalStateReportingforPin:i enabled:YES];
+//    }
+//    for (int i = FIRST_ANALOG_PIN; i < LAST_ANALOG_PIN; i++) {
+//        [self setDigitalStateReportingforPin:i enabled:YES];
 //    }
     
 }
@@ -228,6 +262,10 @@
 - (void)setDigitalStateReportingforPin:(int)digitalPin enabled:(BOOL)enabled{
     
     //Enable input/output for a digital pin
+    
+    //port 0: digital 0-7
+    //port 1: digital 8-15
+    //port 2: digital 16-23
     
     //find port for pin
     uint8_t port;
@@ -239,14 +277,14 @@
         pin = digitalPin;
     }
     
-    else if (digitalPin <= 13){ //Port 1 (aka port B)
+    else if (digitalPin <= 15){ //Port 1 (aka port B)
         port = 1;
         pin = digitalPin - 8;
     }
     
     else{                       //Port 2 (aka port C)
         port = 2;
-        pin = digitalPin - 14;
+        pin = digitalPin - 16;
     }
     
     uint8_t data0 = 0xD0 + port;        //start port 0 digital reporting (0xD0 + port#)
@@ -354,16 +392,22 @@
 }
 
 
-- (void)modeControlChanged:(id)sender{
+- (void)modeControlChanged:(UISegmentedControl*)sender{
     
     //Change relevant cell's mode
     
-    PinCell *cell = [self pinCellForSubview:sender];
-    PinMode mode = [self pinModeforControl:(UISegmentedControl*)sender];
+//    PinCell *cell = [self pinCellForSubview:sender];
+    PinCell *cell = [cells objectAtIndex:sender.tag];
+    PinMode mode = (PinMode)sender.selectedSegmentIndex;
     [cell setMode:mode];
     
     //Write pin
     [self writePinMode:mode forPin:cell.digitalPin];
+    
+    //Update reporting for new mode - NOT NECESSARY
+//    BOOL enabled = (mode == kPinModeInput) ? YES : NO;
+//    [self setDigitalStateReportingforPin:cell.digitalPin enabled:enabled];
+    
 }
 
 
@@ -669,17 +713,12 @@
     if (indexPath.section == DIGITAL_PIN_SECTION){    //Digital Pins 2-7
         int pin = indexPath.row + FIRST_DIGITAL_PIN;
         cell = [cells objectAtIndex:pin];
-        cell.digitalPin = pin;
-        cell.analogPin = -1;
-        cell.pinLabel.text = [NSString stringWithFormat:@"Pin %d", cell.digitalPin];
+        
     }
     
     else {                                            //Analog Pins A0-A5
         int pin = indexPath.row + FIRST_ANALOG_PIN;
         cell = [cells objectAtIndex:pin];
-        cell.digitalPin = pin;
-        cell.analogPin = indexPath.row;
-        cell.pinLabel.text = [NSString stringWithFormat:@"Pin A%d", cell.analogPin];
     }
     
     return cell;

@@ -10,6 +10,7 @@
 #import "utils.h"
 #import <QuartzCore/QuartzCore.h>
 #import "NSString+hex.h"
+#import "NSData+hex.h"
 
 #define CONNECTING_TEXT @"Connecting…"
 #define DISCONNECTING_TEXT @"Disconnecting…"
@@ -482,6 +483,9 @@
 
 
 - (void)sendData:(NSData *)newData{
+    
+    NSString *hexString = [newData hexRepresentationWithSpaces:YES];
+    NSLog(@"sendData: %@", hexString);
     
     [currentPeripheral writeRawData:newData];
     

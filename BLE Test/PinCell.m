@@ -43,6 +43,7 @@
     }
     
     //    else NSLog(@"Attempting to set received value to an output cell");
+    
 }
 
 
@@ -78,7 +79,7 @@
     switch (mode) {
         case kPinModeInput:
             _modeLabel.text = @"Input";
-//            _valueLabel.text = @"Low";
+            _valueLabel.text = @"Low";
             [self hideDigitalControl:YES];
             [self hideValueSlider:YES];
             break;

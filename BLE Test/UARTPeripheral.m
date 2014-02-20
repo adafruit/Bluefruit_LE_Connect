@@ -195,7 +195,7 @@
         const uint8_t *bytes = characteristic.value.bytes;
         for (int i = 0; i < characteristic.value.length; i++)
         {
-            NSLog(@"%x", bytes[i]);
+//            NSLog(@"%x", bytes[i]);
             hwRevision = [hwRevision stringByAppendingFormat:@"0x%02x, ", bytes[i]];
         }
         

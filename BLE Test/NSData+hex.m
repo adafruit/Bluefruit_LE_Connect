@@ -23,7 +23,7 @@
     
     NSMutableString* hex = [[NSMutableString alloc] initWithCapacity:strLen];
     for(NSUInteger i=0; i<nbBytes; ) {
-        [hex appendFormat:@"%x", bytes[i]];
+        [hex appendFormat:@"0x%x", bytes[i]];
         //We need to increment here so that the every-n-bytes computations are right.
         ++i;
         

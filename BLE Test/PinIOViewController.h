@@ -29,7 +29,7 @@
 - (void)didConnect;
 - (void)digitalControlChanged:(UISegmentedControl*)sender;
 - (void)cellButtonTapped:(UIButton*)sender;
-- (void)modeControlChanged:(id)sender;
+- (void)modeControlChanged:(UISegmentedControl*)sender;
 - (IBAction)toggleDebugConsole:(id)sender;
 - (void)receiveData:(NSData *)newData;
 

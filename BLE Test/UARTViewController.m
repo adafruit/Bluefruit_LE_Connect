@@ -32,7 +32,7 @@
 }
 
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
+- (id)initWithNibName:(NSString*)nibNameOrNil bundle:(NSBundle*)nibBundleOrNil{
     
     NSString *nibName = IS_IPAD ? @"UARTViewController_iPad" : @"UARTViewController_iPhone";
     
@@ -327,7 +327,7 @@
 }
 
 
-- (void)receiveData:(NSData *)newData{
+- (void)receiveData:(NSData*)newData{
     
     //convert data to string
 //    NSString *string = [NSString stringWithUTF8String:[newData bytes]];
@@ -337,7 +337,7 @@
 }
 
 
-- (void)keyboardWillHide:(NSNotification *)n{
+- (void)keyboardWillHide:(NSNotification*)n{
     
     NSDictionary* userInfo = [n userInfo];
     
@@ -358,7 +358,7 @@
 }
 
 
-- (void)keyboardWillShow:(NSNotification *)n{
+- (void)keyboardWillShow:(NSNotification*)n{
     
     if (_keyboardIsShown) {
         return;
@@ -419,7 +419,7 @@
 #pragma mark - Text Field delegate methods
 
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+- (BOOL)textFieldShouldReturn:(UITextField*)textField{
     
     [self sendMessage:nil];
     
@@ -429,7 +429,7 @@
 }
 
 
-- (IBAction)consoleModeControlDidChange:(UISegmentedControl *)sender{
+- (IBAction)consoleModeControlDidChange:(UISegmentedControl*)sender{
     
     switch (sender.selectedSegmentIndex) {
         case 0:

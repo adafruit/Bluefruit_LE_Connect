@@ -42,7 +42,7 @@ typedef enum {
 
 - (IBAction)showInfo:(id)sender;
 - (IBAction)buttonTapped:(UIButton*)sender;
-- (void)helpViewControllerDidFinish:(HelpViewController *)controller;
+- (void)helpViewControllerDidFinish:(HelpViewController*)controller;
 
 @end
 

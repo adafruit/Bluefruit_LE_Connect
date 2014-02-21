@@ -11,7 +11,7 @@
 @implementation NSString (hex)
 
 
-+ (NSString *) stringFromHex:(NSString *)str{
++ (NSString*) stringFromHex:(NSString*)str{
     
     NSMutableData *stringData = [[NSMutableData alloc] init];
     unsigned char whole_byte;
@@ -28,7 +28,7 @@
 }
 
 
-+ (NSString *) stringToHex:(NSString *)str{
++ (NSString*) stringToHex:(NSString*)str{
     
     NSUInteger len = [str length];
     unichar *chars = malloc(len * sizeof(unichar));
@@ -46,7 +46,7 @@
 }
 
 
-+ (NSString *) stringToHexSpaceSeparated:(NSString *)str{
++ (NSString*) stringToHexSpaceSeparated:(NSString*)str{
     
     NSUInteger len = [str length];
     unichar *chars = malloc(len * sizeof(unichar));

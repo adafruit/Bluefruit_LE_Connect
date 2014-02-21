@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		F02E54DB18AE94E1006AE85A /* NSData+hex.m in Sources */ = {isa = PBXBuildFile; fileRef = F02E54DA18AE94E1006AE85A /* NSData+hex.m */; };
 		F054948B1893188D007C7284 /* NSString+hex.m in Sources */ = {isa = PBXBuildFile; fileRef = F054948A1893188D007C7284 /* NSString+hex.m */; };
+		F075168918B735DB000556AF /* CBUUID+StringExtraction.m in Sources */ = {isa = PBXBuildFile; fileRef = F075168818B735DB000556AF /* CBUUID+StringExtraction.m */; };
+		F075168C18B75D29000556AF /* UITextView+lineCount.m in Sources */ = {isa = PBXBuildFile; fileRef = F075168B18B75D29000556AF /* UITextView+lineCount.m */; };
 		F08ACA6B16DD0C0400A377D1 /* cellGradient3-150h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F08ACA6916DD0C0400A377D1 /* cellGradient3-150h@2x.png */; };
 		F08ACA6C16DD0C0400A377D1 /* cellGradient3-150h.png in Resources */ = {isa = PBXBuildFile; fileRef = F08ACA6A16DD0C0400A377D1 /* cellGradient3-150h.png */; };
 		F08CE411188FD0C10098A4BD /* UARTPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = F08CE410188FD0C10098A4BD /* UARTPeripheral.m */; };
@@ -72,6 +74,10 @@
 		F02E54DA18AE94E1006AE85A /* NSData+hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+hex.m"; sourceTree = "<group>"; };
 		F05494891893188D007C7284 /* NSString+hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+hex.h"; sourceTree = "<group>"; };
 		F054948A1893188D007C7284 /* NSString+hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+hex.m"; sourceTree = "<group>"; };
+		F075168718B735DB000556AF /* CBUUID+StringExtraction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CBUUID+StringExtraction.h"; sourceTree = "<group>"; };
+		F075168818B735DB000556AF /* CBUUID+StringExtraction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CBUUID+StringExtraction.m"; sourceTree = "<group>"; };
+		F075168A18B75D29000556AF /* UITextView+lineCount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+lineCount.h"; sourceTree = "<group>"; };
+		F075168B18B75D29000556AF /* UITextView+lineCount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+lineCount.m"; sourceTree = "<group>"; };
 		F08ACA6916DD0C0400A377D1 /* cellGradient3-150h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cellGradient3-150h@2x.png"; sourceTree = "<group>"; };
 		F08ACA6A16DD0C0400A377D1 /* cellGradient3-150h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cellGradient3-150h.png"; sourceTree = "<group>"; };
 		F08CE40F188FD0C10098A4BD /* UARTPeripheral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UARTPeripheral.h; sourceTree = "<group>"; };
@@ -165,6 +171,10 @@
 				F054948A1893188D007C7284 /* NSString+hex.m */,
 				F02E54D918AE94E1006AE85A /* NSData+hex.h */,
 				F02E54DA18AE94E1006AE85A /* NSData+hex.m */,
+				F075168718B735DB000556AF /* CBUUID+StringExtraction.h */,
+				F075168818B735DB000556AF /* CBUUID+StringExtraction.m */,
+				F075168A18B75D29000556AF /* UITextView+lineCount.h */,
+				F075168B18B75D29000556AF /* UITextView+lineCount.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -421,7 +431,9 @@
 				F02E54DB18AE94E1006AE85A /* NSData+hex.m in Sources */,
 				F0A2C97616BBE44500F2FD12 /* main.m in Sources */,
 				F0D74E7918A8DBF300643E00 /* HelpViewController.m in Sources */,
+				F075168918B735DB000556AF /* CBUUID+StringExtraction.m in Sources */,
 				F0A2C97A16BBE44500F2FD12 /* BLEAppDelegate.m in Sources */,
+				F075168C18B75D29000556AF /* UITextView+lineCount.m in Sources */,
 				F0A47E0E189F90CB007E96AC /* PinIOViewController.m in Sources */,
 				F0A2C98316BBE44500F2FD12 /* BLEMainViewController.m in Sources */,
 				F08CE411188FD0C10098A4BD /* UARTPeripheral.m in Sources */,
@@ -531,7 +543,7 @@
 				INFOPLIST_FILE = "BLE Test/BluetoothLE Test-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "BluetoothLE Test";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "F0F391F0-C781-4C8F-8735-1CB89D26B730";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -546,7 +558,7 @@
 				INFOPLIST_FILE = "BLE Test/BluetoothLE Test-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "BluetoothLE Test";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "F0F391F0-C781-4C8F-8735-1CB89D26B730";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

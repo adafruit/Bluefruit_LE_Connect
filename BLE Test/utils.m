@@ -13,7 +13,7 @@
 @implementation utils
 
 
-+ (void)roundedLayer:(CALayer *)viewLayer radius:(float)r shadow:(BOOL)s{
++ (void)roundedLayer:(CALayer*)viewLayer radius:(float)r shadow:(BOOL)s{
     
     [viewLayer setMasksToBounds:!s];
     [viewLayer setCornerRadius:r];        
@@ -31,7 +31,7 @@
 }
 
 
-+ (void)addShadowToLayer:(CALayer *)viewLayer radius:(float)r opacity:(float)o{
++ (void)addShadowToLayer:(CALayer*)viewLayer radius:(float)r opacity:(float)o{
 
     [viewLayer setMasksToBounds:NO];
     [viewLayer setShadowColor:[UIColor blackColor].CGColor];
@@ -42,7 +42,7 @@
 }
 
 
-+ (void)addShadowToLayer:(CALayer *)viewLayer radius:(float)r opacity:(float)o offset:(CGSize)offset{
++ (void)addShadowToLayer:(CALayer*)viewLayer radius:(float)r opacity:(float)o offset:(CGSize)offset{
     
     
     [viewLayer setMasksToBounds:NO];
@@ -54,14 +54,14 @@
 }
 
 
-+ (void)addGrayBorderToLayer:(CALayer *)viewLayer{
++ (void)addGrayBorderToLayer:(CALayer*)viewLayer{
     
     [self addBorderToLayer:viewLayer withColor:[UIColor colorWithWhite:0.4 alpha:0.9] andWidth:2.0];
     
 }
 
 
-+ (void)addBorderToLayer:(CALayer *)viewLayer withColor:(UIColor *)color andWidth:(CGFloat)width{
++ (void)addBorderToLayer:(CALayer*)viewLayer withColor:(UIColor*)color andWidth:(CGFloat)width{
     
     
     [viewLayer setBorderWidth:width];
@@ -71,7 +71,7 @@
 }
 
 
-+ (void)addBorderInsetToLayer:(CALayer *)viewLayer withWidth:(CGFloat)width{
++ (void)addBorderInsetToLayer:(CALayer*)viewLayer withWidth:(CGFloat)width{
     
     
     //EXPERIMENTAL
@@ -118,7 +118,7 @@
 }
 
 
-+ (void)arrangeViews:(NSArray *)views withinView:(UIView *)parentView andAddToParentView:(BOOL)add{
++ (void)arrangeViews:(NSArray*)views withinView:(UIView*)parentView andAddToParentView:(BOOL)add{
     
     //assumes each child view is equal size and smaller than parent view
     
@@ -233,7 +233,7 @@
 }
 
 
-+ (void)makeCPModuleButton:(UIButton *)button{
++ (void)makeCPModuleButton:(UIButton*)button{
     
     CGFloat fontSize = IS_IPAD ? 18.f : 14.f;
     
@@ -251,7 +251,7 @@
 }
 
 
-+ (void)makeModeButton:(UIButton *)button{
++ (void)makeModeButton:(UIButton*)button{
     
     CGFloat fontSize = IS_IPAD ? 20.f : 14.f;
     
@@ -269,7 +269,7 @@
 }
 
 
-+ (void)makeCPGridButton:(UIButton *)button{
++ (void)makeCPGridButton:(UIButton*)button{
     
     CGFloat fontSize = IS_IPAD ? 16.f : 14.f;
     
@@ -285,7 +285,7 @@
 }
 
 
-+ (void)makeCPHelpButton:(UIButton *)button{
++ (void)makeCPHelpButton:(UIButton*)button{
     
     CGFloat fontSize = 16.f;
     
@@ -303,13 +303,13 @@
 }
 
 
-- (void)listSubviewsOfView:(UIView *)view {
+- (void)listSubviewsOfView:(UIView*)view {
     
     [self listSubviewsOfView:view withIndent:nil];
 }
 
 
-- (void)listSubviewsOfView:(UIView *)view withIndent:(NSString*)indent{
+- (void)listSubviewsOfView:(UIView*)view withIndent:(NSString*)indent{
     
     if (indent == nil) indent = @"";
     else indent = [indent stringByAppendingString:@" "];

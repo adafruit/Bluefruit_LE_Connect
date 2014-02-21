@@ -12,7 +12,7 @@
 
 @protocol HelpViewControllerDelegate
 
-- (void)helpViewControllerDidFinish:(HelpViewController *)controller;
+- (void)helpViewControllerDidFinish:(HelpViewController*)controller;
 
 @end
 

@@ -60,7 +60,7 @@
 }
 
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
+- (id)initWithNibName:(NSString*)nibNameOrNil bundle:(NSBundle*)nibBundleOrNil{
     
     NSString *nibName = IS_IPAD ? @"PinIOViewController_iPad" : @"PinIOViewController_iPhone";
     
@@ -98,6 +98,7 @@
 - (void)viewDidAppear:(BOOL)animated{
     
     if (readReportsSent == NO)
+//        [self performSelector:@selector(enableReadReports) withObject:nil afterDelay:1.0f];
         [self enableReadReports];
     
 }
@@ -177,34 +178,62 @@
         
         cell.delegate = self;
         
+        //PWM pins
+        if ((i == 3) || (i == 5) || (i == 6)) {
+            cell.isPWM = YES;
+        }
+        
+        //Digital pins
         if (i >= FIRST_DIGITAL_PIN && i <= LAST_DIGITAL_PIN) {
             //setup digital pin
             cell.digitalPin = i;
             cell.analogPin = -1;
             cell.pinLabel.text = [NSString stringWithFormat:@"Pin %d", cell.digitalPin];
+            [cell setDefaultsWithMode:kPinModeInput];
         }
+        
+        //Analog pins
         else if (i >= FIRST_ANALOG_PIN && i <= LAST_ANALOG_PIN){
             //setup analog pin
             cell.digitalPin = i;
             cell.analogPin = i - FIRST_ANALOG_PIN;
             cell.pinLabel.text = [NSString stringWithFormat:@"Pin A%d", cell.analogPin];
+            
+            //debugging on pin 5
+            if (cell.analogPin == 5) {
+                [cell setDefaultsWithMode:kPinModeAnalog];
+            }
+            else{
+                [cell setDefaultsWithMode:kPinModeInput];
+            }
         }
+        
         else{
             //placeholder cell
             cell.digitalPin = -1;
+            cell.isAnalog = NO;
+            cell.analogPin = -1;
+            
         }
         
-        [cell setDefaultsWithMode:kPinModeInput];
-        
         [cells addObject:cell];
+        
     }
-    
-//    [self enableReadReports];
     
 }
 
 
 - (void)enableReadReports{
+    
+    //Set all pin read reports (done in a second pass for debugging)
+    for (PinCell *cell in cells) {
+        if (cell.digitalPin >= 0) { //placeholder cells are -1
+            
+            //set read reports enabled
+            [self setDigitalStateReportingforPin:cell.digitalPin enabled:YES];
+            
+        }
+    }
     
     //set all pin modes active
     for (PinCell *cell in cells) {
@@ -216,45 +245,31 @@
         }
     }
     
-    //Set all pin read reports (done in a second pass for debugging)
-//    for (PinCell *cell in cells) {
-//        if (cell.digitalPin >= 0) { //placeholder cells are -1
-//            
-//            //set read reports enabled
-//            [self setDigitalStateReportingforPin:cell.digitalPin enabled:YES];
-//            
-//        }
-//    }
+    //debugging analog pin 5
+//    [self setAnalogValueReportingforAnalogPin:5 enabled:YES];
+    
     
     
     //Set read reporting as batch/per port
     //PORT0: 0xd0 0xf8
-    uint8_t bytes[2] = {0xd0, 0x1};
-    NSData *newData = [[NSData alloc ]initWithBytes:bytes length:2];
-    portMasks[0] = bytes[1];
-    [_delegate sendData:newData];
-    
-    //PORT1: 0xd1 0xc1
-    bytes[0] = 0xd1; bytes[1] = 0x01;
-    newData = [[NSData alloc ]initWithBytes:bytes length:2];
-    portMasks[1] = bytes[1];
-    [_delegate sendData:newData];
-    
-    //PORT2: 0xd2 0xf
-    bytes[0] = 0xd2; bytes[1] = 0x1;
-    newData = [[NSData alloc ]initWithBytes:bytes length:2];
-    portMasks[2] = bytes[1];
-    [_delegate sendData:newData];
-    
-    readReportsSent = YES;
-    
-    //Enable monitoring of pin values / input
-//    for (int i = FIRST_DIGITAL_PIN; i < LAST_DIGITAL_PIN; i++) {
-//        [self setDigitalStateReportingforPin:i enabled:YES];
-//    }
-//    for (int i = FIRST_ANALOG_PIN; i < LAST_ANALOG_PIN; i++) {
-//        [self setDigitalStateReportingforPin:i enabled:YES];
-//    }
+//    uint8_t bytes[2] = {0xD0, 0xf8};
+//    NSData *newData = [[NSData alloc ]initWithBytes:bytes length:2];
+//    portMasks[0] = bytes[1];
+//    [_delegate sendData:newData];
+//    
+//    //PORT1: 0xd1 0xc1
+//    bytes[0] = 0xD1; bytes[1] = 0xc1;
+//    newData = [[NSData alloc ]initWithBytes:bytes length:2];
+//    portMasks[1] = bytes[1];
+//    [_delegate sendData:newData];
+//    
+//    //PORT2: 0xd2 0xf
+//    bytes[0] = 0xD2; bytes[1] = 0xf;
+//    newData = [[NSData alloc ]initWithBytes:bytes length:2];
+//    portMasks[2] = bytes[1];
+//    [_delegate sendData:newData];
+//    
+//    readReportsSent = YES;
     
 }
 
@@ -287,7 +302,7 @@
         pin = digitalPin - 16;
     }
     
-    uint8_t data0 = 0xD0 + port;        //start port 0 digital reporting (0xD0 + port#)
+    uint8_t data0 = 0xd0 + port;        //start port 0 digital reporting (0xd0 + port#)
     uint8_t data1 = portMasks[port];    //retrieve saved pin mask for port;
     
     if (enabled)
@@ -298,9 +313,10 @@
     uint8_t bytes[2] = {data0, data1};
     NSData *newData = [[NSData alloc ]initWithBytes:bytes length:2];
     
+    portMasks[port] = data1;    //save new pin mask
+    
     [_delegate sendData:newData];
     
-    portMasks[port] = data1;    //save new pin mask
 }
 
 
@@ -311,7 +327,7 @@
     //Enable Port
 //    uint8_t data0 = 208 + port;  //start port 0 digital reporting (207 + port#)
     
-    uint8_t data0 = 0xD0 + port;  //start port 0 digital reporting (207 + port#)
+    uint8_t data0 = 0xd0 + port;  //start port 0 digital reporting (207 + port#)
     uint8_t data1 = (uint8_t)enabled;    //Enable
     
     uint8_t bytes[2] = {data0, data1};
@@ -326,7 +342,7 @@
     //Enable analog read for a pin
     
     //Enable Port
-    uint8_t data0 = 0xC0 + pin;  //start analog reporting for pin (192 + pin#)
+    uint8_t data0 = 0xc0 + pin;          //start analog reporting for pin (192 + pin#)
     uint8_t data1 = (uint8_t)enabled;    //Enable
     uint8_t bytes[2] = {data0, data1};
     NSData *newData = [[NSData alloc ]initWithBytes:bytes length:2];
@@ -343,14 +359,15 @@
     //Respond to user setting a digital pin high/low
     
     //Change relevant cell's value label
-    PinCell *cell = [self pinCellForSubview:sender];
+    PinCell *cell = [self pinCellForpin:sender.tag];
+    if (!cell) return;
     
     int state = sender.selectedSegmentIndex;
     
-    [cell setWrittenValue:(PinState)state];
+    [cell setDigitalValue:(PinState)state];
     
     //Send value change to BLEBB
-    [self writePinState:(PinState)state forPin:cell.digitalPin];
+    [self writePinState:state forPin:cell.digitalPin];
     
     
     //PWM & Servo
@@ -396,17 +413,23 @@
     
     //Change relevant cell's mode
     
-//    PinCell *cell = [self pinCellForSubview:sender];
-    PinCell *cell = [cells objectAtIndex:sender.tag];
-    PinMode mode = (PinMode)sender.selectedSegmentIndex;
+    PinCell *cell = [self pinCellForpin:sender.tag];
+    if (!cell) return;
+    
+    PinMode mode = [self pinModeforControl:sender];
+    PinMode prevMode = cell.mode;
     [cell setMode:mode];
     
     //Write pin
     [self writePinMode:mode forPin:cell.digitalPin];
     
-    //Update reporting for new mode - NOT NECESSARY
-//    BOOL enabled = (mode == kPinModeInput) ? YES : NO;
-//    [self setDigitalStateReportingforPin:cell.digitalPin enabled:enabled];
+    //Update reporting for Analog pins
+    if (cell.mode == kPinModeAnalog) {
+        [self setAnalogValueReportingforAnalogPin:cell.analogPin enabled:YES];
+    }
+    else if (prevMode == kPinModeAnalog){
+        [self setAnalogValueReportingforAnalogPin:cell.analogPin enabled:NO];
+    }
     
 }
 
@@ -446,9 +469,15 @@
 }
 
 
-- (void)valueControlChanged:(id)sender{
+- (void)valueControlChanged:(UISlider*)sender{
     
     //respond to PWM & Servo control here
+    
+    PinCell *cell = [self pinCellForpin:sender.tag];
+    
+    [cell setPwmValue:sender.value];
+    
+    [self writePWMValue:sender.value forPin:cell.digitalPin];
     
 }
 
@@ -510,6 +539,28 @@
 }
 
 
+- (void)writePWMValue:(uint8_t)value forPin:(uint8_t)pin{
+    
+    //Set an output pin's state
+    
+    uint8_t data0 = 0;  //Status
+    uint8_t data1 = 0;  //LSB of bitmask
+    uint8_t data2 = 0;  //MSB of bitmask
+    
+    //Analog (PWM) I/O message
+    data0 = 0xe0 + pin;
+    data1 = value;
+    data2 = 0;  //PWM only goes up to 255
+    
+    uint8_t bytes[3] = {data0, data1, data2};
+    
+    NSData *newData = [[NSData alloc ]initWithBytes:bytes length:3];
+    
+    [_delegate sendData:newData];
+    
+}
+
+
 - (void)writePinMode:(PinMode)newMode forPin:(int)pin{
 
     //Set a pin's mode
@@ -517,7 +568,7 @@
     //debugging …
 //    NSLog(@"----> Setting pin %d to mode %d", pin, newMode);
     
-    uint8_t data0 = 0xF4;        //Status byte == 244
+    uint8_t data0 = 0xf4;        //Status byte == 244
     uint8_t data1 = pin;        //Pin#
     uint8_t data2 = newMode;    //Mode
     
@@ -529,17 +580,19 @@
     
     [_delegate sendData:newData];
     
+    
+    
 }
 
 
 #pragma mark Incoming Data
 
 
-- (void)receiveData:(NSData *)newData{
+- (void)receiveData:(NSData*)newData{
     
     //respond to incoming data
     
-    [self updateDebugConsoleWithData:newData];
+//    [self updateDebugConsoleWithData:newData];
     
     uint8_t data[20];
     static uint8_t buf[512];
@@ -572,7 +625,14 @@
 }
 
 
-- (void)processInputData:(uint8_t *)data withLength:(int)length{
+- (void)processInputData:(uint8_t*)data withLength:(int)length{
+    
+    //just for debugging
+//    NSString *hexString = @"";
+//    for (int i = 0; i < length; i++){
+//        hexString = [hexString stringByAppendingString:[NSString stringWithFormat:@"0x%x ", data[i]]];
+//    }
+//    NSLog(@"Received: %@", hexString);
     
     //each message is 3 bytes long
     for (int i = 0; i < length; i+=3){
@@ -602,13 +662,14 @@
         }
         
         //Analog Reporting (per pin)
-        if (data[i] >= 224 && data[i] <= 243){
+        else if ((data[i] >= 0xe0) && (data[i] <= 0xe5)){
             
-            int pin = data[i] - 224 + FIRST_ANALOG_PIN;
+            int pin = data[i] - 0xe0 + FIRST_ANALOG_PIN;
             int val = data[i+1] + (data[i+2]<<7);
             
             if (pin <= (cells.count-1)) {
-                [[cells objectAtIndex:pin]setReceivedValue:val];
+                PinCell *cell = [self pinCellForpin:pin];
+                if (cell) [cell setAnalogValue:val];
             }
         }
     }
@@ -625,10 +686,14 @@
     
     self.debugConsole.text = [_debugConsole.text stringByAppendingString:[NSString stringWithFormat:@"\n %@", hexString]];
     
+    
+    
     //scroll output to bottom
-    [_debugConsole scrollRangeToVisible:NSMakeRange([_debugConsole.text length], 0)];
-    [_debugConsole setScrollEnabled:NO];
-    [_debugConsole setScrollEnabled:YES];
+    if (_debugConsole.hidden == NO) {
+        [_debugConsole scrollRangeToVisible:NSMakeRange([_debugConsole.text length], 0)];
+        [_debugConsole setScrollEnabled:NO];
+        [_debugConsole setScrollEnabled:YES];
+    }
     
 }
 
@@ -650,7 +715,12 @@
         int cellIndex = i + offset;
         
         if (cellIndex <= (cells.count-1)) {
-            [[cells objectAtIndex:cellIndex]setReceivedValue:state];
+            
+            PinCell *cell = [self pinCellForpin:cellIndex];
+            if (cell && (cell.mode == kPinModeInput || cell.mode == kPinModeOutput)) {
+                
+                [cell setDigitalValue:state];
+            }
             
         }
     }
@@ -664,7 +734,7 @@
 #pragma mark - Table view data source
 
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+- (NSInteger)numberOfSectionsInTableView:(UITableView*)tableView{
     
     //there are two sections - analog & digital
     
@@ -673,7 +743,7 @@
 }
 
 
-- (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+- (NSString*)tableView:(UITableView*)tableView titleForHeaderInSection:(NSInteger)section{
     
     //return title for each section
     
@@ -685,7 +755,7 @@
 }
 
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+- (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section{
     
     //return the number of rows in a particular section
     
@@ -703,7 +773,7 @@
 }
 
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath{
     
     //return cell for a particular row index
     
@@ -712,20 +782,25 @@
     //Set cell texts & type
     if (indexPath.section == DIGITAL_PIN_SECTION){    //Digital Pins 2-7
         int pin = indexPath.row + FIRST_DIGITAL_PIN;
-        cell = [cells objectAtIndex:pin];
+        cell = [self pinCellForpin:pin];
         
     }
     
-    else {                                            //Analog Pins A0-A5
+    else if (indexPath.section == ANALOG_PIN_SECTION){                                            //Analog Pins A0-A5
         int pin = indexPath.row + FIRST_ANALOG_PIN;
-        cell = [cells objectAtIndex:pin];
+        cell = [self pinCellForpin:pin];
+    }
+    
+    if (cell == nil){
+        NSLog(@"-------> making a placeholder cell");
+        cell = [[PinCell alloc]init];
     }
     
     return cell;
 }
 
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath{
     
     //return height appropriate for cell state - selected or unselected
     
@@ -739,7 +814,10 @@
         cellIndex = indexPath.row + FIRST_ANALOG_PIN;
     }
     
-    PinCell *cell = (PinCell*)[cells objectAtIndex:(cellIndex)];
+    if (cellIndex >= cells.count) {return 0;}
+    PinCell *cell = [self pinCellForpin:cellIndex];
+    if (!cell) {return 0;}
+    
     
     if ([indexPath compare:openCellPath] == NSOrderedSame) {
         
@@ -758,7 +836,7 @@
 }
 
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+- (CGFloat)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section{
     
     //return height for title rows
     
@@ -767,17 +845,39 @@
 }
 
 
+- (PinCell*)pinCellForpin:(int)pin{
+    
+    if (pin >= cells.count) {return nil;}
+    
+    PinCell *matchingCell;
+    
+    for (PinCell *cell in cells) {
+        if (cell.digitalPin == pin) {
+            matchingCell = cell;
+            break;
+        }
+    }
+    
+    return matchingCell;
+    
+//    if (cellIndex >= cells.count) {return 0;}
+//    PinCell *cell = (PinCell*)[cells objectAtIndex:(cellIndex)];
+//    if (!cell) {return 0;}
+    
+}
+
+
 #pragma mark Helper methods
 
 
-- (PinCell*)pinCellForSubview:(UIView*)theView{
-    
-    //Find the cell which contains theView
-    
-    NSIndexPath *indexPath = [self indexPathForSubview:theView];
-    
-    return (PinCell*)[_pinTable cellForRowAtIndexPath:indexPath];
-}
+//- (PinCell*)pinCellForSubview:(UIView*)theView{
+//    
+//    //Find the cell which contains theView
+//    
+//    NSIndexPath *indexPath = [self indexPathForSubview:theView];
+//    
+//    return (PinCell*)[_pinTable cellForRowAtIndexPath:indexPath];
+//}
 
 
 - (NSIndexPath*)indexPathForSubview:(UIView*)theView{

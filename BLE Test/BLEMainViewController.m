@@ -45,6 +45,9 @@
     
     [self.view addSubview:self.navController.view];
 	
+    //disable navcontroller's swiping feature
+    self.navController.interactivePopGestureRecognizer.enabled = NO;
+    
     cm = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
     
     _connectionMode = ConnectionModeNone;
@@ -94,7 +97,7 @@
 #pragma mark - Root UI
 
 
-- (void)helpViewControllerDidFinish:(HelpViewController *)controller{
+- (void)helpViewControllerDidFinish:(HelpViewController*)controller{
     
     if (IS_IPHONE) {
         
@@ -165,12 +168,12 @@
     }
     
     if ([sender isEqual:self.pinIoButton]) {    //Pin I/O
-        NSLog(@"STARTING PIN I/O MODE");
+        NSLog(@"Starting Pin I/O Mode …");
         _connectionMode = ConnectionModePinIO;
         
     }
     else if ([sender isEqual:self.uartButton]){ //UART
-        NSLog(@"STARTING UART MODE");
+        NSLog(@"Starting UART Mode …");
         _connectionMode = ConnectionModeUART;
     }
     else return;
@@ -179,8 +182,7 @@
     
     [self enableConnectionButtons:NO];
     
-    [cm scanForPeripheralsWithServices:@[UARTPeripheral.uartServiceUUID]
-                               options:@{CBCentralManagerScanOptionAllowDuplicatesKey: [NSNumber numberWithBool:NO]}];
+    [self scanForPeripherals];
     
     currentAlertView = [[UIAlertView alloc]initWithTitle:@"Scanning …"
                                           message:nil
@@ -189,6 +191,36 @@
                                 otherButtonTitles:nil];
     
     [currentAlertView show];
+    
+}
+
+
+- (void)scanForPeripherals{
+    
+    //skip scanning if UART is already connected
+    NSArray *connectedPeripherals = [cm retrieveConnectedPeripheralsWithServices:@[UARTPeripheral.uartServiceUUID]];
+    if ([connectedPeripherals count] > 0) {
+        //connect to first peripheral in array
+        [self connectPeripheral:[connectedPeripherals objectAtIndex:0]];
+    }
+    
+    else{
+        
+        [cm scanForPeripheralsWithServices:@[UARTPeripheral.uartServiceUUID]
+                                   options:@{CBCentralManagerScanOptionAllowDuplicatesKey: [NSNumber numberWithBool:NO]}];
+    }
+    
+}
+
+
+- (void)connectPeripheral:(CBPeripheral*)peripheral{
+    
+    //Clear off any pending connections
+    [cm cancelPeripheralConnection:peripheral];
+    
+    //Connect
+    currentPeripheral = [[UARTPeripheral alloc] initWithPeripheral:peripheral delegate:self];
+    [cm connectPeripheral:peripheral options:@{CBConnectPeripheralOptionNotifyOnDisconnectionKey: [NSNumber numberWithBool:YES]}];
     
 }
 
@@ -219,16 +251,21 @@
 #pragma mark UIAlertView delegate methods
 
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+- (void)alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     
     //the only button in our alert views is cancel
     
 //    NSLog(@"STOP SCAN");
     
+    if (_connectionStatus == ConnectionStatusConnected) {
+        [self disconnect];
+    }
+    else if (_connectionStatus == ConnectionStatusScanning){
+        [cm stopScan];
+    }
+    
     _connectionStatus = ConnectionStatusDisconnected;
     _connectionMode = ConnectionModeNone;
-    
-    [cm stopScan];
     
     currentAlertView = nil;
     
@@ -242,7 +279,7 @@
 #pragma mark Navigation Controller delegate methods
 
 
-- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated{
+- (void)navigationController:(UINavigationController*)navigationController willShowViewController:(UIViewController*)viewController animated:(BOOL)animated{
     
 //    NSLog(@"navigationController willShowViewController");
     
@@ -260,7 +297,7 @@
 #pragma mark CBCentralManagerDelegate
 
 
-- (void) centralManagerDidUpdateState:(CBCentralManager *)central{
+- (void) centralManagerDidUpdateState:(CBCentralManager*)central{
     
     if (central.state == CBCentralManagerStatePoweredOn){
         
@@ -275,33 +312,34 @@
 }
 
 
-- (void) centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI{
+- (void) centralManager:(CBCentralManager*)central didDiscoverPeripheral:(CBPeripheral*)peripheral advertisementData:(NSDictionary*)advertisementData RSSI:(NSNumber*)RSSI{
     
     NSLog(@"Did discover peripheral %@", peripheral.name);
     
     [cm stopScan];
     
-    currentPeripheral = [[UARTPeripheral alloc] initWithPeripheral:peripheral delegate:self];
-    
-    [cm connectPeripheral:peripheral options:@{CBConnectPeripheralOptionNotifyOnDisconnectionKey: [NSNumber numberWithBool:YES]}];
+    [self connectPeripheral:peripheral];
 }
 
 
-- (void) centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral{
+- (void) centralManager:(CBCentralManager*)central didConnectPeripheral:(CBPeripheral*)peripheral{
     
-    NSLog(@"Did connect peripheral %@", peripheral.name);
-    
-    //respond to connected
-    [self peripheralDidConnect];
-    
-    if ([currentPeripheral.peripheral isEqual:peripheral])
-    {
-        [currentPeripheral didConnect];
+    if ([currentPeripheral.peripheral isEqual:peripheral]){
+        
+        if(peripheral.services){
+            NSLog(@"Did connect to existing peripheral %@", peripheral.name);
+            [currentPeripheral peripheral:peripheral didDiscoverServices:nil]; //already discovered services, DO NOT re-discover. Just pass along the peripheral.
+        }
+        
+        else{
+            NSLog(@"Did connect peripheral %@", peripheral.name);
+            [currentPeripheral didConnect];
+        }
     }
 }
 
 
-- (void) centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error{
+- (void) centralManager:(CBCentralManager*)central didDisconnectPeripheral:(CBPeripheral*)peripheral error:(NSError*)error{
     
     NSLog(@"Did disconnect peripheral %@", peripheral.name);
     
@@ -318,17 +356,11 @@
 #pragma mark UARTPeripheralDelegate
 
 
-- (void)didReadHardwareRevisionString:(NSString *)string{
+- (void)didReadHardwareRevisionString:(NSString*)string{
     
     //respond to hardware revision string read
     
-//    [self addTextToConsole:[NSString stringWithFormat:@"Hardware revision: %@", string] dataType:LOGGING];
-    
-    
-}
-
-
-- (void)uartDidConnect{
+    NSLog(@"HW Revision: %@", string);
     
     //Bail if we aren't in the process of connecting
     if (currentAlertView == nil) return;
@@ -362,21 +394,26 @@
         vc = _uartViewController;
     
     if (vc != nil){
-//        [vc.view setAutoresizesSubviews:YES];
-//        [vc.view setAutoresizingMask:(UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight)];
-//        [vc.view setFrame:_navController.view.frame];
         [_navController pushViewController:vc animated:YES];
     }
-        
+    
     else
         NSLog(@"CONNECTED WITH NO CONNECTION MODE SET!");
     
     currentAlertView = nil;
     
+    
 }
 
 
-- (void)uartDidEncounterError:(NSString *)error{
+- (void)uartDidConnect{
+    
+    
+    
+}
+
+
+- (void)uartDidEncounterError:(NSString*)error{
     
     //Dismiss "scanning …" alert view if shown
     if (currentAlertView != nil) {
@@ -395,29 +432,25 @@
 }
 
 
-- (void)didReceiveData:(NSData*)data{
+- (void)didReceiveData:(NSData*)newData{
+
+    //Debug
+    NSString *hexString = [newData hexRepresentationWithSpaces:YES];
+    NSLog(@"Received: %@", hexString);
     
     if (_connectionStatus == ConnectionStatusConnected || _connectionStatus == ConnectionStatusScanning) {
         //UART
         if (_connectionMode == ConnectionModeUART) {
             //send data to UART Controller
-            [_uartViewController receiveData:data];
+            [_uartViewController receiveData:newData];
         }
         
         //Pin I/O
         else if (_connectionMode == ConnectionModePinIO){
             //send data to PIN IO Controller
-            [_pinIoViewController receiveData:data];
+            [_pinIoViewController receiveData:newData];
         }
     }
-}
-
-
-- (void)peripheralDidConnect{
-    
-    //respond to connection @ peripheral level here
-    
-    //we wait for UART connection to complete before considering status as fully connected
 }
 
 
@@ -482,10 +515,10 @@
 #pragma mark UartViewControllerDelegate / PinIOViewControllerDelegate
 
 
-- (void)sendData:(NSData *)newData{
+- (void)sendData:(NSData*)newData{
     
     NSString *hexString = [newData hexRepresentationWithSpaces:YES];
-    NSLog(@"sendData: %@", hexString);
+    NSLog(@"Sending: %@", hexString);
     
     [currentPeripheral writeRawData:newData];
     

@@ -10,8 +10,8 @@
 
 @interface NSString (hex)
 
-+ (NSString *) stringFromHex:(NSString *)str;
-+ (NSString *) stringToHex:(NSString *)str;
-+ (NSString *) stringToHexSpaceSeparated:(NSString *)str;
++ (NSString*) stringFromHex:(NSString*)str;
++ (NSString*) stringToHex:(NSString*)str;
++ (NSString*) stringToHexSpaceSeparated:(NSString*)str;
 
 @end

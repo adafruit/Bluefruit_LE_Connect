@@ -19,56 +19,88 @@
 @implementation PinCell
 
 
-- (void)setReceivedValue:(int)value{
+//- (void)setReceivedValue:(int)value{
+//    
+////    NSLog(@"Setting Cell: %@ Value: %d", self.pinLabel.text, value);
+//    
+//    if (self.mode == kPinModeAnalog){
+//        
+//        self.valueLabel.text = [NSString stringWithFormat:@"%d", value];
+//
+//    }
+//    
+//    else if (self.mode == kPinModeInput) {
+//        switch (value) {
+//            case 0:
+//                self.valueLabel.text = @"Low";
+//                break;
+//            case 1:
+//                self.valueLabel.text = @"High";
+//                break;
+//            default:
+//                NSLog(@"Attempting to set digital pin to analog value");
+//                break;
+//        }
+//    }
+//    
+//    //    else NSLog(@"Attempting to set received value to an output cell");
+//    
+//}
+
+
+- (void)setDigitalValue:(int)value{
     
-//    NSLog(@"Setting Cell: %@ Value: %d", self.pinLabel.text, value);
-    
-    if (_mode == kPinModeInput) {
+    if ((self.mode == kPinModeInput) || (self.mode == kPinModeOutput)) {
         switch (value) {
             case 0:
-                _valueLabel.text = @"Low";
+                self.valueLabel.text = @"Low";
                 break;
             case 1:
-                _valueLabel.text = @"High";
+                self.valueLabel.text = @"High";
                 break;
             default:
-                NSLog(@"Attempting to set digital pin to analog value");
+                NSLog(@"Attempting to set Digital pin %d to Analog value", self.digitalPin);
                 break;
         }
     }
     
-    else if (_mode == kPinModeAnalog){
+    else{
         
-        _valueLabel.text = [NSString stringWithFormat:@"%d", value];
+        NSLog(@"Attempting to set Analog Pin %d to Digital value", self.analogPin);
     }
-    
-    //    else NSLog(@"Attempting to set received value to an output cell");
     
 }
 
 
-- (void)setWrittenValue:(int)value{
+
+- (void)setAnalogValue:(int)value{
     
-    if (_mode == kPinModeOutput) {
-        switch (value) {
-            case 0:
-                _valueLabel.text = @"Low";
-                break;
-            case 1:
-                _valueLabel.text = @"High";
-                break;
-            default:
-                NSLog(@"Attempting to set digital pin to analog value");
-                break;
-        }
-    }
-    
-    else if (_mode == kPinModePWM || _mode == kPinModeServo){
+    if (self.mode == kPinModeAnalog){
         
-        _valueLabel.text = [NSString stringWithFormat:@"%d", value];
+        self.valueLabel.text = [NSString stringWithFormat:@"%d", value];
+        
     }
     
-    //    else NSLog(@"Attempting to set written value to an input cell");
+    else {
+        
+        NSLog(@"Attempting to set Digital Pin %d to Analog value", self.digitalPin);
+    }
+    
+}
+
+
+- (void)setPwmValue:(int)value{
+    
+    if (self.mode == kPinModePWM){
+        
+        self.valueLabel.text = [NSString stringWithFormat:@"%d", value];
+        
+    }
+    
+    else {
+        
+        NSLog(@"Attempting to set PWM Pin %d to non-PWM value", self.digitalPin);
+    }
     
 }
 
@@ -78,38 +110,38 @@
     //Set default display values & controls
     switch (mode) {
         case kPinModeInput:
-            _modeLabel.text = @"Input";
-            _valueLabel.text = @"Low";
+            self.modeLabel.text = @"Input";
+            self.valueLabel.text = @"Low";
             [self hideDigitalControl:YES];
             [self hideValueSlider:YES];
             break;
         case kPinModeOutput:
-            _modeLabel.text = @"Output";
-            _valueLabel.text = @"Low";
+            self.modeLabel.text = @"Output";
+            self.valueLabel.text = @"Low";
             [self hideDigitalControl:NO];
             [self hideValueSlider:YES];
             break;
         case kPinModeAnalog:
-            _modeLabel.text = @"Analog";
-            _valueLabel.text = @"0";
+            self.modeLabel.text = @"Analog";
+            self.valueLabel.text = @"0";
             [self hideDigitalControl:YES];
             [self hideValueSlider:YES];
             break;
         case kPinModePWM:
-            _modeLabel.text = @"PWM";
-            _valueLabel.text = @"0";
+            self.modeLabel.text = @"PWM";
+            self.valueLabel.text = @"0";
             [self hideDigitalControl:YES];
             [self hideValueSlider:NO];
             break;
         case kPinModeServo:
-            _modeLabel.text = @"Servo";
-            _valueLabel.text = @"0";
+            self.modeLabel.text = @"Servo";
+            self.valueLabel.text = @"0";
             [self hideDigitalControl:YES];
             [self hideValueSlider:NO];
             break;
         default:
-            _modeLabel.text = @"";
-            _valueLabel.text = @"";
+            self.modeLabel.text = @"";
+            self.valueLabel.text = @"";
             [self hideDigitalControl:YES];
             [self hideValueSlider:YES];
             break;
@@ -117,22 +149,22 @@
     
     if (mode != _mode) {
         _mode = mode;
-        [_delegate cellModeUpdated:self];
+        [self.delegate cellModeUpdated:self];
     }
 }
 
 
 - (void)hideDigitalControl:(BOOL)hide{
     
-    _digitalControl.hidden = hide;
-    if (hide) _digitalControl.selectedSegmentIndex = 0;
+    self.digitalControl.hidden = hide;
+    if (hide) self.digitalControl.selectedSegmentIndex = 0;
 }
 
 
 - (void)hideValueSlider:(BOOL)hide{
     
-    _valueSlider.hidden = hide;
-    if (hide) _valueSlider.value = 0.0f;
+    self.valueSlider.hidden = hide;
+    if (hide) self.valueSlider.value = 0.0f;
     
 }
 
@@ -141,12 +173,12 @@
     
     defaultPinMode = aMode;
     
-    [_modeControl setSelectedSegmentIndex:defaultPinMode];
+    [self.modeControl setSelectedSegmentIndex:defaultPinMode];
     [self setMode:defaultPinMode];
     
-    [_digitalControl setSelectedSegmentIndex:kPinStateLow];
+    [self.digitalControl setSelectedSegmentIndex:kPinStateLow];
     
-    [_valueSlider setValue:0.0f animated:NO];
+    [self.valueSlider setValue:0.0f animated:NO];
     
 }
 
@@ -179,27 +211,27 @@
 
 - (void)configureModeControl{
     
-    [_modeControl removeAllSegments];
+    [self.modeControl removeAllSegments];
     
     //All cells are digital capable
-    [_modeControl insertSegmentWithTitle:@"Input" atIndex:0 animated:NO];
+    [self.modeControl insertSegmentWithTitle:@"Input" atIndex:0 animated:NO];
     
-    [_modeControl insertSegmentWithTitle:@"Output" atIndex:1 animated:NO];
+    [self.modeControl insertSegmentWithTitle:@"Output" atIndex:1 animated:NO];
     
-    if (_isAnalog == YES) {
-        [_modeControl insertSegmentWithTitle:@"Analog" atIndex:_modeControl.numberOfSegments animated:NO];
+    if (self.isAnalog == YES) {
+        [self.modeControl insertSegmentWithTitle:@"Analog" atIndex:self.modeControl.numberOfSegments animated:NO];
     }
     
-    if (_isPWM == YES) {
-        [_modeControl insertSegmentWithTitle:@"PWM" atIndex:_modeControl.numberOfSegments animated:NO];
+    if (self.isPWM == YES) {
+        [self.modeControl insertSegmentWithTitle:@"PWM" atIndex:self.modeControl.numberOfSegments animated:NO];
     }
     
-    if (_isServo == YES) {
-        [_modeControl insertSegmentWithTitle:@"Servo" atIndex:_modeControl.numberOfSegments animated:NO];
+    if (self.isServo == YES) {
+        [self.modeControl insertSegmentWithTitle:@"Servo" atIndex:self.modeControl.numberOfSegments animated:NO];
     }
     
 //    //Default to Output selected
-    [_modeControl setSelectedSegmentIndex:kPinModeInput];
+    [self.modeControl setSelectedSegmentIndex:kPinModeInput];
 }
 
 

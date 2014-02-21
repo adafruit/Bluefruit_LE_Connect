@@ -46,8 +46,9 @@ typedef enum {
 @property (nonatomic, assign) BOOL                 isPWM;
 @property (nonatomic, assign) BOOL                 isServo;
 
-- (void)setReceivedValue:(int)value;
-- (void)setWrittenValue:(int)value;
+- (void)setDigitalValue:(int)value;
+- (void)setAnalogValue:(int)value;
+- (void)setPwmValue:(int)value;
 - (void)setDefaultsWithMode:(PinMode)defaultMode;
 
 @end

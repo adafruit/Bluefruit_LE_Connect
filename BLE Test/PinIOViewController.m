@@ -9,6 +9,7 @@
 #import "PinIOViewController.h"
 #import "NSString+hex.h"
 #import "NSData+hex.h"
+#import <QuartzCore/CAAnimation.h>
 
 #define SECTION_COUNT 2
 #define HEADER_HEIGHT 40.0f
@@ -33,7 +34,7 @@
     BOOL            pinTableAnimating;
     BOOL            readReportsSent;
     uint8_t         portMasks[PORT_COUNT];   //port # as index
-    
+    double          lastTime;
 }
 
 @end
@@ -473,7 +474,23 @@
     
     //respond to PWM & Servo control here
     
+    //Get current time
+    double time = CACurrentMediaTime();
+    
+    //Bail if we're trying to send a value too soon
+    if (time - lastTime < 0.05) {
+//        printf("too soon!\r\n");
+        return;
+    }
+    
+    lastTime = time;
+    
     PinCell *cell = [self pinCellForpin:sender.tag];
+    
+    //Bail if we have a redundant value
+    if ([cell.valueLabel.text intValue] == sender.value) {
+        return;
+    }
     
     [cell setPwmValue:sender.value];
     
@@ -541,7 +558,7 @@
 
 - (void)writePWMValue:(uint8_t)value forPin:(uint8_t)pin{
     
-    //Set an output pin's state
+    //Set an PWM output pin's value
     
     uint8_t data0 = 0;  //Status
     uint8_t data1 = 0;  //LSB of bitmask
@@ -549,8 +566,8 @@
     
     //Analog (PWM) I/O message
     data0 = 0xe0 + pin;
-    data1 = value;
-    data2 = 0;  //PWM only goes up to 255
+    data1 = value & 0x7F;   //only 7 bottom bits
+    data2 = value >> 7;     //top bit in second byte
     
     uint8_t bytes[3] = {data0, data1, data2};
     

@@ -12,6 +12,14 @@
 
 #define kKeyboardAnimationDuration 0.3f
 
+@interface UARTViewController(){
+    
+    NSString    *unkownCharString;
+    
+}
+
+@end
+
 @implementation UARTViewController
 
 
@@ -54,6 +62,11 @@
     [super viewDidLoad];
     
     self.helpViewController.delegate = self.delegate;
+    
+    //define unknown char
+//    unkownCharString = [NSString stringWithFormat:@"%C", 0x2588];   //block
+//    unkownCharString = [NSString stringWithFormat:@"%C", (unichar)0x25a0];   //black square
+    unkownCharString = [NSString stringWithFormat:@"%C", (unichar)0xFFFD];   //diamond question mark
     
     //round corners on console
     self.consoleView.clipsToBounds = YES;
@@ -108,20 +121,32 @@
     
     //RX - message received from Bluefruit
     
+    //null characters = 0-31, 128-162
+    
     //convert data to string & replace ocurances of "(null)"
-    NSString *newString = [NSString stringWithUTF8String:[newData bytes]];
-//    unichar ns = 0xDB;
-//    NSString *nullSymbol = [NSString stringWithFormat:@"%C", 0x2588];   //block
-    NSString *nullSymbol = [NSString stringWithFormat:@"%C", (unichar)0x25a0];   //black square
     
-//    newString = [newString stringByReplacingOccurrencesOfString:@"(null)" withString:nullSymbol];
+    uint8_t data[20];
+//    static uint8_t buf[512];
+//    static int length = 0;
+    int dataLength = newData.length;
     
-    if (newString == nil) {
-        newString = nullSymbol;
+    [newData getBytes:&data length:dataLength];
+    
+    for (int i = 0; i<dataLength; i++) {
+        if (data[i] > 127) {
+            data[i] = 0xA9;
+        }
     }
     
+    NSString *newString = [[NSString alloc]initWithBytes:&data
+                                                  length:dataLength
+                                                encoding:NSUTF8StringEncoding];
     
-    //check for null character
+    //Substitute character
+//    if ((newString == nil) || ([newString compare:@""] == NSOrderedSame)) {
+//        newString = unkownCharString;
+//    }
+    
     
     UIColor *color = [UIColor redColor];
     NSString *appendString = @"\n"; //each message appears on new line

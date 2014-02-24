@@ -251,6 +251,8 @@
     if (!error){
         if (characteristic == self.rxCharacteristic){
             
+            NSLog(@"Received: %@", [characteristic value]);
+            
             [self.delegate didReceiveData:[characteristic value]];
         }
         

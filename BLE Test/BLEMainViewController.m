@@ -435,8 +435,13 @@
 - (void)didReceiveData:(NSData*)newData{
 
     //Debug
-    NSString *hexString = [newData hexRepresentationWithSpaces:YES];
-    NSLog(@"Received: %@", hexString);
+//    NSString *hexString = [newData hexRepresentationWithSpaces:YES];
+//    NSLog(@"Received: %@", newData);
+    
+//    uint8_t data[newData.length-1];
+//    for (int i = 0; i<(newData.length-1); i++) {
+//        data[i] = [newData bytes][i];
+//    }
     
     if (_connectionStatus == ConnectionStatusConnected || _connectionStatus == ConnectionStatusScanning) {
         //UART

@@ -125,16 +125,19 @@
     
     //convert data to string & replace ocurances of "(null)"
     
-    uint8_t data[20];
-//    static uint8_t buf[512];
-//    static int length = 0;
     int dataLength = newData.length;
+    uint8_t data[dataLength];
     
     [newData getBytes:&data length:dataLength];
     
     for (int i = 0; i<dataLength; i++) {
-        if (data[i] > 127) {
-            data[i] = 0xA9;
+        
+        if ((data[i] <= 0x19) || (data[i] >= 0x80)) {    //null characters
+            if ((data[i] != 0x9) && //0x9 == TAB
+                (data[i] != 0xa) && //0xA == NL
+                (data[i] != 0xd)) { //0xD == CR
+                data[i] = 0xA9;
+            }
         }
     }
     

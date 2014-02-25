@@ -133,7 +133,7 @@
 
 - (void)setupPeripheralForUse:(CBPeripheral*)peripheral{
     
-    printf("Set up peripheral for use");
+    printf("Set up peripheral for use\r\n");
     
     for (CBService *s in peripheral.services) {
         

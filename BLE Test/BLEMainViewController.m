@@ -373,12 +373,12 @@
         _pinIoViewController.navigationItem.rightBarButtonItem = infoBarButton;
         [_pinIoViewController didConnect];
     }
+    
     //UART mode
     else if (_connectionMode == ConnectionModeUART){
         self.uartViewController = [[UARTViewController alloc]initWithDelegate:self];
         _uartViewController.navigationItem.rightBarButtonItem = infoBarButton;
         [_uartViewController didConnect];
-        
     }
     
     //Dismiss Alert view & update main view

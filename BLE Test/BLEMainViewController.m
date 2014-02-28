@@ -37,6 +37,7 @@
 
 
 - (void)viewDidLoad{
+
     [super viewDidLoad];
     
     [self.view setAutoresizesSubviews:YES];
@@ -54,23 +55,11 @@
     _connectionStatus = ConnectionStatusDisconnected;
     currentAlertView = nil;
     
-    
-    //create add'l controllers
-//    self.pinIoViewController = [[PinIOViewController alloc]initWithDelegate:self];
-//    self.uartViewController = [[UARTViewController alloc]initWithDelegate:self];
-    
-    
     //add info bar button to mode controllers
     NSData *archivedData = [NSKeyedArchiver archivedDataWithRootObject: _infoButton];
     UIButton *buttonCopy = [NSKeyedUnarchiver unarchiveObjectWithData: archivedData];
     [buttonCopy addTarget:self action:@selector(showInfo:) forControlEvents:UIControlEventTouchUpInside];
     infoBarButton = [[UIBarButtonItem alloc]initWithCustomView:buttonCopy];
-//    self.pinIoViewController.navigationItem.rightBarButtonItem = infobb;
-    
-//    buttonCopy = [NSKeyedUnarchiver unarchiveObjectWithData: archivedData];
-//    [buttonCopy addTarget:self action:@selector(showInfo:) forControlEvents:UIControlEventTouchUpInside];
-//    infobb = [[UIBarButtonItem alloc]initWithCustomView:buttonCopy];
-//    self.uartViewController.navigationItem.rightBarButtonItem = infobb;
     
 }
 
@@ -161,6 +150,20 @@
 
 
 - (IBAction)buttonTapped:(UIButton*)sender{
+    
+    //FOR DEBUGGING
+//    self.pinIoViewController = [[PinIOViewController alloc]initWithDelegate:self];
+//    _pinIoViewController.navigationItem.rightBarButtonItem = infoBarButton;
+//    [_pinIoViewController didConnect];
+//    [_navController pushViewController:_pinIoViewController animated:YES];
+//    return;
+    
+//    self.uartViewController = [[UARTViewController alloc]initWithDelegate:self];
+//    _uartViewController.navigationItem.rightBarButtonItem = infoBarButton;
+//    [_uartViewController didConnect];
+//    [_navController pushViewController:_uartViewController animated:YES];
+//    return;
+    
     
     if (currentAlertView != nil && currentAlertView.isVisible) {
         NSLog(@"ALERT VIEW ALREADY SHOWN");

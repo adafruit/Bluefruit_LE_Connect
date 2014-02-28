@@ -25,7 +25,17 @@
 
 - (id)initWithDelegate:(id<UARTViewControllerDelegate>)aDelegate{
     
-    NSString *nibName = IS_IPAD ? @"UARTViewController_iPad" : @"UARTViewController_iPhone";
+    NSString *nibName;
+    
+    if (IS_IPHONE_4){
+        nibName = @"UARTViewController_iPhone";
+    }
+    else if (IS_IPHONE_5){
+        nibName = @"UARTViewController_iPhone568px";
+    }
+    else{
+        nibName = @"UARTViewController_iPad";
+    }
     
     self = [super initWithNibName:nibName bundle:[NSBundle mainBundle]];
     
@@ -42,7 +52,17 @@
 
 - (id)initWithNibName:(NSString*)nibNameOrNil bundle:(NSBundle*)nibBundleOrNil{
     
-    NSString *nibName = IS_IPAD ? @"UARTViewController_iPad" : @"UARTViewController_iPhone";
+    NSString *nibName;
+    
+    if (IS_IPHONE_4){
+        nibName = @"UARTViewController_iPhone";
+    }
+    else if (IS_IPHONE_5){
+        nibName = @"UARTViewController_iPhone568px";
+    }
+    else{
+        nibName = @"UARTViewController_iPad";
+    }
     
     self = [super initWithNibName:nibName bundle:[NSBundle mainBundle]];
     
@@ -64,8 +84,6 @@
     self.helpViewController.delegate = self.delegate;
     
     //define unknown char
-//    unkownCharString = [NSString stringWithFormat:@"%C", 0x2588];   //block
-//    unkownCharString = [NSString stringWithFormat:@"%C", (unichar)0x25a0];   //black square
     unkownCharString = [NSString stringWithFormat:@"%C", (unichar)0xFFFD];   //diamond question mark
     
     //round corners on console
@@ -132,7 +150,7 @@
     
     for (int i = 0; i<dataLength; i++) {
         
-        if ((data[i] <= 0x19) || (data[i] >= 0x80)) {    //null characters
+        if ((data[i] <= 0x1f) || (data[i] >= 0x80)) {    //null characters
             if ((data[i] != 0x9) && //0x9 == TAB
                 (data[i] != 0xa) && //0xA == NL
                 (data[i] != 0xd)) { //0xD == CR
@@ -337,6 +355,7 @@
     //disable send button
     [_sendButton setEnabled:NO];
     
+    //check for empty field
     if ([_inputField.text compare:@""] == NSOrderedSame) {
         return;
     }

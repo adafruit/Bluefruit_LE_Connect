@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		F02E54DB18AE94E1006AE85A /* NSData+hex.m in Sources */ = {isa = PBXBuildFile; fileRef = F02E54DA18AE94E1006AE85A /* NSData+hex.m */; };
 		F054948B1893188D007C7284 /* NSString+hex.m in Sources */ = {isa = PBXBuildFile; fileRef = F054948A1893188D007C7284 /* NSString+hex.m */; };
+		F05E7E0318BEF399005E25F6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F05E7E0218BEF399005E25F6 /* Images.xcassets */; };
 		F075168918B735DB000556AF /* CBUUID+StringExtraction.m in Sources */ = {isa = PBXBuildFile; fileRef = F075168818B735DB000556AF /* CBUUID+StringExtraction.m */; };
 		F075168C18B75D29000556AF /* UITextView+lineCount.m in Sources */ = {isa = PBXBuildFile; fileRef = F075168B18B75D29000556AF /* UITextView+lineCount.m */; };
 		F08ACA6B16DD0C0400A377D1 /* cellGradient3-150h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F08ACA6916DD0C0400A377D1 /* cellGradient3-150h@2x.png */; };
@@ -33,14 +34,7 @@
 		F0A47E0F189F90CB007E96AC /* PinIOViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0A47E0D189F90CB007E96AC /* PinIOViewController_iPad.xib */; };
 		F0A47E12189F918C007E96AC /* PinCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F0A47E11189F918C007E96AC /* PinCell.m */; };
 		F0A47E14189F9257007E96AC /* PinIOViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0A47E13189F9257007E96AC /* PinIOViewController_iPhone.xib */; };
-		F0B34A6716C27A5200BBBAF0 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F0B34A6616C27A5200BBBAF0 /* Icon@2x.png */; };
-		F0B34A6916C27A5F00BBBAF0 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F0B34A6816C27A5F00BBBAF0 /* Icon.png */; };
-		F0B34A6B16C27A7300BBBAF0 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F0B34A6A16C27A7300BBBAF0 /* Icon-72@2x.png */; };
-		F0B34A6D16C27A7900BBBAF0 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = F0B34A6C16C27A7900BBBAF0 /* Icon-72.png */; };
-		F0B34A7216C27AAF00BBBAF0 /* Icon-Small-50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F0B34A6E16C27AAF00BBBAF0 /* Icon-Small-50@2x.png */; };
-		F0B34A7316C27AAF00BBBAF0 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F0B34A6F16C27AAF00BBBAF0 /* Icon-Small@2x.png */; };
-		F0B34A7416C27AAF00BBBAF0 /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = F0B34A7016C27AAF00BBBAF0 /* Icon-Small-50.png */; };
-		F0B34A7516C27AAF00BBBAF0 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = F0B34A7116C27AAF00BBBAF0 /* Icon-Small.png */; };
+		F0B556EF18C020FC008D05D7 /* PinIOViewController_iPhone568px.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0B556EE18C020FC008D05D7 /* PinIOViewController_iPhone568px.xib */; };
 		F0C47C0016C229F2002EFADA /* Adaflower@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F0C47BFE16C229F2002EFADA /* Adaflower@2x~ipad.png */; };
 		F0C47C0116C229F2002EFADA /* Adaflower.png in Resources */ = {isa = PBXBuildFile; fileRef = F0C47BFF16C229F2002EFADA /* Adaflower.png */; };
 		F0C47C0C16C2362E002EFADA /* adafruit_logo2012-white-horiz-230w@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F0C47C0A16C2362E002EFADA /* adafruit_logo2012-white-horiz-230w@2x.png */; };
@@ -59,14 +53,8 @@
 		F0CE1B9818A23FF8005F831A /* UARTViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0CE1B9618A23FF8005F831A /* UARTViewController_iPad.xib */; };
 		F0CE1B9A18A24030005F831A /* UARTViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0CE1B9918A24030005F831A /* UARTViewController_iPhone.xib */; };
 		F0D74E7918A8DBF300643E00 /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0D74E7818A8DBF300643E00 /* HelpViewController.m */; };
-		F0F27E4618372C660026B2D2 /* ios7_spotlight_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F0F27E3D18372C660026B2D2 /* ios7_spotlight_icon@2x.png */; };
-		F0F27E4818372C660026B2D2 /* ios7_app_icon_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F0F27E3F18372C660026B2D2 /* ios7_app_icon_ipad.png */; };
-		F0F27E4918372C660026B2D2 /* ios7_app_icon_ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F0F27E4018372C660026B2D2 /* ios7_app_icon_ipad@2x.png */; };
-		F0F27E4A18372C660026B2D2 /* ios7_app_icon_iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = F0F27E4118372C660026B2D2 /* ios7_app_icon_iphone.png */; };
-		F0F27E4B18372C660026B2D2 /* ios7_settings_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F0F27E4218372C660026B2D2 /* ios7_settings_icon.png */; };
-		F0F27E4C18372C660026B2D2 /* ios7_settings_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F0F27E4318372C660026B2D2 /* ios7_settings_icon@2x.png */; };
-		F0F27E4D18372C660026B2D2 /* ios7_spotlight_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F0F27E4418372C660026B2D2 /* ios7_spotlight_icon.png */; };
-		F0F27E4E18372C660026B2D2 /* ios7_app_icon_iphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F0F27E4518372C660026B2D2 /* ios7_app_icon_iphone@2x.png */; };
+		F0FB078618C02B2300D263DD /* BLEMainViewController_iPhone568px.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0FB078418C02B2300D263DD /* BLEMainViewController_iPhone568px.xib */; };
+		F0FB078818C02D9800D263DD /* UARTViewController_iPhone568px.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0FB078718C02D9800D263DD /* UARTViewController_iPhone568px.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +62,7 @@
 		F02E54DA18AE94E1006AE85A /* NSData+hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+hex.m"; sourceTree = "<group>"; };
 		F05494891893188D007C7284 /* NSString+hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+hex.h"; sourceTree = "<group>"; };
 		F054948A1893188D007C7284 /* NSString+hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+hex.m"; sourceTree = "<group>"; };
+		F05E7E0218BEF399005E25F6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "Adafruit Bluefruit LE Connect/Images.xcassets"; sourceTree = "<group>"; };
 		F075168718B735DB000556AF /* CBUUID+StringExtraction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CBUUID+StringExtraction.h"; sourceTree = "<group>"; };
 		F075168818B735DB000556AF /* CBUUID+StringExtraction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CBUUID+StringExtraction.m"; sourceTree = "<group>"; };
 		F075168A18B75D29000556AF /* UITextView+lineCount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+lineCount.h"; sourceTree = "<group>"; };
@@ -108,14 +97,7 @@
 		F0A47E10189F918C007E96AC /* PinCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinCell.h; sourceTree = "<group>"; };
 		F0A47E11189F918C007E96AC /* PinCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinCell.m; sourceTree = "<group>"; };
 		F0A47E13189F9257007E96AC /* PinIOViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PinIOViewController_iPhone.xib; sourceTree = "<group>"; };
-		F0B34A6616C27A5200BBBAF0 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
-		F0B34A6816C27A5F00BBBAF0 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
-		F0B34A6A16C27A7300BBBAF0 /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
-		F0B34A6C16C27A7900BBBAF0 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
-		F0B34A6E16C27AAF00BBBAF0 /* Icon-Small-50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50@2x.png"; sourceTree = "<group>"; };
-		F0B34A6F16C27AAF00BBBAF0 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
-		F0B34A7016C27AAF00BBBAF0 /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50.png"; sourceTree = "<group>"; };
-		F0B34A7116C27AAF00BBBAF0 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
+		F0B556EE18C020FC008D05D7 /* PinIOViewController_iPhone568px.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PinIOViewController_iPhone568px.xib; sourceTree = "<group>"; };
 		F0C47BFE16C229F2002EFADA /* Adaflower@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Adaflower@2x~ipad.png"; sourceTree = "<group>"; };
 		F0C47BFF16C229F2002EFADA /* Adaflower.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Adaflower.png; sourceTree = "<group>"; };
 		F0C47C0A16C2362E002EFADA /* adafruit_logo2012-white-horiz-230w@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "adafruit_logo2012-white-horiz-230w@2x.png"; sourceTree = "<group>"; };
@@ -137,15 +119,8 @@
 		F0CE1B9918A24030005F831A /* UARTViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UARTViewController_iPhone.xib; sourceTree = "<group>"; };
 		F0D74E7718A8DBF300643E00 /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewController.h; sourceTree = "<group>"; };
 		F0D74E7818A8DBF300643E00 /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
-		F0F27E3D18372C660026B2D2 /* ios7_spotlight_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ios7_spotlight_icon@2x.png"; sourceTree = "<group>"; };
-		F0F27E3E18372C660026B2D2 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
-		F0F27E3F18372C660026B2D2 /* ios7_app_icon_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ios7_app_icon_ipad.png; sourceTree = "<group>"; };
-		F0F27E4018372C660026B2D2 /* ios7_app_icon_ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ios7_app_icon_ipad@2x.png"; sourceTree = "<group>"; };
-		F0F27E4118372C660026B2D2 /* ios7_app_icon_iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ios7_app_icon_iphone.png; sourceTree = "<group>"; };
-		F0F27E4218372C660026B2D2 /* ios7_settings_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ios7_settings_icon.png; sourceTree = "<group>"; };
-		F0F27E4318372C660026B2D2 /* ios7_settings_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ios7_settings_icon@2x.png"; sourceTree = "<group>"; };
-		F0F27E4418372C660026B2D2 /* ios7_spotlight_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ios7_spotlight_icon.png; sourceTree = "<group>"; };
-		F0F27E4518372C660026B2D2 /* ios7_app_icon_iphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ios7_app_icon_iphone@2x.png"; sourceTree = "<group>"; };
+		F0FB078518C02B2300D263DD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/BLEMainViewController_iPhone568px.xib; sourceTree = "<group>"; };
+		F0FB078718C02D9800D263DD /* UARTViewController_iPhone568px.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UARTViewController_iPhone568px.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,10 +159,13 @@
 			children = (
 				F0A2C98A16BBE44500F2FD12 /* BLEMainViewController_iPad.xib */,
 				F0A2C98716BBE44500F2FD12 /* BLEMainViewController_iPhone.xib */,
+				F0FB078418C02B2300D263DD /* BLEMainViewController_iPhone568px.xib */,
 				F0A47E0D189F90CB007E96AC /* PinIOViewController_iPad.xib */,
 				F0A47E13189F9257007E96AC /* PinIOViewController_iPhone.xib */,
+				F0B556EE18C020FC008D05D7 /* PinIOViewController_iPhone568px.xib */,
 				F0CE1B9618A23FF8005F831A /* UARTViewController_iPad.xib */,
 				F0CE1B9918A24030005F831A /* UARTViewController_iPhone.xib */,
+				F0FB078718C02D9800D263DD /* UARTViewController_iPhone568px.xib */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -195,6 +173,7 @@
 		F0A2C95D16BBE44500F2FD12 = {
 			isa = PBXGroup;
 			children = (
+				F05E7E0218BEF399005E25F6 /* Images.xcassets */,
 				F0A2C96F16BBE44500F2FD12 /* Classes */,
 				F0C47BFD16C229CE002EFADA /* Images */,
 				F0A2C96816BBE44500F2FD12 /* Frameworks */,
@@ -263,30 +242,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		F0B34A6516C27A2D00BBBAF0 /* Icon */ = {
-			isa = PBXGroup;
-			children = (
-				F0F27E3D18372C660026B2D2 /* ios7_spotlight_icon@2x.png */,
-				F0F27E3E18372C660026B2D2 /* Icon-72.png */,
-				F0F27E3F18372C660026B2D2 /* ios7_app_icon_ipad.png */,
-				F0F27E4018372C660026B2D2 /* ios7_app_icon_ipad@2x.png */,
-				F0F27E4118372C660026B2D2 /* ios7_app_icon_iphone.png */,
-				F0F27E4218372C660026B2D2 /* ios7_settings_icon.png */,
-				F0F27E4318372C660026B2D2 /* ios7_settings_icon@2x.png */,
-				F0F27E4418372C660026B2D2 /* ios7_spotlight_icon.png */,
-				F0F27E4518372C660026B2D2 /* ios7_app_icon_iphone@2x.png */,
-				F0B34A6C16C27A7900BBBAF0 /* Icon-72.png */,
-				F0B34A6A16C27A7300BBBAF0 /* Icon-72@2x.png */,
-				F0B34A6816C27A5F00BBBAF0 /* Icon.png */,
-				F0B34A6616C27A5200BBBAF0 /* Icon@2x.png */,
-				F0B34A6E16C27AAF00BBBAF0 /* Icon-Small-50@2x.png */,
-				F0B34A6F16C27AAF00BBBAF0 /* Icon-Small@2x.png */,
-				F0B34A7016C27AAF00BBBAF0 /* Icon-Small-50.png */,
-				F0B34A7116C27AAF00BBBAF0 /* Icon-Small.png */,
-			);
-			name = Icon;
-			sourceTree = "<group>";
-		};
 		F0C47BFD16C229CE002EFADA /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -294,7 +249,6 @@
 				F08ACA6A16DD0C0400A377D1 /* cellGradient3-150h.png */,
 				F09E52D116D7814600F1F37A /* cellGradient2-150h.png */,
 				F09E52CF16D77CA800F1F37A /* cellGradient150h.png */,
-				F0B34A6516C27A2D00BBBAF0 /* Icon */,
 				F0C47C2016C23FD3002EFADA /* adafruit_logo2012-embossDark.png */,
 				F0C47C2116C23FD3002EFADA /* adafruit_logo2012-embossDark@2x.png */,
 				F0C47C1116C23CA5002EFADA /* Buttons */,
@@ -322,9 +276,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F0A2C96516BBE44500F2FD12 /* Bluefruit Connect */ = {
+		F0A2C96516BBE44500F2FD12 /* Adafruit Bluefruit LE Connect */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F0A2C99216BBE44500F2FD12 /* Build configuration list for PBXNativeTarget "Bluefruit Connect" */;
+			buildConfigurationList = F0A2C99216BBE44500F2FD12 /* Build configuration list for PBXNativeTarget "Adafruit Bluefruit LE Connect" */;
 			buildPhases = (
 				F0A2C96216BBE44500F2FD12 /* Sources */,
 				F0A2C96316BBE44500F2FD12 /* Frameworks */,
@@ -334,7 +288,7 @@
 			);
 			dependencies = (
 			);
-			name = "Bluefruit Connect";
+			name = "Adafruit Bluefruit LE Connect";
 			productName = "BLE Test";
 			productReference = F0A2C96616BBE44500F2FD12 /* BluetoothLE Test.app */;
 			productType = "com.apple.product-type.application";
@@ -354,7 +308,7 @@
 					};
 				};
 			};
-			buildConfigurationList = F0A2C96116BBE44500F2FD12 /* Build configuration list for PBXProject "Bluefruit Connect" */;
+			buildConfigurationList = F0A2C96116BBE44500F2FD12 /* Build configuration list for PBXProject "Adafruit Bluefruit LE Connect" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -366,7 +320,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F0A2C96516BBE44500F2FD12 /* Bluefruit Connect */,
+				F0A2C96516BBE44500F2FD12 /* Adafruit Bluefruit LE Connect */,
 			);
 		};
 /* End PBXProject section */
@@ -381,43 +335,31 @@
 				F0A2C97E16BBE44500F2FD12 /* Default@2x.png in Resources */,
 				F0A2C98016BBE44500F2FD12 /* Default-568h@2x.png in Resources */,
 				F0A2C98916BBE44500F2FD12 /* BLEMainViewController_iPhone.xib in Resources */,
-				F0F27E4818372C660026B2D2 /* ios7_app_icon_ipad.png in Resources */,
 				F0A2C98C16BBE44500F2FD12 /* BLEMainViewController_iPad.xib in Resources */,
 				F0C47C0016C229F2002EFADA /* Adaflower@2x~ipad.png in Resources */,
 				F0A47E14189F9257007E96AC /* PinIOViewController_iPhone.xib in Resources */,
-				F0F27E4E18372C660026B2D2 /* ios7_app_icon_iphone@2x.png in Resources */,
-				F0F27E4918372C660026B2D2 /* ios7_app_icon_ipad@2x.png in Resources */,
 				F0CE1B9A18A24030005F831A /* UARTViewController_iPhone.xib in Resources */,
 				F0C47C0116C229F2002EFADA /* Adaflower.png in Resources */,
 				F0C47C0C16C2362E002EFADA /* adafruit_logo2012-white-horiz-230w@2x.png in Resources */,
 				F0C47C0D16C2362E002EFADA /* adafruit_logo2012-white-horiz-230w.png in Resources */,
-				F0F27E4B18372C660026B2D2 /* ios7_settings_icon.png in Resources */,
 				F0C47C1816C23CB3002EFADA /* CPGridButtonStretchable.png in Resources */,
 				F0C47C1916C23CB3002EFADA /* CPGridButtonStretchable@2x.png in Resources */,
 				F0CE1B9818A23FF8005F831A /* UARTViewController_iPad.xib in Resources */,
 				F0C47C1A16C23CB3002EFADA /* CPModuleButtonStretchable.png in Resources */,
+				F0FB078618C02B2300D263DD /* BLEMainViewController_iPhone568px.xib in Resources */,
 				F0C47C1B16C23CB3002EFADA /* CPModuleButtonStretchable@2x.png in Resources */,
-				F0F27E4618372C660026B2D2 /* ios7_spotlight_icon@2x.png in Resources */,
 				F0C47C1C16C23CB3002EFADA /* CPModuleButtonStretchableDisabled.png in Resources */,
 				F0C47C1D16C23CB3002EFADA /* CPModuleButtonStretchableDisabled@2x.png in Resources */,
+				F0B556EF18C020FC008D05D7 /* PinIOViewController_iPhone568px.xib in Resources */,
+				F05E7E0318BEF399005E25F6 /* Images.xcassets in Resources */,
 				F0C47C2216C23FD3002EFADA /* adafruit_logo2012-embossDark.png in Resources */,
 				F0C47C2316C23FD3002EFADA /* adafruit_logo2012-embossDark@2x.png in Resources */,
-				F0B34A6716C27A5200BBBAF0 /* Icon@2x.png in Resources */,
-				F0F27E4C18372C660026B2D2 /* ios7_settings_icon@2x.png in Resources */,
-				F0F27E4D18372C660026B2D2 /* ios7_spotlight_icon.png in Resources */,
-				F0B34A6916C27A5F00BBBAF0 /* Icon.png in Resources */,
-				F0B34A6B16C27A7300BBBAF0 /* Icon-72@2x.png in Resources */,
-				F0B34A6D16C27A7900BBBAF0 /* Icon-72.png in Resources */,
-				F0B34A7216C27AAF00BBBAF0 /* Icon-Small-50@2x.png in Resources */,
-				F0F27E4A18372C660026B2D2 /* ios7_app_icon_iphone.png in Resources */,
-				F0B34A7316C27AAF00BBBAF0 /* Icon-Small@2x.png in Resources */,
-				F0B34A7416C27AAF00BBBAF0 /* Icon-Small-50.png in Resources */,
-				F0B34A7516C27AAF00BBBAF0 /* Icon-Small.png in Resources */,
 				F09E52D016D77CA800F1F37A /* cellGradient150h.png in Resources */,
 				F09E52D216D7814600F1F37A /* cellGradient2-150h.png in Resources */,
 				F08ACA6B16DD0C0400A377D1 /* cellGradient3-150h@2x.png in Resources */,
 				F0A47E0F189F90CB007E96AC /* PinIOViewController_iPad.xib in Resources */,
 				F08ACA6C16DD0C0400A377D1 /* cellGradient3-150h.png in Resources */,
+				F0FB078818C02D9800D263DD /* UARTViewController_iPhone568px.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -469,6 +411,14 @@
 				F0A2C98B16BBE44500F2FD12 /* en */,
 			);
 			name = BLEMainViewController_iPad.xib;
+			sourceTree = "<group>";
+		};
+		F0FB078418C02B2300D263DD /* BLEMainViewController_iPhone568px.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F0FB078518C02B2300D263DD /* en */,
+			);
+			name = BLEMainViewController_iPhone568px.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -536,12 +486,14 @@
 		F0A2C99316BBE44500F2FD12 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BLE Test/BluetoothLE Test-Prefix.pch";
 				INFOPLIST_FILE = "BLE Test/BluetoothLE Test-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "BluetoothLE Test";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -551,12 +503,14 @@
 		F0A2C99416BBE44500F2FD12 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BLE Test/BluetoothLE Test-Prefix.pch";
 				INFOPLIST_FILE = "BLE Test/BluetoothLE Test-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "BluetoothLE Test";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -566,7 +520,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F0A2C96116BBE44500F2FD12 /* Build configuration list for PBXProject "Bluefruit Connect" */ = {
+		F0A2C96116BBE44500F2FD12 /* Build configuration list for PBXProject "Adafruit Bluefruit LE Connect" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F0A2C99016BBE44500F2FD12 /* Debug */,
@@ -575,7 +529,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F0A2C99216BBE44500F2FD12 /* Build configuration list for PBXNativeTarget "Bluefruit Connect" */ = {
+		F0A2C99216BBE44500F2FD12 /* Build configuration list for PBXNativeTarget "Adafruit Bluefruit LE Connect" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F0A2C99316BBE44500F2FD12 /* Debug */,

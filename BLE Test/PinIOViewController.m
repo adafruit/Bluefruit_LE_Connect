@@ -45,7 +45,17 @@
 
 - (id)initWithDelegate:(id<PinIOViewControllerDelegate>)aDelegate{
     
-    NSString *nibName = IS_IPAD ? @"PinIOViewController_iPad" : @"PinIOViewController_iPhone";
+    NSString *nibName;
+    
+    if (IS_IPHONE_4){
+        nibName = @"PinIOViewController_iPhone";
+    }
+    else if (IS_IPHONE_5){
+        nibName = @"PinIOViewController_iPhone568px";
+    }
+    else{
+        nibName = @"PinIOViewController_iPad";
+    }
     
     self = [super initWithNibName:nibName bundle:[NSBundle mainBundle]];
     
@@ -63,7 +73,17 @@
 
 - (id)initWithNibName:(NSString*)nibNameOrNil bundle:(NSBundle*)nibBundleOrNil{
     
-    NSString *nibName = IS_IPAD ? @"PinIOViewController_iPad" : @"PinIOViewController_iPhone";
+    NSString *nibName;
+    
+    if (IS_IPHONE_4){
+        nibName = @"PinIOViewController_iPhone";
+    }
+    else if (IS_IPHONE_5){
+        nibName = @"PinIOViewController_iPhone568px";
+    }
+    else{
+        nibName = @"PinIOViewController_iPad";
+    }
     
     self = [super initWithNibName:nibName bundle:[NSBundle mainBundle]];
     if (self) {

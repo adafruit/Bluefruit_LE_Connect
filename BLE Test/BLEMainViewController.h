@@ -39,6 +39,7 @@ typedef enum {
 @property (strong, nonatomic) IBOutlet UIViewController         *menuViewController;
 @property (strong, nonatomic) IBOutlet HelpViewController       *helpViewController;
 @property (strong, nonatomic) IBOutlet UIView                   *helpView;
+@property (strong, nonatomic) IBOutlet UIImageView              *logo;
 
 - (IBAction)showInfo:(id)sender;
 - (IBAction)buttonTapped:(UIButton*)sender;

@@ -57,7 +57,7 @@
     
     for(NSUInteger i = 0; i < len; i++ ){
         
-        charString = [NSString stringWithFormat:@"%x", chars[i]];
+        charString = [NSString stringWithFormat:@"0x%x", chars[i]];
         if (charString.length == 1)
             charString = [@"0" stringByAppendingString:charString];
         

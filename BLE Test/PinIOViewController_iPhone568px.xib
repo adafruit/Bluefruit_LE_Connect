@@ -88,11 +88,11 @@
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
         </tableViewCell>
-        <view contentMode="scaleToFill" id="4pg-hr-bCM">
-            <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="4pg-hr-bCM">
+            <rect key="frame" x="0.0" y="64" width="320" height="504"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" style="grouped" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="50" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="q4d-iJ-RdI" userLabel="Pin I/O View">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" style="grouped" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="50" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="q4d-iJ-RdI" userLabel="Pin I/O View">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -114,11 +114,11 @@
             <constraints>
                 <constraint firstItem="q4d-iJ-RdI" firstAttribute="top" secondItem="4pg-hr-bCM" secondAttribute="top" id="MtV-np-Kyw"/>
                 <constraint firstItem="q4d-iJ-RdI" firstAttribute="leading" secondItem="4pg-hr-bCM" secondAttribute="leading" id="Tci-a7-L8I"/>
-                <constraint firstAttribute="bottom" secondItem="q4d-iJ-RdI" secondAttribute="bottom" id="uzq-VB-atT"/>
+                <constraint firstAttribute="bottom" secondItem="q4d-iJ-RdI" secondAttribute="bottom" constant="88" id="uzq-VB-atT"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
         <customObject id="UiI-1G-fVn" customClass="HelpViewController">
             <connections>

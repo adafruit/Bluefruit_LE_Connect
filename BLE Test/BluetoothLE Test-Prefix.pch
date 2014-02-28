@@ -20,6 +20,7 @@
 #define IS_IPAD UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad
 #define IS_IPHONE UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone
 #define IS_IPHONE_5 [UIScreen mainScreen].bounds.size.height == 568.f
+#define IS_IPHONE_4 [UIScreen mainScreen].bounds.size.height == 480.f
 #define IS_RETINA [[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2
 #define IOS_VERSION_FLOAT [[[UIDevice currentDevice]systemVersion]floatValue]
 

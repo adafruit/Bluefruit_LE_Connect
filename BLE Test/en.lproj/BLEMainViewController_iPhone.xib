@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1552" identifier="iOS"/>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <objects>
@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="helpViewController" destination="yll-D2-uUX" id="5pB-Ku-Uve"/>
                 <outlet property="infoButton" destination="Fyl-hM-Hb8" id="uEn-nh-7xc"/>
+                <outlet property="logo" destination="69" id="9IH-yK-IP4"/>
                 <outlet property="menuViewController" destination="0Xc-RC-aZ0" id="VuW-QV-adi"/>
                 <outlet property="navController" destination="Snd-CT-bls" id="UUu-Tv-ICR"/>
                 <outlet property="pinIoButton" destination="IEN-kM-VeC" id="mOo-Us-s3i"/>
@@ -17,13 +18,12 @@
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <navigationController definesPresentationContext="YES" id="Snd-CT-bls">
-            <extendedEdge key="edgesForExtendedLayout"/>
+        <navigationController wantsFullScreenLayout="YES" definesPresentationContext="YES" id="Snd-CT-bls">
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
             <nil key="simulatedBottomBarMetrics"/>
             <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
             <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="1Hl-6j-CH6">
                 <rect key="frame" x="0.0" y="-44" width="0.0" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -34,12 +34,12 @@
                         <viewControllerLayoutGuide type="top" id="sno-Yb-pjT"/>
                         <viewControllerLayoutGuide type="bottom" id="OV4-aZ-vp4"/>
                     </layoutGuides>
-                    <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="34">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                    <view key="view" contentMode="scaleToFill" id="34">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView opaque="NO" userInteractionEnabled="NO" alpha="0.39999999999999963" contentMode="center" image="Adaflower.png" translatesAutoresizingMaskIntoConstraints="NO" id="69">
-                                <rect key="frame" x="109" y="305" width="102" height="102"/>
+                                <rect key="frame" x="109" y="237" width="102" height="102"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="102" id="bRR-6c-G7V"/>
@@ -53,6 +53,7 @@
                                     <constraint firstAttribute="height" constant="40" id="8no-LB-Wit"/>
                                     <constraint firstAttribute="width" constant="120" id="yne-mS-Zet"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <state key="normal" title="Pin I/O"/>
                                 <connections>
                                     <action selector="buttonTapped:" destination="-1" eventType="touchUpInside" id="K0r-O4-K7X"/>
@@ -65,7 +66,8 @@
                                     <constraint firstAttribute="width" constant="120" id="K6Y-wi-TuT"/>
                                     <constraint firstAttribute="height" constant="40" id="Y9X-Ga-2io"/>
                                 </constraints>
-                                <state key="normal" title="UART"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <state key="normal" title="UART monitor"/>
                                 <connections>
                                     <action selector="buttonTapped:" destination="-1" eventType="touchUpInside" id="FkI-Tx-uqL"/>
                                 </connections>
@@ -79,11 +81,11 @@
                             <constraint firstAttribute="centerX" secondItem="69" secondAttribute="centerX" id="K5h-g1-Pgl"/>
                             <constraint firstAttribute="trailing" secondItem="IMf-hO-2ww" secondAttribute="trailing" constant="100" id="QrP-pf-ipq"/>
                             <constraint firstItem="IMf-hO-2ww" firstAttribute="leading" secondItem="34" secondAttribute="leading" constant="100" id="cAJ-og-fqV"/>
-                            <constraint firstItem="69" firstAttribute="top" secondItem="34" secondAttribute="top" constant="305" id="fnf-Ew-yaL"/>
+                            <constraint firstItem="69" firstAttribute="top" secondItem="34" secondAttribute="top" constant="237" id="fnf-Ew-yaL"/>
                         </constraints>
                         <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Bluefruit Connect" id="xJQ-dS-UFh">
+                    <navigationItem key="navigationItem" title="Bluefruit LE Connect" id="xJQ-dS-UFh">
                         <barButtonItem key="backBarButtonItem" title="Disconnect" id="jK9-Gk-aIv"/>
                         <barButtonItem key="rightBarButtonItem" style="done" id="F6T-vD-DiL">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="Fyl-hM-Hb8" userLabel="Button - Info">
@@ -111,28 +113,28 @@
                 </viewController>
             </viewControllers>
             <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="uD3-zR-KSc">
-                <rect key="frame" x="0.0" y="416" width="320" height="44"/>
+                <rect key="frame" x="0.0" y="480" width="320" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
             </toolbar>
             <connections>
                 <outlet property="delegate" destination="-1" id="7ed-cH-JgW"/>
             </connections>
         </navigationController>
-        <view clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="1xm-FQ-qRq" userLabel="View - Main">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="1xm-FQ-qRq" userLabel="View - Main">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <color key="backgroundColor" white="0.14999999999999999" alpha="1" colorSpace="calibratedWhite"/>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
         </view>
         <customObject id="yll-D2-uUX" customClass="HelpViewController">
             <connections>
                 <outlet property="delegate" destination="-1" id="Mhi-YO-pYL"/>
-                <outlet property="versionLabel" destination="jb7-Au-JeN" id="BBd-g6-7qo"/>
+                <outlet property="versionLabel" destination="BVO-FF-gLF" id="9yb-hM-F7v"/>
                 <outlet property="view" destination="9SH-n8-oQ9" id="S0W-j2-eDH"/>
             </connections>
         </customObject>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="9SH-n8-oQ9" userLabel="View - Help">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <navigationBar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" barStyle="black" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oIA-TE-amJ">
@@ -152,10 +154,10 @@
                     <rect key="frame" x="20" y="72" width="260" height="100"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Bluefruit Connect v1.0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jb7-Au-JeN">
-                    <rect key="frame" x="100" y="174" width="200" height="30"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Bluefruit LE Connect" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jb7-Au-JeN">
+                    <rect key="frame" x="100" y="165" width="200" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <color key="shadowColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -165,27 +167,113 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                 </view>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" scrollEnabled="NO" indicatorStyle="white" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Cg-B2-X07">
-                    <rect key="frame" x="20" y="212" width="280" height="260"/>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" scrollEnabled="NO" indicatorStyle="white" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Cg-B2-X07">
+                    <rect key="frame" x="20" y="209" width="280" height="251"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <string key="text">• Connect Bluefruit to Arduino via this schematic: http://www.adafruit.com
+                    <attributedString key="attributedText">
+                        <fragment content="• Connect ">
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="15" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="Bluefruit LE">
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="15" name="HelveticaNeue-Bold"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content=" to ">
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="15" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="Arduino">
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="15" name="HelveticaNeue-Bold"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content"> using the schematic found here:
+http://www.adafruit.com/bluefruitle
 
-• Upload the sketch to Arduino relevant to the mode you wish to use:
+• Download the </string>
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="15" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="Bluefruit LE Connect">
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="15" name="HelveticaNeue-Bold"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content=" sketch and upload it to ">
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="15" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="Arduino">
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="15" name="HelveticaNeue-Bold"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content">:
+http://www.adafruit.com/bluefruitle
 
-    Pin I/O: http://www.adafruit.com
-    UART: http://www.adafruit.com
-
-• Tap the appropriate button on the main menu to connect to Bluefruit.
+• Tap the appropriate button on the main menu to connect to </string>
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="15" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="Bluefruit LE">
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="15" name="HelveticaNeue-Bold"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content">.
 
 • Additional help is available within each mode's screen.</string>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="15" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                    </attributedString>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                     <dataDetectorType key="dataDetectorTypes" link="YES"/>
                 </textView>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="v.1.1.1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BVO-FF-gLF">
+                    <rect key="frame" x="100" y="184" width="200" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <color key="shadowColor" cocoaTouchSystemColor="darkTextColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="0.14999999999999999" alpha="1" colorSpace="calibratedWhite"/>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
         </view>
     </objects>
     <resources>

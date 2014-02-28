@@ -19,7 +19,7 @@
     
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.contentSizeForViewInPopover = CGSizeMake(320.0, 480.0);
+        self.preferredContentSize = CGSizeMake(320.0, 480.0);
     }
     return self;
 }
@@ -30,7 +30,7 @@
     [super viewDidLoad];
     
     if (IS_IPAD)
-        self.contentSizeForViewInPopover = self.view.frame.size;
+        self.preferredContentSize = self.view.frame.size;
     
     else if (IS_IPHONE) {
         self.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
@@ -41,7 +41,7 @@
         NSString* versionString = [NSString stringWithFormat:
                                    @"%@", [[[NSBundle mainBundle] infoDictionary]
                                            objectForKey:@"CFBundleVersion"]];
-        _versionLabel.text = [NSString stringWithFormat:@"Bluefruit Connect v%@", versionString];
+        _versionLabel.text = [NSString stringWithFormat:@"v%@", versionString];
     }
     
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
@@ -19,26 +19,19 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view autoresizesSubviews="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="4Bs-rp-lml" userLabel="UART View">
-            <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+            <rect key="frame" x="0.0" y="64" width="320" height="504"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" indicatorStyle="black" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1nR-Pl-EMn" userLabel="Text View - Console">
-                    <rect key="frame" x="20" y="56" width="282" height="243"/>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" indicatorStyle="black" editable="NO" id="1nR-Pl-EMn" userLabel="Text View - Console">
+                    <rect key="frame" x="20" y="56" width="282" height="331"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="331" id="Ch1-y2-kVy"/>
-                    </constraints>
                     <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="15"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
-                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="0am-RG-7ik">
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="0am-RG-7ik">
                     <rect key="frame" x="179" y="13" width="123" height="29"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="123" id="LgA-Rg-IkY"/>
-                        <constraint firstAttribute="height" constant="28" id="e48-YT-ZBM"/>
-                    </constraints>
                     <segments>
                         <segment title="ASCII"/>
                         <segment title="Hex"/>
@@ -47,8 +40,8 @@
                         <action selector="consoleModeControlDidChange:" destination="-1" eventType="valueChanged" id="Isk-oZ-8Ps"/>
                     </connections>
                 </segmentedControl>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mYO-XY-tVm">
-                    <rect key="frame" x="255" y="307" width="47" height="30"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="mYO-XY-tVm">
+                    <rect key="frame" x="255" y="395" width="47" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <state key="normal" title="Clear">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -57,8 +50,8 @@
                         <action selector="clearConsole:" destination="-1" eventType="touchUpInside" id="ild-R7-uIh"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gZZ-Mb-ay9">
-                    <rect key="frame" x="20" y="307" width="47" height="30"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="gZZ-Mb-ay9">
+                    <rect key="frame" x="20" y="395" width="47" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <state key="normal" title="Copy">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -67,17 +60,13 @@
                         <action selector="copyConsole:" destination="-1" eventType="touchUpInside" id="o6V-UO-4cE"/>
                     </connections>
                 </button>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NsD-Pj-die" userLabel="View - Input">
-                    <rect key="frame" x="0.0" y="364" width="322" height="100"/>
+                <view contentMode="scaleToFill" id="NsD-Pj-die" userLabel="View - Input">
+                    <rect key="frame" x="0.0" y="452" width="322" height="100"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <subviews>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Message" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="71R-1Z-ATx" userLabel="Text Field - Message">
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Message" minimumFontSize="17" clearButtonMode="whileEditing" id="71R-1Z-ATx" userLabel="Text Field - Message">
                             <rect key="frame" x="15" y="11" width="293" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="293" id="8A1-hR-oll"/>
-                                <constraint firstAttribute="height" constant="30" id="byG-I0-6ZO"/>
-                            </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="alphabet" keyboardAppearance="alert" returnKeyType="done"/>
                             <connections>
@@ -87,46 +76,20 @@
                         </textField>
                     </subviews>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstItem="71R-1Z-ATx" firstAttribute="top" secondItem="NsD-Pj-die" secondAttribute="top" constant="11" id="KeT-lI-Ued"/>
-                        <constraint firstAttribute="centerX" secondItem="71R-1Z-ATx" secondAttribute="centerX" id="b1H-KA-Q0t"/>
-                        <constraint firstAttribute="height" constant="100" id="vlZ-8A-KLL"/>
-                    </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" white="0.14999999999999999" alpha="1" colorSpace="calibratedWhite"/>
-            <constraints>
-                <constraint firstItem="gZZ-Mb-ay9" firstAttribute="top" secondItem="1nR-Pl-EMn" secondAttribute="bottom" constant="8" id="7KB-FU-c41"/>
-                <constraint firstAttribute="trailing" secondItem="NsD-Pj-die" secondAttribute="trailing" id="81i-13-CLr"/>
-                <constraint firstAttribute="bottom" secondItem="NsD-Pj-die" secondAttribute="bottom" constant="-48" id="GAe-QS-pwi"/>
-                <constraint firstItem="mYO-XY-tVm" firstAttribute="width" secondItem="gZZ-Mb-ay9" secondAttribute="width" id="KMg-fw-4G5"/>
-                <constraint firstAttribute="trailing" secondItem="1nR-Pl-EMn" secondAttribute="trailing" constant="20" id="MaL-wq-Yue"/>
-                <constraint firstAttribute="trailing" secondItem="0am-RG-7ik" secondAttribute="trailing" constant="20" id="Wiq-7f-8t7"/>
-                <constraint firstItem="1nR-Pl-EMn" firstAttribute="top" secondItem="0am-RG-7ik" secondAttribute="bottom" constant="15" id="Ybo-q8-y0U"/>
-                <constraint firstItem="mYO-XY-tVm" firstAttribute="leading" secondItem="gZZ-Mb-ay9" secondAttribute="trailing" constant="188" id="ZWd-ER-bKm"/>
-                <constraint firstItem="1nR-Pl-EMn" firstAttribute="leading" secondItem="4Bs-rp-lml" secondAttribute="leading" constant="20" id="b3P-mC-lFQ"/>
-                <constraint firstItem="NsD-Pj-die" firstAttribute="leading" secondItem="4Bs-rp-lml" secondAttribute="leading" id="nFx-bz-voh"/>
-                <constraint firstItem="NsD-Pj-die" firstAttribute="top" secondItem="1nR-Pl-EMn" secondAttribute="bottom" constant="65" id="qZi-iO-N3r"/>
-                <constraint firstAttribute="trailing" secondItem="mYO-XY-tVm" secondAttribute="trailing" constant="20" id="uJ2-hp-NRZ"/>
-                <constraint firstItem="1nR-Pl-EMn" firstAttribute="top" secondItem="4Bs-rp-lml" secondAttribute="top" constant="56" id="vgQ-Xs-BGj"/>
-                <constraint firstItem="mYO-XY-tVm" firstAttribute="top" secondItem="1nR-Pl-EMn" secondAttribute="bottom" constant="8" id="xHv-ZK-Udr"/>
-                <constraint firstItem="gZZ-Mb-ay9" firstAttribute="leading" secondItem="4Bs-rp-lml" secondAttribute="leading" constant="20" id="xrI-wa-4QI"/>
-            </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="HuU-NG-Scm" userLabel="View - Help">
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <navigationBar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="black" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cim-iz-i2r">
+                <navigationBar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="black" translucent="NO" id="cim-iz-i2r">
                     <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="320" id="ZZE-ke-a8u"/>
-                        <constraint firstAttribute="height" constant="44" id="k1n-RS-qLa"/>
-                    </constraints>
                     <items>
                         <navigationItem title=" UART Help " id="fsy-5V-22P" userLabel="Navigation Item - Done">
                             <barButtonItem key="leftBarButtonItem" systemItem="done" id="y7a-sX-tAZ">
@@ -137,21 +100,14 @@
                         </navigationItem>
                     </items>
                 </navigationBar>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pfr-qD-77b">
+                <view contentMode="scaleToFill" id="Pfr-qD-77b">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="320" id="0bs-Kx-GuK"/>
-                        <constraint firstAttribute="height" constant="22" id="x0o-Lb-1hf"/>
-                    </constraints>
                 </view>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="white" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zja-cB-5O1">
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="white" editable="NO" usesAttributedText="YES" id="zja-cB-5O1">
                     <rect key="frame" x="20" y="86" width="280" height="462"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="280" id="ao5-ID-zy6"/>
-                    </constraints>
                     <attributedString key="attributedText">
                         <fragment>
                             <string key="content">Instructions:
@@ -267,15 +223,6 @@
                 </textView>
             </subviews>
             <color key="backgroundColor" white="0.14999999999999999" alpha="1" colorSpace="calibratedWhite"/>
-            <constraints>
-                <constraint firstAttribute="centerX" secondItem="zja-cB-5O1" secondAttribute="centerX" id="1K7-Pe-7Dz"/>
-                <constraint firstItem="cim-iz-i2r" firstAttribute="leading" secondItem="HuU-NG-Scm" secondAttribute="leading" id="AA7-FW-6be"/>
-                <constraint firstItem="cim-iz-i2r" firstAttribute="top" secondItem="Pfr-qD-77b" secondAttribute="bottom" id="Mcp-Bc-cwk"/>
-                <constraint firstItem="Pfr-qD-77b" firstAttribute="leading" secondItem="HuU-NG-Scm" secondAttribute="leading" id="RSZ-da-27h"/>
-                <constraint firstItem="zja-cB-5O1" firstAttribute="top" secondItem="cim-iz-i2r" secondAttribute="bottom" constant="20" id="jVB-Iq-Snc"/>
-                <constraint firstAttribute="bottom" secondItem="zja-cB-5O1" secondAttribute="bottom" constant="20" id="vjh-Dx-NmW"/>
-                <constraint firstItem="Pfr-qD-77b" firstAttribute="top" secondItem="HuU-NG-Scm" secondAttribute="top" id="wk2-7J-16Y"/>
-            </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
         <customObject id="e9D-JV-2Hc" customClass="HelpViewController">

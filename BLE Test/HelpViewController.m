@@ -19,7 +19,7 @@
     
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.preferredContentSize = CGSizeMake(320.0, 480.0);
+        self.preferredContentSize = CGSizeMake(320.0, 480.0);   //popover size on iPad
     }
     return self;
 }
@@ -30,13 +30,13 @@
     [super viewDidLoad];
     
     if (IS_IPAD)
-        self.preferredContentSize = self.view.frame.size;
+        self.preferredContentSize = self.view.frame.size;   //popover size on iPad
     
     else if (IS_IPHONE) {
         self.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     }
 	
-    //Set the app version # in the About view
+    //Set the app version # in the Help/Info view
     if (self.versionLabel != nil) {
         NSString* versionString = [NSString stringWithFormat:
                                    @"%@", [[[NSBundle mainBundle] infoDictionary]
@@ -51,7 +51,7 @@
     [super viewDidAppear:animated];
     
     if (IS_IPHONE) {
-        [self.textView flashScrollIndicators];
+        [self.textView flashScrollIndicators];  //indicate add'l content below screen
     }
     
 }
@@ -69,13 +69,20 @@
 
 - (IBAction)done:(id)sender{
     
+    //done button tapped
+    
     [self.delegate helpViewControllerDidFinish:self];
+    
 }
 
 
-- (void)viewDidUnload {
+- (void)viewDidUnload{
+    
     [self setVersionLabel:nil];
+    
     [super viewDidUnload];
+
 }
+
 
 @end

@@ -39,7 +39,6 @@
 		F0C47C0116C229F2002EFADA /* Adaflower.png in Resources */ = {isa = PBXBuildFile; fileRef = F0C47BFF16C229F2002EFADA /* Adaflower.png */; };
 		F0C47C0C16C2362E002EFADA /* adafruit_logo2012-white-horiz-230w@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F0C47C0A16C2362E002EFADA /* adafruit_logo2012-white-horiz-230w@2x.png */; };
 		F0C47C0D16C2362E002EFADA /* adafruit_logo2012-white-horiz-230w.png in Resources */ = {isa = PBXBuildFile; fileRef = F0C47C0B16C2362E002EFADA /* adafruit_logo2012-white-horiz-230w.png */; };
-		F0C47C1016C23C68002EFADA /* utils.m in Sources */ = {isa = PBXBuildFile; fileRef = F0C47C0F16C23C68002EFADA /* utils.m */; };
 		F0C47C1816C23CB3002EFADA /* CPGridButtonStretchable.png in Resources */ = {isa = PBXBuildFile; fileRef = F0C47C1216C23CB3002EFADA /* CPGridButtonStretchable.png */; };
 		F0C47C1916C23CB3002EFADA /* CPGridButtonStretchable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F0C47C1316C23CB3002EFADA /* CPGridButtonStretchable@2x.png */; };
 		F0C47C1A16C23CB3002EFADA /* CPModuleButtonStretchable.png in Resources */ = {isa = PBXBuildFile; fileRef = F0C47C1416C23CB3002EFADA /* CPModuleButtonStretchable.png */; };
@@ -102,8 +101,6 @@
 		F0C47BFF16C229F2002EFADA /* Adaflower.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Adaflower.png; sourceTree = "<group>"; };
 		F0C47C0A16C2362E002EFADA /* adafruit_logo2012-white-horiz-230w@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "adafruit_logo2012-white-horiz-230w@2x.png"; sourceTree = "<group>"; };
 		F0C47C0B16C2362E002EFADA /* adafruit_logo2012-white-horiz-230w.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "adafruit_logo2012-white-horiz-230w.png"; sourceTree = "<group>"; };
-		F0C47C0E16C23C68002EFADA /* utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utils.h; sourceTree = "<group>"; };
-		F0C47C0F16C23C68002EFADA /* utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = utils.m; sourceTree = "<group>"; };
 		F0C47C1216C23CB3002EFADA /* CPGridButtonStretchable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CPGridButtonStretchable.png; sourceTree = "<group>"; };
 		F0C47C1316C23CB3002EFADA /* CPGridButtonStretchable@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CPGridButtonStretchable@2x.png"; sourceTree = "<group>"; };
 		F0C47C1416C23CB3002EFADA /* CPModuleButtonStretchable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CPModuleButtonStretchable.png; sourceTree = "<group>"; };
@@ -221,8 +218,6 @@
 				F08CE410188FD0C10098A4BD /* UARTPeripheral.m */,
 				F0CE1B9418A23FF8005F831A /* UARTViewController.h */,
 				F0CE1B9518A23FF8005F831A /* UARTViewController.m */,
-				F0C47C0E16C23C68002EFADA /* utils.h */,
-				F0C47C0F16C23C68002EFADA /* utils.m */,
 			);
 			name = Classes;
 			path = "BLE Test";
@@ -382,7 +377,6 @@
 				F0A47E12189F918C007E96AC /* PinCell.m in Sources */,
 				F0CE1B9718A23FF8005F831A /* UARTViewController.m in Sources */,
 				F054948B1893188D007C7284 /* NSString+hex.m in Sources */,
-				F0C47C1016C23C68002EFADA /* utils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,11 +10,7 @@
 
 @protocol UARTPeripheralDelegate
 
-- (void) uartDidConnect;
 - (void) didReceiveData:(NSData*)newData;
-
-@optional
-
 - (void) didReadHardwareRevisionString:(NSString*) string;
 - (void) uartDidEncounterError:(NSString*) error;
 

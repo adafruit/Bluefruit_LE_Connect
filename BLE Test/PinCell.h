@@ -41,7 +41,6 @@ typedef enum {
 @property (nonatomic, assign) PinMode              mode;
 @property (nonatomic, assign) int                  digitalPin;
 @property (nonatomic, assign) int                  analogPin;
-@property (nonatomic, readonly) BOOL               isDigital;
 @property (nonatomic, assign) BOOL                 isAnalog;
 @property (nonatomic, assign) BOOL                 isPWM;
 @property (nonatomic, assign) BOOL                 isServo;

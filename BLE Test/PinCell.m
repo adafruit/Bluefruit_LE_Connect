@@ -8,47 +8,12 @@
 
 #import "PinCell.h"
 
-
-@interface PinCell(){
-    
-    PinMode    defaultPinMode;
-}
-@end
-
-
 @implementation PinCell
 
 
-//- (void)setReceivedValue:(int)value{
-//    
-////    NSLog(@"Setting Cell: %@ Value: %d", self.pinLabel.text, value);
-//    
-//    if (self.mode == kPinModeAnalog){
-//        
-//        self.valueLabel.text = [NSString stringWithFormat:@"%d", value];
-//
-//    }
-//    
-//    else if (self.mode == kPinModeInput) {
-//        switch (value) {
-//            case 0:
-//                self.valueLabel.text = @"Low";
-//                break;
-//            case 1:
-//                self.valueLabel.text = @"High";
-//                break;
-//            default:
-//                NSLog(@"Attempting to set digital pin to analog value");
-//                break;
-//        }
-//    }
-//    
-//    //    else NSLog(@"Attempting to set received value to an output cell");
-//    
-//}
-
-
 - (void)setDigitalValue:(int)value{
+    
+    //Set a cell's digital Low/High value
     
     if ((self.mode == kPinModeInput) || (self.mode == kPinModeOutput)) {
         switch (value) {
@@ -59,21 +24,22 @@
                 self.valueLabel.text = @"High";
                 break;
             default:
-                NSLog(@"Attempting to set Digital pin %d to Analog value", self.digitalPin);
+                NSLog(@"Attempting to set digital pin %d to analog value", self.digitalPin);
                 break;
         }
     }
     
     else{
         
-        NSLog(@"Attempting to set Analog Pin %d to Digital value", self.analogPin);
+        NSLog(@"Attempting to set non-digital pin %d to digital value", self.analogPin);
     }
     
 }
 
 
-
 - (void)setAnalogValue:(int)value{
+    
+    //Set a cell's analog value
     
     if (self.mode == kPinModeAnalog){
         
@@ -83,13 +49,15 @@
     
     else {
         
-        NSLog(@"Attempting to set Digital Pin %d to Analog value", self.digitalPin);
+        NSLog(@"Attempting to set digital pin %d to analog value", self.digitalPin);
     }
     
 }
 
 
 - (void)setPwmValue:(int)value{
+    
+    //Set a cell's PWM value
     
     if (self.mode == kPinModePWM){
         
@@ -106,6 +74,8 @@
 
 
 - (void)setMode:(PinMode)mode{
+    
+    //Change cell mode - Digital/Analog/PWM
     
     //Set default display values & controls
     switch (mode) {
@@ -171,21 +141,16 @@
 
 - (void)setDefaultsWithMode:(PinMode)aMode{
     
-    defaultPinMode = aMode;
+    //load initial default values
     
-    [self.modeControl setSelectedSegmentIndex:defaultPinMode];
-    [self setMode:defaultPinMode];
+    [self.modeControl setSelectedSegmentIndex:aMode];
+    
+    [self setMode:aMode];
     
     [self.digitalControl setSelectedSegmentIndex:kPinStateLow];
     
     [self.valueSlider setValue:0.0f animated:NO];
     
-}
-
-
-- (BOOL)isDigital{
-    
-    return YES;
 }
 
 
@@ -210,6 +175,8 @@
 
 
 - (void)configureModeControl{
+    
+    //Configure Mode segmented control per pin capabilities …
     
     [self.modeControl removeAllSegments];
     
@@ -236,6 +203,8 @@
 
 
 - (void)setAnalogPin:(int)analogPin{
+    
+    //Set pin's appropriate analog pin
     
     _analogPin = analogPin;
     

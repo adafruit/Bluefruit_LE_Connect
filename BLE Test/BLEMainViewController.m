@@ -7,7 +7,6 @@
 //
 
 #import "BLEMainViewController.h"
-#import "utils.h"
 #import <QuartzCore/QuartzCore.h>
 #import "NSString+hex.h"
 #import "NSData+hex.h"
@@ -64,13 +63,6 @@
 }
 
 
-- (void)viewWillAppear:(BOOL)animated{
-    
-    [self.view setNeedsLayout];
-    
-}
-
-
 - (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -87,6 +79,8 @@
 
 
 - (void)helpViewControllerDidFinish:(HelpViewController*)controller{
+    
+    //Called when help view's done button is tapped
     
     if (IS_IPHONE) {
         
@@ -120,7 +114,8 @@
 
 - (IBAction)showInfo:(id)sender{
     
-    // Show info view on iPhone via flip transition
+    // Show help info view on iPhone via flip transition, called via "i" button in navbar
+    
     if (IS_IPHONE) {
         
         [self presentViewController:[self currentHelpViewController] animated:YES completion:nil];
@@ -151,19 +146,7 @@
 
 - (IBAction)buttonTapped:(UIButton*)sender{
     
-    //FOR DEBUGGING
-//    self.pinIoViewController = [[PinIOViewController alloc]initWithDelegate:self];
-//    _pinIoViewController.navigationItem.rightBarButtonItem = infoBarButton;
-//    [_pinIoViewController didConnect];
-//    [_navController pushViewController:_pinIoViewController animated:YES];
-//    return;
-    
-//    self.uartViewController = [[UARTViewController alloc]initWithDelegate:self];
-//    _uartViewController.navigationItem.rightBarButtonItem = infoBarButton;
-//    [_uartViewController didConnect];
-//    [_navController pushViewController:_uartViewController animated:YES];
-//    return;
-    
+    //Called by Pin I/O or UART Monitor connect buttons
     
     if (currentAlertView != nil && currentAlertView.isVisible) {
         NSLog(@"ALERT VIEW ALREADY SHOWN");
@@ -200,6 +183,8 @@
 
 - (void)scanForPeripherals{
     
+    //Look for available Bluetooth LE devices
+    
     //skip scanning if UART is already connected
     NSArray *connectedPeripherals = [cm retrieveConnectedPeripheralsWithServices:@[UARTPeripheral.uartServiceUUID]];
     if ([connectedPeripherals count] > 0) {
@@ -218,6 +203,8 @@
 
 - (void)connectPeripheral:(CBPeripheral*)peripheral{
     
+    //Connect Bluetooth LE device
+    
     //Clear off any pending connections
     [cm cancelPeripheralConnection:peripheral];
     
@@ -229,6 +216,8 @@
 
 
 - (void)disconnect{
+    
+    //Disconnect Bluetooth LE device
     
     _connectionStatus = ConnectionStatusDisconnected;
     _connectionMode = ConnectionModeNone;
@@ -256,9 +245,7 @@
 
 - (void)alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     
-    //the only button in our alert views is cancel
-    
-//    NSLog(@"STOP SCAN");
+    //the only button in our alert views is cancel, no need to check button index
     
     if (_connectionStatus == ConnectionStatusConnected) {
         [self disconnect];
@@ -283,8 +270,6 @@
 
 
 - (void)navigationController:(UINavigationController*)navigationController willShowViewController:(UIViewController*)viewController animated:(BOOL)animated{
-    
-//    NSLog(@"navigationController willShowViewController");
     
     //disconnect when returning to main view
     if (_connectionStatus == ConnectionStatusConnected && [viewController isEqual:_menuViewController]) {
@@ -361,14 +346,18 @@
 
 - (void)didReadHardwareRevisionString:(NSString*)string{
     
-    //respond to hardware revision string read
+    //Once hardware revision string is read, connection to Bluefruit is complete
     
     NSLog(@"HW Revision: %@", string);
     
     //Bail if we aren't in the process of connecting
-    if (currentAlertView == nil) return;
+    if (currentAlertView == nil){
+        return;
+    }
     
     _connectionStatus = ConnectionStatusConnected;
+    
+    //Load appropriate view controller …
     
     //Pin I/O mode
     if (_connectionMode == ConnectionModePinIO) {
@@ -409,13 +398,6 @@
 }
 
 
-- (void)uartDidConnect{
-    
-    
-    
-}
-
-
 - (void)uartDidEncounterError:(NSString*)error{
     
     //Dismiss "scanning …" alert view if shown
@@ -436,15 +418,12 @@
 
 
 - (void)didReceiveData:(NSData*)newData{
+    
+    //Data incoming from UART peripheral, forward to current view controller
 
     //Debug
 //    NSString *hexString = [newData hexRepresentationWithSpaces:YES];
 //    NSLog(@"Received: %@", newData);
-    
-//    uint8_t data[newData.length-1];
-//    for (int i = 0; i<(newData.length-1); i++) {
-//        data[i] = [newData bytes][i];
-//    }
     
     if (_connectionStatus == ConnectionStatusConnected || _connectionStatus == ConnectionStatusScanning) {
         //UART
@@ -463,6 +442,8 @@
 
 
 - (void)peripheralDidDisconnect{
+    
+    //respond to device disconnecting
     
     //if we were in the process of scanning/connecting, dismiss alert
     if (currentAlertView != nil) {
@@ -503,6 +484,8 @@
 
 - (void)alertBluetoothPowerOff{
     
+    //Respond to system's bluetooth disabled
+    
     NSString *title     = @"Bluetooth Power";
     NSString *message   = @"You must turn on Bluetooth in Settings in order to connect to a device";
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -511,6 +494,8 @@
 
 
 - (void)alertFailedConnection{
+    
+    //Respond to unsuccessful connection
     
     NSString *title     = @"Unable to connect";
     NSString *message   = @"Please check power & wiring,\nthen reset your Arduino";
@@ -524,6 +509,8 @@
 
 
 - (void)sendData:(NSData*)newData{
+    
+    //Output data to UART peripheral
     
     NSString *hexString = [newData hexRepresentationWithSpaces:YES];
     NSLog(@"Sending: %@", hexString);

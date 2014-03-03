@@ -45,6 +45,8 @@
 
 - (id)initWithDelegate:(id<PinIOViewControllerDelegate>)aDelegate{
     
+    //Separate NIBs for iPhone 3.5", iPhone 4", & iPad
+    
     NSString *nibName;
     
     if (IS_IPHONE_4){
@@ -73,6 +75,8 @@
 
 - (id)initWithNibName:(NSString*)nibNameOrNil bundle:(NSBundle*)nibBundleOrNil{
     
+    //Separate NIBs for iPhone 3.5", iPhone 4", & iPad
+    
     NSString *nibName;
     
     if (IS_IPHONE_4){
@@ -95,9 +99,9 @@
 
 - (void)viewDidLoad{
     
-//    NSLog(@"Pin I/O Controller - View Did Load");
-    
     [super viewDidLoad];
+    
+    //initialization
     
     self.helpViewController.delegate = self.delegate;
     
@@ -110,17 +114,16 @@
     //initialize ivars
     [self initializeCells];
     
-    //Set initial mode states
-//    [self writeInitialModeStates];
-    
 }
 
 
 - (void)viewDidAppear:(BOOL)animated{
     
-    if (readReportsSent == NO)
-//        [self performSelector:@selector(enableReadReports) withObject:nil afterDelay:1.0f];
+    //Request pin state reporting to begin if we haven't already
+    if (readReportsSent == NO){
+        
         [self enableReadReports];
+    }
     
 }
 
@@ -137,33 +140,14 @@
 
 - (void)didConnect{
     
-//    NSLog(@"Pin I/O Controller - Did Connect");
-    
-    //Respond to connection to BLE UART
-    
-    //Set all available pins as Input
-//    for (int i = 2; i <= 19; i++) {
-//        //Skip reserved pins
-//        if ((i > LAST_DIGITAL_PIN) && (i < FIRST_ANALOG_PIN)) continue;
-//        //Write mode and set initial state
-//        [self writePinMode:kPinModeInput forPin:i];
-//        [(PinCell*)[cells objectAtIndex:i] setMode:kPinModeInput];
-//    }
-    
-    
-    //Enable analog reads
-//    for (int i = 0; i<=5; i++) {
-//        [self setAnalogValueReportingforAnalogPin:i enabled:YES];
-//    }
-    
-    //Write last two pins LOW   -   hack for prev version?
-//    [self writePinState:kPinStateLow forPin:14];
-//    [self writePinState:kPinStateLow forPin:15];
+    //Respond to device connection
     
 }
 
 
 - (void)initializeCells{
+    
+    //Create & configure each table view cell
     
     cells = [[NSMutableArray alloc]initWithCapacity:MAX_CELL_COUNT];
     
@@ -220,7 +204,7 @@
             cell.analogPin = i - FIRST_ANALOG_PIN;
             cell.pinLabel.text = [NSString stringWithFormat:@"Pin A%d", cell.analogPin];
             
-            //debugging on pin 5
+            //starting as analog on pin 5
             if (cell.analogPin == 5) {
                 [cell setDefaultsWithMode:kPinModeAnalog];
             }
@@ -246,7 +230,7 @@
 
 - (void)enableReadReports{
     
-    //Set all pin read reports (done in a second pass for debugging)
+    //Set all pin read reports
     for (PinCell *cell in cells) {
         if (cell.digitalPin >= 0) { //placeholder cells are -1
             
@@ -266,32 +250,6 @@
         }
     }
     
-    //debugging analog pin 5
-//    [self setAnalogValueReportingforAnalogPin:5 enabled:YES];
-    
-    
-    
-    //Set read reporting as batch/per port
-    //PORT0: 0xd0 0xf8
-//    uint8_t bytes[2] = {0xD0, 0xf8};
-//    NSData *newData = [[NSData alloc ]initWithBytes:bytes length:2];
-//    portMasks[0] = bytes[1];
-//    [_delegate sendData:newData];
-//    
-//    //PORT1: 0xd1 0xc1
-//    bytes[0] = 0xD1; bytes[1] = 0xc1;
-//    newData = [[NSData alloc ]initWithBytes:bytes length:2];
-//    portMasks[1] = bytes[1];
-//    [_delegate sendData:newData];
-//    
-//    //PORT2: 0xd2 0xf
-//    bytes[0] = 0xD2; bytes[1] = 0xf;
-//    newData = [[NSData alloc ]initWithBytes:bytes length:2];
-//    portMasks[2] = bytes[1];
-//    [_delegate sendData:newData];
-//    
-//    readReportsSent = YES;
-    
 }
 
 
@@ -299,9 +257,9 @@
     
     //Enable input/output for a digital pin
     
-    //port 0: digital 0-7
-    //port 1: digital 8-15
-    //port 2: digital 16-23
+    //port 0: digital pins 0-7
+    //port 1: digital pins 8-15
+    //port 2: digital pins 16-23
     
     //find port for pin
     uint8_t port;
@@ -345,9 +303,7 @@
     
     //Enable input/output for a digital pin
     
-    //Enable Port
-//    uint8_t data0 = 208 + port;  //start port 0 digital reporting (207 + port#)
-    
+    //Enable by port
     uint8_t data0 = 0xd0 + port;  //start port 0 digital reporting (207 + port#)
     uint8_t data1 = (uint8_t)enabled;    //Enable
     
@@ -362,7 +318,7 @@
     
     //Enable analog read for a pin
     
-    //Enable Port
+    //Enable by pin
     uint8_t data0 = 0xc0 + pin;          //start analog reporting for pin (192 + pin#)
     uint8_t data1 = (uint8_t)enabled;    //Enable
     uint8_t bytes[2] = {data0, data1};
@@ -390,22 +346,12 @@
     //Send value change to BLEBB
     [self writePinState:state forPin:cell.digitalPin];
     
-    
-    //PWM & Servo
-    //    else{
-    //        UISlider * slider = (UISlider*)sender;
-    //        cell.valueLabel.text = [NSString stringWithFormat:@"%d", (int)roundf(slider.value)];
-    //
-    //        //Send value change to BLEBB
-    //        NSLog(@"IMPLEMENT PWM/SERVO CONTROL");
-    //    }
-    
 }
 
 
 - (void)cellButtonTapped:(UIButton*)sender{
     
-    //Respond to user tapping a cell
+    //Respond to user tapping a cell's top area to open/close cell
     
     //find relevant indexPath
     NSIndexPath *indexPath = [self indexPathForSubview:sender];
@@ -457,6 +403,8 @@
 
 - (IBAction)toggleDebugConsole:(id)sender {
     
+    //For debugging in development
+    
     _debugConsole.hidden = !_debugConsole.hidden;
     
 }
@@ -492,19 +440,16 @@
 
 - (void)valueControlChanged:(UISlider*)sender{
     
-    //respond to PWM & Servo control here
+    //Respond to PWM value slider changes
     
-    //Get current time
-    double time = CACurrentMediaTime();
-    
-    //Bail if we're trying to send a value too soon
-    if (time - lastTime < 0.05) {
-//        printf("too soon!\r\n");
+    //Limit the amount of messages we send over BLE
+    double time = CACurrentMediaTime(); //Get current time
+    if (time - lastTime < 0.05) {       //Bail if we're trying to send a value too soon
         return;
     }
-    
     lastTime = time;
     
+    //Find relevant cell based on slider control's tag
     PinCell *cell = [self pinCellForpin:sender.tag];
     
     //Bail if we have a redundant value
@@ -512,8 +457,10 @@
         return;
     }
     
+    //Update the cell UI for the new value
     [cell setPwmValue:sender.value];
     
+    //Send the new value over BLE
     [self writePWMValue:sender.value forPin:cell.digitalPin];
     
 }
@@ -565,10 +512,6 @@
     
     uint8_t bytes[3] = {data0, data1, data2};
     
-    //debugging …
-//    NSLog(@"Writing pin%d on port%d - used pinIndex%d", pin, port, pinIndex);
-//    NSLog(@"WRITING PIN STATE DATA: %d, %@, %@", data0, [self binaryStringForInt:data1], [blebbManager binaryStringForInt:data2]);
-    
     NSData *newData = [[NSData alloc ]initWithBytes:bytes length:3];
     
     [_delegate sendData:newData];
@@ -602,22 +545,14 @@
 
     //Set a pin's mode
     
-    //debugging …
-//    NSLog(@"----> Setting pin %d to mode %d", pin, newMode);
-    
     uint8_t data0 = 0xf4;        //Status byte == 244
     uint8_t data1 = pin;        //Pin#
     uint8_t data2 = newMode;    //Mode
-    
-    //debugging …
-//    NSLog(@"WRITING PIN MODE DATA: %d  %d  %d", data0, data1, data2);
     
     uint8_t bytes[3] = {data0, data1, data2};
     NSData *newData = [[NSData alloc ]initWithBytes:bytes length:3];
     
     [_delegate sendData:newData];
-    
-    
     
 }
 
@@ -627,8 +562,9 @@
 
 - (void)receiveData:(NSData*)newData{
     
-    //respond to incoming data
+    //Respond to incoming data
     
+    //Debugging in dev
 //    [self updateDebugConsoleWithData:newData];
     
     uint8_t data[20];
@@ -664,12 +600,7 @@
 
 - (void)processInputData:(uint8_t*)data withLength:(int)length{
     
-    //just for debugging
-//    NSString *hexString = @"";
-//    for (int i = 0; i < length; i++){
-//        hexString = [hexString stringByAppendingString:[NSString stringWithFormat:@"0x%x ", data[i]]];
-//    }
-//    NSLog(@"Received: %@", hexString);
+    //Parse data we received
     
     //each message is 3 bytes long
     for (int i = 0; i < length; i+=3){
@@ -715,15 +646,11 @@
 
 - (void)updateDebugConsoleWithData:(NSData*)newData{
     
-    //for debugging …
-//    NSString *string = [NSString stringWithUTF8String:[newData bytes]];
-//    NSString *hexString = [NSString stringToHexSpaceSeparated:string];
+    //For debugging in dev
 
     NSString *hexString = [newData hexRepresentationWithSpaces:YES];
     
     self.debugConsole.text = [_debugConsole.text stringByAppendingString:[NSString stringWithFormat:@"\n %@", hexString]];
-    
-    
     
     //scroll output to bottom
     if (_debugConsole.hidden == NO) {
@@ -737,7 +664,7 @@
 
 - (void)updateForPinStates:(int)pinStates port:(uint8_t)port{
     
-    //update table with new pin values
+    //Update pin table with new pin values received
     
     int offset = 8 * port;
     
@@ -773,7 +700,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView*)tableView{
     
-    //there are two sections - analog & digital
+    //Always two sections - analog & digital
     
     return 2;
     
@@ -784,10 +711,13 @@
     
     //return title for each section
     
-    if (section == 0)
+    if (section == 0){
         return @"Digital";
+    }
     
-    else return @"Analog";
+    else{
+        return @"Analog";
+    }
     
 }
 
@@ -812,18 +742,18 @@
 
 - (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath{
     
-    //return cell for a particular row index
+    //Return appropriate cell for a row index
     
     PinCell *cell;
     
     //Set cell texts & type
-    if (indexPath.section == DIGITAL_PIN_SECTION){    //Digital Pins 2-7
+    if (indexPath.section == DIGITAL_PIN_SECTION){      //Digital Pins 2-7
         int pin = indexPath.row + FIRST_DIGITAL_PIN;
         cell = [self pinCellForpin:pin];
         
     }
     
-    else if (indexPath.section == ANALOG_PIN_SECTION){                                            //Analog Pins A0-A5
+    else if (indexPath.section == ANALOG_PIN_SECTION){  //Analog Pins A0-A5
         int pin = indexPath.row + FIRST_ANALOG_PIN;
         cell = [self pinCellForpin:pin];
     }
@@ -839,7 +769,7 @@
 
 - (CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath{
     
-    //return height appropriate for cell state - selected or unselected
+    //Return height appropriate for cell state - open/closed
     
     CGFloat height = _pinTable.rowHeight;
     
@@ -855,7 +785,7 @@
     PinCell *cell = [self pinCellForpin:cellIndex];
     if (!cell) {return 0;}
     
-    
+    //selected
     if ([indexPath compare:openCellPath] == NSOrderedSame) {
         
         if (cell.mode == kPinModeInput || cell.mode == kPinModeAnalog) {
@@ -884,6 +814,8 @@
 
 - (PinCell*)pinCellForpin:(int)pin{
     
+    //Retrieve appropriate cell for a pin number
+    
     if (pin >= cells.count) {return nil;}
     
     PinCell *matchingCell;
@@ -897,24 +829,10 @@
     
     return matchingCell;
     
-//    if (cellIndex >= cells.count) {return 0;}
-//    PinCell *cell = (PinCell*)[cells objectAtIndex:(cellIndex)];
-//    if (!cell) {return 0;}
-    
 }
 
 
 #pragma mark Helper methods
-
-
-//- (PinCell*)pinCellForSubview:(UIView*)theView{
-//    
-//    //Find the cell which contains theView
-//    
-//    NSIndexPath *indexPath = [self indexPathForSubview:theView];
-//    
-//    return (PinCell*)[_pinTable cellForRowAtIndexPath:indexPath];
-//}
 
 
 - (NSIndexPath*)indexPathForSubview:(UIView*)theView{
@@ -942,7 +860,7 @@
 
 - (void)updateTable{
     
-    //animate row height changes for user selection
+    //Animate row height changes for user selection
     
     [_pinTable beginUpdates];
     [_pinTable endUpdates];
@@ -951,7 +869,7 @@
 
 - (void)scrollToIndexPath:(NSIndexPath*)indexPath{
     
-    //scroll to a particular row on the table
+    //Scroll to a particular row on the table
     
     [_pinTable scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionNone animated:YES];
     
@@ -960,7 +878,7 @@
 
 - (void)cellModeUpdated:(id)sender{
     
-    //respond to mode change for a cell
+    //Respond to mode change for a cell
     
     [self updateTable];
     
@@ -983,7 +901,7 @@
 
 
 - (NSString*)stringForPinMode:(PinMode)mode{
-    
+
     NSString *modeString;
     switch (mode) {
         case kPinModeInput:
@@ -1007,6 +925,7 @@
     }
     
     return modeString;
+    
 }
 
 

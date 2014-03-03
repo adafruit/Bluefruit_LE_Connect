@@ -75,6 +75,8 @@
 
 - (void)didConnect{
     
+    //Respond to peripheral connection
+    
     if(_peripheral.services){
         printf("Skipping service discovery for %s\r\n", [_peripheral.name UTF8String]);
         [self peripheral:_peripheral didDiscoverServices:nil]; //already discovered services, DO NOT re-discover. Just pass along the peripheral.
@@ -90,10 +92,14 @@
 
 - (void)didDisconnect{
     
+    //Respond to peripheral disconnection
+    
 }
 
 
 - (void)writeString:(NSString*)string{
+    
+    //Send string to peripheral
     
     NSData *data = [NSData dataWithBytes:string.UTF8String length:string.length];
     
@@ -103,7 +109,7 @@
 
 - (void)writeRawData:(NSData*)data{
     
-//    NSLog(@"writeRawData:");
+    //Send data to peripheral
     
     if ((self.txCharacteristic.properties & CBCharacteristicPropertyWriteWithoutResponse) != 0){
         
@@ -158,8 +164,7 @@
                 printf("Found Hardware Revision String characteristic\r\n");
                 [self.peripheral readValueForCharacteristic:c];
                 
-                //HW characteristic is last to be discovered, notify delegate we're all set
-                [_delegate uartDidConnect];
+                //Once hardware revision string is read connection will be complete …
                 
             }
             
@@ -174,6 +179,8 @@
 
 
 - (void)peripheral:(CBPeripheral*)peripheral didDiscoverServices:(NSError*)error{
+    
+    //Respond to finding a new service on peripheral
     
     printf("Did Discover Services\r\n");
     
@@ -215,7 +222,7 @@
 
 - (void)peripheral:(CBPeripheral*)peripheral didDiscoverCharacteristicsForService:(CBService*)service error:(NSError*)error{
     
-//    NSLog(@"Did Discover Characteristics");
+    //Respond to finding a new characteristic on service
     
     if (!error){
         
@@ -245,9 +252,8 @@
 
 - (void)peripheral:(CBPeripheral*)peripheral didUpdateValueForCharacteristic:(CBCharacteristic*)characteristic error:(NSError*)error{
     
-//    NSLog(@"Received data on a characteristic.");
+    //Respond to value change on peripheral
     
-
     if (!error){
         if (characteristic == self.rxCharacteristic){
             

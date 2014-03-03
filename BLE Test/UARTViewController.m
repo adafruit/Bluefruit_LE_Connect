@@ -25,6 +25,8 @@
 
 - (id)initWithDelegate:(id<UARTViewControllerDelegate>)aDelegate{
     
+    //Separate NIBs for iPhone 3.5", iPhone 4", & iPad
+    
     NSString *nibName;
     
     if (IS_IPHONE_4){
@@ -51,6 +53,8 @@
 
 
 - (id)initWithNibName:(NSString*)nibNameOrNil bundle:(NSBundle*)nibBundleOrNil{
+    
+    //Separate NIBs for iPhone 3.5", iPhone 4", & iPad
     
     NSString *nibName;
     
@@ -80,6 +84,8 @@
 - (void)viewDidLoad{
     
     [super viewDidLoad];
+    
+    //initialization
     
     self.helpViewController.delegate = self.delegate;
     
@@ -137,12 +143,9 @@
 
 - (void)updateConsoleWithIncomingData:(NSData*)newData {
     
-    //RX - message received from Bluefruit
+    //Write new received data to the console text view
     
-    //null characters = 0-31, 128-162
-    
-    //convert data to string & replace ocurances of "(null)"
-    
+    //convert data to string & replace characters we can't display
     int dataLength = newData.length;
     uint8_t data[dataLength];
     
@@ -162,11 +165,6 @@
     NSString *newString = [[NSString alloc]initWithBytes:&data
                                                   length:dataLength
                                                 encoding:NSUTF8StringEncoding];
-    
-    //Substitute character
-//    if ((newString == nil) || ([newString compare:@""] == NSOrderedSame)) {
-//        newString = unkownCharString;
-//    }
     
     
     UIColor *color = [UIColor redColor];
@@ -222,7 +220,7 @@
 
 - (void)updateConsoleWithOutgoingString:(NSString*)newString{
     
-    //TX - message to send to Bluefruit
+    //Write new sent data to the console text view
     
     UIColor *color = [UIColor blueColor];
     NSString *appendString = @"\n"; //each message appears on new line
@@ -276,7 +274,8 @@
 
 - (void)updateConsoleButtons{
     
-    //disable console buttons if console has no text
+    //Disable console buttons if console has no text
+    
     BOOL enabled = ([self.consoleView.text compare:@""] == NSOrderedSame) ? NO : YES;
     
     [_consoleCopyButton setEnabled:enabled];
@@ -287,10 +286,10 @@
 
 - (void)resetUI{
     
-    //clear console & update buttons
+    //Clear console & update buttons
     [self clearConsole:nil];
     
-    //dismiss keyboard
+    //Dismiss keyboard
     [_inputField resignFirstResponder];
     
 }
@@ -309,27 +308,11 @@
 
 - (IBAction)copyConsole:(id)sender{
     
-    //copy console text to clipboard w formatting
-//    [self.consoleView select:self];
-//    self.consoleView.selectedRange = NSMakeRange(0, [self.consoleView.text length]);
-//    [[UIApplication sharedApplication] sendAction:@selector(copy:) to:nil from:self forEvent:nil];
-//    [self.consoleView resignFirstResponder];
-    
-    //copy console text to clipboard w/o formatting
+    //Copy console text to clipboard w/o formatting
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     pasteboard.string = self.consoleView.text;
     
-    
-    //notify user via alert pop-up
-//    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil
-//                                                   message:@"Console text copied to clipboard"
-//                                                  delegate:nil
-//                                         cancelButtonTitle:@"OK"
-//                                         otherButtonTitles:nil];
-//    [alert show];
-    
-    
-    //notify user via color animation of text view
+    //Notify user via color animation of text view
     UIColor *iosCyan = [UIColor colorWithRed:(32.0/255.0)
                                        green:(149.0/255.0)
                                         blue:(251.0/255.0)
@@ -352,7 +335,9 @@
 
 - (IBAction)sendMessage:(id)sender{
     
-    //disable send button
+    //Respond to keyboard's Done button being tapped …
+    
+    //Disable send button
     [_sendButton setEnabled:NO];
     
     //check for empty field
@@ -360,15 +345,15 @@
         return;
     }
     
-    //send inputField's string via UART
+    //Send inputField's string via UART
     NSString *newString = _inputField.text;
     NSData *data = [NSData dataWithBytes:newString.UTF8String length:newString.length];
     [_delegate sendData:data];
     
-    //clear input field's text
+    //Clear input field's text
     [_inputField setText:@""];
     
-    //reflect sent message in console
+    //Reflect sent message in console
     [self updateConsoleWithOutgoingString:newString];
     
 }
@@ -376,8 +361,7 @@
 
 - (void)receiveData:(NSData*)newData{
     
-    //convert data to string
-//    NSString *string = [NSString stringWithUTF8String:[newData bytes]];
+    //Receive data from device
     
     [self updateConsoleWithIncomingData:newData];
     
@@ -385,6 +369,8 @@
 
 
 - (void)keyboardWillHide:(NSNotification*)n{
+    
+    //Lower input view when keyboard hides
     
     NSDictionary* userInfo = [n userInfo];
     
@@ -406,6 +392,8 @@
 
 
 - (void)keyboardWillShow:(NSNotification*)n{
+    
+    //Raise input view when keyboard shows
     
     if (_keyboardIsShown) {
         return;
@@ -451,7 +439,7 @@
 
 - (void)textFieldDidChange:(NSNotification*)n{
     
-    //check for empty input field & disable send button appropriately
+    //Check for empty input field & disable send button appropriately
     if ([_inputField.text compare:@""] == NSOrderedSame) {
         _sendButton.enabled = NO;
     }
@@ -468,6 +456,8 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField*)textField{
     
+    //Keyboard's Done button was tapped
+    
     [self sendMessage:nil];
     
     [_inputField resignFirstResponder];
@@ -477,6 +467,8 @@
 
 
 - (IBAction)consoleModeControlDidChange:(UISegmentedControl*)sender{
+    
+    //Respond to console's ASCII/Hex control value changed
     
     switch (sender.selectedSegmentIndex) {
         case 0:
@@ -495,8 +487,10 @@
 
 - (void)didConnect{
     
-    //respond to connection
+    //Respond to connection
+    
     [self resetUI];
+    
 }
 
 

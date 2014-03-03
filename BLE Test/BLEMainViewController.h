@@ -47,16 +47,3 @@ typedef enum {
 
 @end
 
-//@protocol PinIoViewControllerDelegate <NSObject>
-//
-//@end
-//
-//@interface PinIoViewController : UIViewController
-//
-//@property (strong, nonatomic) BLEMainViewController             *mainController;
-//
-//@end
-//
-//
-//
-

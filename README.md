@@ -1,7 +1,7 @@
-Bluefruit-Connect
+Bluefruit LE Connect
 =================
 
-iOS app for use with Bluefruit LE breakout board
+iOS app for use with Bluefruit LE breakout board connected to Arduino
 
 Project tutorial: http://adafruit.com/bluefruitle
 

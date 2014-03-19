@@ -2,7 +2,7 @@
 //  PinIOViewController.m
 //  Bluefruit Connect
 //
-//  Created by Collin Cunningham on 2/3/14.
+//  Created by Adafruit Industries on 2/3/14.
 //  Copyright (c) 2014 Adafruit Industries. All rights reserved.
 //
 
@@ -336,10 +336,10 @@
     //Respond to user setting a digital pin high/low
     
     //Change relevant cell's value label
-    PinCell *cell = [self pinCellForpin:sender.tag];
+    PinCell *cell = [self pinCellForpin:(int)sender.tag];
     if (!cell) return;
     
-    int state = sender.selectedSegmentIndex;
+    int state = (int)sender.selectedSegmentIndex;
     
     [cell setDigitalValue:(PinState)state];
     
@@ -380,7 +380,7 @@
     
     //Change relevant cell's mode
     
-    PinCell *cell = [self pinCellForpin:sender.tag];
+    PinCell *cell = [self pinCellForpin:(int)sender.tag];
     if (!cell) return;
     
     PinMode mode = [self pinModeforControl:sender];
@@ -450,7 +450,7 @@
     lastTime = time;
     
     //Find relevant cell based on slider control's tag
-    PinCell *cell = [self pinCellForpin:sender.tag];
+    PinCell *cell = [self pinCellForpin:(int)sender.tag];
     
     //Bail if we have a redundant value
     if ([cell.valueLabel.text intValue] == sender.value) {
@@ -570,7 +570,7 @@
     uint8_t data[20];
     static uint8_t buf[512];
     static int length = 0;
-    int dataLength = newData.length;
+    int dataLength = (int)newData.length;
     
     [newData getBytes:&data length:dataLength];
     
@@ -748,13 +748,13 @@
     
     //Set cell texts & type
     if (indexPath.section == DIGITAL_PIN_SECTION){      //Digital Pins 2-7
-        int pin = indexPath.row + FIRST_DIGITAL_PIN;
+        int pin = (int)indexPath.row + FIRST_DIGITAL_PIN;
         cell = [self pinCellForpin:pin];
         
     }
     
     else if (indexPath.section == ANALOG_PIN_SECTION){  //Analog Pins A0-A5
-        int pin = indexPath.row + FIRST_ANALOG_PIN;
+        int pin = (int)indexPath.row + FIRST_ANALOG_PIN;
         cell = [self pinCellForpin:pin];
     }
     
@@ -775,10 +775,10 @@
     
     int cellIndex = 0;
     if (indexPath.section == DIGITAL_PIN_SECTION) {
-        cellIndex = indexPath.row + FIRST_DIGITAL_PIN;
+        cellIndex = (int)indexPath.row + FIRST_DIGITAL_PIN;
     }
     else if (indexPath.section == ANALOG_PIN_SECTION){
-        cellIndex = indexPath.row + FIRST_ANALOG_PIN;
+        cellIndex = (int)indexPath.row + FIRST_ANALOG_PIN;
     }
     
     if (cellIndex >= cells.count) {return 0;}
@@ -796,7 +796,7 @@
         cell.backgroundColor = [UIColor whiteColor];
     }
     
-    //non-selected
+    //not selected
     else cell.backgroundColor = [UIColor colorWithWhite:0.8f alpha:1.0f];
     
     return height;

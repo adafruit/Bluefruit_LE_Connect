@@ -119,7 +119,7 @@
         [self.peripheral writeValue:data forCharacteristic:self.txCharacteristic type:CBCharacteristicWriteWithResponse];
     }
     else{
-        NSLog(@"No write property on TX characteristic, %d.", self.txCharacteristic.properties);
+        NSLog(@"No write property on TX characteristic, %d.", (int)self.txCharacteristic.properties);
     }
     
 }

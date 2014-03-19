@@ -1,5 +1,5 @@
 //
-// Prefix header for all source files of the 'BLE Test' target in the 'BLE Test' project
+// Prefix header for all source files of the 'Adafruit Bluefruit LE Connect' target in the 'Adafruit Bluefruit LE Connect' project
 //
 
 #import <Availability.h>

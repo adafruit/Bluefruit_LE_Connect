@@ -1,8 +1,7 @@
 //
 //  BLEMainViewController.m
-//  BLE Test
+//  Adafruit Bluefruit LE Connect
 //
-//  Created by Collin Cunningham on 2/1/13.
 //  Copyright (c) 2013 Adafruit Industries. All rights reserved.
 //
 
@@ -88,8 +87,10 @@
     }
     
     else {
+        
         [self.helpPopoverController dismissPopoverAnimated:YES];
     }
+    
 }
 
 

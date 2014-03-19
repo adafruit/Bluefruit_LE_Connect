@@ -2,7 +2,7 @@
 //  UARTViewController.m
 //  Bluefruit Connect
 //
-//  Created by Collin Cunningham on 2/5/14.
+//  Created by Adafruit Industries on 2/5/14.
 //  Copyright (c) 2014 Adafruit Industries. All rights reserved.
 //
 
@@ -146,7 +146,7 @@
     //Write new received data to the console text view
     
     //convert data to string & replace characters we can't display
-    int dataLength = newData.length;
+    int dataLength = (int)newData.length;
     uint8_t data[dataLength];
     
     [newData getBytes:&data length:dataLength];

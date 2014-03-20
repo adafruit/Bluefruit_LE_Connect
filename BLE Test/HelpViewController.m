@@ -47,10 +47,14 @@
 }
 
 
+
+
+
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
     if (IS_IPHONE) {
+        
         [self.textView flashScrollIndicators];  //indicate add'l content below screen
     }
     

@@ -14,12 +14,21 @@
 - (BOOL)application:(UIApplication*)application didFinishLaunchingWithOptions:(NSDictionary*)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        self.mainViewController = [[BLEMainViewController alloc] initWithNibName:@"BLEMainViewController_iPhone" bundle:nil];
-    } else {
-        self.mainViewController = [[BLEMainViewController alloc] initWithNibName:@"BLEMainViewController_iPad" bundle:nil];
+    
+    // Load NIB based on current platform
+    NSString *nibName;
+    if (IS_IPHONE_4){
+        nibName = @"BLEMainViewController_iPhone";
     }
+    else if (IS_IPHONE_5){
+        nibName = @"BLEMainViewController_iPhone568px";
+    }
+    else{
+        nibName = @"BLEMainViewController_iPad";
+    }
+    self.mainViewController = [[BLEMainViewController alloc] initWithNibName:nibName bundle:nil];
+    
+    
     self.window.rootViewController = self.mainViewController;
     [self.window makeKeyAndVisible];
     return YES;

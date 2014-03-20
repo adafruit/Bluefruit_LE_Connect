@@ -34,6 +34,30 @@
 #pragma mark - View Lifecycle
 
 
+- (id)initWithNibName:(NSString*)nibNameOrNil bundle:(NSBundle*)nibBundleOrNil{
+    
+    //Separate NIBs for iPhone 3.5", iPhone 4", & iPad
+    
+    NSString *nibName;
+    
+    if (IS_IPHONE_4){
+        nibName = @"BLEMainViewController_iPhone";
+    }
+    else if (IS_IPHONE_5){
+        nibName = @"BLEMainViewController_iPhone568px";
+    }
+    else{
+        nibName = @"BLEMainViewController_iPad";
+    }
+    
+    self = [super initWithNibName:nibName bundle:[NSBundle mainBundle]];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
+
+
 - (void)viewDidLoad{
 
     [super viewDidLoad];

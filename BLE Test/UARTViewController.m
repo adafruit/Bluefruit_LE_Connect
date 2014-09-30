@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Adafruit Industries. All rights reserved.
 //
 
+#import <dispatch/dispatch.h>
+#import <QuartzCore/QuartzCore.h>
 #import "UARTViewController.h"
 #import "NSString+hex.h"
 #import "NSData+hex.h"
@@ -14,7 +16,12 @@
 
 @interface UARTViewController(){
     
-    NSString    *unkownCharString;
+    dispatch_queue_t backgroundQueueA;
+    dispatch_queue_t backgroundQueueB;
+    double           lastScroll;
+    double           scrollIntvl;
+    UIFont           *consoleFont;
+    NSString         *unkownCharString;
     
 }
 
@@ -45,6 +52,10 @@
         self.delegate = aDelegate;
         self.title = @"UART";
         self.helpViewController.title = @"UART Help";
+        backgroundQueueA = dispatch_queue_create("com.adafruit.bluefruitconnect.bgqueuea", NULL);
+        backgroundQueueB = dispatch_queue_create("com.adafruit.bluefruitconnect.bgqueueb", NULL);
+        lastScroll = 0.0;
+        scrollIntvl = 0.25;
     }
     
     return self;
@@ -86,7 +97,6 @@
     [super viewDidLoad];
     
     //initialization
-    
     self.helpViewController.delegate = self.delegate;
     
     //define unknown char
@@ -95,6 +105,9 @@
     //round corners on console
     self.consoleView.clipsToBounds = YES;
     self.consoleView.layer.cornerRadius = 4.0;
+    
+    //retrieve console font
+    consoleFont = [self.consoleView font];
     
     //register for keyboard notifications
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -118,6 +131,8 @@
 - (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    
+    [self clearConsole:nil];
 }
 
 
@@ -141,7 +156,12 @@
 }
 
 
+#pragma mark Data format & display
+
+
 - (void)updateConsoleWithIncomingData:(NSData*)newData {
+    
+    
     
     //Write new received data to the console text view
     
@@ -167,39 +187,72 @@
                                                 encoding:NSUTF8StringEncoding];
     
     
-    UIColor *color = [UIColor redColor];
-    NSString *appendString = @"\n"; //each message appears on new line
+    //Update ASCII text on background thread A
+    dispatch_async(backgroundQueueA, ^(void) {
+        NSString *appendString = @"\n"; //each message appears on new line
+        NSAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@%@", newString, appendString] //line breaks in ACII mode
+                                                                                attributes: @{NSForegroundColorAttributeName : [UIColor redColor],
+                                                                                              NSFontAttributeName : consoleFont
+                                                                                              }];
+        NSMutableAttributedString *newASCIIText = [[NSMutableAttributedString alloc] initWithAttributedString:_consoleAsciiText];
+        [newASCIIText appendAttributedString:attrString];
+        
+        dispatch_async(dispatch_get_main_queue(), ^(void){
+            [self updateConsoleAscii:newASCIIText];
+        });
+    });
     
     
-    //Update ASCII text
-    UIFont * consoleFont = [self.consoleView font];
-    NSAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@%@", newString, appendString] //line breaks in ACII mode
-                                                                            attributes: @{NSForegroundColorAttributeName : color,
-                                                                                          NSFontAttributeName : consoleFont
-                                                                                          }];
-    NSMutableAttributedString *newASCIIText = [[NSMutableAttributedString alloc] initWithAttributedString:_consoleAsciiText];
-    [newASCIIText appendAttributedString:attrString];
-    _consoleAsciiText = newASCIIText;
+    //Update Hex text on background thread B
+    dispatch_async(backgroundQueueB, ^(void) {
+        NSString *newHexString = [newData hexRepresentationWithSpaces:YES];
+        NSAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@", newHexString]      //no line breaks in Hex mode
+                                                                                attributes: @{
+                                                                                              NSForegroundColorAttributeName : [UIColor redColor],
+                                                                                              NSFontAttributeName : consoleFont
+                                                                                              }];
+        NSMutableAttributedString *newHexText = [[NSMutableAttributedString alloc] initWithAttributedString:_consoleHexText];
+        [newHexText appendAttributedString:attrString];
+        
+        dispatch_async(dispatch_get_main_queue(), ^(void){
+            [self updateConsoleHex:newHexText];
+        });
+    });
     
+}
+
+
+- (void)updateConsoleAscii:(NSAttributedString*)text{
     
-    //Update Hex text
-    NSString *newHexString = [newData hexRepresentationWithSpaces:YES];
-    attrString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@", newHexString]      //no line breaks in Hex mode
-                                                        attributes: @{
-                                                                      NSForegroundColorAttributeName : color,
-                                                                      NSFontAttributeName : consoleFont
-                                                                      }];
-    NSMutableAttributedString *newHexText = [[NSMutableAttributedString alloc] initWithAttributedString:_consoleHexText];
-    [newHexText appendAttributedString:attrString];
-    _consoleHexText = newHexText;
+    _consoleAsciiText = text;
+    
+    if (_consoleModeControl.selectedSegmentIndex == ASCII) {
+        [self updateConsole];
+    }
+    
+}
+
+
+- (void)updateConsoleHex:(NSAttributedString*)text{
+    
+    _consoleHexText = text;
+    
+    if (_consoleModeControl.selectedSegmentIndex == HEX) {
+        [self updateConsole];
+    }
+    
+}
+
+
+- (void)updateConsole{
     
     //write string to console based on mode selection
     switch (_consoleModeControl.selectedSegmentIndex) {
-        case 0:
+        case ASCII:
             //ASCII
             _consoleView.attributedText = _consoleAsciiText;
             break;
-        case 1:
+        case HEX:
             //Hex
             _consoleView.attributedText = _consoleHexText;
             break;
@@ -209,11 +262,28 @@
     }
     
     //scroll output to bottom
-    [_consoleView scrollRangeToVisible:NSMakeRange([_consoleView.text length], 0)];
-    [_consoleView setScrollEnabled:NO];
-    [_consoleView setScrollEnabled:YES];
+    double time = CACurrentMediaTime();
+    if ((time - lastScroll) > scrollIntvl) {
+        [self scrollConsoleToBottom];
+        lastScroll = time;
+    }
+
+//    [self scrollConsoleToBottom];
     
-    [self updateConsoleButtons];
+}
+
+
+-(void)scrollConsoleToBottom {
+    
+    CGRect caretRect = [_consoleView caretRectForPosition:_consoleView.endOfDocument];
+    [_consoleView scrollRectToVisible:caretRect animated:NO];
+    
+    
+//    [_consoleView scrollRangeToVisible:NSMakeRange([_consoleView.text length], 0)];
+//    [_consoleView setScrollEnabled:NO];
+//    [_consoleView setScrollEnabled:YES];
+    
+//    [self updateConsoleButtons];
     
 }
 
@@ -227,7 +297,6 @@
     
     
     //Update ASCII text
-    UIFont * consoleFont = [self.consoleView font];
     NSAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@%@", newString, appendString] //line breaks in ACII mode
                                                                             attributes: @{NSForegroundColorAttributeName : color,
                                                                                           NSFontAttributeName : consoleFont
@@ -361,11 +430,15 @@
 
 - (void)receiveData:(NSData*)newData{
     
-    //Receive data from device
-    
-    [self updateConsoleWithIncomingData:newData];
+    //Receive data from device if we're finished loading
+    if (self.isViewLoaded && self.view.window) {
+        [self updateConsoleWithIncomingData:newData];
+    }
     
 }
+
+
+#pragma mark - Keyboard
 
 
 - (void)keyboardWillHide:(NSNotification*)n{

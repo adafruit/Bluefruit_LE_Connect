@@ -489,7 +489,7 @@
 				INFOPLIST_FILE = "BLE Test/BluetoothLE Test-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "BluetoothLE Test";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "159070fb-ad39-4ba8-a5b7-ef14c5e3145b";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -506,7 +506,7 @@
 				INFOPLIST_FILE = "BLE Test/BluetoothLE Test-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "BluetoothLE Test";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "159070fb-ad39-4ba8-a5b7-ef14c5e3145b";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

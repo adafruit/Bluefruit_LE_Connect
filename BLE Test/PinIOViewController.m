@@ -119,6 +119,8 @@
 
 - (void)viewDidAppear:(BOOL)animated{
     
+    [super viewDidAppear:animated];
+    
     //Request pin state reporting to begin if we haven't already
     if (readReportsSent == NO){
         

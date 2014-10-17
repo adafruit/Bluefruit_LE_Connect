@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UARTViewController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UARTViewController" customModule="BluetoothLE_Test" customModuleProvider="target">
             <connections>
                 <outlet property="consoleClearButton" destination="mYO-XY-tVm" id="JOD-jW-s4s"/>
                 <outlet property="consoleCopyButton" destination="gZZ-Mb-ay9" id="5yk-zA-tC6"/>
@@ -13,7 +13,7 @@
                 <outlet property="consoleView" destination="1nR-Pl-EMn" id="j7H-NI-y0v"/>
                 <outlet property="helpViewController" destination="e9D-JV-2Hc" id="nCE-Av-DPY"/>
                 <outlet property="inputField" destination="71R-1Z-ATx" id="XfZ-Ro-WhX"/>
-                <outlet property="inputView" destination="NsD-Pj-die" id="WpS-Kl-NZp"/>
+                <outlet property="msgInputView" destination="NsD-Pj-die" id="2tm-LI-n3P"/>
                 <outlet property="view" destination="4Bs-rp-lml" id="ZfX-Zh-6aq"/>
             </connections>
         </placeholder>
@@ -22,9 +22,8 @@
             <rect key="frame" x="0.0" y="64" width="320" height="416"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" indicatorStyle="black" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1nR-Pl-EMn" userLabel="Text View - Console">
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" indicatorStyle="black" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1nR-Pl-EMn" userLabel="Text View - Console">
                     <rect key="frame" x="20" y="56" width="282" height="243"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="331" id="Ch1-y2-kVy"/>
@@ -32,9 +31,8 @@
                     <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="15"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
-                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="0am-RG-7ik">
+                <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="0am-RG-7ik">
                     <rect key="frame" x="179" y="13" width="123" height="29"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="123" id="LgA-Rg-IkY"/>
                         <constraint firstAttribute="height" constant="28" id="e48-YT-ZBM"/>
@@ -47,9 +45,8 @@
                         <action selector="consoleModeControlDidChange:" destination="-1" eventType="valueChanged" id="Isk-oZ-8Ps"/>
                     </connections>
                 </segmentedControl>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mYO-XY-tVm">
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mYO-XY-tVm">
                     <rect key="frame" x="255" y="307" width="47" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <state key="normal" title="Clear">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -57,9 +54,8 @@
                         <action selector="clearConsole:" destination="-1" eventType="touchUpInside" id="ild-R7-uIh"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gZZ-Mb-ay9">
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gZZ-Mb-ay9">
                     <rect key="frame" x="20" y="307" width="47" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <state key="normal" title="Copy">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -67,13 +63,11 @@
                         <action selector="copyConsole:" destination="-1" eventType="touchUpInside" id="o6V-UO-4cE"/>
                     </connections>
                 </button>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NsD-Pj-die" userLabel="View - Input">
+                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NsD-Pj-die" userLabel="View - Input">
                     <rect key="frame" x="0.0" y="364" width="322" height="100"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <subviews>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Message" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="71R-1Z-ATx" userLabel="Text Field - Message">
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Message" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="71R-1Z-ATx" userLabel="Text Field - Message">
                             <rect key="frame" x="15" y="11" width="293" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="293" id="8A1-hR-oll"/>
                                 <constraint firstAttribute="height" constant="30" id="byG-I0-6ZO"/>
@@ -81,7 +75,6 @@
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="alphabet" keyboardAppearance="alert" returnKeyType="done"/>
                             <connections>
-                                <action selector="textFieldTapped:" destination="-1" eventType="touchUpInside" id="p57-Tl-bdN"/>
                                 <outlet property="delegate" destination="-1" id="Jb6-om-h7E"/>
                             </connections>
                         </textField>
@@ -112,7 +105,6 @@
                 <constraint firstItem="mYO-XY-tVm" firstAttribute="top" secondItem="1nR-Pl-EMn" secondAttribute="bottom" constant="8" id="xHv-ZK-Udr"/>
                 <constraint firstItem="gZZ-Mb-ay9" firstAttribute="leading" secondItem="4Bs-rp-lml" secondAttribute="leading" constant="20" id="xrI-wa-4QI"/>
             </constraints>
-            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
         </view>
@@ -122,7 +114,6 @@
             <subviews>
                 <navigationBar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="black" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cim-iz-i2r">
                     <rect key="frame" x="0.0" y="22" width="320" height="44"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="320" id="ZZE-ke-a8u"/>
                         <constraint firstAttribute="height" constant="44" id="k1n-RS-qLa"/>
@@ -139,7 +130,6 @@
                 </navigationBar>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pfr-qD-77b">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="22"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="320" id="0bs-Kx-GuK"/>
@@ -148,7 +138,6 @@
                 </view>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="white" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zja-cB-5O1">
                     <rect key="frame" x="20" y="86" width="280" height="462"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="280" id="ao5-ID-zy6"/>
                     </constraints>
@@ -276,13 +265,18 @@
                 <constraint firstAttribute="bottom" secondItem="zja-cB-5O1" secondAttribute="bottom" constant="20" id="vjh-Dx-NmW"/>
                 <constraint firstItem="Pfr-qD-77b" firstAttribute="top" secondItem="HuU-NG-Scm" secondAttribute="top" id="wk2-7J-16Y"/>
             </constraints>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <nil key="simulatedStatusBarMetrics"/>
         </view>
-        <customObject id="e9D-JV-2Hc" customClass="HelpViewController">
+        <customObject id="e9D-JV-2Hc" customClass="HelpViewController" customModule="BluetoothLE_Test" customModuleProvider="target">
             <connections>
                 <outlet property="textView" destination="zja-cB-5O1" id="U6G-IP-Mtn"/>
                 <outlet property="view" destination="HuU-NG-Scm" id="DBz-UX-5xJ"/>
             </connections>
         </customObject>
     </objects>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
 </document>

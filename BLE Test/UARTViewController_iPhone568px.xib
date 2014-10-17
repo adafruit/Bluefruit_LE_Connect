@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UARTViewController">
@@ -10,10 +10,10 @@
                 <outlet property="consoleClearButton" destination="mYO-XY-tVm" id="JOD-jW-s4s"/>
                 <outlet property="consoleCopyButton" destination="gZZ-Mb-ay9" id="5yk-zA-tC6"/>
                 <outlet property="consoleModeControl" destination="0am-RG-7ik" id="dmR-uE-qJj"/>
-                <outlet property="consoleView" destination="1nR-Pl-EMn" id="j7H-NI-y0v"/>
-                <outlet property="helpViewController" destination="e9D-JV-2Hc" id="nCE-Av-DPY"/>
+                <outlet property="consoleView" destination="1nR-Pl-EMn" id="HWr-2b-X2v"/>
+                <outlet property="helpViewController" destination="e9D-JV-2Hc" id="OX5-3y-FY3"/>
                 <outlet property="inputField" destination="71R-1Z-ATx" id="XfZ-Ro-WhX"/>
-                <outlet property="inputView" destination="NsD-Pj-die" id="WpS-Kl-NZp"/>
+                <outlet property="msgInputView" destination="NsD-Pj-die" id="5pW-ma-78m"/>
                 <outlet property="view" destination="4Bs-rp-lml" id="ZfX-Zh-6aq"/>
             </connections>
         </placeholder>
@@ -57,7 +57,7 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="copyConsole:" destination="-1" eventType="touchUpInside" id="o6V-UO-4cE"/>
+                        <action selector="copyConsole:" destination="-1" eventType="touchUpInside" id="QeZ-Jg-1OM"/>
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" id="NsD-Pj-die" userLabel="View - Input">
@@ -70,7 +70,6 @@
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="alphabet" keyboardAppearance="alert" returnKeyType="done"/>
                             <connections>
-                                <action selector="textFieldTapped:" destination="-1" eventType="touchUpInside" id="p57-Tl-bdN"/>
                                 <outlet property="delegate" destination="-1" id="Jb6-om-h7E"/>
                             </connections>
                         </textField>
@@ -79,9 +78,7 @@
                 </view>
             </subviews>
             <color key="backgroundColor" white="0.14999999999999999" alpha="1" colorSpace="calibratedWhite"/>
-            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="HuU-NG-Scm" userLabel="View - Help">
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -223,13 +220,18 @@
                 </textView>
             </subviews>
             <color key="backgroundColor" white="0.14999999999999999" alpha="1" colorSpace="calibratedWhite"/>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <nil key="simulatedStatusBarMetrics"/>
         </view>
-        <customObject id="e9D-JV-2Hc" customClass="HelpViewController">
+        <customObject id="e9D-JV-2Hc" customClass="HelpViewController" customModule="BluetoothLE_Test" customModuleProvider="target">
             <connections>
                 <outlet property="textView" destination="zja-cB-5O1" id="U6G-IP-Mtn"/>
                 <outlet property="view" destination="HuU-NG-Scm" id="DBz-UX-5xJ"/>
             </connections>
         </customObject>
     </objects>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
 </document>

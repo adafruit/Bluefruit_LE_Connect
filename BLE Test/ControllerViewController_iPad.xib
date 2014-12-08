@@ -1,0 +1,637 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ControllerViewController" customModule="BluetoothLE_Test" customModuleProvider="target">
+            <connections>
+                <outlet property="controlPadViewController" destination="KnR-U1-gwy" id="SKn-ms-KXT"/>
+                <outlet property="controlTable" destination="VmD-PO-K55" id="lFS-dp-vb8"/>
+                <outlet property="exitButton" destination="bxQ-e1-A96" id="x3O-mi-zlg"/>
+                <outlet property="helpViewController" destination="GuP-KN-7UX" id="Myt-Iu-HLE"/>
+                <outlet property="valueCell" destination="IFy-LR-hdK" id="c4X-zF-ZR5"/>
+                <outlet property="view" destination="ebY-yk-kZI" id="pRb-Y4-RGS"/>
+                <outletCollection property="buttons" destination="qca-do-tEE" collectionClass="NSMutableArray" id="Hq5-j2-X2z"/>
+                <outletCollection property="buttons" destination="DF3-DN-IPv" collectionClass="NSMutableArray" id="z6d-a3-ezV"/>
+                <outletCollection property="buttons" destination="Gst-FY-4GW" collectionClass="NSMutableArray" id="yHu-bk-TPx"/>
+                <outletCollection property="buttons" destination="heZ-lO-ByK" collectionClass="NSMutableArray" id="5KD-qH-icB"/>
+                <outletCollection property="buttons" destination="CdD-qK-Klb" collectionClass="NSMutableArray" id="MXe-Gm-3dc"/>
+                <outletCollection property="buttons" destination="YbN-hv-If0" collectionClass="NSMutableArray" id="B05-Hb-6Gc"/>
+                <outletCollection property="buttons" destination="rXZ-Ax-QET" collectionClass="NSMutableArray" id="AOf-cs-VB2"/>
+                <outletCollection property="buttons" destination="XHP-pa-YDr" collectionClass="NSMutableArray" id="p0I-V4-OR8"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <customObject id="GuP-KN-7UX" customClass="HelpViewController" customModule="BluetoothLE_Test" customModuleProvider="target">
+            <connections>
+                <outlet property="textView" destination="8zW-zt-idA" id="Ms3-hZ-fW2"/>
+                <outlet property="view" destination="88B-U6-yuq" id="ziM-cz-wpg"/>
+            </connections>
+        </customObject>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="ebY-yk-kZI">
+            <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" style="grouped" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="50" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="VmD-PO-K55" userLabel="tableView">
+                    <rect key="frame" x="159" y="8" width="450" height="1008"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="450" id="923-Wp-Qhl"/>
+                    </constraints>
+                    <inset key="scrollIndicatorInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="44"/>
+                    <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="n5C-5S-d9r"/>
+                        <outlet property="delegate" destination="-1" id="uTq-tB-EM2"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" white="0.14999999999999999" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="centerX" secondItem="VmD-PO-K55" secondAttribute="centerX" id="507-hi-yFp"/>
+                <constraint firstItem="VmD-PO-K55" firstAttribute="top" secondItem="ebY-yk-kZI" secondAttribute="topMargin" id="DDV-Ej-cQU"/>
+                <constraint firstAttribute="bottom" secondItem="VmD-PO-K55" secondAttribute="bottom" constant="8" id="Ngc-KR-Ivm"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
+            <point key="canvasLocation" x="302" y="427"/>
+        </view>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="88B-U6-yuq" userLabel="View - Help">
+            <rect key="frame" x="0.0" y="0.0" width="376" height="799"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" indicatorStyle="white" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8zW-zt-idA">
+                    <rect key="frame" x="21" y="20" width="336" height="759"/>
+                    <attributedString key="attributedText">
+                        <fragment content="Controller Help">
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="13" name="HelveticaNeue-Bold"/>
+                                <font key="NSOriginalFont" size="13" name="HelveticaNeue-Bold"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural">
+                                    <tabStops>
+                                        <textTab alignment="left" location="36"/>
+                                        <textTab alignment="left" location="72"/>
+                                        <textTab alignment="left" location="108"/>
+                                        <textTab alignment="left" location="144"/>
+                                        <textTab alignment="left" location="180"/>
+                                        <textTab alignment="left" location="216"/>
+                                        <textTab alignment="left" location="252"/>
+                                        <textTab alignment="left" location="288"/>
+                                        <textTab alignment="left" location="324"/>
+                                        <textTab alignment="left" location="360"/>
+                                        <textTab alignment="left" location="396"/>
+                                        <textTab alignment="left" location="432"/>
+                                    </tabStops>
+                                </paragraphStyle>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content">
+
+The Controller module streams sensor data from your iOS device to Bluefruit LE over UART at a frequency of 10Hz.  Activation of a switch will begin sending relevant data.  Each packet sent begins with single byte char “!” (0x21) followed by a single byte char initial, and sensor data encoded as float values of 4 byte length
+
+• </string>
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="13" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural">
+                                    <tabStops>
+                                        <textTab alignment="left" location="36"/>
+                                        <textTab alignment="left" location="72"/>
+                                        <textTab alignment="left" location="108"/>
+                                        <textTab alignment="left" location="144"/>
+                                        <textTab alignment="left" location="180"/>
+                                        <textTab alignment="left" location="216"/>
+                                        <textTab alignment="left" location="252"/>
+                                        <textTab alignment="left" location="288"/>
+                                        <textTab alignment="left" location="324"/>
+                                        <textTab alignment="left" location="360"/>
+                                        <textTab alignment="left" location="396"/>
+                                        <textTab alignment="left" location="432"/>
+                                    </tabStops>
+                                </paragraphStyle>
+                            </attributes>
+                        </fragment>
+                        <fragment content="Quaternion">
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="13" name="HelveticaNeue-Bold"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural">
+                                    <tabStops>
+                                        <textTab alignment="left" location="36"/>
+                                        <textTab alignment="left" location="72"/>
+                                        <textTab alignment="left" location="108"/>
+                                        <textTab alignment="left" location="144"/>
+                                        <textTab alignment="left" location="180"/>
+                                        <textTab alignment="left" location="216"/>
+                                        <textTab alignment="left" location="252"/>
+                                        <textTab alignment="left" location="288"/>
+                                        <textTab alignment="left" location="324"/>
+                                        <textTab alignment="left" location="360"/>
+                                        <textTab alignment="left" location="396"/>
+                                        <textTab alignment="left" location="432"/>
+                                    </tabStops>
+                                </paragraphStyle>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content"> sends iOS Device Motion data to describe device attitude.  This data is derived from Accelerometer, Gyro, and Magnetometer readings.
+Format: [ ‘!’ ] [ ‘Q’ ] [ float x ] [ float y ] [ float z ] [ float w ]
+
+• </string>
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="13" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural">
+                                    <tabStops>
+                                        <textTab alignment="left" location="36"/>
+                                        <textTab alignment="left" location="72"/>
+                                        <textTab alignment="left" location="108"/>
+                                        <textTab alignment="left" location="144"/>
+                                        <textTab alignment="left" location="180"/>
+                                        <textTab alignment="left" location="216"/>
+                                        <textTab alignment="left" location="252"/>
+                                        <textTab alignment="left" location="288"/>
+                                        <textTab alignment="left" location="324"/>
+                                        <textTab alignment="left" location="360"/>
+                                        <textTab alignment="left" location="396"/>
+                                        <textTab alignment="left" location="432"/>
+                                    </tabStops>
+                                </paragraphStyle>
+                            </attributes>
+                        </fragment>
+                        <fragment content="Accelerometer">
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="13" name="HelveticaNeue-Bold"/>
+                                <font key="NSOriginalFont" size="13" name="HelveticaNeue-Bold"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural">
+                                    <tabStops>
+                                        <textTab alignment="left" location="36"/>
+                                        <textTab alignment="left" location="72"/>
+                                        <textTab alignment="left" location="108"/>
+                                        <textTab alignment="left" location="144"/>
+                                        <textTab alignment="left" location="180"/>
+                                        <textTab alignment="left" location="216"/>
+                                        <textTab alignment="left" location="252"/>
+                                        <textTab alignment="left" location="288"/>
+                                        <textTab alignment="left" location="324"/>
+                                        <textTab alignment="left" location="360"/>
+                                        <textTab alignment="left" location="396"/>
+                                        <textTab alignment="left" location="432"/>
+                                    </tabStops>
+                                </paragraphStyle>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content"> sends raw accelerometer data
+Format: [ ‘!’ ] [ ‘A’ ] [ float x ] [ float y ] [ float z ]
+
+• </string>
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="13" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural">
+                                    <tabStops>
+                                        <textTab alignment="left" location="36"/>
+                                        <textTab alignment="left" location="72"/>
+                                        <textTab alignment="left" location="108"/>
+                                        <textTab alignment="left" location="144"/>
+                                        <textTab alignment="left" location="180"/>
+                                        <textTab alignment="left" location="216"/>
+                                        <textTab alignment="left" location="252"/>
+                                        <textTab alignment="left" location="288"/>
+                                        <textTab alignment="left" location="324"/>
+                                        <textTab alignment="left" location="360"/>
+                                        <textTab alignment="left" location="396"/>
+                                        <textTab alignment="left" location="432"/>
+                                    </tabStops>
+                                </paragraphStyle>
+                            </attributes>
+                        </fragment>
+                        <fragment content="Gyro">
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="13" name="HelveticaNeue-Bold"/>
+                                <font key="NSOriginalFont" size="13" name="HelveticaNeue-Bold"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural">
+                                    <tabStops>
+                                        <textTab alignment="left" location="36"/>
+                                        <textTab alignment="left" location="72"/>
+                                        <textTab alignment="left" location="108"/>
+                                        <textTab alignment="left" location="144"/>
+                                        <textTab alignment="left" location="180"/>
+                                        <textTab alignment="left" location="216"/>
+                                        <textTab alignment="left" location="252"/>
+                                        <textTab alignment="left" location="288"/>
+                                        <textTab alignment="left" location="324"/>
+                                        <textTab alignment="left" location="360"/>
+                                        <textTab alignment="left" location="396"/>
+                                        <textTab alignment="left" location="432"/>
+                                    </tabStops>
+                                </paragraphStyle>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content"> sends raw gyroscope data as:
+Format: [ ‘!’ ] [ ‘G’ ] [ float x ] [ float y ] [ float z ]
+
+• </string>
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="13" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural">
+                                    <tabStops>
+                                        <textTab alignment="left" location="36"/>
+                                        <textTab alignment="left" location="72"/>
+                                        <textTab alignment="left" location="108"/>
+                                        <textTab alignment="left" location="144"/>
+                                        <textTab alignment="left" location="180"/>
+                                        <textTab alignment="left" location="216"/>
+                                        <textTab alignment="left" location="252"/>
+                                        <textTab alignment="left" location="288"/>
+                                        <textTab alignment="left" location="324"/>
+                                        <textTab alignment="left" location="360"/>
+                                        <textTab alignment="left" location="396"/>
+                                        <textTab alignment="left" location="432"/>
+                                    </tabStops>
+                                </paragraphStyle>
+                            </attributes>
+                        </fragment>
+                        <fragment content="Magnetometer">
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="13" name="HelveticaNeue-Bold"/>
+                                <font key="NSOriginalFont" size="13" name="HelveticaNeue-Bold"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural">
+                                    <tabStops>
+                                        <textTab alignment="left" location="36"/>
+                                        <textTab alignment="left" location="72"/>
+                                        <textTab alignment="left" location="108"/>
+                                        <textTab alignment="left" location="144"/>
+                                        <textTab alignment="left" location="180"/>
+                                        <textTab alignment="left" location="216"/>
+                                        <textTab alignment="left" location="252"/>
+                                        <textTab alignment="left" location="288"/>
+                                        <textTab alignment="left" location="324"/>
+                                        <textTab alignment="left" location="360"/>
+                                        <textTab alignment="left" location="396"/>
+                                        <textTab alignment="left" location="432"/>
+                                    </tabStops>
+                                </paragraphStyle>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content"> sends raw magnetometer data which is uncalibrated and does not account for interference from source device.
+Format: [ ‘!’ ] [ ‘M’ ] [ float x ] [ float y ] [ float z ]
+
+• </string>
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="13" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural">
+                                    <tabStops>
+                                        <textTab alignment="left" location="36"/>
+                                        <textTab alignment="left" location="72"/>
+                                        <textTab alignment="left" location="108"/>
+                                        <textTab alignment="left" location="144"/>
+                                        <textTab alignment="left" location="180"/>
+                                        <textTab alignment="left" location="216"/>
+                                        <textTab alignment="left" location="252"/>
+                                        <textTab alignment="left" location="288"/>
+                                        <textTab alignment="left" location="324"/>
+                                        <textTab alignment="left" location="360"/>
+                                        <textTab alignment="left" location="396"/>
+                                        <textTab alignment="left" location="432"/>
+                                    </tabStops>
+                                </paragraphStyle>
+                            </attributes>
+                        </fragment>
+                        <fragment content="Location">
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="13" name="HelveticaNeue-Bold"/>
+                                <font key="NSOriginalFont" size="13" name="HelveticaNeue-Bold"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural">
+                                    <tabStops>
+                                        <textTab alignment="left" location="36"/>
+                                        <textTab alignment="left" location="72"/>
+                                        <textTab alignment="left" location="108"/>
+                                        <textTab alignment="left" location="144"/>
+                                        <textTab alignment="left" location="180"/>
+                                        <textTab alignment="left" location="216"/>
+                                        <textTab alignment="left" location="252"/>
+                                        <textTab alignment="left" location="288"/>
+                                        <textTab alignment="left" location="324"/>
+                                        <textTab alignment="left" location="360"/>
+                                        <textTab alignment="left" location="396"/>
+                                        <textTab alignment="left" location="432"/>
+                                    </tabStops>
+                                </paragraphStyle>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content"> sends GPS data and requires user permission before initial use.
+Format: [ ‘!’ ] [ ‘L’ ] [ float latitude ] [ float longitude ] [ float altitude ]
+
+The </string>
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="13" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural">
+                                    <tabStops>
+                                        <textTab alignment="left" location="36"/>
+                                        <textTab alignment="left" location="72"/>
+                                        <textTab alignment="left" location="108"/>
+                                        <textTab alignment="left" location="144"/>
+                                        <textTab alignment="left" location="180"/>
+                                        <textTab alignment="left" location="216"/>
+                                        <textTab alignment="left" location="252"/>
+                                        <textTab alignment="left" location="288"/>
+                                        <textTab alignment="left" location="324"/>
+                                        <textTab alignment="left" location="360"/>
+                                        <textTab alignment="left" location="396"/>
+                                        <textTab alignment="left" location="432"/>
+                                    </tabStops>
+                                </paragraphStyle>
+                            </attributes>
+                        </fragment>
+                        <fragment content="Control Pad">
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="13" name="HelveticaNeue-Bold"/>
+                                <font key="NSOriginalFont" size="13" name="HelveticaNeue-Bold"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural">
+                                    <tabStops>
+                                        <textTab alignment="left" location="36"/>
+                                        <textTab alignment="left" location="72"/>
+                                        <textTab alignment="left" location="108"/>
+                                        <textTab alignment="left" location="144"/>
+                                        <textTab alignment="left" location="180"/>
+                                        <textTab alignment="left" location="216"/>
+                                        <textTab alignment="left" location="252"/>
+                                        <textTab alignment="left" location="288"/>
+                                        <textTab alignment="left" location="324"/>
+                                        <textTab alignment="left" location="360"/>
+                                        <textTab alignment="left" location="396"/>
+                                        <textTab alignment="left" location="432"/>
+                                    </tabStops>
+                                </paragraphStyle>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content"> function provides a familiar momentary button interface for common control scenarios.  Data is sent on the press and release of each button.  Each packet consists of 4 bytes, each representing a char value.  The first two chars identify the packet as a button message, the third specifies a button, and the fourth signifies either a press or release.  Example:
+
+Button 4 pressed:  [ ‘!’ ] [ ‘B’ ] [ ‘4’ ] [ ‘1’ ]
+Button 4 released: [ ‘!’ ] [ ‘B’ ] [ ‘4’ ] [ ‘0’ ]
+
+Note: Any activated sensor data streams will continue while using the Control Pad.</string>
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="13" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural">
+                                    <tabStops>
+                                        <textTab alignment="left" location="36"/>
+                                        <textTab alignment="left" location="72"/>
+                                        <textTab alignment="left" location="108"/>
+                                        <textTab alignment="left" location="144"/>
+                                        <textTab alignment="left" location="180"/>
+                                        <textTab alignment="left" location="216"/>
+                                        <textTab alignment="left" location="252"/>
+                                        <textTab alignment="left" location="288"/>
+                                        <textTab alignment="left" location="324"/>
+                                        <textTab alignment="left" location="360"/>
+                                        <textTab alignment="left" location="396"/>
+                                        <textTab alignment="left" location="432"/>
+                                    </tabStops>
+                                </paragraphStyle>
+                            </attributes>
+                        </fragment>
+                    </attributedString>
+                    <textInputTraits key="textInputTraits"/>
+                    <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                </textView>
+            </subviews>
+            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="8zW-zt-idA" firstAttribute="top" secondItem="88B-U6-yuq" secondAttribute="top" constant="20" id="OzT-TY-rXZ"/>
+                <constraint firstAttribute="trailing" secondItem="8zW-zt-idA" secondAttribute="trailing" constant="20" id="UIX-Rc-KLr"/>
+                <constraint firstItem="8zW-zt-idA" firstAttribute="leading" secondItem="88B-U6-yuq" secondAttribute="leading" constant="20" id="jhT-y9-w0Z"/>
+                <constraint firstAttribute="bottom" secondItem="8zW-zt-idA" secondAttribute="bottom" constant="20" id="kU5-wo-4Du"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-320" y="370.5"/>
+        </view>
+        <viewController title="Control Pad" id="KnR-U1-gwy" userLabel="Control Pad View Controller">
+            <layoutGuides>
+                <viewControllerLayoutGuide type="top" id="XhX-AK-J4b"/>
+                <viewControllerLayoutGuide type="bottom" id="xiO-rt-XQp"/>
+            </layoutGuides>
+            <view key="view" autoresizesSubviews="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="TGZ-E0-yd9">
+                <rect key="frame" x="0.0" y="64" width="768" height="960"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z8s-gk-861">
+                        <rect key="frame" x="483" y="658" width="229" height="235"/>
+                        <subviews>
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YbN-hv-If0" userLabel="Button1">
+                                <rect key="frame" x="135" y="31" width="64" height="64"/>
+                                <color key="backgroundColor" red="0.09803922474" green="0.58039218189999997" blue="0.98039221759999995" alpha="1" colorSpace="deviceRGB"/>
+                                <color key="tintColor" red="0.09803922474" green="0.58039218189999997" blue="0.98039221759999995" alpha="1" colorSpace="deviceRGB"/>
+                                <state key="normal" image="ble-button_numbers-2.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="controlPadButtonPressed:" destination="-1" eventType="touchDown" id="DYz-nQ-e7u"/>
+                                    <action selector="controlPadButtonReleased:" destination="-1" eventType="touchUpInside" id="UsK-6e-Og9"/>
+                                    <action selector="controlPadButtonReleased:" destination="-1" eventType="touchDragExit" id="XCj-t0-UcS"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XHP-pa-YDr" userLabel="Button2">
+                                <rect key="frame" x="135" y="141" width="64" height="64"/>
+                                <color key="backgroundColor" red="0.09803922474" green="0.58039218189999997" blue="0.98039221759999995" alpha="1" colorSpace="deviceRGB"/>
+                                <color key="tintColor" red="0.09803922474" green="0.58039218189999997" blue="0.98039221759999995" alpha="1" colorSpace="deviceRGB"/>
+                                <state key="normal" image="ble-button_numbers-4.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="controlPadButtonPressed:" destination="-1" eventType="touchDown" id="Oq8-5t-BwP"/>
+                                    <action selector="controlPadButtonReleased:" destination="-1" eventType="touchUpInside" id="C3d-J3-4ua"/>
+                                    <action selector="controlPadButtonReleased:" destination="-1" eventType="touchDragExit" id="gbF-0l-1tU"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CdD-qK-Klb" userLabel="Button3">
+                                <rect key="frame" x="30" y="31" width="64" height="64"/>
+                                <color key="backgroundColor" red="0.09803922474" green="0.58039218189999997" blue="0.98039221759999995" alpha="1" colorSpace="deviceRGB"/>
+                                <color key="tintColor" red="0.09803922474" green="0.58039218189999997" blue="0.98039221759999995" alpha="1" colorSpace="deviceRGB"/>
+                                <state key="normal" image="ble-button_numbers-1.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="controlPadButtonPressed:" destination="-1" eventType="touchDown" id="Yqp-Aq-b7C"/>
+                                    <action selector="controlPadButtonReleased:" destination="-1" eventType="touchDragExit" id="GAb-s5-oMj"/>
+                                    <action selector="controlPadButtonReleased:" destination="-1" eventType="touchUpInside" id="obL-Kw-DoY"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rXZ-Ax-QET" userLabel="Button4">
+                                <rect key="frame" x="30" y="141" width="64" height="64"/>
+                                <color key="backgroundColor" red="0.09803922474" green="0.58039218189999997" blue="0.98039221759999995" alpha="1" colorSpace="deviceRGB"/>
+                                <color key="tintColor" red="0.09803922474" green="0.58039218189999997" blue="0.98039221759999995" alpha="1" colorSpace="deviceRGB"/>
+                                <state key="normal" image="ble-button_numbers-3.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="controlPadButtonPressed:" destination="-1" eventType="touchDown" id="Ajg-Oa-zlm"/>
+                                    <action selector="controlPadButtonReleased:" destination="-1" eventType="touchDragExit" id="1qX-jq-FEA"/>
+                                    <action selector="controlPadButtonReleased:" destination="-1" eventType="touchUpInside" id="e84-ih-Kg1"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="235" id="8Nh-2J-DnA"/>
+                            <constraint firstAttribute="width" constant="229" id="QaM-2H-ZwJ"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oAw-Cs-MMV">
+                        <rect key="frame" x="56" y="632" width="288" height="288"/>
+                        <subviews>
+                            <button opaque="NO" tag="8" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gst-FY-4GW" userLabel="UpButton">
+                                <rect key="frame" x="188" y="111" width="80" height="64"/>
+                                <color key="backgroundColor" red="0.09803922474" green="0.58039218189999997" blue="0.98039221759999995" alpha="1" colorSpace="deviceRGB"/>
+                                <state key="normal" image="ble-arrow_button_right.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="controlPadButtonPressed:" destination="-1" eventType="touchDown" id="wPK-iB-Ubq"/>
+                                    <action selector="controlPadButtonReleased:" destination="-1" eventType="touchDragExit" id="lcg-cZ-j8M"/>
+                                    <action selector="controlPadButtonReleased:" destination="-1" eventType="touchUpInside" id="zwq-GB-GOT"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qca-do-tEE" userLabel="LeftButton">
+                                <rect key="frame" x="112" y="19" width="65" height="81"/>
+                                <color key="backgroundColor" red="0.09803922474" green="0.58039218189999997" blue="0.98039221759999995" alpha="1" colorSpace="deviceRGB"/>
+                                <state key="normal" image="ble-arrow_button_up.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="controlPadButtonPressed:" destination="-1" eventType="touchDown" id="4kf-hm-fsg"/>
+                                    <action selector="controlPadButtonReleased:" destination="-1" eventType="touchDragExit" id="QuF-9o-zdY"/>
+                                    <action selector="controlPadButtonReleased:" destination="-1" eventType="touchUpInside" id="lso-cQ-Rw3"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="6" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="heZ-lO-ByK" userLabel="RightButton">
+                                <rect key="frame" x="112" y="187" width="65" height="81"/>
+                                <color key="backgroundColor" red="0.09803922474" green="0.58039218189999997" blue="0.98039221759999995" alpha="1" colorSpace="deviceRGB"/>
+                                <state key="normal" image="ble-arrow_button_down.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="controlPadButtonPressed:" destination="-1" eventType="touchDown" id="YZA-5y-QDU"/>
+                                    <action selector="controlPadButtonReleased:" destination="-1" eventType="touchUpInside" id="bGA-hA-Q5t"/>
+                                    <action selector="controlPadButtonReleased:" destination="-1" eventType="touchDragExit" id="v7h-Aa-3NZ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="7" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DF3-DN-IPv" userLabel="DownButton">
+                                <rect key="frame" x="20" y="111" width="81" height="65"/>
+                                <color key="backgroundColor" red="0.09803922474" green="0.58039218189999997" blue="0.98039221759999995" alpha="1" colorSpace="deviceRGB"/>
+                                <state key="normal" image="ble-arrow_button_left.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="controlPadButtonPressed:" destination="-1" eventType="touchDown" id="WuQ-29-Pkj"/>
+                                    <action selector="controlPadButtonReleased:" destination="-1" eventType="touchDragExit" id="bL9-wX-Rx3"/>
+                                    <action selector="controlPadButtonReleased:" destination="-1" eventType="touchUpInside" id="hak-c7-TuV"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="288" id="RhW-tP-UEU"/>
+                            <constraint firstAttribute="width" constant="288" id="elQ-6w-u94"/>
+                        </constraints>
+                    </view>
+                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bxQ-e1-A96" userLabel="ButtonExit">
+                        <rect key="frame" x="374" y="900" width="80" height="80"/>
+                        <color key="backgroundColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="80" id="A8M-h2-7qe"/>
+                            <constraint firstAttribute="width" constant="80" id="BMJ-Os-uTh"/>
+                        </constraints>
+                        <state key="normal" image="ble-button_pad_exit.png">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="controlPadExitDragOutside:" destination="-1" eventType="touchDragExit" id="Zuc-YI-UOY"/>
+                            <action selector="controlPadExitPressed:" destination="-1" eventType="touchDown" id="vS7-uv-bMi"/>
+                            <action selector="controlPadExitReleased:" destination="-1" eventType="touchUpInside" id="0tl-Vs-QFe"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <color key="backgroundColor" white="0.14999999999999999" alpha="1" colorSpace="calibratedWhite"/>
+                <constraints>
+                    <constraint firstItem="oAw-Cs-MMV" firstAttribute="leading" secondItem="TGZ-E0-yd9" secondAttribute="leadingMargin" constant="40" id="3wJ-Rc-TJO"/>
+                    <constraint firstItem="xiO-rt-XQp" firstAttribute="top" secondItem="z8s-gk-861" secondAttribute="bottom" constant="67" id="5SN-Hp-Hgw"/>
+                    <constraint firstItem="z8s-gk-861" firstAttribute="trailing" secondItem="TGZ-E0-yd9" secondAttribute="trailingMargin" constant="-40" id="80w-7z-puy"/>
+                    <constraint firstAttribute="bottom" secondItem="bxQ-e1-A96" secondAttribute="bottom" constant="-20" id="W8T-UA-EFj"/>
+                    <constraint firstItem="xiO-rt-XQp" firstAttribute="top" secondItem="oAw-Cs-MMV" secondAttribute="bottom" constant="40" id="X7e-je-5C2"/>
+                    <constraint firstAttribute="centerX" secondItem="bxQ-e1-A96" secondAttribute="centerX" constant="-30" id="rP1-Kg-obJ"/>
+                </constraints>
+            </view>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
+            <connections>
+                <outlet property="view" destination="TGZ-E0-yd9" id="EFS-YP-Tw4"/>
+            </connections>
+            <point key="canvasLocation" x="1141" y="427"/>
+        </viewController>
+        <tableViewController id="5gY-or-suc">
+            <connections>
+                <outlet property="view" destination="VmD-PO-K55" id="JCa-EI-Ki8"/>
+            </connections>
+            <point key="canvasLocation" x="108" y="205"/>
+        </tableViewController>
+        <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" rowHeight="22" id="IFy-LR-hdK" userLabel="Value Cell" customClass="SensorValueCell" customModule="BluetoothLE_Test" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="299" height="22"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IFy-LR-hdK" id="hik-l6-cdO">
+                <rect key="frame" x="0.0" y="0.0" width="299" height="147"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="100" contentMode="left" text="valuename: value" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wcA-x7-bZH" userLabel="nameLabel">
+                        <rect key="frame" x="31" y="-3" width="260" height="20"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="wcA-x7-bZH" firstAttribute="trailing" secondItem="hik-l6-cdO" secondAttribute="trailingMargin" id="CAu-IB-pjM"/>
+                    <constraint firstAttribute="bottom" secondItem="wcA-x7-bZH" secondAttribute="bottom" constant="4" id="Cy9-vu-neL"/>
+                    <constraint firstItem="wcA-x7-bZH" firstAttribute="top" secondItem="hik-l6-cdO" secondAttribute="top" constant="-3" id="XSp-mU-AO5"/>
+                    <constraint firstItem="wcA-x7-bZH" firstAttribute="trailing" secondItem="hik-l6-cdO" secondAttribute="trailingMargin" id="aOI-mE-psQ"/>
+                    <constraint firstItem="wcA-x7-bZH" firstAttribute="leading" secondItem="hik-l6-cdO" secondAttribute="leadingMargin" constant="23" id="eb6-Wm-Hfc"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+            <point key="canvasLocation" x="-303.5" y="-74"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="ble-arrow_button_down.png" width="65" height="81"/>
+        <image name="ble-arrow_button_left.png" width="81" height="65"/>
+        <image name="ble-arrow_button_right.png" width="80" height="64"/>
+        <image name="ble-arrow_button_up.png" width="65" height="81"/>
+        <image name="ble-button_numbers-1.png" width="64" height="64"/>
+        <image name="ble-button_numbers-2.png" width="64" height="64"/>
+        <image name="ble-button_numbers-3.png" width="64" height="64"/>
+        <image name="ble-button_numbers-4.png" width="64" height="64"/>
+        <image name="ble-button_pad_exit.png" width="80" height="80"/>
+    </resources>
+</document>

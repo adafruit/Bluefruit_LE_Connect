@@ -7,11 +7,46 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F007EDBA1A3064B60023FCD6 /* ControllerViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = F007EDB91A3064B60023FCD6 /* ControllerViewController_iPad.xib */; };
+		F007EDC31A3191BC0023FCD6 /* ble-arrow_button_down.png in Resources */ = {isa = PBXBuildFile; fileRef = F007EDBB1A3191BC0023FCD6 /* ble-arrow_button_down.png */; };
+		F007EDC41A3191BC0023FCD6 /* ble-arrow_button_down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F007EDBC1A3191BC0023FCD6 /* ble-arrow_button_down@2x.png */; };
+		F007EDC51A3191BC0023FCD6 /* ble-arrow_button_left.png in Resources */ = {isa = PBXBuildFile; fileRef = F007EDBD1A3191BC0023FCD6 /* ble-arrow_button_left.png */; };
+		F007EDC61A3191BC0023FCD6 /* ble-arrow_button_left@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F007EDBE1A3191BC0023FCD6 /* ble-arrow_button_left@2x.png */; };
+		F007EDC71A3191BC0023FCD6 /* ble-arrow_button_right.png in Resources */ = {isa = PBXBuildFile; fileRef = F007EDBF1A3191BC0023FCD6 /* ble-arrow_button_right.png */; };
+		F007EDC81A3191BC0023FCD6 /* ble-arrow_button_right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F007EDC01A3191BC0023FCD6 /* ble-arrow_button_right@2x.png */; };
+		F007EDC91A3191BC0023FCD6 /* ble-arrow_button_up.png in Resources */ = {isa = PBXBuildFile; fileRef = F007EDC11A3191BC0023FCD6 /* ble-arrow_button_up.png */; };
+		F007EDCA1A3191BC0023FCD6 /* ble-arrow_button_up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F007EDC21A3191BC0023FCD6 /* ble-arrow_button_up@2x.png */; };
+		F007EDD31A3195110023FCD6 /* ble-button_numbers-1.png in Resources */ = {isa = PBXBuildFile; fileRef = F007EDCB1A3195110023FCD6 /* ble-button_numbers-1.png */; };
+		F007EDD41A3195110023FCD6 /* ble-button_numbers-1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F007EDCC1A3195110023FCD6 /* ble-button_numbers-1@2x.png */; };
+		F007EDD51A3195110023FCD6 /* ble-button_numbers-2.png in Resources */ = {isa = PBXBuildFile; fileRef = F007EDCD1A3195110023FCD6 /* ble-button_numbers-2.png */; };
+		F007EDD61A3195110023FCD6 /* ble-button_numbers-2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F007EDCE1A3195110023FCD6 /* ble-button_numbers-2@2x.png */; };
+		F007EDD71A3195110023FCD6 /* ble-button_numbers-3.png in Resources */ = {isa = PBXBuildFile; fileRef = F007EDCF1A3195110023FCD6 /* ble-button_numbers-3.png */; };
+		F007EDD81A3195110023FCD6 /* ble-button_numbers-3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F007EDD01A3195110023FCD6 /* ble-button_numbers-3@2x.png */; };
+		F007EDD91A3195110023FCD6 /* ble-button_numbers-4.png in Resources */ = {isa = PBXBuildFile; fileRef = F007EDD11A3195110023FCD6 /* ble-button_numbers-4.png */; };
+		F007EDDA1A3195110023FCD6 /* ble-button_numbers-4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F007EDD21A3195110023FCD6 /* ble-button_numbers-4@2x.png */; };
+		F007EDE31A3196090023FCD6 /* ble-button_numbers-rotated-4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F007EDDB1A3196090023FCD6 /* ble-button_numbers-rotated-4@2x.png */; };
+		F007EDE41A3196090023FCD6 /* ble-button_numbers-rotated-4.png in Resources */ = {isa = PBXBuildFile; fileRef = F007EDDC1A3196090023FCD6 /* ble-button_numbers-rotated-4.png */; };
+		F007EDE51A3196090023FCD6 /* ble-button_numbers-rotated-3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F007EDDD1A3196090023FCD6 /* ble-button_numbers-rotated-3@2x.png */; };
+		F007EDE61A3196090023FCD6 /* ble-button_numbers-rotated-3.png in Resources */ = {isa = PBXBuildFile; fileRef = F007EDDE1A3196090023FCD6 /* ble-button_numbers-rotated-3.png */; };
+		F007EDE71A3196090023FCD6 /* ble-button_numbers-rotated-2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F007EDDF1A3196090023FCD6 /* ble-button_numbers-rotated-2@2x.png */; };
+		F007EDE81A3196090023FCD6 /* ble-button_numbers-rotated-2.png in Resources */ = {isa = PBXBuildFile; fileRef = F007EDE01A3196090023FCD6 /* ble-button_numbers-rotated-2.png */; };
+		F007EDE91A3196090023FCD6 /* ble-button_numbers-rotated-1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F007EDE11A3196090023FCD6 /* ble-button_numbers-rotated-1@2x.png */; };
+		F007EDEA1A3196090023FCD6 /* ble-button_numbers-rotated-1.png in Resources */ = {isa = PBXBuildFile; fileRef = F007EDE21A3196090023FCD6 /* ble-button_numbers-rotated-1.png */; };
+		F007EDEF1A31A2350023FCD6 /* ble-button_pad_exit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F007EDEB1A31A2350023FCD6 /* ble-button_pad_exit@2x.png */; };
+		F007EDF01A31A2350023FCD6 /* ble-button_pad_exit.png in Resources */ = {isa = PBXBuildFile; fileRef = F007EDEC1A31A2350023FCD6 /* ble-button_pad_exit.png */; };
+		F007EDF11A31A2350023FCD6 /* ble-button_pad_exit_rotated@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F007EDED1A31A2350023FCD6 /* ble-button_pad_exit_rotated@2x.png */; };
+		F007EDF21A31A2350023FCD6 /* ble-button_pad_exit_rotated.png in Resources */ = {isa = PBXBuildFile; fileRef = F007EDEE1A31A2350023FCD6 /* ble-button_pad_exit_rotated.png */; };
 		F02811C619ED19AA00D48BA5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02811C519ED19AA00D48BA5 /* Extensions.swift */; };
-		F02F2BB519EE83AC0057F374 /* DeviceListViewController_iPhone568px.xib in Resources */ = {isa = PBXBuildFile; fileRef = F02F2BB419EE83AC0057F374 /* DeviceListViewController_iPhone568px.xib */; };
+		F02F2BB519EE83AC0057F374 /* DeviceListViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = F02F2BB419EE83AC0057F374 /* DeviceListViewController_iPhone.xib */; };
+		F02F6EEB1A247F160080FFDF /* ControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02F6EE91A247F160080FFDF /* ControllerViewController.swift */; };
+		F02F6EEC1A247F160080FFDF /* ControllerViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = F02F6EEA1A247F160080FFDF /* ControllerViewController_iPhone.xib */; };
 		F051AAD719DA96F7009A1383 /* UARTViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F051AAD619DA96F7009A1383 /* UARTViewController.swift */; };
 		F05E7E0318BEF399005E25F6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F05E7E0218BEF399005E25F6 /* Images.xcassets */; };
+		F060841019F4CF8F0058B4E4 /* AttributeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F060840F19F4CF8F0058B4E4 /* AttributeCell.swift */; };
 		F0718E0019EE77F4002B5ABB /* DeviceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0718DFF19EE77F4002B5ABB /* DeviceListViewController.swift */; };
+		F07D973D19F98B9F00CA88CF /* DeviceListViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = F07D973C19F98B9F00CA88CF /* DeviceListViewController_iPad.xib */; };
+		F07D974019FA46F200CA88CF /* DeviceInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07D973E19FA46F200CA88CF /* DeviceInfoViewController.swift */; };
+		F07D974119FA46F200CA88CF /* DeviceInfoViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = F07D973F19FA46F200CA88CF /* DeviceInfoViewController_iPhone.xib */; };
 		F08849D119E47EE6002B442A /* PinIOViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08849D019E47EE6002B442A /* PinIOViewController.swift */; };
 		F08ACA6B16DD0C0400A377D1 /* cellGradient3-150h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F08ACA6916DD0C0400A377D1 /* cellGradient3-150h@2x.png */; };
 		F08ACA6C16DD0C0400A377D1 /* cellGradient3-150h.png in Resources */ = {isa = PBXBuildFile; fileRef = F08ACA6A16DD0C0400A377D1 /* cellGradient3-150h.png */; };
@@ -30,7 +65,7 @@
 		F0A47E0F189F90CB007E96AC /* PinIOViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0A47E0D189F90CB007E96AC /* PinIOViewController_iPad.xib */; };
 		F0A47E14189F9257007E96AC /* PinIOViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0A47E13189F9257007E96AC /* PinIOViewController_iPhone.xib */; };
 		F0A94FDC19DBE68800C8A37E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A94FDB19DBE68800C8A37E /* Constants.swift */; };
-		F0B556EF18C020FC008D05D7 /* PinIOViewController_iPhone568px.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0B556EE18C020FC008D05D7 /* PinIOViewController_iPhone568px.xib */; };
+		F0B7D14319F1081C00DFDDBE /* BLEDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B7D14219F1081B00DFDDBE /* BLEDevice.swift */; };
 		F0BCF06619EBB881006086C6 /* BLEMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BCF06519EBB881006086C6 /* BLEMainViewController.swift */; };
 		F0BCF06819EBDC59006086C6 /* BLEAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BCF06719EBDC59006086C6 /* BLEAppDelegate.swift */; };
 		F0C47C0016C229F2002EFADA /* Adaflower@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F0C47BFE16C229F2002EFADA /* Adaflower@2x~ipad.png */; };
@@ -46,22 +81,65 @@
 		F0C47C1F16C23D67002EFADA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0C47C1E16C23D67002EFADA /* QuartzCore.framework */; };
 		F0C47C2216C23FD3002EFADA /* adafruit_logo2012-embossDark.png in Resources */ = {isa = PBXBuildFile; fileRef = F0C47C2016C23FD3002EFADA /* adafruit_logo2012-embossDark.png */; };
 		F0C47C2316C23FD3002EFADA /* adafruit_logo2012-embossDark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F0C47C2116C23FD3002EFADA /* adafruit_logo2012-embossDark@2x.png */; };
+		F0C7709419FF8D25005391F6 /* signalStrength-0.png in Resources */ = {isa = PBXBuildFile; fileRef = F0C7708F19FF8D25005391F6 /* signalStrength-0.png */; };
+		F0C7709519FF8D25005391F6 /* signalStrength-1.png in Resources */ = {isa = PBXBuildFile; fileRef = F0C7709019FF8D25005391F6 /* signalStrength-1.png */; };
+		F0C7709619FF8D25005391F6 /* signalStrength-2.png in Resources */ = {isa = PBXBuildFile; fileRef = F0C7709119FF8D25005391F6 /* signalStrength-2.png */; };
+		F0C7709719FF8D25005391F6 /* signalStrength-3.png in Resources */ = {isa = PBXBuildFile; fileRef = F0C7709219FF8D25005391F6 /* signalStrength-3.png */; };
+		F0C7709819FF8D25005391F6 /* signalStrength-4.png in Resources */ = {isa = PBXBuildFile; fileRef = F0C7709319FF8D25005391F6 /* signalStrength-4.png */; };
 		F0CE1B9818A23FF8005F831A /* UARTViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0CE1B9618A23FF8005F831A /* UARTViewController_iPad.xib */; };
-		F0CE1B9A18A24030005F831A /* UARTViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0CE1B9918A24030005F831A /* UARTViewController_iPhone.xib */; };
-		F0F302C419EB6D5400A4A71A /* UARTPeripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F302C319EB6D5400A4A71A /* UARTPeripheral.swift */; };
+		F0D4AFB91A32505300E9063E /* SensorValueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D4AFB71A32505300E9063E /* SensorValueCell.swift */; };
+		F0D4AFBA1A32505300E9063E /* SensorValueCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0D4AFB81A32505300E9063E /* SensorValueCell.xib */; };
+		F0DBB56A19F4625800CB91E1 /* DeviceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DBB56819F4625800CB91E1 /* DeviceCell.swift */; };
+		F0E75DDF1A1DE81F0025FBC2 /* GATT-characteristics.plist in Resources */ = {isa = PBXBuildFile; fileRef = F0E75DDE1A1DE81F0025FBC2 /* GATT-characteristics.plist */; };
+		F0ED2E471A010EC7009A5061 /* DeviceInfoViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0ED2E461A010EC6009A5061 /* DeviceInfoViewController_iPad.xib */; };
 		F0F5865D19E7C8AB0000E544 /* PinCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F5865C19E7C8AB0000E544 /* PinCell.swift */; };
+		F0F889A91A009B81008AA257 /* BLEInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F889A81A009B81008AA257 /* BLEInfo.swift */; };
+		F0F889AB1A00BD55008AA257 /* BLEPeripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F889AA1A00BD55008AA257 /* BLEPeripheral.swift */; };
 		F0F9C4A919E25BF000AF2352 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F9C4A819E25BF000AF2352 /* HelpViewController.swift */; };
-		F0FB078618C02B2300D263DD /* BLEMainViewController_iPhone568px.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0FB078418C02B2300D263DD /* BLEMainViewController_iPhone568px.xib */; };
-		F0FB078818C02D9800D263DD /* UARTViewController_iPhone568px.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0FB078718C02D9800D263DD /* UARTViewController_iPhone568px.xib */; };
+		F0FB078818C02D9800D263DD /* UARTViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0FB078718C02D9800D263DD /* UARTViewController_iPhone.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F007EDB91A3064B60023FCD6 /* ControllerViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ControllerViewController_iPad.xib; sourceTree = "<group>"; };
+		F007EDBB1A3191BC0023FCD6 /* ble-arrow_button_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ble-arrow_button_down.png"; sourceTree = "<group>"; };
+		F007EDBC1A3191BC0023FCD6 /* ble-arrow_button_down@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ble-arrow_button_down@2x.png"; sourceTree = "<group>"; };
+		F007EDBD1A3191BC0023FCD6 /* ble-arrow_button_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ble-arrow_button_left.png"; sourceTree = "<group>"; };
+		F007EDBE1A3191BC0023FCD6 /* ble-arrow_button_left@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ble-arrow_button_left@2x.png"; sourceTree = "<group>"; };
+		F007EDBF1A3191BC0023FCD6 /* ble-arrow_button_right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ble-arrow_button_right.png"; sourceTree = "<group>"; };
+		F007EDC01A3191BC0023FCD6 /* ble-arrow_button_right@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ble-arrow_button_right@2x.png"; sourceTree = "<group>"; };
+		F007EDC11A3191BC0023FCD6 /* ble-arrow_button_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ble-arrow_button_up.png"; sourceTree = "<group>"; };
+		F007EDC21A3191BC0023FCD6 /* ble-arrow_button_up@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ble-arrow_button_up@2x.png"; sourceTree = "<group>"; };
+		F007EDCB1A3195110023FCD6 /* ble-button_numbers-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ble-button_numbers-1.png"; sourceTree = "<group>"; };
+		F007EDCC1A3195110023FCD6 /* ble-button_numbers-1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ble-button_numbers-1@2x.png"; sourceTree = "<group>"; };
+		F007EDCD1A3195110023FCD6 /* ble-button_numbers-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ble-button_numbers-2.png"; sourceTree = "<group>"; };
+		F007EDCE1A3195110023FCD6 /* ble-button_numbers-2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ble-button_numbers-2@2x.png"; sourceTree = "<group>"; };
+		F007EDCF1A3195110023FCD6 /* ble-button_numbers-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ble-button_numbers-3.png"; sourceTree = "<group>"; };
+		F007EDD01A3195110023FCD6 /* ble-button_numbers-3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ble-button_numbers-3@2x.png"; sourceTree = "<group>"; };
+		F007EDD11A3195110023FCD6 /* ble-button_numbers-4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ble-button_numbers-4.png"; sourceTree = "<group>"; };
+		F007EDD21A3195110023FCD6 /* ble-button_numbers-4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ble-button_numbers-4@2x.png"; sourceTree = "<group>"; };
+		F007EDDB1A3196090023FCD6 /* ble-button_numbers-rotated-4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ble-button_numbers-rotated-4@2x.png"; sourceTree = "<group>"; };
+		F007EDDC1A3196090023FCD6 /* ble-button_numbers-rotated-4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ble-button_numbers-rotated-4.png"; sourceTree = "<group>"; };
+		F007EDDD1A3196090023FCD6 /* ble-button_numbers-rotated-3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ble-button_numbers-rotated-3@2x.png"; sourceTree = "<group>"; };
+		F007EDDE1A3196090023FCD6 /* ble-button_numbers-rotated-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ble-button_numbers-rotated-3.png"; sourceTree = "<group>"; };
+		F007EDDF1A3196090023FCD6 /* ble-button_numbers-rotated-2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ble-button_numbers-rotated-2@2x.png"; sourceTree = "<group>"; };
+		F007EDE01A3196090023FCD6 /* ble-button_numbers-rotated-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ble-button_numbers-rotated-2.png"; sourceTree = "<group>"; };
+		F007EDE11A3196090023FCD6 /* ble-button_numbers-rotated-1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ble-button_numbers-rotated-1@2x.png"; sourceTree = "<group>"; };
+		F007EDE21A3196090023FCD6 /* ble-button_numbers-rotated-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ble-button_numbers-rotated-1.png"; sourceTree = "<group>"; };
+		F007EDEB1A31A2350023FCD6 /* ble-button_pad_exit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ble-button_pad_exit@2x.png"; sourceTree = "<group>"; };
+		F007EDEC1A31A2350023FCD6 /* ble-button_pad_exit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ble-button_pad_exit.png"; sourceTree = "<group>"; };
+		F007EDED1A31A2350023FCD6 /* ble-button_pad_exit_rotated@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ble-button_pad_exit_rotated@2x.png"; sourceTree = "<group>"; };
+		F007EDEE1A31A2350023FCD6 /* ble-button_pad_exit_rotated.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ble-button_pad_exit_rotated.png"; sourceTree = "<group>"; };
 		F02811C519ED19AA00D48BA5 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		F02F2BB419EE83AC0057F374 /* DeviceListViewController_iPhone568px.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DeviceListViewController_iPhone568px.xib; sourceTree = "<group>"; };
-		F051AAD519DA96F6009A1383 /* Adafruit Bluefruit LE Connect-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Adafruit Bluefruit LE Connect-Bridging-Header.h"; sourceTree = "<group>"; };
+		F02F2BB419EE83AC0057F374 /* DeviceListViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DeviceListViewController_iPhone.xib; sourceTree = "<group>"; };
+		F02F6EE91A247F160080FFDF /* ControllerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerViewController.swift; sourceTree = "<group>"; };
+		F02F6EEA1A247F160080FFDF /* ControllerViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ControllerViewController_iPhone.xib; sourceTree = "<group>"; };
 		F051AAD619DA96F7009A1383 /* UARTViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UARTViewController.swift; sourceTree = "<group>"; };
 		F05E7E0218BEF399005E25F6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "Adafruit Bluefruit LE Connect/Images.xcassets"; sourceTree = "<group>"; };
+		F060840F19F4CF8F0058B4E4 /* AttributeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributeCell.swift; sourceTree = "<group>"; };
 		F0718DFF19EE77F4002B5ABB /* DeviceListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceListViewController.swift; sourceTree = "<group>"; };
+		F07D973C19F98B9F00CA88CF /* DeviceListViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DeviceListViewController_iPad.xib; sourceTree = "<group>"; };
+		F07D973E19FA46F200CA88CF /* DeviceInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceInfoViewController.swift; sourceTree = "<group>"; };
+		F07D973F19FA46F200CA88CF /* DeviceInfoViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DeviceInfoViewController_iPhone.xib; sourceTree = "<group>"; };
 		F08849D019E47EE6002B442A /* PinIOViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinIOViewController.swift; sourceTree = "<group>"; };
 		F08ACA6916DD0C0400A377D1 /* cellGradient3-150h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cellGradient3-150h@2x.png"; sourceTree = "<group>"; };
 		F08ACA6A16DD0C0400A377D1 /* cellGradient3-150h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cellGradient3-150h.png"; sourceTree = "<group>"; };
@@ -73,7 +151,6 @@
 		F0A2C96D16BBE44500F2FD12 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		F0A2C97116BBE44500F2FD12 /* BluetoothLE Test-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BluetoothLE Test-Info.plist"; sourceTree = "<group>"; };
 		F0A2C97316BBE44500F2FD12 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		F0A2C97716BBE44500F2FD12 /* BluetoothLE Test-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BluetoothLE Test-Prefix.pch"; sourceTree = "<group>"; };
 		F0A2C97B16BBE44500F2FD12 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		F0A2C97D16BBE44500F2FD12 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		F0A2C97F16BBE44500F2FD12 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -83,7 +160,7 @@
 		F0A47E0D189F90CB007E96AC /* PinIOViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PinIOViewController_iPad.xib; sourceTree = "<group>"; };
 		F0A47E13189F9257007E96AC /* PinIOViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PinIOViewController_iPhone.xib; sourceTree = "<group>"; };
 		F0A94FDB19DBE68800C8A37E /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		F0B556EE18C020FC008D05D7 /* PinIOViewController_iPhone568px.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PinIOViewController_iPhone568px.xib; sourceTree = "<group>"; };
+		F0B7D14219F1081B00DFDDBE /* BLEDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLEDevice.swift; sourceTree = "<group>"; };
 		F0BCF06519EBB881006086C6 /* BLEMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLEMainViewController.swift; sourceTree = "<group>"; };
 		F0BCF06719EBDC59006086C6 /* BLEAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLEAppDelegate.swift; sourceTree = "<group>"; };
 		F0C47BFE16C229F2002EFADA /* Adaflower@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Adaflower@2x~ipad.png"; sourceTree = "<group>"; };
@@ -99,13 +176,22 @@
 		F0C47C1E16C23D67002EFADA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		F0C47C2016C23FD3002EFADA /* adafruit_logo2012-embossDark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "adafruit_logo2012-embossDark.png"; sourceTree = "<group>"; };
 		F0C47C2116C23FD3002EFADA /* adafruit_logo2012-embossDark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "adafruit_logo2012-embossDark@2x.png"; sourceTree = "<group>"; };
+		F0C7708F19FF8D25005391F6 /* signalStrength-0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "signalStrength-0.png"; sourceTree = "<group>"; };
+		F0C7709019FF8D25005391F6 /* signalStrength-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "signalStrength-1.png"; sourceTree = "<group>"; };
+		F0C7709119FF8D25005391F6 /* signalStrength-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "signalStrength-2.png"; sourceTree = "<group>"; };
+		F0C7709219FF8D25005391F6 /* signalStrength-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "signalStrength-3.png"; sourceTree = "<group>"; };
+		F0C7709319FF8D25005391F6 /* signalStrength-4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "signalStrength-4.png"; sourceTree = "<group>"; };
 		F0CE1B9618A23FF8005F831A /* UARTViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UARTViewController_iPad.xib; sourceTree = "<group>"; };
-		F0CE1B9918A24030005F831A /* UARTViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UARTViewController_iPhone.xib; sourceTree = "<group>"; };
-		F0F302C319EB6D5400A4A71A /* UARTPeripheral.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UARTPeripheral.swift; sourceTree = "<group>"; };
+		F0D4AFB71A32505300E9063E /* SensorValueCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorValueCell.swift; sourceTree = "<group>"; };
+		F0D4AFB81A32505300E9063E /* SensorValueCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SensorValueCell.xib; sourceTree = "<group>"; };
+		F0DBB56819F4625800CB91E1 /* DeviceCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceCell.swift; sourceTree = "<group>"; };
+		F0E75DDE1A1DE81F0025FBC2 /* GATT-characteristics.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GATT-characteristics.plist"; sourceTree = "<group>"; };
+		F0ED2E461A010EC6009A5061 /* DeviceInfoViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DeviceInfoViewController_iPad.xib; sourceTree = "<group>"; };
 		F0F5865C19E7C8AB0000E544 /* PinCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinCell.swift; sourceTree = "<group>"; };
+		F0F889A81A009B81008AA257 /* BLEInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLEInfo.swift; sourceTree = "<group>"; };
+		F0F889AA1A00BD55008AA257 /* BLEPeripheral.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLEPeripheral.swift; sourceTree = "<group>"; };
 		F0F9C4A819E25BF000AF2352 /* HelpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
-		F0FB078518C02B2300D263DD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/BLEMainViewController_iPhone568px.xib; sourceTree = "<group>"; };
-		F0FB078718C02D9800D263DD /* UARTViewController_iPhone568px.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UARTViewController_iPhone568px.xib; sourceTree = "<group>"; };
+		F0FB078718C02D9800D263DD /* UARTViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UARTViewController_iPhone.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,14 +215,12 @@
 			children = (
 				F0A2C98A16BBE44500F2FD12 /* BLEMainViewController_iPad.xib */,
 				F0A2C98716BBE44500F2FD12 /* BLEMainViewController_iPhone.xib */,
-				F0FB078418C02B2300D263DD /* BLEMainViewController_iPhone568px.xib */,
 				F0A47E0D189F90CB007E96AC /* PinIOViewController_iPad.xib */,
 				F0A47E13189F9257007E96AC /* PinIOViewController_iPhone.xib */,
-				F0B556EE18C020FC008D05D7 /* PinIOViewController_iPhone568px.xib */,
-				F02F2BB419EE83AC0057F374 /* DeviceListViewController_iPhone568px.xib */,
+				F02F2BB419EE83AC0057F374 /* DeviceListViewController_iPhone.xib */,
+				F07D973C19F98B9F00CA88CF /* DeviceListViewController_iPad.xib */,
 				F0CE1B9618A23FF8005F831A /* UARTViewController_iPad.xib */,
-				F0CE1B9918A24030005F831A /* UARTViewController_iPhone.xib */,
-				F0FB078718C02D9800D263DD /* UARTViewController_iPhone568px.xib */,
+				F0FB078718C02D9800D263DD /* UARTViewController_iPhone.xib */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -175,17 +259,28 @@
 		F0A2C96F16BBE44500F2FD12 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				F0A2C97016BBE44500F2FD12 /* Supporting Files */,
-				F08BFF4718A4F7E600EF43FB /* UI */,
+				F060840F19F4CF8F0058B4E4 /* AttributeCell.swift */,
 				F0BCF06719EBDC59006086C6 /* BLEAppDelegate.swift */,
+				F0D4AFB71A32505300E9063E /* SensorValueCell.swift */,
+				F0D4AFB81A32505300E9063E /* SensorValueCell.xib */,
+				F0B7D14219F1081B00DFDDBE /* BLEDevice.swift */,
+				F0F889A81A009B81008AA257 /* BLEInfo.swift */,
 				F0BCF06519EBB881006086C6 /* BLEMainViewController.swift */,
+				F0F889AA1A00BD55008AA257 /* BLEPeripheral.swift */,
+				F02F6EE91A247F160080FFDF /* ControllerViewController.swift */,
+				F02F6EEA1A247F160080FFDF /* ControllerViewController_iPhone.xib */,
+				F007EDB91A3064B60023FCD6 /* ControllerViewController_iPad.xib */,
+				F0DBB56819F4625800CB91E1 /* DeviceCell.swift */,
+				F0ED2E461A010EC6009A5061 /* DeviceInfoViewController_iPad.xib */,
+				F07D973F19FA46F200CA88CF /* DeviceInfoViewController_iPhone.xib */,
+				F07D973E19FA46F200CA88CF /* DeviceInfoViewController.swift */,
+				F0718DFF19EE77F4002B5ABB /* DeviceListViewController.swift */,
 				F0F9C4A819E25BF000AF2352 /* HelpViewController.swift */,
 				F0F5865C19E7C8AB0000E544 /* PinCell.swift */,
 				F08849D019E47EE6002B442A /* PinIOViewController.swift */,
-				F0718DFF19EE77F4002B5ABB /* DeviceListViewController.swift */,
-				F0F302C319EB6D5400A4A71A /* UARTPeripheral.swift */,
+				F0A2C97016BBE44500F2FD12 /* Supporting Files */,
 				F051AAD619DA96F7009A1383 /* UARTViewController.swift */,
-				F051AAD519DA96F6009A1383 /* Adafruit Bluefruit LE Connect-Bridging-Header.h */,
+				F08BFF4718A4F7E600EF43FB /* UI */,
 			);
 			name = Classes;
 			path = "BLE Test";
@@ -196,12 +291,12 @@
 			children = (
 				F0A2C97116BBE44500F2FD12 /* BluetoothLE Test-Info.plist */,
 				F0A2C97216BBE44500F2FD12 /* InfoPlist.strings */,
-				F0A2C97716BBE44500F2FD12 /* BluetoothLE Test-Prefix.pch */,
 				F0A94FDB19DBE68800C8A37E /* Constants.swift */,
 				F02811C519ED19AA00D48BA5 /* Extensions.swift */,
 				F0A2C97B16BBE44500F2FD12 /* Default.png */,
 				F0A2C97D16BBE44500F2FD12 /* Default@2x.png */,
 				F0A2C97F16BBE44500F2FD12 /* Default-568h@2x.png */,
+				F0E75DDE1A1DE81F0025FBC2 /* GATT-characteristics.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -209,6 +304,39 @@
 		F0C47BFD16C229CE002EFADA /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				F007EDEB1A31A2350023FCD6 /* ble-button_pad_exit@2x.png */,
+				F007EDEC1A31A2350023FCD6 /* ble-button_pad_exit.png */,
+				F007EDED1A31A2350023FCD6 /* ble-button_pad_exit_rotated@2x.png */,
+				F007EDEE1A31A2350023FCD6 /* ble-button_pad_exit_rotated.png */,
+				F007EDDB1A3196090023FCD6 /* ble-button_numbers-rotated-4@2x.png */,
+				F007EDDC1A3196090023FCD6 /* ble-button_numbers-rotated-4.png */,
+				F007EDDD1A3196090023FCD6 /* ble-button_numbers-rotated-3@2x.png */,
+				F007EDDE1A3196090023FCD6 /* ble-button_numbers-rotated-3.png */,
+				F007EDDF1A3196090023FCD6 /* ble-button_numbers-rotated-2@2x.png */,
+				F007EDE01A3196090023FCD6 /* ble-button_numbers-rotated-2.png */,
+				F007EDE11A3196090023FCD6 /* ble-button_numbers-rotated-1@2x.png */,
+				F007EDE21A3196090023FCD6 /* ble-button_numbers-rotated-1.png */,
+				F007EDCB1A3195110023FCD6 /* ble-button_numbers-1.png */,
+				F007EDCC1A3195110023FCD6 /* ble-button_numbers-1@2x.png */,
+				F007EDCD1A3195110023FCD6 /* ble-button_numbers-2.png */,
+				F007EDCE1A3195110023FCD6 /* ble-button_numbers-2@2x.png */,
+				F007EDCF1A3195110023FCD6 /* ble-button_numbers-3.png */,
+				F007EDD01A3195110023FCD6 /* ble-button_numbers-3@2x.png */,
+				F007EDD11A3195110023FCD6 /* ble-button_numbers-4.png */,
+				F007EDD21A3195110023FCD6 /* ble-button_numbers-4@2x.png */,
+				F007EDBB1A3191BC0023FCD6 /* ble-arrow_button_down.png */,
+				F007EDBC1A3191BC0023FCD6 /* ble-arrow_button_down@2x.png */,
+				F007EDBD1A3191BC0023FCD6 /* ble-arrow_button_left.png */,
+				F007EDBE1A3191BC0023FCD6 /* ble-arrow_button_left@2x.png */,
+				F007EDBF1A3191BC0023FCD6 /* ble-arrow_button_right.png */,
+				F007EDC01A3191BC0023FCD6 /* ble-arrow_button_right@2x.png */,
+				F007EDC11A3191BC0023FCD6 /* ble-arrow_button_up.png */,
+				F007EDC21A3191BC0023FCD6 /* ble-arrow_button_up@2x.png */,
+				F0C7708F19FF8D25005391F6 /* signalStrength-0.png */,
+				F0C7709019FF8D25005391F6 /* signalStrength-1.png */,
+				F0C7709119FF8D25005391F6 /* signalStrength-2.png */,
+				F0C7709219FF8D25005391F6 /* signalStrength-3.png */,
+				F0C7709319FF8D25005391F6 /* signalStrength-4.png */,
 				F08ACA6916DD0C0400A377D1 /* cellGradient3-150h@2x.png */,
 				F08ACA6A16DD0C0400A377D1 /* cellGradient3-150h.png */,
 				F09E52D116D7814600F1F37A /* cellGradient2-150h.png */,
@@ -294,37 +422,74 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F02F2BB519EE83AC0057F374 /* DeviceListViewController_iPhone568px.xib in Resources */,
+				F007EDD31A3195110023FCD6 /* ble-button_numbers-1.png in Resources */,
+				F02F2BB519EE83AC0057F374 /* DeviceListViewController_iPhone.xib in Resources */,
+				F007EDC61A3191BC0023FCD6 /* ble-arrow_button_left@2x.png in Resources */,
+				F007EDD91A3195110023FCD6 /* ble-button_numbers-4.png in Resources */,
 				F0A2C97416BBE44500F2FD12 /* InfoPlist.strings in Resources */,
 				F0A2C97C16BBE44500F2FD12 /* Default.png in Resources */,
+				F007EDC71A3191BC0023FCD6 /* ble-arrow_button_right.png in Resources */,
+				F007EDD61A3195110023FCD6 /* ble-button_numbers-2@2x.png in Resources */,
+				F007EDE31A3196090023FCD6 /* ble-button_numbers-rotated-4@2x.png in Resources */,
+				F007EDCA1A3191BC0023FCD6 /* ble-arrow_button_up@2x.png in Resources */,
 				F0A2C97E16BBE44500F2FD12 /* Default@2x.png in Resources */,
 				F0A2C98016BBE44500F2FD12 /* Default-568h@2x.png in Resources */,
 				F0A2C98916BBE44500F2FD12 /* BLEMainViewController_iPhone.xib in Resources */,
+				F007EDE91A3196090023FCD6 /* ble-button_numbers-rotated-1@2x.png in Resources */,
+				F0C7709619FF8D25005391F6 /* signalStrength-2.png in Resources */,
+				F007EDC41A3191BC0023FCD6 /* ble-arrow_button_down@2x.png in Resources */,
+				F007EDBA1A3064B60023FCD6 /* ControllerViewController_iPad.xib in Resources */,
 				F0A2C98C16BBE44500F2FD12 /* BLEMainViewController_iPad.xib in Resources */,
+				F007EDC31A3191BC0023FCD6 /* ble-arrow_button_down.png in Resources */,
+				F007EDD41A3195110023FCD6 /* ble-button_numbers-1@2x.png in Resources */,
+				F0ED2E471A010EC7009A5061 /* DeviceInfoViewController_iPad.xib in Resources */,
 				F0C47C0016C229F2002EFADA /* Adaflower@2x~ipad.png in Resources */,
+				F007EDF11A31A2350023FCD6 /* ble-button_pad_exit_rotated@2x.png in Resources */,
+				F007EDE61A3196090023FCD6 /* ble-button_numbers-rotated-3.png in Resources */,
 				F0A47E14189F9257007E96AC /* PinIOViewController_iPhone.xib in Resources */,
-				F0CE1B9A18A24030005F831A /* UARTViewController_iPhone.xib in Resources */,
+				F007EDEA1A3196090023FCD6 /* ble-button_numbers-rotated-1.png in Resources */,
 				F0C47C0116C229F2002EFADA /* Adaflower.png in Resources */,
+				F0C7709719FF8D25005391F6 /* signalStrength-3.png in Resources */,
+				F0C7709819FF8D25005391F6 /* signalStrength-4.png in Resources */,
+				F0E75DDF1A1DE81F0025FBC2 /* GATT-characteristics.plist in Resources */,
 				F0C47C0C16C2362E002EFADA /* adafruit_logo2012-white-horiz-230w@2x.png in Resources */,
+				F02F6EEC1A247F160080FFDF /* ControllerViewController_iPhone.xib in Resources */,
+				F007EDC81A3191BC0023FCD6 /* ble-arrow_button_right@2x.png in Resources */,
+				F007EDEF1A31A2350023FCD6 /* ble-button_pad_exit@2x.png in Resources */,
+				F0C7709419FF8D25005391F6 /* signalStrength-0.png in Resources */,
+				F0D4AFBA1A32505300E9063E /* SensorValueCell.xib in Resources */,
+				F007EDE81A3196090023FCD6 /* ble-button_numbers-rotated-2.png in Resources */,
 				F0C47C0D16C2362E002EFADA /* adafruit_logo2012-white-horiz-230w.png in Resources */,
 				F0C47C1816C23CB3002EFADA /* CPGridButtonStretchable.png in Resources */,
+				F07D973D19F98B9F00CA88CF /* DeviceListViewController_iPad.xib in Resources */,
 				F0C47C1916C23CB3002EFADA /* CPGridButtonStretchable@2x.png in Resources */,
 				F0CE1B9818A23FF8005F831A /* UARTViewController_iPad.xib in Resources */,
 				F0C47C1A16C23CB3002EFADA /* CPModuleButtonStretchable.png in Resources */,
-				F0FB078618C02B2300D263DD /* BLEMainViewController_iPhone568px.xib in Resources */,
 				F0C47C1B16C23CB3002EFADA /* CPModuleButtonStretchable@2x.png in Resources */,
 				F0C47C1C16C23CB3002EFADA /* CPModuleButtonStretchableDisabled.png in Resources */,
+				F007EDD81A3195110023FCD6 /* ble-button_numbers-3@2x.png in Resources */,
+				F007EDF01A31A2350023FCD6 /* ble-button_pad_exit.png in Resources */,
 				F0C47C1D16C23CB3002EFADA /* CPModuleButtonStretchableDisabled@2x.png in Resources */,
-				F0B556EF18C020FC008D05D7 /* PinIOViewController_iPhone568px.xib in Resources */,
 				F05E7E0318BEF399005E25F6 /* Images.xcassets in Resources */,
 				F0C47C2216C23FD3002EFADA /* adafruit_logo2012-embossDark.png in Resources */,
 				F0C47C2316C23FD3002EFADA /* adafruit_logo2012-embossDark@2x.png in Resources */,
 				F09E52D016D77CA800F1F37A /* cellGradient150h.png in Resources */,
+				F007EDDA1A3195110023FCD6 /* ble-button_numbers-4@2x.png in Resources */,
+				F007EDE41A3196090023FCD6 /* ble-button_numbers-rotated-4.png in Resources */,
+				F007EDC51A3191BC0023FCD6 /* ble-arrow_button_left.png in Resources */,
+				F007EDF21A31A2350023FCD6 /* ble-button_pad_exit_rotated.png in Resources */,
+				F007EDD71A3195110023FCD6 /* ble-button_numbers-3.png in Resources */,
 				F09E52D216D7814600F1F37A /* cellGradient2-150h.png in Resources */,
+				F007EDE51A3196090023FCD6 /* ble-button_numbers-rotated-3@2x.png in Resources */,
 				F08ACA6B16DD0C0400A377D1 /* cellGradient3-150h@2x.png in Resources */,
 				F0A47E0F189F90CB007E96AC /* PinIOViewController_iPad.xib in Resources */,
+				F0C7709519FF8D25005391F6 /* signalStrength-1.png in Resources */,
+				F007EDE71A3196090023FCD6 /* ble-button_numbers-rotated-2@2x.png in Resources */,
+				F007EDC91A3191BC0023FCD6 /* ble-arrow_button_up.png in Resources */,
+				F07D974119FA46F200CA88CF /* DeviceInfoViewController_iPhone.xib in Resources */,
 				F08ACA6C16DD0C0400A377D1 /* cellGradient3-150h.png in Resources */,
-				F0FB078818C02D9800D263DD /* UARTViewController_iPhone568px.xib in Resources */,
+				F0FB078818C02D9800D263DD /* UARTViewController_iPhone.xib in Resources */,
+				F007EDD51A3195110023FCD6 /* ble-button_numbers-2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,15 +501,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				F051AAD719DA96F7009A1383 /* UARTViewController.swift in Sources */,
+				F0D4AFB91A32505300E9063E /* SensorValueCell.swift in Sources */,
 				F08849D119E47EE6002B442A /* PinIOViewController.swift in Sources */,
 				F0BCF06819EBDC59006086C6 /* BLEAppDelegate.swift in Sources */,
+				F0F889A91A009B81008AA257 /* BLEInfo.swift in Sources */,
+				F0F889AB1A00BD55008AA257 /* BLEPeripheral.swift in Sources */,
 				F0718E0019EE77F4002B5ABB /* DeviceListViewController.swift in Sources */,
 				F0BCF06619EBB881006086C6 /* BLEMainViewController.swift in Sources */,
 				F0F5865D19E7C8AB0000E544 /* PinCell.swift in Sources */,
 				F02811C619ED19AA00D48BA5 /* Extensions.swift in Sources */,
 				F0F9C4A919E25BF000AF2352 /* HelpViewController.swift in Sources */,
-				F0F302C419EB6D5400A4A71A /* UARTPeripheral.swift in Sources */,
+				F060841019F4CF8F0058B4E4 /* AttributeCell.swift in Sources */,
+				F07D974019FA46F200CA88CF /* DeviceInfoViewController.swift in Sources */,
+				F02F6EEB1A247F160080FFDF /* ControllerViewController.swift in Sources */,
 				F0A94FDC19DBE68800C8A37E /* Constants.swift in Sources */,
+				F0B7D14319F1081C00DFDDBE /* BLEDevice.swift in Sources */,
+				F0DBB56A19F4625800CB91E1 /* DeviceCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -373,14 +545,6 @@
 				F0A2C98B16BBE44500F2FD12 /* en */,
 			);
 			name = BLEMainViewController_iPad.xib;
-			sourceTree = "<group>";
-		};
-		F0FB078418C02B2300D263DD /* BLEMainViewController_iPhone568px.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F0FB078518C02B2300D263DD /* en */,
-			);
-			name = BLEMainViewController_iPhone568px.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -450,18 +614,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-1";
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Limor Fried (3PG25ZP8G9)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Limor Fried (3PG25ZP8G9)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BLE Test/BluetoothLE Test-Prefix.pch";
 				INFOPLIST_FILE = "BLE Test/BluetoothLE Test-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "BluetoothLE Test";
-				PROVISIONING_PROFILE = "159070fb-ad39-4ba8-a5b7-ef14c5e3145b";
-				SWIFT_OBJC_BRIDGING_HEADER = "BLE Test/Adafruit Bluefruit LE Connect-Bridging-Header.h";
+				PROVISIONING_PROFILE = "6799c2bc-742e-4dba-9da6-35f40fdf3cd8";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = app;
 			};
@@ -471,18 +635,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-1";
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Limor Fried (3PG25ZP8G9)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Limor Fried (3PG25ZP8G9)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BLE Test/BluetoothLE Test-Prefix.pch";
 				INFOPLIST_FILE = "BLE Test/BluetoothLE Test-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "BluetoothLE Test";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "BLE Test/Adafruit Bluefruit LE Connect-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

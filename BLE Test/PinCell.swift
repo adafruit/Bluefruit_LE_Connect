@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-@objc protocol PinCellDelegate {
+protocol PinCellDelegate {
     
     func cellModeUpdated(sender: AnyObject)
     
@@ -52,7 +52,7 @@ class PinCell: UITableViewCell {
         }
     }
     
-    var isAnalog:Bool! {
+    var isAnalog:Bool = false {
         didSet {
             if oldValue != self.isAnalog {
                 configureModeControl()
@@ -71,7 +71,7 @@ class PinCell: UITableViewCell {
         }
     }
     
-    var isPWM:Bool! = true{
+    var isPWM:Bool = false {
         didSet {
             if oldValue != self.isPWM {
                 configureModeControl();
@@ -105,14 +105,14 @@ class PinCell: UITableViewCell {
                 self.valueLabel.text = "High"
                 break
             default:
-                println("Attempting to set digital pin \(self.digitalPin) to analog value")
+                printLog(self, "setDigitalValue", "Attempting to set digital pin \(self.digitalPin) to analog value")
                 break
             }
         }
             
         else{
             
-            println("Attempting to set non-digital pin \(self.analogPin) to digital value")
+            printLog(self, "setDigitalValue", "\(self.analogPin) to digital value")
         }
         
     }
@@ -130,7 +130,7 @@ class PinCell: UITableViewCell {
             
         else {
             
-            println("Attempting to set digital pin \(self.digitalPin) to analog value")
+            printLog(self, "setAnalogValue", "\(self.digitalPin) to analog value")
         }
         
     }
@@ -148,7 +148,8 @@ class PinCell: UITableViewCell {
             
         else {
             
-            println("Attempting to set PWM Pin \(self.digitalPin) to non-PWM value")
+            printLog(self, "setPwmValue", "\(self.digitalPin) to non-PWM value")
+            
         }
         
     }
@@ -224,11 +225,11 @@ class PinCell: UITableViewCell {
     
         //load initial default values
     
-        modeControl.selectedSegmentIndex = aMode.toRaw()
+        modeControl.selectedSegmentIndex = aMode.rawValue
     
         mode = aMode
     
-        digitalControl.selectedSegmentIndex = PinState.Low.toRaw()
+        digitalControl.selectedSegmentIndex = PinState.Low.rawValue
     
         valueSlider.setValue(0.0, animated: false)
     
@@ -258,7 +259,7 @@ class PinCell: UITableViewCell {
         }
         
         //    //Default to Output selected
-        modeControl.selectedSegmentIndex = PinMode.Input.toRaw()
+        modeControl.selectedSegmentIndex = PinMode.Input.rawValue
     }
     
 }

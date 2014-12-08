@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DeviceListViewController" customModule="BluetoothLE_Test" customModuleProvider="target">
+            <connections>
+                <outlet property="attributeCell" destination="JkO-yz-rpB" id="kPZ-QO-ZyA"/>
+                <outlet property="deviceCell" destination="9hq-Hj-3DE" id="bbI-jq-Fea"/>
+                <outlet property="helpViewController" destination="UiI-1G-fVn" id="8da-V6-nSc"/>
+                <outlet property="tableView" destination="q4d-iJ-RdI" id="uRM-dk-MRS"/>
+                <outlet property="view" destination="4pg-hr-bCM" id="pAR-ne-Pj0"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="4pg-hr-bCM">
+            <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" style="grouped" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="50" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="q4d-iJ-RdI" userLabel="Device List Table">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <inset key="scrollIndicatorInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="44"/>
+                    <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="iYC-le-OVb"/>
+                        <outlet property="delegate" destination="-1" id="hvd-XP-PvI"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="q4d-iJ-RdI" firstAttribute="top" secondItem="4pg-hr-bCM" secondAttribute="top" id="MtV-np-Kyw"/>
+                <constraint firstAttribute="trailing" secondItem="q4d-iJ-RdI" secondAttribute="trailing" id="O6m-nc-H2v"/>
+                <constraint firstItem="q4d-iJ-RdI" firstAttribute="leading" secondItem="4pg-hr-bCM" secondAttribute="leading" id="PUc-Q3-cla"/>
+                <constraint firstItem="q4d-iJ-RdI" firstAttribute="leading" secondItem="4pg-hr-bCM" secondAttribute="leading" id="Tci-a7-L8I"/>
+                <constraint firstItem="q4d-iJ-RdI" firstAttribute="top" secondItem="4pg-hr-bCM" secondAttribute="top" id="g4T-hw-GVB"/>
+                <constraint firstAttribute="bottom" secondItem="q4d-iJ-RdI" secondAttribute="bottom" id="oRu-8x-nru"/>
+                <constraint firstAttribute="bottom" secondItem="q4d-iJ-RdI" secondAttribute="bottom" id="uzq-VB-atT"/>
+            </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <point key="canvasLocation" x="-224" y="112"/>
+        </view>
+        <customObject id="UiI-1G-fVn" customClass="HelpViewController" customModule="BluetoothLE_Test" customModuleProvider="target">
+            <connections>
+                <outlet property="textView" destination="cSI-jn-4wf" id="QCx-u4-fak"/>
+                <outlet property="versionLabel" destination="XdQ-bI-A6d" id="FIk-zk-7JL"/>
+                <outlet property="view" destination="XTO-Cj-gaH" id="EC4-Cw-2cU"/>
+            </connections>
+        </customObject>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="XTO-Cj-gaH" userLabel="View - Help">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <navigationBar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="black" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="26M-PO-aGQ">
+                    <rect key="frame" x="0.0" y="22" width="375" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="WdV-ET-gi6"/>
+                    </constraints>
+                    <items>
+                        <navigationItem title="Help" id="rpc-L8-7Ke" userLabel="Navigation Item - Done">
+                            <barButtonItem key="leftBarButtonItem" systemItem="done" id="BfV-dc-Rau">
+                                <connections>
+                                    <action selector="done:" destination="UiI-1G-fVn" id="IPj-G6-Bq8"/>
+                                </connections>
+                            </barButtonItem>
+                        </navigationItem>
+                    </items>
+                </navigationBar>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AYa-lV-rnc" userLabel="PlaceholderView">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="22"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="22" id="jiz-bt-akC"/>
+                    </constraints>
+                </view>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="white" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cSI-jn-4wf">
+                    <rect key="frame" x="28" y="219" width="319" height="428"/>
+                    <attributedString key="attributedText">
+                        <fragment>
+                            <string key="content">• Configure Bluefruit LE using instructions found here: 
+http://www.adafruit.com/bluefruitle
+
+• Tap the Scan button on the bottom toolbar to start/stop peripheral scanning.
+
+• Drag the table down and release to clear the list of found peripherals and begin scanning
+
+• Tap a row in the table to view a peripheral's advertisement data.
+
+• Each peripheral's Received Signal Strength (RSSI) is displayed to the left of its name.
+
+• Tap a row's connect button to connect the corresponding device in one of the available modes:
+
+</string>
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="15" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="Info">
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="15" name="HelveticaNeue-Bold"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content"> - displays peripheral services &amp; characteristics
+
+</string>
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="15" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="UART">
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="15" name="HelveticaNeue-Bold"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content"> - basic terminal, send &amp; receive data 
+</string>
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="15" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content">
+Pin I/O</string>
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="15" name="HelveticaNeue-Bold"/>
+                                <font key="NSOriginalFont" size="15" name="HelveticaNeue-Bold"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content"> - uses Bluefruit's UART to control Arduino running BLEFirmata sketch:
+http://www.adafruit.com/bluefruitle
+
+</string>
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="15" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="Note">
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="15" name="HelveticaNeue-Bold"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content=" - If a peripheral does not offer the UART service, tapping Connect will automatically enter Info mode">
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="15" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                    </attributedString>
+                    <textInputTraits key="textInputTraits"/>
+                    <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                </textView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="svb-5R-j2B" userLabel="titleView">
+                    <rect key="frame" x="48" y="66" width="280" height="145"/>
+                    <subviews>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Bluefruit LE Connect" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HWV-QO-Dca">
+                            <rect key="frame" x="63" y="101" width="180" height="30"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            <color key="shadowColor" cocoaTouchSystemColor="darkTextColor"/>
+                        </label>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="v.1.1.1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XdQ-bI-A6d" userLabel="versionLabel">
+                            <rect key="frame" x="63" y="120" width="180" height="30"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            <color key="shadowColor" cocoaTouchSystemColor="darkTextColor"/>
+                        </label>
+                        <imageView userInteractionEnabled="NO" alpha="0.80000001192092896" contentMode="center" fixedFrame="YES" image="adafruit_logo2012-white-horiz-230w.png" translatesAutoresizingMaskIntoConstraints="NO" id="sjl-vt-gdR">
+                            <rect key="frame" x="-17" y="8" width="260" height="100"/>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="145" id="1BS-IJ-Gph"/>
+                        <constraint firstAttribute="width" constant="280" id="8ew-K6-I6a"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.14999999999999999" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="cSI-jn-4wf" firstAttribute="leading" secondItem="XTO-Cj-gaH" secondAttribute="leading" constant="28" id="8kf-96-VsJ"/>
+                <constraint firstAttribute="trailing" secondItem="cSI-jn-4wf" secondAttribute="trailing" constant="28" id="BgB-0J-a8G"/>
+                <constraint firstItem="AYa-lV-rnc" firstAttribute="leading" secondItem="XTO-Cj-gaH" secondAttribute="leading" id="Dfv-Bj-UWg"/>
+                <constraint firstItem="26M-PO-aGQ" firstAttribute="top" secondItem="AYa-lV-rnc" secondAttribute="bottom" id="H6e-ua-IVX"/>
+                <constraint firstAttribute="trailing" secondItem="AYa-lV-rnc" secondAttribute="trailing" id="HDU-Jh-IPB"/>
+                <constraint firstItem="cSI-jn-4wf" firstAttribute="top" secondItem="svb-5R-j2B" secondAttribute="bottom" constant="8" id="OfX-iA-eS0"/>
+                <constraint firstItem="AYa-lV-rnc" firstAttribute="top" secondItem="XTO-Cj-gaH" secondAttribute="top" id="Qf4-uA-vPt"/>
+                <constraint firstAttribute="centerX" secondItem="svb-5R-j2B" secondAttribute="centerX" id="SW3-hu-svF"/>
+                <constraint firstItem="26M-PO-aGQ" firstAttribute="leading" secondItem="XTO-Cj-gaH" secondAttribute="leading" id="Xv1-rj-tHD"/>
+                <constraint firstItem="svb-5R-j2B" firstAttribute="top" secondItem="26M-PO-aGQ" secondAttribute="bottom" id="f1D-gh-stF"/>
+                <constraint firstAttribute="trailing" secondItem="26M-PO-aGQ" secondAttribute="trailing" id="gdH-ZX-gTb"/>
+                <constraint firstAttribute="bottom" secondItem="cSI-jn-4wf" secondAttribute="bottom" constant="20" id="pPJ-4C-mQu"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+            <point key="canvasLocation" x="195.5" y="161.5"/>
+        </view>
+        <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="48" id="9hq-Hj-3DE" customClass="DeviceCell" customModule="BluetoothLE_Test" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="299" height="48"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9hq-Hj-3DE" id="qHX-Dw-Jr8">
+                <rect key="frame" x="0.0" y="0.0" width="299" height="147"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="100" contentMode="left" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HC8-BS-Yeq" userLabel="nameLabel">
+                        <rect key="frame" x="42" y="7" width="181" height="24"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="---" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4W0-Ly-bcW" userLabel="rssiLabel">
+                        <rect key="frame" x="8" y="28" width="26" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="18" id="Ev0-OH-zql"/>
+                            <constraint firstAttribute="width" constant="26" id="VhY-Sw-i1N"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" tag="104" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="signalStrength-0.png" translatesAutoresizingMaskIntoConstraints="NO" id="xxO-YE-opn">
+                        <rect key="frame" x="8" y="8" width="24" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="24" id="vcM-4n-PXG"/>
+                            <constraint firstAttribute="height" constant="21" id="xmX-fw-ESb"/>
+                        </constraints>
+                    </imageView>
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" tag="105" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UART capable" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="Yse-6t-Bpc" userLabel="uartCapableLabel">
+                        <rect key="frame" x="42" y="27" width="249" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="Efq-7E-6XE"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" tag="103" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lcx-1A-9x9" userLabel="toggleButton">
+                        <rect key="frame" x="0.0" y="1" width="223" height="46"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                        <state key="normal">
+                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <state key="highlighted">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
+                    <button opaque="NO" tag="102" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oLX-6Q-sPY" userLabel="connectButton">
+                        <rect key="frame" x="223" y="9" width="68" height="28"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="68" id="7Dw-N8-IXt"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <state key="normal" title="Connect">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="centerY" secondItem="HC8-BS-Yeq" secondAttribute="centerY" constant="4" id="0Wp-6J-rkg"/>
+                    <constraint firstItem="oLX-6Q-sPY" firstAttribute="trailing" secondItem="qHX-Dw-Jr8" secondAttribute="trailingMargin" id="2Ev-pO-FkX"/>
+                    <constraint firstItem="oLX-6Q-sPY" firstAttribute="leading" secondItem="HC8-BS-Yeq" secondAttribute="trailing" id="5Ds-lJ-yOB"/>
+                    <constraint firstItem="Yse-6t-Bpc" firstAttribute="leading" secondItem="4W0-Ly-bcW" secondAttribute="trailing" constant="8" id="7Hc-We-bwK"/>
+                    <constraint firstItem="xxO-YE-opn" firstAttribute="leading" secondItem="qHX-Dw-Jr8" secondAttribute="leadingMargin" id="C7b-4N-ZTc"/>
+                    <constraint firstItem="4W0-Ly-bcW" firstAttribute="top" secondItem="qHX-Dw-Jr8" secondAttribute="topMargin" constant="20" id="Epo-Vz-fpS"/>
+                    <constraint firstAttribute="centerY" secondItem="oLX-6Q-sPY" secondAttribute="centerY" id="K2I-tn-cp2"/>
+                    <constraint firstItem="Lcx-1A-9x9" firstAttribute="leading" secondItem="qHX-Dw-Jr8" secondAttribute="leading" id="P2f-7D-L6r"/>
+                    <constraint firstItem="Yse-6t-Bpc" firstAttribute="top" secondItem="qHX-Dw-Jr8" secondAttribute="topMargin" constant="19" id="XPp-th-re9"/>
+                    <constraint firstItem="oLX-6Q-sPY" firstAttribute="leading" secondItem="Lcx-1A-9x9" secondAttribute="trailing" id="bNe-fn-cJN"/>
+                    <constraint firstItem="xxO-YE-opn" firstAttribute="top" secondItem="qHX-Dw-Jr8" secondAttribute="topMargin" id="eYl-ve-78h"/>
+                    <constraint firstItem="Yse-6t-Bpc" firstAttribute="trailing" secondItem="qHX-Dw-Jr8" secondAttribute="trailingMargin" id="jGa-1a-Yiv"/>
+                    <constraint firstItem="4W0-Ly-bcW" firstAttribute="leading" secondItem="qHX-Dw-Jr8" secondAttribute="leadingMargin" id="p6o-qa-uOs"/>
+                    <constraint firstItem="HC8-BS-Yeq" firstAttribute="leading" secondItem="qHX-Dw-Jr8" secondAttribute="leadingMargin" constant="34" id="uPC-PD-87G"/>
+                    <constraint firstAttribute="bottom" secondItem="Lcx-1A-9x9" secondAttribute="bottom" id="vAf-fJ-GDR"/>
+                    <constraint firstItem="Lcx-1A-9x9" firstAttribute="top" secondItem="qHX-Dw-Jr8" secondAttribute="top" constant="1" id="x8m-Vc-nFf"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <point key="canvasLocation" x="-271.5" y="-438"/>
+        </tableViewCell>
+        <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" rowHeight="22" id="JkO-yz-rpB" userLabel="Attribute Cell" customClass="AttributeCell" customModule="BluetoothLE_Test" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="299" height="22"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JkO-yz-rpB" id="0bF-Ap-o4e">
+                <rect key="frame" x="0.0" y="0.0" width="299" height="147"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="100" contentMode="left" text="Attribute" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AGT-Jw-Z8k" userLabel="Label - Name">
+                        <rect key="frame" x="8" y="4" width="283" height="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </label>
+                    <button opaque="NO" tag="103" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="skg-eV-n9d" userLabel="cellButton">
+                        <rect key="frame" x="0.0" y="0.0" width="299" height="15"/>
+                        <state key="normal">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="centerY" secondItem="AGT-Jw-Z8k" secondAttribute="centerY" constant="-1" id="Hwm-3f-GeV"/>
+                    <constraint firstItem="skg-eV-n9d" firstAttribute="leading" secondItem="0bF-Ap-o4e" secondAttribute="leading" id="K5O-qp-hNs"/>
+                    <constraint firstAttribute="trailing" secondItem="skg-eV-n9d" secondAttribute="trailing" id="QTy-go-JEB"/>
+                    <constraint firstItem="AGT-Jw-Z8k" firstAttribute="leading" secondItem="0bF-Ap-o4e" secondAttribute="leadingMargin" id="n2I-p3-K5Q"/>
+                    <constraint firstAttribute="bottom" secondItem="skg-eV-n9d" secondAttribute="bottom" constant="6" id="qFl-it-C8O"/>
+                    <constraint firstItem="AGT-Jw-Z8k" firstAttribute="trailing" secondItem="0bF-Ap-o4e" secondAttribute="trailingMargin" id="rhd-0d-fWk"/>
+                    <constraint firstItem="skg-eV-n9d" firstAttribute="top" secondItem="0bF-Ap-o4e" secondAttribute="top" id="wAf-ko-Wvx"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+            <point key="canvasLocation" x="-271.5" y="-329.5"/>
+        </tableViewCell>
+        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="white" editable="NO" usesAttributedText="YES" id="EXG-N6-FDF">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <attributedString key="attributedText">
+                <fragment content="• Connect ">
+                    <attributes>
+                        <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <font key="NSFont" size="15" name="HelveticaNeue"/>
+                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                    </attributes>
+                </fragment>
+                <fragment content="Bluefruit LE">
+                    <attributes>
+                        <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <font key="NSFont" size="15" name="HelveticaNeue-Bold"/>
+                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                    </attributes>
+                </fragment>
+                <fragment content=" to ">
+                    <attributes>
+                        <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <font key="NSFont" size="15" name="HelveticaNeue"/>
+                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                    </attributes>
+                </fragment>
+                <fragment content="Arduino">
+                    <attributes>
+                        <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <font key="NSFont" size="15" name="HelveticaNeue-Bold"/>
+                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                    </attributes>
+                </fragment>
+                <fragment>
+                    <string key="content"> using the schematic found here:
+http://www.adafruit.com/bluefruitle
+
+• Download the </string>
+                    <attributes>
+                        <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <font key="NSFont" size="15" name="HelveticaNeue"/>
+                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                    </attributes>
+                </fragment>
+                <fragment content="Bluefruit LE Connect">
+                    <attributes>
+                        <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <font key="NSFont" size="15" name="HelveticaNeue-Bold"/>
+                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                    </attributes>
+                </fragment>
+                <fragment content=" sketch and upload it to ">
+                    <attributes>
+                        <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <font key="NSFont" size="15" name="HelveticaNeue"/>
+                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                    </attributes>
+                </fragment>
+                <fragment content="Arduino">
+                    <attributes>
+                        <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <font key="NSFont" size="15" name="HelveticaNeue-Bold"/>
+                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                    </attributes>
+                </fragment>
+                <fragment>
+                    <string key="content">:
+http://www.adafruit.com/bluefruitle
+
+• Tap the appropriate button on the main menu to connect to </string>
+                    <attributes>
+                        <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <font key="NSFont" size="15" name="HelveticaNeue"/>
+                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                    </attributes>
+                </fragment>
+                <fragment content="Bluefruit LE">
+                    <attributes>
+                        <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <font key="NSFont" size="15" name="HelveticaNeue-Bold"/>
+                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                    </attributes>
+                </fragment>
+                <fragment>
+                    <string key="content">.
+
+• Additional help is available within each mode's screen.</string>
+                    <attributes>
+                        <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <font key="NSFont" size="15" name="HelveticaNeue"/>
+                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                    </attributes>
+                </fragment>
+            </attributedString>
+            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+            <dataDetectorType key="dataDetectorTypes" link="YES"/>
+        </textView>
+    </objects>
+    <resources>
+        <image name="adafruit_logo2012-white-horiz-230w.png" width="230" height="93"/>
+        <image name="signalStrength-0.png" width="24" height="21"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

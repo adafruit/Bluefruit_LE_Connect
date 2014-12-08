@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-@objc protocol PinIOViewControllerDelegate: HelpViewControllerDelegate {
+protocol PinIOViewControllerDelegate: HelpViewControllerDelegate {
     
     func sendData(newData: NSData)
     
@@ -55,13 +55,10 @@ class PinIOViewController : UIViewController, UITableViewDataSource, UITableView
         //Separate NIBs for iPhone 3.5", iPhone 4", & iPad
         var nibName:NSString
         
-        if IS_IPHONE_4{
+        if IS_IPHONE {
             nibName = "PinIOViewController_iPhone"
         }
-        else if IS_IPHONE_5{
-            nibName = "PinIOViewController_iPhone568px"
-        }
-        else{
+        else {
             nibName = "PinIOViewController_iPad"
         }
         
@@ -104,7 +101,7 @@ class PinIOViewController : UIViewController, UITableViewDataSource, UITableView
     }
     
     
-    // Connection & Initialization
+    //MARK: Connection & Initialization
     
     func didConnect(){
     
@@ -120,8 +117,6 @@ class PinIOViewController : UIViewController, UITableViewDataSource, UITableView
         cells = [PinCell?](count: MAX_CELL_COUNT, repeatedValue: nil)
         
         for (var i = 0; i<MAX_CELL_COUNT; i++) {
-            
-            println("--> Initializing cell index \(i)")
             
             let cellData = NSKeyedArchiver.archivedDataWithRootObject(digitalPinCell!)
             let cell:PinCell = NSKeyedUnarchiver.unarchiveObjectWithData(cellData) as PinCell
@@ -304,7 +299,7 @@ class PinIOViewController : UIViewController, UITableViewDataSource, UITableView
     }
     
     
-    //Pin I/O Controls
+    //MARK: Pin I/O Controls
     
     func digitalControlChanged(sender:UISegmentedControl){
     
@@ -323,6 +318,8 @@ class PinIOViewController : UIViewController, UITableViewDataSource, UITableView
     //Send value change to BLEBB
         var pin = cell?.digitalPin
         writePinState(pinStateForInt(Int(state)), pin: UInt8(pin!))
+        
+//        printLog(self, "digitalControlChanged", "state = \(state) : pin = \(pin)")
     
     }
     
@@ -333,10 +330,10 @@ class PinIOViewController : UIViewController, UITableViewDataSource, UITableView
         
         switch stateInt {
          
-        case PinState.High.toRaw():
+        case PinState.High.rawValue:
             state = PinState.High
             break
-        case PinState.Low.toRaw():
+        case PinState.Low.rawValue:
             state = PinState.Low
             break
         default:
@@ -365,13 +362,11 @@ class PinIOViewController : UIViewController, UITableViewDataSource, UITableView
         
         updateTable()
         
-        //if opening, scroll table until cell is visible
-//        if (indexPath != nil) {
-        let inv = NSInvocationOperation(target: self, selector: Selector("scrollToIndexPath:"), object: indexPath)
-        let timer = NSTimer.scheduledTimerWithTimeInterval(0.25, invocation: inv.invocation, repeats: false)
-//            let timer = NSTimer.scheduledTimerWithTimeInterval(0.25, target: self, selector: Selector("scrollToIndexPath:"), userInfo: indexPath, repeats: false)    //TODO: Check
-//          [self performSelector:@selector(scrollToIndexPath:) withObject:indexPath afterDelay:0.25f];
-//        }
+        //if opening, scroll table until cell is visible after delay
+        delay(0.25, { () -> () in
+            self.scrollToIndexPath(indexPath)
+            return
+        })
         
     }
     
@@ -475,7 +470,7 @@ class PinIOViewController : UIViewController, UITableViewDataSource, UITableView
     }
     
     
-    // Outgoing Data
+    //MARK: Outgoing Data
     
     func writePinState(newState: PinState, pin:UInt8){
         
@@ -492,7 +487,7 @@ class PinIOViewController : UIViewController, UITableViewDataSource, UITableView
         
         //Data1 == pin0State + 2*pin1State + 4*pin2State + 8*pin3State + 16*pin4State + 32*pin5State
         var pinIndex:UInt8 = pin - (port*8)
-        var newMask = UInt8(newState.toRaw() * Int(powf(2, Float(pinIndex))))
+        var newMask = UInt8(newState.rawValue * Int(powf(2, Float(pinIndex))))
         
         if (port == 0) {
             portMasks[Int(port)] &= ~(1 << pinIndex) //prep the saved mask by zeroing this pin's corresponding bit
@@ -520,6 +515,8 @@ class PinIOViewController : UIViewController, UITableViewDataSource, UITableView
         let newData:NSData = NSData(bytes: bytes, length: 3)
         delegate!.sendData(newData)
         
+        printLog(self, "setting pin states -->", "[\(binaryforByte(portMasks[0]))] [\(binaryforByte(portMasks[1]))] [\(binaryforByte(portMasks[2]))]")
+        
     }
     
     
@@ -546,11 +543,11 @@ class PinIOViewController : UIViewController, UITableViewDataSource, UITableView
     
     func writePinMode(newMode:PinMode, pin:UInt8) {
     
-    //Set a pin's mode
+        //Set a pin's mode
     
         let data0:UInt8 = 0xf4        //Status byte == 244
         let data1:UInt8 = pin        //Pin#
-        let data2:UInt8 = UInt8(newMode.toRaw())    //Mode
+        let data2:UInt8 = UInt8(newMode.rawValue)    //Mode
     
         let bytes:[UInt8] = [data0, data1, data2]
         let newData:NSData = NSData(bytes: bytes, length: 3)
@@ -560,7 +557,7 @@ class PinIOViewController : UIViewController, UITableViewDataSource, UITableView
     }
     
     
-    // Incoming Data
+    //MARK: Incoming Data
     
     func receiveData(newData:NSData){
         
@@ -579,7 +576,7 @@ class PinIOViewController : UIViewController, UITableViewDataSource, UITableView
         if (dataLength < 20){
             
             memcpy(&buf, data, UInt(dataLength))    //TODO: Check
-            //        memcpy(&buf[length], data, dataLength)    //http://stackoverflow.com/questions/25079380/swift-how-add-offset-to-memcpy
+            //        memcpy(&buf[length], data, dataLength)
             
             length += dataLength
             processInputData(buf, length: length)
@@ -604,6 +601,9 @@ class PinIOViewController : UIViewController, UITableViewDataSource, UITableView
     func processInputData(data:[UInt8], length:Int) {
         
         //Parse data we received
+        
+//        printLog(self, "processInputData", "data = \(data[0]) : length = \(length)")
+        printLog(self, "received data", "data = \(data[0]) : length = \(length)")
         
         //each message is 3 bytes long
         for (var i = 0; i < length; i+=3){
@@ -669,8 +669,10 @@ class PinIOViewController : UIViewController, UITableViewDataSource, UITableView
     }
     
     
-    
     func updateForPinStates(pinStates:Int, port:Int) {
+        
+//        printLog(self, "updateForPinStates", "port = \(port) : pinStates = \(pinStates)")
+        printLog(self, "getting pin states <--", "[\(binaryforByte(portMasks[0]))] [\(binaryforByte(portMasks[1]))] [\(binaryforByte(portMasks[2]))]")
         
         //Update pin table with new pin values received
         
@@ -704,10 +706,9 @@ class PinIOViewController : UIViewController, UITableViewDataSource, UITableView
         portMasks[port] = UInt8(pinStates)
         
     }
-
     
     
-    //Table view data source
+    //MARK: Table view data source
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 2
@@ -853,7 +854,7 @@ class PinIOViewController : UIViewController, UITableViewDataSource, UITableView
     }
     
     
-    //Helper methods
+    //MARK: Helper methods
     
     func indexPathForSubview(theView:UIView) ->NSIndexPath{
         

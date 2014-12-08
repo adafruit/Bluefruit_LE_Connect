@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DeviceListViewController" customModule="BluetoothLE_Test" customModuleProvider="target">
+            <connections>
+                <outlet property="attributeCell" destination="dFu-6m-DST" id="MwR-D4-UgJ"/>
+                <outlet property="deviceCell" destination="lFr-VI-7u2" id="sx8-Sg-Nrx"/>
+                <outlet property="helpViewController" destination="8k0-dh-rEQ" id="iaB-jB-wvz"/>
+                <outlet property="tableView" destination="nGu-Ja-9Pd" id="trt-1u-0ji"/>
+                <outlet property="view" destination="lXq-L0-EMh" id="VDw-Rw-USD"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="lXq-L0-EMh">
+            <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YAc-LH-ENU" userLabel="Text View - Debug">
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <color key="textColor" red="0.0" green="1" blue="0.36645961719999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vAl-Fo-41P">
+                    <rect key="frame" x="536" y="20" width="73" height="30"/>
+                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                    <state key="normal" title="DEBUG!">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" style="grouped" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="50" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="nGu-Ja-9Pd" userLabel="tableView">
+                    <rect key="frame" x="159" y="20" width="450" height="996"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="450" id="LdP-Qc-0Tu"/>
+                    </constraints>
+                    <inset key="scrollIndicatorInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="44"/>
+                    <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="ZNQ-o0-F3I"/>
+                        <outlet property="delegate" destination="-1" id="2il-M8-Kaz"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="nGu-Ja-9Pd" firstAttribute="top" secondItem="lXq-L0-EMh" secondAttribute="top" constant="20" id="5II-gH-s8V"/>
+                <constraint firstAttribute="bottom" secondItem="nGu-Ja-9Pd" secondAttribute="bottom" constant="8" id="BKj-vh-SaP"/>
+                <constraint firstAttribute="centerX" secondItem="nGu-Ja-9Pd" secondAttribute="centerX" id="LOJ-KY-Dra"/>
+                <constraint firstAttribute="centerY" secondItem="nGu-Ja-9Pd" secondAttribute="centerY" constant="-6" id="i0Z-dO-8ee"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
+            <point key="canvasLocation" x="68" y="155"/>
+        </view>
+        <customObject id="8k0-dh-rEQ" customClass="HelpViewController" customModule="BluetoothLE_Test" customModuleProvider="target">
+            <connections>
+                <outlet property="versionLabel" destination="lUH-7k-6Fw" id="8Lc-uI-ULl"/>
+                <outlet property="view" destination="yYN-Nq-OAX" id="xVK-sl-PFb"/>
+            </connections>
+        </customObject>
+        <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="48" id="lFr-VI-7u2" customClass="DeviceCell" customModule="BluetoothLE_Test" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="299" height="48"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lFr-VI-7u2" id="zFI-Av-r6X">
+                <rect key="frame" x="0.0" y="0.0" width="299" height="147"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="100" contentMode="left" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KKR-WO-s1g" userLabel="nameLabel">
+                        <rect key="frame" x="42" y="7" width="181" height="24"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="---" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ypm-OW-SDf" userLabel="rssiLabel">
+                        <rect key="frame" x="8" y="28" width="26" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="18" id="BdU-UU-RTr"/>
+                            <constraint firstAttribute="width" constant="26" id="JXU-H8-pBo"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" tag="104" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="signalStrength-0.png" translatesAutoresizingMaskIntoConstraints="NO" id="vLb-72-5Pt">
+                        <rect key="frame" x="8" y="8" width="24" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="JhV-wa-tPe"/>
+                            <constraint firstAttribute="width" constant="24" id="ZpO-IT-t2e"/>
+                        </constraints>
+                    </imageView>
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" tag="105" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UART capable" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="qiG-79-VUd" userLabel="uartCapableLabel">
+                        <rect key="frame" x="42" y="27" width="249" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="eWP-l7-F2f"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" tag="103" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iR9-Tx-BoW" userLabel="toggleButton">
+                        <rect key="frame" x="0.0" y="1" width="223" height="46"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                        <state key="normal">
+                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <state key="highlighted">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
+                    <button opaque="NO" tag="102" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tEJ-ws-lrh" userLabel="connectButton">
+                        <rect key="frame" x="223" y="9" width="68" height="28"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="68" id="4xf-lh-s41"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <state key="normal" title="Connect">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="tEJ-ws-lrh" firstAttribute="leading" secondItem="iR9-Tx-BoW" secondAttribute="trailing" id="0Sl-u3-fzd"/>
+                    <constraint firstItem="ypm-OW-SDf" firstAttribute="leading" secondItem="zFI-Av-r6X" secondAttribute="leadingMargin" id="6JW-7C-eni"/>
+                    <constraint firstItem="tEJ-ws-lrh" firstAttribute="leading" secondItem="KKR-WO-s1g" secondAttribute="trailing" id="77b-tR-qyp"/>
+                    <constraint firstItem="iR9-Tx-BoW" firstAttribute="leading" secondItem="zFI-Av-r6X" secondAttribute="leading" id="8D2-hG-kvT"/>
+                    <constraint firstItem="qiG-79-VUd" firstAttribute="leading" secondItem="ypm-OW-SDf" secondAttribute="trailing" constant="8" id="ABO-MN-klL"/>
+                    <constraint firstAttribute="centerY" secondItem="tEJ-ws-lrh" secondAttribute="centerY" id="F2d-2m-44L"/>
+                    <constraint firstItem="vLb-72-5Pt" firstAttribute="leading" secondItem="zFI-Av-r6X" secondAttribute="leadingMargin" id="IuX-kf-6GO"/>
+                    <constraint firstItem="qiG-79-VUd" firstAttribute="trailing" secondItem="zFI-Av-r6X" secondAttribute="trailingMargin" id="M3y-dz-PPp"/>
+                    <constraint firstItem="iR9-Tx-BoW" firstAttribute="top" secondItem="zFI-Av-r6X" secondAttribute="top" constant="1" id="Nzf-FQ-ESB"/>
+                    <constraint firstAttribute="bottom" secondItem="iR9-Tx-BoW" secondAttribute="bottom" id="Tkm-tA-ICN"/>
+                    <constraint firstItem="tEJ-ws-lrh" firstAttribute="trailing" secondItem="zFI-Av-r6X" secondAttribute="trailingMargin" id="etg-Xs-lbH"/>
+                    <constraint firstItem="vLb-72-5Pt" firstAttribute="top" secondItem="zFI-Av-r6X" secondAttribute="topMargin" id="kwj-ou-TrC"/>
+                    <constraint firstItem="KKR-WO-s1g" firstAttribute="leading" secondItem="zFI-Av-r6X" secondAttribute="leadingMargin" constant="34" id="pUM-2y-CLi"/>
+                    <constraint firstAttribute="centerY" secondItem="KKR-WO-s1g" secondAttribute="centerY" constant="4" id="r2K-QV-s3l"/>
+                    <constraint firstItem="ypm-OW-SDf" firstAttribute="top" secondItem="zFI-Av-r6X" secondAttribute="topMargin" constant="20" id="rYS-Hk-4ow"/>
+                    <constraint firstItem="qiG-79-VUd" firstAttribute="top" secondItem="zFI-Av-r6X" secondAttribute="topMargin" constant="19" id="yxX-lg-cIk"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <point key="canvasLocation" x="-271.5" y="-438"/>
+        </tableViewCell>
+        <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" rowHeight="22" id="dFu-6m-DST" userLabel="Attribute Cell" customClass="AttributeCell" customModule="BluetoothLE_Test" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="299" height="22"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dFu-6m-DST" id="gq9-3L-79S">
+                <rect key="frame" x="0.0" y="0.0" width="299" height="147"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="100" contentMode="left" text="Attribute" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qah-Kw-AhP" userLabel="nameLabel">
+                        <rect key="frame" x="8" y="4" width="283" height="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </label>
+                    <button opaque="NO" tag="103" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G1A-4r-dDY" userLabel="cellButton">
+                        <rect key="frame" x="0.0" y="0.0" width="299" height="15"/>
+                        <state key="normal">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="G1A-4r-dDY" firstAttribute="leading" secondItem="gq9-3L-79S" secondAttribute="leading" id="Kdj-tI-Pt4"/>
+                    <constraint firstAttribute="trailing" secondItem="G1A-4r-dDY" secondAttribute="trailing" id="Lg6-nT-Y6D"/>
+                    <constraint firstItem="qah-Kw-AhP" firstAttribute="leading" secondItem="gq9-3L-79S" secondAttribute="leadingMargin" id="TUb-ea-Xk3"/>
+                    <constraint firstAttribute="bottom" secondItem="G1A-4r-dDY" secondAttribute="bottom" constant="6" id="WfD-iY-6oR"/>
+                    <constraint firstAttribute="centerY" secondItem="qah-Kw-AhP" secondAttribute="centerY" constant="-1" id="abX-sy-xzd"/>
+                    <constraint firstItem="G1A-4r-dDY" firstAttribute="top" secondItem="gq9-3L-79S" secondAttribute="top" id="npq-0U-PA2"/>
+                    <constraint firstItem="qah-Kw-AhP" firstAttribute="trailing" secondItem="gq9-3L-79S" secondAttribute="trailingMargin" id="wUT-hJ-Fcj"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+            <point key="canvasLocation" x="-271.5" y="-329.5"/>
+        </tableViewCell>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="yYN-Nq-OAX" userLabel="View - Help">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="786"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="center" image="adafruit_logo2012-white-horiz-230w.png" translatesAutoresizingMaskIntoConstraints="NO" id="tZe-w6-8xo">
+                    <rect key="frame" x="20" y="12" width="260" height="100"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="100" id="Rvv-vh-TKM"/>
+                        <constraint firstAttribute="width" constant="260" id="uF7-zX-2bs"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Bluefruit LE Connect" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gwo-h9-giM">
+                    <rect key="frame" x="100" y="114" width="200" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="200" id="Cmp-Lm-Ax2"/>
+                        <constraint firstAttribute="height" constant="30" id="qkn-KQ-3YA"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <color key="shadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <size key="shadowOffset" width="0.0" height="0.0"/>
+                </label>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="white" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3dw-Sa-oee">
+                    <rect key="frame" x="20" y="172" width="280" height="606"/>
+                    <attributedString key="attributedText">
+                        <fragment>
+                            <string key="content">• Configure Bluefruit LE using instructions found here: 
+http://www.adafruit.com/bluefruitle
+
+• Tap the Scan button on the bottom toolbar to start/stop peripheral scanning.
+
+• Drag the table down and release to clear the list of found peripherals and begin scanning
+
+• Tap a row in the table to view a peripheral's advertisement data.
+
+• Each peripheral's Received Signal Strength (RSSI) is displayed to the left of its name.
+
+• Tap a row's connect button to connect the corresponding device in one of the available modes:
+
+</string>
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="15" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="Info">
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="15" name="HelveticaNeue-Bold"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content"> - displays peripheral services &amp; characteristics
+
+</string>
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="15" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="UART">
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="15" name="HelveticaNeue-Bold"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content"> - basic terminal, send &amp; receive data 
+</string>
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="15" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content">
+Pin I/O</string>
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="15" name="HelveticaNeue-Bold"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content"> - uses Bluefruit's UART to control Arduino running BLEFirmata sketch:
+http://www.adafruit.com/bluefruitle
+
+</string>
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="15" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="Note">
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="15" name="HelveticaNeue-Bold"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content=" - If a peripheral does not offer the UART service, tapping Connect will automatically enter Info mode">
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="15" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                    </attributedString>
+                    <textInputTraits key="textInputTraits"/>
+                    <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                </textView>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="v1.1.1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lUH-7k-6Fw">
+                    <rect key="frame" x="100" y="134" width="200" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="4Li-5K-HLx"/>
+                        <constraint firstAttribute="width" constant="200" id="BQe-vR-rPZ"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <color key="shadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <size key="shadowOffset" width="0.0" height="0.0"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="3dw-Sa-oee" firstAttribute="top" secondItem="lUH-7k-6Fw" secondAttribute="bottom" constant="8" id="5Hn-F9-svY"/>
+                <constraint firstAttribute="bottom" secondItem="3dw-Sa-oee" secondAttribute="bottom" constant="8" id="7d2-oB-R2N"/>
+                <constraint firstAttribute="trailing" secondItem="3dw-Sa-oee" secondAttribute="trailing" constant="20" id="AaB-1G-Ccu"/>
+                <constraint firstItem="lUH-7k-6Fw" firstAttribute="top" secondItem="tZe-w6-8xo" secondAttribute="bottom" constant="22" id="Ilx-gr-QPJ"/>
+                <constraint firstAttribute="trailing" secondItem="lUH-7k-6Fw" secondAttribute="trailing" constant="20" id="NWS-Z1-6eQ"/>
+                <constraint firstItem="Gwo-h9-giM" firstAttribute="leading" secondItem="yYN-Nq-OAX" secondAttribute="leading" constant="100" id="P6i-fn-siY"/>
+                <constraint firstItem="lUH-7k-6Fw" firstAttribute="leading" secondItem="yYN-Nq-OAX" secondAttribute="leading" constant="100" id="R9s-0v-dI5"/>
+                <constraint firstItem="tZe-w6-8xo" firstAttribute="top" secondItem="yYN-Nq-OAX" secondAttribute="top" constant="12" id="SmX-40-MV2"/>
+                <constraint firstItem="Gwo-h9-giM" firstAttribute="top" secondItem="tZe-w6-8xo" secondAttribute="bottom" constant="2" id="dpK-mV-q0m"/>
+                <constraint firstItem="tZe-w6-8xo" firstAttribute="leading" secondItem="yYN-Nq-OAX" secondAttribute="leading" constant="20" id="pGk-hv-xLV"/>
+                <constraint firstAttribute="trailing" secondItem="tZe-w6-8xo" secondAttribute="trailing" constant="40" id="qyg-p5-h9f"/>
+                <constraint firstItem="3dw-Sa-oee" firstAttribute="leading" secondItem="yYN-Nq-OAX" secondAttribute="leading" constant="20" id="sMB-hz-tX9"/>
+                <constraint firstAttribute="trailing" secondItem="Gwo-h9-giM" secondAttribute="trailing" constant="20" id="tSE-vS-Xav"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="492" y="-54"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="adafruit_logo2012-white-horiz-230w.png" width="230" height="93"/>
+        <image name="signalStrength-0.png" width="24" height="21"/>
+    </resources>
+</document>

@@ -29,6 +29,7 @@ class HelpViewController : UIViewController {
         super.init(coder: aDecoder)
     }
     
+    
     override init() {
         super.init()
     }
@@ -56,8 +57,12 @@ class HelpViewController : UIViewController {
         }
         
         //Set the app version # in the Help/Info view
-        let versionString: NSString =  NSBundle.mainBundle().infoDictionary["CFBundleVersion"] as NSString!
-        versionLabel?.text = "v" + versionString
+        let versionString: String = "v" + ((NSBundle.mainBundle().infoDictionary)?["CFBundleShortVersionString"] as String!)
+        
+        //        let bundleVersionString: String =  "b" + ((NSBundle.mainBundle().infoDictionary)?["CFBundleVersion"] as String!)  // Build number
+//        versionLabel?.text =  versionString + " " + bundleVersionString
+        
+        versionLabel?.text =  versionString
         
     }
     
@@ -65,13 +70,11 @@ class HelpViewController : UIViewController {
     override func viewDidAppear(animated : Bool){
         super.viewDidAppear(animated)
         
-        if (IS_IPHONE) {
-            
-            textView?.flashScrollIndicators()  //indicate add'l content below screen
-            
-        }
+        textView?.flashScrollIndicators()  //indicate add'l content below screen
+        
         
     }
+    
     
     @IBAction func done(sender : AnyObject) {
         

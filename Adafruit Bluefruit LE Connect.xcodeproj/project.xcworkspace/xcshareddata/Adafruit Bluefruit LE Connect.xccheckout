@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>60DF5C26-D99E-4005-965F-10052F3A6233</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Adafruit Bluefruit LE Connect</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>7CA584A5A04338BBB979A7C3D046CCC127EFF018</key>
+		<string>https://github.com/adafruit/Bluefruit-Connect.git</string>
+		<key>EEC5FD51-8F26-4CF2-91CA-D1A9857634DE</key>
+		<string>https://github.com/adafruit/Bluefruit-Connect.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Adafruit Bluefruit LE Connect.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>7CA584A5A04338BBB979A7C3D046CCC127EFF018</key>
+		<string>../..</string>
+		<key>EEC5FD51-8F26-4CF2-91CA-D1A9857634DE</key>
+		<string>../../../Bluefruit Connect</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/adafruit/Bluefruit-Connect.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>7CA584A5A04338BBB979A7C3D046CCC127EFF018</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>EEC5FD51-8F26-4CF2-91CA-D1A9857634DE</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Bluefruit Connect</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>7CA584A5A04338BBB979A7C3D046CCC127EFF018</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Bluefruit%20Connect</string>
+		</dict>
+	</array>
+</dict>
+</plist>

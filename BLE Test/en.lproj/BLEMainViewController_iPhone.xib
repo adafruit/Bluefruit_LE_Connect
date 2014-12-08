@@ -1,122 +1,55 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BLEMainViewController" customModule="BluetoothLE_Test" customModuleProvider="target">
             <connections>
                 <outlet property="helpViewController" destination="yll-D2-uUX" id="5pB-Ku-Uve"/>
-                <outlet property="infoButton" destination="Fyl-hM-Hb8" id="uEn-nh-7xc"/>
-                <outlet property="logo" destination="69" id="9IH-yK-IP4"/>
-                <outlet property="menuViewController" destination="0Xc-RC-aZ0" id="VuW-QV-adi"/>
-                <outlet property="navController" destination="Snd-CT-bls" id="UUu-Tv-ICR"/>
-                <outlet property="pinIoButton" destination="IEN-kM-VeC" id="mOo-Us-s3i"/>
-                <outlet property="uartButton" destination="IMf-hO-2ww" id="fu5-6o-p8A"/>
+                <outlet property="infoButton" destination="8iu-Sf-oGZ" id="Cyn-C7-PMx"/>
                 <outlet property="view" destination="1xm-FQ-qRq" id="CQl-yS-mFQ"/>
+                <outlet property="warningLabel" destination="Hzt-wf-e8c" id="jvm-Mc-BjR"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <navigationController wantsFullScreenLayout="YES" definesPresentationContext="YES" id="Snd-CT-bls">
-            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
-            <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="1Hl-6j-CH6">
-                <autoresizingMask key="autoresizingMask"/>
-            </navigationBar>
-            <viewControllers>
-                <viewController title="Menu" id="0Xc-RC-aZ0" userLabel="View Controller - Menu">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="sno-Yb-pjT"/>
-                        <viewControllerLayoutGuide type="bottom" id="OV4-aZ-vp4"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="34">
-                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView opaque="NO" userInteractionEnabled="NO" alpha="0.39999999999999963" contentMode="center" image="Adaflower.png" translatesAutoresizingMaskIntoConstraints="NO" id="69">
-                                <rect key="frame" x="109" y="237" width="102" height="102"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="102" id="bRR-6c-G7V"/>
-                                    <constraint firstAttribute="height" constant="102" id="rGk-WQ-C6U"/>
-                                </constraints>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IEN-kM-VeC">
-                                <rect key="frame" x="100" y="71" width="120" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="8no-LB-Wit"/>
-                                    <constraint firstAttribute="width" constant="120" id="yne-mS-Zet"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <state key="normal" title="Pin I/O"/>
-                                <connections>
-                                    <action selector="buttonTapped:" destination="-1" eventType="touchUpInside" id="K0r-O4-K7X"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IMf-hO-2ww">
-                                <rect key="frame" x="100" y="139" width="120" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="120" id="K6Y-wi-TuT"/>
-                                    <constraint firstAttribute="height" constant="40" id="Y9X-Ga-2io"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <state key="normal" title="UART monitor"/>
-                                <connections>
-                                    <action selector="buttonTapped:" destination="-1" eventType="touchUpInside" id="FkI-Tx-uqL"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <constraints>
-                            <constraint firstItem="IEN-kM-VeC" firstAttribute="leading" secondItem="34" secondAttribute="leading" constant="100" id="52V-1u-cO2"/>
-                            <constraint firstItem="IEN-kM-VeC" firstAttribute="top" secondItem="34" secondAttribute="top" constant="71" id="C7r-PT-dhs"/>
-                            <constraint firstItem="IMf-hO-2ww" firstAttribute="top" secondItem="34" secondAttribute="top" constant="139" id="DRx-MK-DCe"/>
-                            <constraint firstAttribute="trailing" secondItem="IEN-kM-VeC" secondAttribute="trailing" constant="100" id="Hn2-tZ-ljk"/>
-                            <constraint firstAttribute="centerX" secondItem="69" secondAttribute="centerX" id="K5h-g1-Pgl"/>
-                            <constraint firstAttribute="trailing" secondItem="IMf-hO-2ww" secondAttribute="trailing" constant="100" id="QrP-pf-ipq"/>
-                            <constraint firstItem="IMf-hO-2ww" firstAttribute="leading" secondItem="34" secondAttribute="leading" constant="100" id="cAJ-og-fqV"/>
-                            <constraint firstItem="69" firstAttribute="top" secondItem="34" secondAttribute="top" constant="237" id="fnf-Ew-yaL"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Bluefruit LE Connect" id="xJQ-dS-UFh">
-                        <barButtonItem key="backBarButtonItem" title="Disconnect" id="jK9-Gk-aIv"/>
-                        <barButtonItem key="rightBarButtonItem" style="done" id="F6T-vD-DiL">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="Fyl-hM-Hb8" userLabel="Button - Info">
-                                <rect key="frame" x="282" y="11" width="22" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="22" id="1fD-7f-s8V"/>
-                                    <constraint firstAttribute="height" constant="22" id="245-PU-cSs"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="showInfo:" destination="-1" eventType="touchUpInside" id="jFv-16-WGS"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
-                    </navigationItem>
-                </viewController>
-            </viewControllers>
-            <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="uD3-zR-KSc">
-                <rect key="frame" x="0.0" y="480" width="320" height="44"/>
-                <autoresizingMask key="autoresizingMask"/>
-            </toolbar>
-            <connections>
-                <outlet property="delegate" destination="-1" id="7ed-cH-JgW"/>
-            </connections>
-        </navigationController>
-        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="1xm-FQ-qRq" userLabel="View - Main">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+        <view autoresizesSubviews="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="1xm-FQ-qRq" userLabel="View - Main">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView opaque="NO" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" alpha="0.39999999999999963" contentMode="center" image="Adaflower.png" translatesAutoresizingMaskIntoConstraints="NO" id="69">
+                    <rect key="frame" x="109" y="356" width="102" height="102"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="102" id="7PY-N5-f9B"/>
+                        <constraint firstAttribute="width" constant="102" id="llz-Yw-rEO"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bluetooth disabled" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hzt-wf-e8c" userLabel="warningLabel">
+                    <rect key="frame" x="8" y="157" width="304" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="YES-NE-f13"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
             <color key="backgroundColor" white="0.14999999999999999" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="Hzt-wf-e8c" firstAttribute="leading" secondItem="1xm-FQ-qRq" secondAttribute="leading" constant="8" id="4bd-so-eOR"/>
+                <constraint firstAttribute="bottom" secondItem="69" secondAttribute="bottom" constant="110" id="TZJ-c0-EVG"/>
+                <constraint firstAttribute="centerX" secondItem="69" secondAttribute="centerX" id="Z9i-hC-8rD"/>
+                <constraint firstAttribute="trailing" secondItem="Hzt-wf-e8c" secondAttribute="trailing" constant="8" id="dn2-7C-wYt"/>
+                <constraint firstItem="Hzt-wf-e8c" firstAttribute="top" secondItem="1xm-FQ-qRq" secondAttribute="top" constant="157" id="tAf-gy-fyV"/>
+            </constraints>
             <nil key="simulatedStatusBarMetrics"/>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <point key="canvasLocation" x="526" y="457"/>
         </view>
         <customObject id="yll-D2-uUX" customClass="HelpViewController" customModule="BluetoothLE_Test" customModuleProvider="target">
             <connections>
                 <outlet property="delegate" destination="-1" id="Mhi-YO-pYL"/>
-                <outlet property="versionLabel" destination="BVO-FF-gLF" id="9yb-hM-F7v"/>
                 <outlet property="view" destination="9SH-n8-oQ9" id="S0W-j2-eDH"/>
             </connections>
         </customObject>
@@ -124,7 +57,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <navigationBar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" barStyle="black" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oIA-TE-amJ">
+                <navigationBar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="black" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oIA-TE-amJ">
                     <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                     <items>
                         <navigationItem title="Help" id="aEb-7T-mER" userLabel="Navigation Item - Done">
@@ -136,22 +69,42 @@
                         </navigationItem>
                     </items>
                 </navigationBar>
-                <imageView userInteractionEnabled="NO" alpha="0.80000001192092896" contentMode="center" fixedFrame="YES" image="adafruit_logo2012-white-horiz-230w.png" translatesAutoresizingMaskIntoConstraints="NO" id="MIy-C1-OON">
-                    <rect key="frame" x="20" y="72" width="260" height="100"/>
-                </imageView>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Bluefruit LE Connect" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jb7-Au-JeN">
-                    <rect key="frame" x="100" y="165" width="200" height="30"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    <color key="shadowColor" cocoaTouchSystemColor="darkTextColor"/>
-                </label>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sly-h6-TY9">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sly-h6-TY9" userLabel="statusPlaceHolder">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="22"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="22" id="3L6-qd-si6"/>
+                    </constraints>
                 </view>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" indicatorStyle="white" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Cg-B2-X07">
-                    <rect key="frame" x="20" y="209" width="280" height="251"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Xu-sB-khT" userLabel="titleView">
+                    <rect key="frame" x="20" y="66" width="280" height="145"/>
+                    <subviews>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Bluefruit LE Connect" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QCb-tV-ZJ7">
+                            <rect key="frame" x="81" y="101" width="180" height="30"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            <color key="shadowColor" cocoaTouchSystemColor="darkTextColor"/>
+                        </label>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="v.1.1.1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mhj-d5-gEv">
+                            <rect key="frame" x="81" y="120" width="180" height="30"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            <color key="shadowColor" cocoaTouchSystemColor="darkTextColor"/>
+                        </label>
+                        <imageView userInteractionEnabled="NO" alpha="0.80000001192092896" contentMode="center" fixedFrame="YES" image="adafruit_logo2012-white-horiz-230w.png" translatesAutoresizingMaskIntoConstraints="NO" id="jFm-Sg-7Qj">
+                            <rect key="frame" x="1" y="8" width="260" height="100"/>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="145" id="Gss-Jt-6sh"/>
+                        <constraint firstAttribute="width" constant="280" id="nbc-YB-kR3"/>
+                    </constraints>
+                </view>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="white" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Cg-B2-X07">
+                    <rect key="frame" x="20" y="213" width="280" height="247"/>
                     <attributedString key="attributedText">
                         <fragment content="• Connect ">
                             <attributes>
@@ -245,18 +198,37 @@ http://www.adafruit.com/bluefruitle
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                     <dataDetectorType key="dataDetectorTypes" link="YES"/>
                 </textView>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="v.1.1.1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BVO-FF-gLF">
-                    <rect key="frame" x="100" y="184" width="200" height="30"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    <color key="shadowColor" cocoaTouchSystemColor="darkTextColor"/>
-                </label>
             </subviews>
             <color key="backgroundColor" white="0.14999999999999999" alpha="1" colorSpace="calibratedWhite"/>
-            <nil key="simulatedStatusBarMetrics"/>
+            <constraints>
+                <constraint firstAttribute="centerX" secondItem="1Xu-sB-khT" secondAttribute="centerX" id="1va-8z-WlO"/>
+                <constraint firstAttribute="centerX" secondItem="0Cg-B2-X07" secondAttribute="centerX" id="5Uf-Mb-lPq"/>
+                <constraint firstAttribute="trailing" secondItem="0Cg-B2-X07" secondAttribute="trailing" constant="20" id="Mft-zt-fhz"/>
+                <constraint firstItem="sly-h6-TY9" firstAttribute="top" secondItem="9SH-n8-oQ9" secondAttribute="top" id="RgA-20-7tf"/>
+                <constraint firstItem="0Cg-B2-X07" firstAttribute="top" secondItem="1Xu-sB-khT" secondAttribute="bottom" constant="2" id="UEv-mO-TZ2"/>
+                <constraint firstItem="oIA-TE-amJ" firstAttribute="leading" secondItem="sly-h6-TY9" secondAttribute="leading" id="htO-ft-VVm"/>
+                <constraint firstItem="1Xu-sB-khT" firstAttribute="top" secondItem="oIA-TE-amJ" secondAttribute="bottom" id="jeE-7i-KSI"/>
+                <constraint firstItem="oIA-TE-amJ" firstAttribute="leading" secondItem="9SH-n8-oQ9" secondAttribute="leading" id="nT0-Eo-3Ns"/>
+                <constraint firstItem="0Cg-B2-X07" firstAttribute="leading" secondItem="9SH-n8-oQ9" secondAttribute="leading" constant="20" id="pFg-bK-euZ"/>
+                <constraint firstAttribute="centerX" secondItem="oIA-TE-amJ" secondAttribute="centerX" id="ueK-Cp-a8A"/>
+                <constraint firstAttribute="bottom" secondItem="0Cg-B2-X07" secondAttribute="bottom" constant="20" id="vfF-pr-SNI"/>
+                <constraint firstItem="oIA-TE-amJ" firstAttribute="top" secondItem="9SH-n8-oQ9" secondAttribute="top" constant="22" id="xcd-Ri-qAn"/>
+                <constraint firstAttribute="centerX" secondItem="sly-h6-TY9" secondAttribute="centerX" id="zuK-TZ-g8A"/>
+            </constraints>
+            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
         </view>
+        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="8iu-Sf-oGZ" userLabel="Button - Info">
+            <rect key="frame" x="0.0" y="0.0" width="22" height="22"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+            <state key="normal">
+                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+            </state>
+            <connections>
+                <action selector="showInfo:" destination="-1" eventType="touchUpInside" id="PLY-er-wLK"/>
+            </connections>
+        </button>
     </objects>
     <resources>
         <image name="Adaflower.png" width="86" height="86"/>

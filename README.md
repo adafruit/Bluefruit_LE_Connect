@@ -12,6 +12,20 @@ In progress!
 Adafruit invests time and resources providing this open source code, please support Adafruit and open-source hardware by purchasing products from Adafruit!
 
 
+Version 1.5
+=================
+
+• Controller Module
+• Control Pad UI
+
+
+Version 1.4
+=================
+
+• Info module
+• UART packet optimizations
+
+
 Version 1.3
 =================
 

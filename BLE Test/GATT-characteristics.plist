@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>2A7E</key>
+	<string>Aerobic Heart Rate Lower Limit</string>
+	<key>2A84</key>
+	<string>Aerobic Heart Rate Upper Limit</string>
+	<key>2A7F</key>
+	<string>Aerobic Threshold</string>
+	<key>2A80</key>
+	<string>Age</string>
+	<key>2A43</key>
+	<string>Alert Category ID</string>
+	<key>2A42</key>
+	<string>Alert Category ID Bit Mask</string>
+	<key>2A06</key>
+	<string>Alert Level</string>
+	<key>2A44</key>
+	<string>Alert Notification Control Point</string>
+	<key>2A3F</key>
+	<string>Alert Status</string>
+	<key>2A81</key>
+	<string>Anaerobic Heart Rate Lower Limit</string>
+	<key>2A82</key>
+	<string>Anaerobic Heart Rate Upper Limit</string>
+	<key>2A83</key>
+	<string>Anaerobic Threshold</string>
+	<key>2A01</key>
+	<string>Appearance</string>
+	<key>2A19</key>
+	<string>Battery Level</string>
+	<key>2A49</key>
+	<string>Blood Pressure Feature</string>
+	<key>2A35</key>
+	<string>Blood Pressure Measurement</string>
+	<key>2A9B</key>
+	<string>Body Composition Feature</string>
+	<key>2A9C</key>
+	<string>Body Composition Measurement</string>
+	<key>2A38</key>
+	<string>Body Sensor Location</string>
+	<key>2AA4</key>
+	<string>Bond Management Control Point</string>
+	<key>2AA5</key>
+	<string>Bond Management Feature</string>
+	<key>2A22</key>
+	<string>Boot Keyboard Input Report</string>
+	<key>2A32</key>
+	<string>Boot Keyboard Output Report</string>
+	<key>2A33</key>
+	<string>Boot Mouse Input Report</string>
+	<key>2A5C</key>
+	<string>CSC Feature</string>
+	<key>2A5B</key>
+	<string>CSC Measurement</string>
+	<key>2A2B</key>
+	<string>Current Time</string>
+	<key>2A66</key>
+	<string>Cycling Power Control Point</string>
+	<key>2A65</key>
+	<string>Cycling Power Feature</string>
+	<key>2A63</key>
+	<string>Cycling Power Measurement</string>
+	<key>2A64</key>
+	<string>Cycling Power Vector</string>
+	<key>2A99</key>
+	<string>Database Change Increment</string>
+	<key>2A85</key>
+	<string>Date of Birth</string>
+	<key>2A86</key>
+	<string>Date of Threshold Assessment</string>
+	<key>2A08</key>
+	<string>Date Time</string>
+	<key>2A0A</key>
+	<string>Day Date Time</string>
+	<key>2A09</key>
+	<string>Day of Week</string>
+	<key>2A00</key>
+	<string>Device Name</string>
+	<key>2A0D</key>
+	<string>DST Offset</string>
+	<key>2A87</key>
+	<string>Email Address</string>
+	<key>2A0C</key>
+	<string>Exact Time 256</string>
+	<key>2A88</key>
+	<string>Fat Burn Heart Rate Lower Limit</string>
+	<key>2A89</key>
+	<string>Fat Burn Heart Rate Upper Limit</string>
+	<key>2A26</key>
+	<string>Firmware Revision</string>
+	<key>2A8A</key>
+	<string>First Name</string>
+	<key>2A8B</key>
+	<string>Five Zone Heart Rate Limits</string>
+	<key>2A8C</key>
+	<string>Gender</string>
+	<key>2A51</key>
+	<string>Glucose Feature</string>
+	<key>2A18</key>
+	<string>Glucose Measurement</string>
+	<key>2A34</key>
+	<string>Glucose Measurement Context</string>
+	<key>2A27</key>
+	<string>Hardware Revision</string>
+	<key>2A39</key>
+	<string>Heart Rate Control Point</string>
+	<key>2A8D</key>
+	<string>Heart Rate Max</string>
+	<key>2A37</key>
+	<string>Heart Rate Measurement</string>
+	<key>2A8E</key>
+	<string>Height</string>
+	<key>2A4C</key>
+	<string>HID Control Point</string>
+	<key>2A4A</key>
+	<string>HID Information</string>
+	<key>2A8F</key>
+	<string>Hip Circumference</string>
+	<key>2A2A</key>
+	<string>IEEE 11073-20601 Regulatory Certification Data List</string>
+	<key>2A36</key>
+	<string>Intermediate Cuff Pressure</string>
+	<key>2A1E</key>
+	<string>Intermediate Temperature</string>
+	<key>2AA2</key>
+	<string>Language</string>
+	<key>2A90</key>
+	<string>Last Name</string>
+	<key>2A6B</key>
+	<string>LN Control Point</string>
+	<key>2A6A</key>
+	<string>LN Feature</string>
+	<key>2A0F</key>
+	<string>Local Time Information</string>
+	<key>2A67</key>
+	<string>Location and Speed</string>
+	<key>2A29</key>
+	<string>Manufacturer Name</string>
+	<key>2A91</key>
+	<string>Maximum Recommended Heart Rate</string>
+	<key>2A21</key>
+	<string>Measurement Interval</string>
+	<key>2A24</key>
+	<string>Model Number</string>
+	<key>2A68</key>
+	<string>Navigation</string>
+	<key>2A46</key>
+	<string>New Alert</string>
+	<key>2A04</key>
+	<string>Peripheral Preferred Connection Parameters</string>
+	<key>2A02</key>
+	<string>Peripheral Privacy Flag</string>
+	<key>2A50</key>
+	<string>PnP ID</string>
+	<key>2A69</key>
+	<string>Position Quality</string>
+	<key>2A4E</key>
+	<string>Protocol Mode</string>
+	<key>2A03</key>
+	<string>Reconnection Address</string>
+	<key>2A52</key>
+	<string>Record Access Control Point</string>
+	<key>2A14</key>
+	<string>Reference Time Information</string>
+	<key>2A4D</key>
+	<string>Report</string>
+	<key>2A4B</key>
+	<string>Report Map</string>
+	<key>2A92</key>
+	<string>Resting Heart Rate</string>
+	<key>2A40</key>
+	<string>Ringer Control Point</string>
+	<key>2A41</key>
+	<string>Ringer Setting</string>
+	<key>2A54</key>
+	<string>RSC Feature</string>
+	<key>2A53</key>
+	<string>RSC Measurement</string>
+	<key>2A55</key>
+	<string>SC Control Point</string>
+	<key>2A4F</key>
+	<string>Scan Interval Window</string>
+	<key>2A31</key>
+	<string>Scan Refresh</string>
+	<key>2A5D</key>
+	<string>Sensor Location</string>
+	<key>2A25</key>
+	<string>Serial Number</string>
+	<key>2A05</key>
+	<string>Service Changed</string>
+	<key>2905</key>
+	<string>Characteristic Aggregate Format</string>
+	<key>2900</key>
+	<string>Characteristic Extended Properties</string>
+	<key>2904</key>
+	<string>Characteristic Format</string>
+	<key>2901</key>
+	<string>Characteristic User Description</string>
+	<key>2902</key>
+	<string>Client Characteristic Configuration</string>
+	<key>2903</key>
+	<string>Server Characteristic Configuration</string>
+	<key>1811</key>
+	<string>Alert Notification Service</string>
+	<key>180F</key>
+	<string>Battery Service</string>
+	<key>1810</key>
+	<string>Blood Pressure</string>
+	<key>181B</key>
+	<string>Body Composition</string>
+	<key>181E</key>
+	<string>Bond Management</string>
+	<key>181F</key>
+	<string>Continuous Glucose Monitoring</string>
+	<key>1805</key>
+	<string>Current Time Service</string>
+	<key>1818</key>
+	<string>Cycling Power</string>
+	<key>1816</key>
+	<string>Cycling Speed and Cadence</string>
+	<key>180A</key>
+	<string>Device Information</string>
+	<key>1800</key>
+	<string>Generic Access</string>
+	<key>1801</key>
+	<string>Generic Attribute</string>
+	<key>1808</key>
+	<string>Glucose</string>
+	<key>1809</key>
+	<string>Health Thermometer</string>
+	<key>180D</key>
+	<string>Heart Rate</string>
+	<key>1812</key>
+	<string>Human Interface Device</string>
+	<key>1802</key>
+	<string>Immediate Alert</string>
+	<key>1803</key>
+	<string>Link Loss</string>
+	<key>1819</key>
+	<string>Location and Navigation</string>
+	<key>1807</key>
+	<string>Next DST Change Service</string>
+	<key>180E</key>
+	<string>Phone Alert Status Service</string>
+	<key>1806</key>
+	<string>Reference Time Update Service</string>
+	<key>1814</key>
+	<string>Running Speed and Cadence</string>
+	<key>1813</key>
+	<string>Scan Parameters</string>
+	<key>1804</key>
+	<string>Tx Power</string>
+	<key>181C</key>
+	<string>User Data</string>
+	<key>181D</key>
+	<string>Weight Scale</string>
+	<key>6E400001-B5A3-F393-E0A9-E50E24DCCA9E</key>
+	<string>UART Service</string>
+	<key>6E400002-B5A3-F393-E0A9-E50E24DCCA9E</key>
+	<string>TXD</string>
+	<key>6E400003-B5A3-F393-E0A9-E50E24DCCA9E</key>
+	<string>RXD</string>
+	<key>2A28</key>
+	<string>Software Revision</string>
+	<key>00001530-1212-EFDE-1523-785FEABCD123</key>
+	<string>DFU Service</string>
+</dict>
+</plist>

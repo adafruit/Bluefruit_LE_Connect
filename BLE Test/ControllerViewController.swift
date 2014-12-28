@@ -538,7 +538,7 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
         var switchView:UISwitch?
         
         if indexPath.section == sensorArray.count {
-            cell.textLabel.text = "Control Pad"
+            cell.textLabel?.text = "Control Pad"
             cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
             cell.selectionStyle = UITableViewCellSelectionStyle.Blue
             return cell
@@ -549,19 +549,19 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
         if indexPath.row == 0 {
             switch indexPath.section {
             case 0:
-                cell.textLabel.text = "Quaternion"
+                cell.textLabel?.text = "Quaternion"
                 switchView = quatSwitch
             case 1:
-                cell.textLabel.text = "Accelerometer"
+                cell.textLabel?.text = "Accelerometer"
                 switchView = accelSwitch
             case 2:
-                cell.textLabel.text = "Gyro"
+                cell.textLabel?.text = "Gyro"
                 switchView = gyroSwitch
             case 3:
-                cell.textLabel.text = "Magnetometer"
+                cell.textLabel?.text = "Magnetometer"
                 switchView = magnetometerSwitch
             case 4:
-                cell.textLabel.text = "Location"
+                cell.textLabel?.text = "Location"
                 switchView = gpsSwitch
             default:
                 break

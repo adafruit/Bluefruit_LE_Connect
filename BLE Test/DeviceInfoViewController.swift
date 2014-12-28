@@ -133,9 +133,9 @@ class DeviceInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         }
         
         //Set up cell
-        cell?.textLabel.adjustsFontSizeToFitWidth = true
-        cell?.textLabel.minimumScaleFactor = 0.5
-        cell?.textLabel.text = title
+        cell?.textLabel?.adjustsFontSizeToFitWidth = true
+        cell?.textLabel?.minimumScaleFactor = 0.5
+        cell?.textLabel?.text = title
         cell?.detailTextLabel?.text = detailTitle
         cell?.selectionStyle = UITableViewCellSelectionStyle.None
         cell?.userInteractionEnabled = selectable

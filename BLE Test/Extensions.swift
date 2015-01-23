@@ -54,7 +54,7 @@ extension NSData {
         
         self.getBytes(&data, length: dataLength)
         
-        for index in 0...dataLength-1 {
+        for index in 0..<dataLength {
             if (data[index] <= 0x1f) || (data[index] >= 0x80) { //null characters
                 if (data[index] != 0x9)       //0x9 == TAB
                     && (data[index] != 0xa)   //0xA == NL

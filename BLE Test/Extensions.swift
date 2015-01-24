@@ -36,7 +36,7 @@ extension NSData {
         let dataLength:Int = self.length
         var string = NSMutableString(capacity: dataLength*2)
         let dataBytes:UnsafePointer<Void> = self.bytes
-        for idx in 0...(dataLength-1) {
+        for idx in 0..<dataLength {
             string.appendFormat("%02x", [UInt(dataBytes[idx])] )
         }
         

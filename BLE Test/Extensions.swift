@@ -88,7 +88,7 @@ extension NSString {
         var hexString = NSMutableString()
         var charString:NSString
         
-        for i in 0...(len-1) {
+        for i in 0..<len {
             charString = NSString(format: "0x%02X", charArray[Int(i)])
             
             if (charString.length == 1){

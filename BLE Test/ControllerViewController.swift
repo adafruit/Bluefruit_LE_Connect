@@ -751,6 +751,7 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
         let cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: nil)
         var buttonView:UIButton?
         
+<<<<<<< HEAD
         if indexPath.section == (sensorArray.count){
             cell.textLabel!.text = "Control Pad"
             cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
@@ -759,6 +760,10 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
         }
         else if indexPath.section == (sensorArray.count + 1){
             cell.textLabel!.text = "Color Picker"
+=======
+        if indexPath.section == sensorArray.count {
+            cell.textLabel?.text = "Control Pad"
+>>>>>>> FETCH_HEAD
             cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
             cell.selectionStyle = UITableViewCellSelectionStyle.Blue
             return cell
@@ -769,6 +774,7 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
         if indexPath.row == 0 {
             switch indexPath.section {
             case 0:
+<<<<<<< HEAD
                 cell.textLabel!.text = "Quaternion"
                 buttonView = quatButton
             case 1:
@@ -783,6 +789,22 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
             case 4:
                 cell.textLabel!.text = "Location"
                 buttonView = gpsButton
+=======
+                cell.textLabel?.text = "Quaternion"
+                switchView = quatSwitch
+            case 1:
+                cell.textLabel?.text = "Accelerometer"
+                switchView = accelSwitch
+            case 2:
+                cell.textLabel?.text = "Gyro"
+                switchView = gyroSwitch
+            case 3:
+                cell.textLabel?.text = "Magnetometer"
+                switchView = magnetometerSwitch
+            case 4:
+                cell.textLabel?.text = "Location"
+                switchView = gpsSwitch
+>>>>>>> FETCH_HEAD
             default:
                 break
             }

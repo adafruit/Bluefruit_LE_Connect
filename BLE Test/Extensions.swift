@@ -36,7 +36,7 @@ extension NSData {
         let dataLength:Int = self.length
         var string = NSMutableString(capacity: dataLength*2)
         let dataBytes:UnsafePointer<Void> = self.bytes
-        for idx in 0...(dataLength-1) {
+        for idx in 0..<dataLength {
             string.appendFormat("%02x", [UInt(dataBytes[idx])] )
         }
         
@@ -54,7 +54,7 @@ extension NSData {
         
         self.getBytes(&data, length: dataLength)
         
-        for index in 0...dataLength-1 {
+        for index in 0..<dataLength {
             if (data[index] <= 0x1f) || (data[index] >= 0x80) { //null characters
                 if (data[index] != 0x9)       //0x9 == TAB
                     && (data[index] != 0xa)   //0xA == NL
@@ -88,7 +88,7 @@ extension NSString {
         var hexString = NSMutableString()
         var charString:NSString
         
-        for i in 0...(len-1) {
+        for i in 0..<len {
             charString = NSString(format: "0x%02X", charArray[Int(i)])
             
             if (charString.length == 1){

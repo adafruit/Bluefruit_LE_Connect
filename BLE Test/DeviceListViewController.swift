@@ -291,6 +291,7 @@ class DeviceListViewController : UIViewController, UITableViewDelegate, UITableV
             cell.rssiLabel = cell.viewWithTag(101) as UILabel
             cell.connectButton = cell.viewWithTag(102) as UIButton
             cell.connectButton.addTarget(self, action: Selector("connectButtonTapped:"), forControlEvents: UIControlEvents.TouchUpInside)
+            cell.connectButton.layer.cornerRadius = 4.0
             cell.toggleButton = cell.viewWithTag(103) as UIButton
             cell.toggleButton.addTarget(self, action: Selector("cellButtonTapped:"), forControlEvents: UIControlEvents.TouchUpInside)
             cell.signalImageView = cell.viewWithTag(104) as UIImageView

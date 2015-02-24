@@ -20,7 +20,7 @@
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view autoresizesSubviews="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="4Bs-rp-lml" userLabel="UART View">
+        <view autoresizesSubviews="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="4Bs-rp-lml" userLabel="UART View">
             <rect key="frame" x="0.0" y="64" width="375" height="603"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
@@ -77,9 +77,12 @@
                                 <action selector="sendMessage:" destination="-1" eventType="touchUpInside" id="vad-BF-w8u"/>
                             </connections>
                         </button>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RqI-L4-qm7">
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RqI-L4-qm7">
                             <rect key="frame" x="22" y="10" width="290" height="31"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="31" id="iCB-Ne-uiz"/>
+                            </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" keyboardAppearance="alert"/>
                             <connections>
@@ -92,7 +95,10 @@
                         <constraint firstAttribute="height" constant="52" id="1S9-vN-vYD"/>
                         <constraint firstAttribute="bottom" secondItem="EU6-Ua-Kiy" secondAttribute="bottom" constant="11" id="8vn-qV-H3d"/>
                         <constraint firstAttribute="trailing" secondItem="EU6-Ua-Kiy" secondAttribute="trailing" constant="8" id="far-Vb-b8A"/>
+                        <constraint firstItem="EU6-Ua-Kiy" firstAttribute="leading" secondItem="RqI-L4-qm7" secondAttribute="trailing" constant="8" id="jn4-0n-QGk"/>
                         <constraint firstItem="EU6-Ua-Kiy" firstAttribute="top" secondItem="NsD-Pj-die" secondAttribute="top" constant="11" id="kxQ-vC-UXN"/>
+                        <constraint firstItem="RqI-L4-qm7" firstAttribute="leading" secondItem="NsD-Pj-die" secondAttribute="leading" constant="22" id="mwR-Ti-bSV"/>
+                        <constraint firstItem="RqI-L4-qm7" firstAttribute="top" secondItem="NsD-Pj-die" secondAttribute="top" constant="10" id="wUI-Kb-ICd"/>
                     </constraints>
                 </view>
                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ymG-Rk-MvP">
@@ -153,7 +159,7 @@
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-            <point key="canvasLocation" x="87.5" y="628.5"/>
+            <point key="canvasLocation" x="69.5" y="563.5"/>
         </view>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="HuU-NG-Scm" userLabel="View - Help">
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -316,68 +322,6 @@
                 <outlet property="view" destination="HuU-NG-Scm" id="DBz-UX-5xJ"/>
             </connections>
         </customObject>
-        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Vx1-dC-84g" userLabel="View - Options">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <subviews>
-                <navigationBar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="black" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="36v-X2-8Lk">
-                    <rect key="frame" x="0.0" y="22" width="320" height="44"/>
-                    <items>
-                        <navigationItem title=" UART Options " id="YT1-KD-QL5" userLabel="Navigation Item - Done">
-                            <barButtonItem key="leftBarButtonItem" systemItem="done" id="DtZ-CX-fqC"/>
-                        </navigationItem>
-                    </items>
-                </navigationBar>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hhy-Ij-z6H" userLabel="PlaceholderView">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="22"/>
-                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="22" id="y06-W5-uis"/>
-                    </constraints>
-                </view>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wcu-Yb-ldx">
-                    <rect key="frame" x="0.0" y="91" width="320" height="51"/>
-                    <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Local Echo" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rlO-9n-tKK">
-                            <rect key="frame" x="28" y="15" width="207" height="21"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="YVI-05-RZX">
-                            <rect key="frame" x="235" y="10" width="51" height="31"/>
-                            <color key="onTintColor" red="0.09803922474" green="0.58039218189999997" blue="0.98039221759999995" alpha="1" colorSpace="deviceRGB"/>
-                        </switch>
-                    </subviews>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                </view>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gPn-E2-XRv">
-                    <rect key="frame" x="0.0" y="143" width="320" height="51"/>
-                    <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Send Newline" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OWb-me-wRU">
-                            <rect key="frame" x="28" y="15" width="207" height="21"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="iEc-ko-y1l">
-                            <rect key="frame" x="235" y="10" width="51" height="31"/>
-                            <color key="onTintColor" red="0.09803922474" green="0.58039218189999997" blue="0.98039221759999995" alpha="1" colorSpace="deviceRGB"/>
-                        </switch>
-                    </subviews>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                </view>
-            </subviews>
-            <color key="backgroundColor" white="0.14999999999999999" alpha="1" colorSpace="calibratedWhite"/>
-            <constraints>
-                <constraint firstAttribute="trailing" secondItem="36v-X2-8Lk" secondAttribute="trailing" id="214-yF-by0"/>
-                <constraint firstAttribute="trailing" secondItem="hhy-Ij-z6H" secondAttribute="trailing" id="8ah-PO-ze0"/>
-                <constraint firstItem="36v-X2-8Lk" firstAttribute="top" secondItem="hhy-Ij-z6H" secondAttribute="bottom" id="Cei-IQ-mYB"/>
-                <constraint firstItem="hhy-Ij-z6H" firstAttribute="top" secondItem="Vx1-dC-84g" secondAttribute="top" id="U2v-2B-bWC"/>
-                <constraint firstItem="hhy-Ij-z6H" firstAttribute="leading" secondItem="Vx1-dC-84g" secondAttribute="leading" id="mjg-jt-Vve"/>
-                <constraint firstItem="36v-X2-8Lk" firstAttribute="leading" secondItem="Vx1-dC-84g" secondAttribute="leading" id="ybj-k8-2tD"/>
-            </constraints>
-            <nil key="simulatedStatusBarMetrics"/>
-            <point key="canvasLocation" x="543" y="579"/>
-        </view>
     </objects>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

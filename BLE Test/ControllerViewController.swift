@@ -16,7 +16,7 @@ protocol ControllerViewControllerDelegate: HelpViewControllerDelegate {
     
 }
 
-class ControllerViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
+class ControllerViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, ColorPickerViewControllerDelegate {
     
     
     var delegate:UARTViewControllerDelegate?
@@ -27,20 +27,20 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
     @IBOutlet var controlTable:UITableView!
     @IBOutlet var valueCell:SensorValueCell!
     
-    var accelSwitch:UISwitch!
-    var gyroSwitch: UISwitch!
-    var magnetometerSwitch: UISwitch!
-    var gpsSwitch:UISwitch!
-    var quatSwitch:UISwitch!
+    var accelButton:BLESensorButton!
+    var gyroButton: BLESensorButton!
+    var magnetometerButton: BLESensorButton!
+    var gpsButton:BLESensorButton!
+    var quatButton:BLESensorButton!
     var buttonColor:UIColor!
     var exitButtonColor:UIColor!
     
-    enum SensorType:Int {
+    enum SensorType:Int {   //raw values used for reference
+        case Qtn
         case Accel
         case Gyro
         case Mag
         case GPS
-        case Qtn
     }
     
     struct Sensor {
@@ -48,8 +48,15 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
         var data:NSData?
         var prefix:String
         var valueCells:[SensorValueCell]
-        var toggleSwitch:UISwitch
+        var toggleButton:BLESensorButton
+        var enabled:Bool
     }
+    
+//    struct gpsData {
+//        var x:Double
+//        var y:Double
+//        var z:Double
+//    }
     
     private let cmm = CMMotionManager()
     private var locationManager:CLLocationManager?
@@ -59,11 +66,18 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
     private let gpsDataPrefix   = "!L"
     private let qtnDataPrefix   = "!Q"
     private let updateInterval  = 0.1
-    private let pollInterval  = 0.05
+    private let pollInterval    = 0.1     //nonmatching update & poll intervals can interfere w switch animation even when using qeueus & timer tolerance
+    private let gpsInterval     = 30.0
+    private var gpsFlag         = false
+    private var lastGPSData:NSData?
     var sensorArray:[Sensor]!
     private var sendSensorIndex = 0
     private var sendTimer:NSTimer?
+    private var gpsTimer:NSTimer?   //send gps data at interval even if it hasn't changed
     private let buttonPrefix = "!B"
+    private let colorPrefix = "!C"
+//    private let sensorQueue = dispatch_queue_create("com.adafruit.bluefruitconnect.sensorQueue", DISPATCH_QUEUE_SERIAL)
+    private var locationAlert:UIAlertController?
     
     
     override func viewDidLoad() {
@@ -84,20 +98,138 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
         exitButton.layer.cornerRadius = 4.0
         
         sensorArray = [
-            Sensor(type: SensorType.Qtn,   data: nil, prefix: qtnDataPrefix, valueCells:[newValueCell("x"), newValueCell("y"), newValueCell("z"), newValueCell("w")], toggleSwitch: self.newSwitch()),
-            Sensor(type: SensorType.Accel, data: nil, prefix: accelDataPrefix, valueCells:[newValueCell("x"), newValueCell("y"), newValueCell("z")], toggleSwitch: self.newSwitch()),
-            Sensor(type: SensorType.Gyro,  data: nil, prefix: gyroDataPrefix, valueCells:[newValueCell("x"), newValueCell("y"), newValueCell("z")], toggleSwitch: self.newSwitch()),
-            Sensor(type: SensorType.Mag,   data: nil, prefix: magDataPrefix, valueCells:[newValueCell("x"), newValueCell("y"), newValueCell("z")], toggleSwitch: self.newSwitch()),
-            Sensor(type: SensorType.GPS,   data: nil, prefix: gpsDataPrefix, valueCells:[newValueCell("lat"), newValueCell("lng"), newValueCell("alt")], toggleSwitch: self.newSwitch())
+            Sensor(type: SensorType.Qtn,
+                data: nil, prefix: qtnDataPrefix,
+                valueCells:[newValueCell("x"), newValueCell("y"), newValueCell("z"), newValueCell("w")],
+                toggleButton: self.newSensorButton(0),
+                enabled: false),
+            Sensor(type: SensorType.Accel,
+                data: nil, prefix: accelDataPrefix,
+                valueCells:[newValueCell("x"), newValueCell("y"), newValueCell("z")],
+                toggleButton: self.newSensorButton(1),
+                enabled: false),
+            Sensor(type: SensorType.Gyro,
+                data: nil, prefix: gyroDataPrefix,
+                valueCells:[newValueCell("x"), newValueCell("y"), newValueCell("z")],
+                toggleButton: self.newSensorButton(2),
+                enabled: false),
+            Sensor(type: SensorType.Mag,
+                data: nil, prefix: magDataPrefix,
+                valueCells:[newValueCell("x"), newValueCell("y"), newValueCell("z")],
+                toggleButton: self.newSensorButton(3),
+                enabled: false),
+            Sensor(type: SensorType.GPS,
+                data: nil, prefix: gpsDataPrefix,
+                valueCells:[newValueCell("lat"), newValueCell("lng"), newValueCell("alt")],
+                toggleButton: self.newSensorButton(4),
+                enabled: false)
         ]
         
-        quatSwitch = sensorArray[0].toggleSwitch
-        accelSwitch = sensorArray[1].toggleSwitch
-        gyroSwitch = sensorArray[2].toggleSwitch
-        magnetometerSwitch = sensorArray[3].toggleSwitch
-        gpsSwitch = sensorArray[4].toggleSwitch
+        quatButton = sensorArray[0].toggleButton
+        accelButton = sensorArray[1].toggleButton
+        gyroButton = sensorArray[2].toggleButton
+        magnetometerButton = sensorArray[3].toggleButton
+        gpsButton = sensorArray[4].toggleButton
         
-        sendTimer = NSTimer.scheduledTimerWithTimeInterval(updateInterval, target: self, selector: Selector("sendSensorData:"), userInfo: nil, repeats: true)
+        //Set up recurring timer for sending sensor data
+        sendTimer = NSTimer(timeInterval: updateInterval, target: self, selector: Selector("sendSensorData:"), userInfo: nil, repeats: true)
+        sendTimer!.tolerance = 0.25
+        NSRunLoop.currentRunLoop().addTimer(sendTimer!, forMode: NSDefaultRunLoopMode)
+        
+        //Set up minimum recurring timer for sending gps data when unchanged
+        gpsTimer = newGPSTimer()
+        //gpsTimer is added to the loop when gps data is enabled
+        
+        //Register to be notified when app returns to active
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("checkLocationServices"), name: UIApplicationDidBecomeActiveNotification, object: nil)
+        
+    }
+    
+    
+    override func viewDidAppear(animated: Bool) {
+        
+        super.viewDidAppear(animated)
+        
+        //Check to see if location services are enabled
+        if checkLocationServices() == false {
+            
+            //Warn the user that GPS isn't available
+            locationAlert = UIAlertController(title: "Location Services disabled", message: "Enable Location Services in \nSettings->Privacy to allow location data to be sent over Bluetooth", preferredStyle: UIAlertControllerStyle.Alert)
+            let aaOK = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: { (aa:UIAlertAction!) -> Void in
+                
+            })
+            locationAlert!.addAction(aaOK)
+            self.presentViewController(locationAlert!, animated: true, completion: { () -> Void in
+                //Set switch enabled again after alert close in case the user enabled services
+                let verdict = self.checkLocationServices()
+            })
+        }
+        
+        else {
+            locationAlert?.dismissViewControllerAnimated(true, completion: { () -> Void in
+            })
+            
+            self.checkLocationServices()
+        }
+        
+    }
+    
+    
+    func checkLocationServices()->Bool {
+        
+        var verdict = false
+        if (CLLocationManager.locationServicesEnabled() && CLLocationManager.authorizationStatus() == CLAuthorizationStatus.AuthorizedWhenInUse) {
+            verdict = true
+        }
+        gpsButton.dimmed = !verdict
+        return verdict
+        
+    }
+    
+    
+    func showLocationServicesAlert(){
+        
+        //Warn the user that GPS isn't available
+        locationAlert = UIAlertController(title: "Location Services disabled", message: "Enable Location Services in \nSettings->Privacy to allow location data to be sent over Bluetooth", preferredStyle: UIAlertControllerStyle.Alert)
+        let aaOK = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: { (aa:UIAlertAction!) -> Void in
+            
+        })
+        locationAlert!.addAction(aaOK)
+        self.presentViewController(locationAlert!, animated: true, completion: { () -> Void in
+            //Set switch enabled again after alert close in case the user enabled services
+            //                self.gpsButton.enabled = CLLocationManager.locationServicesEnabled()
+        })
+        
+    }
+    
+    
+    func newGPSTimer()->NSTimer {
+        
+        let newTimer = NSTimer(timeInterval: gpsInterval, target: self, selector: Selector("gpsIntervalComplete:"), userInfo: nil, repeats: true)
+        newTimer.tolerance = 1.0
+        
+        return newTimer
+    }
+    
+    
+    func removeGPSTimer() {
+        
+        gpsTimer?.invalidate()
+        gpsTimer = nil
+        
+    }
+    
+    
+    override func viewWillDisappear(animated: Bool) {
+        
+        // Stop updates if we're returning to main view
+        if self.isMovingFromParentViewController() {
+            stopSensorUpdates()
+            //Stop receiving app active notification
+            NSNotificationCenter.defaultCenter().removeObserver(self, name: UIApplicationDidBecomeActiveNotification, object: nil)
+        }
+        
+        super.viewWillDisappear(animated)
         
     }
     
@@ -129,19 +261,42 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
     }
     
 
-    func switchValueChanged(sender: UISwitch) {
+    func sensorButtonTapped(sender: UIButton) {
+        
+        
+//        print("--------> button \(sender.tag) state is ")
+//        if sender.selected {
+//            print("SELECTED")
+//        }
+//        else {
+//            print("DESELECTED")
+//        }
+        
+        
+        
+        
+//        //Check to ensure switch is not being set redundantly
+//        if sensorArray[sender.tag].enabled == sender.selected {
+////            println(" - redundant!")
+//            sender.userInteractionEnabled = true
+//            return
+//        }
+//        else {
+////            println("")
+//            sensorArray[sender.tag].enabled = sender.selected
+//        }
         
         //Accelerometer
-        if sender === accelSwitch {
+        if sender === accelButton {
             
             //rows to add or remove
-            var valuePaths: [NSIndexPath] = [
+            let valuePaths: [NSIndexPath] = [
                 NSIndexPath(forRow: 1, inSection: 1),
                 NSIndexPath(forRow: 2, inSection: 1),
                 NSIndexPath(forRow: 3, inSection: 1)
             ]
             
-            if sender.on {
+            if (sender.selected == false) {
                 
                 if cmm.accelerometerAvailable == true {
                     cmm.accelerometerUpdateInterval = pollInterval
@@ -149,28 +304,35 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
                         self.didReceiveAccelData(data, error: error)
                     })
                     
+                    sender.selected = true
+                    
                     //add rows for sensor values
                     controlTable.beginUpdates()
-                    controlTable.insertRowsAtIndexPaths(valuePaths, withRowAnimation: UITableViewRowAnimation.Fade)
+                    controlTable.insertRowsAtIndexPaths(valuePaths , withRowAnimation: UITableViewRowAnimation.Fade)
                     controlTable.endUpdates()
+                    
                 }
                 else {
-                    printLog(self, "switchValueChanged", "accelerometer unavailable")
+                    printLog(self, "buttonValueChanged", "accelerometer unavailable")
                 }
             }
                 //button switched off
             else {
-                cmm.stopAccelerometerUpdates()
+                
+                sender.selected = false
                 
                 //remove rows for sensor values
                 controlTable.beginUpdates()
                 controlTable.deleteRowsAtIndexPaths(valuePaths, withRowAnimation: UITableViewRowAnimation.Fade)
                 controlTable.endUpdates()
+                
+                cmm.stopAccelerometerUpdates()
+                
             }
         }
-            
-            //Gyro
-        else if sender === gyroSwitch {
+         
+        //Gyro
+        else if sender === gyroButton {
             
             //rows to add or remove
             var valuePaths: [NSIndexPath] = [
@@ -179,37 +341,38 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
                 NSIndexPath(forRow: 3, inSection: 2)
             ]
             
-            if sender.on {
+            if (sender.selected == false) {
                 
                 if cmm.gyroAvailable == true {
                     cmm.gyroUpdateInterval = pollInterval
                     cmm.startGyroUpdatesToQueue(NSOperationQueue.mainQueue(), withHandler: { (data:CMGyroData!, error:NSError!) -> Void in
                         self.didReceiveGyroData(data, error: error)
                     })
-                    
+                    sender.selected = true
                     //add rows for sensor values
                     controlTable.beginUpdates()
                     controlTable.insertRowsAtIndexPaths(valuePaths, withRowAnimation: UITableViewRowAnimation.Fade)
                     controlTable.endUpdates()
                 }
                 else {
-                    printLog(self, "switchValueChanged", "gyro unavailable")
+                    printLog(self, "buttonValueChanged", "gyro unavailable")
                 }
+                
             }
                 //button switched off
             else {
-                cmm.stopGyroUpdates()
-                
+                sender.selected = false
                 //remove rows for sensor values
                 controlTable.beginUpdates()
                 controlTable.deleteRowsAtIndexPaths(valuePaths, withRowAnimation: UITableViewRowAnimation.Fade)
                 controlTable.endUpdates()
+                
+                cmm.stopGyroUpdates()
             }
         }
             
-            
-            //Magnetometer
-        else if sender === magnetometerSwitch {
+        //Magnetometer
+        else if sender === magnetometerButton {
             
             //rows to add or remove
             var valuePaths: [NSIndexPath] = [
@@ -218,36 +381,37 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
                 NSIndexPath(forRow: 3, inSection: 3)
             ]
             
-            if sender.on {
+            if (sender.selected == false) {
                 if cmm.magnetometerAvailable == true {
                     cmm.magnetometerUpdateInterval = pollInterval
                     cmm.startMagnetometerUpdatesToQueue(NSOperationQueue.mainQueue(), withHandler: { (data:CMMagnetometerData!, error:NSError!) -> Void in
                         self.didReceiveMagnetometerData(data, error: error)
                     })
-                    
+                    sender.selected = true
                     //add rows for sensor values
                     controlTable.beginUpdates()
                     controlTable.insertRowsAtIndexPaths(valuePaths, withRowAnimation: UITableViewRowAnimation.Fade)
                     controlTable.endUpdates()
-                    
                 }
                 else {
-                    printLog(self, "switchValueChanged", "magnetometer unavailable")
+                    printLog(self, "buttonValueChanged", "magnetometer unavailable")
                 }
             }
                 //button switched off
             else {
-                cmm.stopMagnetometerUpdates()
-                
+                sender.selected = false
                 //remove rows for sensor values
                 controlTable.beginUpdates()
                 controlTable.deleteRowsAtIndexPaths(valuePaths, withRowAnimation: UITableViewRowAnimation.Fade)
                 controlTable.endUpdates()
+                
+                cmm.stopMagnetometerUpdates()
+                
             }
         }
             
-            //GPS
-        else if sender === gpsSwitch {
+        //GPS
+        else if sender === gpsButton {
             
             //rows to add or remove
             var valuePaths: [NSIndexPath] = [
@@ -256,7 +420,7 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
                 NSIndexPath(forRow: 3, inSection: 4)
             ]
             
-            if sender.on {
+            if (sender.selected == false) {
                 
                 if locationManager == nil {
                     
@@ -269,13 +433,14 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
                     if locationManager?.respondsToSelector(Selector("requestWhenInUseAuthorization")) == true {
                         if CLLocationManager.authorizationStatus() != CLAuthorizationStatus.AuthorizedWhenInUse {
                             locationManager?.requestWhenInUseAuthorization()
-                            gpsSwitch.on = false
+                            gpsButton.selected = false
                             return
                         }
                     }
                     else {
-                        printLog(self, "switchValueChanged", "Location Manager authorization not found")
-                        gpsSwitch.on = false
+                        printLog(self, "buttonValueChanged", "Location Manager authorization not found")
+                        gpsButton.selected = false
+                        removeGPSTimer()
                         locationManager = nil
                         return
                     }
@@ -284,6 +449,11 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
                 if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.AuthorizedWhenInUse {
                     locationManager?.startUpdatingLocation()
                     
+                    //add gpstimer to loop
+                    if gpsTimer == nil { gpsTimer = newGPSTimer() }
+                    NSRunLoop.currentRunLoop().addTimer(gpsTimer!, forMode: NSDefaultRunLoopMode)
+                    
+                    sender.selected = true
                     //add rows for sensor values
                     controlTable.beginUpdates()
                     controlTable.insertRowsAtIndexPaths(valuePaths, withRowAnimation: UITableViewRowAnimation.Fade)
@@ -291,24 +461,29 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
                     
                 }
                 else {
-                    printLog(self, "switchValueChanged", "Location Manager not authorized")
+//                    printLog(self, "buttonValueChanged", "Location Manager not authorized")
+                    showLocationServicesAlert()
                     return
                 }
                 
             }
                 //button switched off
             else {
-                locationManager?.stopUpdatingLocation()
-                
+                sender.selected = false
                 //remove rows for sensor values
                 controlTable.beginUpdates()
                 controlTable.deleteRowsAtIndexPaths(valuePaths, withRowAnimation: UITableViewRowAnimation.Fade)
                 controlTable.endUpdates()
+                
+                //remove gpstimer from loop
+                removeGPSTimer()
+                
+                locationManager?.stopUpdatingLocation()
             }
         }
             
-            //Quaternion / Device Motion
-        else if sender === quatSwitch {
+        //Quaternion / Device Motion
+        else if sender === quatButton {
             //rows to add or remove
             var valuePaths: [NSIndexPath] = [
                 NSIndexPath(forRow: 1, inSection: 0),
@@ -317,42 +492,66 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
                 NSIndexPath(forRow: 4, inSection: 0)
             ]
             
-            if sender.on {
+            if (sender.selected == false) {
                 if cmm.deviceMotionAvailable == true {
                     cmm.deviceMotionUpdateInterval = pollInterval
                     cmm.startDeviceMotionUpdatesToQueue(NSOperationQueue.mainQueue(), withHandler: { (cmdm:CMDeviceMotion!, error:NSError!) -> Void in
                         self.didReceivedDeviceMotion(cmdm, error: error)
                     })
+                    
+                    sender.selected = true
                     //add rows for sensor values
                     controlTable.beginUpdates()
                     controlTable.insertRowsAtIndexPaths(valuePaths, withRowAnimation: UITableViewRowAnimation.Fade)
                     controlTable.endUpdates()
                 }
                 else {
-                    printLog(self, "switchValueChanged", "device motion unavailable")
+                    printLog(self, "buttonValueChanged", "device motion unavailable")
                 }
             }
                 //button switched off
             else {
-                cmm.stopDeviceMotionUpdates()
+                
+                sender.selected = false
                 //remove rows for sensor values
                 controlTable.beginUpdates()
                 controlTable.deleteRowsAtIndexPaths(valuePaths, withRowAnimation: UITableViewRowAnimation.Fade)
                 controlTable.endUpdates()
+                
+                cmm.stopDeviceMotionUpdates()
             }
         }
-        
+       
     }
     
     
-    func newSwitch()->UISwitch {
+    func newSensorButton(tag:Int)->BLESensorButton {
         
-        let aSwitch = UISwitch()
-        aSwitch.addTarget(self, action: Selector("switchValueChanged:"), forControlEvents: UIControlEvents.ValueChanged)
-        aSwitch.onTintColor = UIColor(red: 25.0/255.0, green: 148/255.0, blue: 250/255.0, alpha: 1.0)
-        aSwitch.tintColor = UIColor(red: 126/255.0, green: 194/255.0, blue: 250/255.0, alpha: 1.0)
         
-        return aSwitch
+        let aButton = BLESensorButton()
+        aButton.tag = tag
+        
+//        let offColor = bleBlueColor
+//        let onColor = UIColor.whiteColor()
+//        aButton.titleLabel?.font = UIFont.systemFontOfSize(14.0)
+//        aButton.setTitle("OFF", forState: UIControlState.Normal)
+//        aButton.setTitle("ON", forState: UIControlState.Selected)
+//        aButton.setTitleColor(offColor, forState: UIControlState.Normal)
+//        aButton.setTitleColor(onColor, forState: UIControlState.Selected)
+//        aButton.setTitleColor(UIColor.lightGrayColor(), forState: UIControlState.Disabled)
+//        aButton.backgroundColor = UIColor.whiteColor()
+//        aButton.setBackgroundImage(UIImage(named: "ble_blue_1px.png"), forState: UIControlState.Selected)
+//        aButton.layer.cornerRadius = 8.0
+//        aButton.clipsToBounds = true
+//        aButton.layer.borderColor = offColor.CGColor
+//        aButton.layer.borderWidth = 1.0
+        
+        
+        aButton.selected = false
+        aButton.addTarget(self, action: Selector("sensorButtonTapped:"), forControlEvents: UIControlEvents.TouchUpInside)
+        aButton.frame = CGRectMake(0.0, 0.0, 75.0, 30.0)
+        
+        return aButton
     }
     
     
@@ -360,6 +559,7 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
         
         let cellData = NSKeyedArchiver.archivedDataWithRootObject(self.valueCell)
         let cell:SensorValueCell = NSKeyedUnarchiver.unarchiveObjectWithData(cellData) as SensorValueCell
+        cell.selectionStyle = UITableViewCellSelectionStyle.None
         cell.valueLabel = cell.viewWithTag(100) as UILabel
 //        let cell = SensorValueCell()
         
@@ -413,7 +613,10 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
         
         let eventDate = loc.timestamp
         let howRecent = eventDate.timeIntervalSinceNow
-        if abs(howRecent) < 15 {
+        if (abs(howRecent) < 15)
+//            || (gpsFlag == true)
+        {
+//            gpsFlag = false
             //Check for invalid accuracy
             if loc.horizontalAccuracy < 0.0 || loc.verticalAccuracy < 0.0 {
                 return
@@ -434,39 +637,33 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     
-    func storeSensorData(type:SensorType, x:Double, y:Double, z:Double, w:Double?) {
+    func storeSensorData(type:SensorType, x:Double, y:Double, z:Double, w:Double?) {    //called in sensor queue
         
-        var idx = -1
-        for var i = 0; i < sensorArray.count; i++ {
-            if sensorArray[i].type == type {
-//                println("------------------> Found type \(sensorArray[i].prefix)")
-                idx = i
-            }
+        var idx = type.rawValue
+        
+        var data = NSMutableData(capacity: 0)!
+        let pfx = NSString(string: sensorArray[idx].prefix)
+        var xv = Float(x)
+        var yv = Float(y)
+        var zv = Float(z)
+        
+        data.appendBytes(pfx.UTF8String, length: pfx.length)
+        data.appendBytes(&xv, length: sizeof(Float))
+        sensorArray[idx].valueCells[0].updateValue(xv)
+        data.appendBytes(&yv, length: sizeof(Float))
+        sensorArray[idx].valueCells[1].updateValue(yv)
+        data.appendBytes(&zv, length: sizeof(Float))
+        sensorArray[idx].valueCells[2].updateValue(zv)
+        
+        if w != nil {
+            var wv = Float(w!)
+            data.appendBytes(&wv, length: sizeof(Float))
+            sensorArray[idx].valueCells[3].updateValue(wv)
         }
         
-        if idx > -1 {
-            //as data
-            var data = NSMutableData(capacity: 0)!
-            var pfx = NSString(string: sensorArray[idx].prefix)
-            var xv = Float(x)
-            var yv = Float(y)
-            var zv = Float(z)
-            data.appendBytes(pfx.UTF8String, length: pfx.length)
-            data.appendBytes(&xv, length: sizeof(Float))
-            sensorArray[idx].valueCells[0].updateValue(xv)
-            data.appendBytes(&yv, length: sizeof(Float))
-            sensorArray[idx].valueCells[1].updateValue(yv)
-            data.appendBytes(&zv, length: sizeof(Float))
-            sensorArray[idx].valueCells[2].updateValue(zv)
-            
-            if w != nil {
-                var wv = Float(w!)
-                data.appendBytes(&wv, length: sizeof(Float))
-                sensorArray[idx].valueCells[3].updateValue(wv)
-            }
-            
-            sensorArray[idx].data = data
-        }
+        appendCRC(data)
+        
+        sensorArray[idx].data = data
         
     }
     
@@ -481,8 +678,10 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
         while data == nil {
             data = sensorArray[sendSensorIndex].data
             if data != nil {
+                
 //                println("------------------> Found sensor data \(sensorArray[sendSensorIndex].prefix)")
                 delegate?.sendData(data!)
+                if sensorArray[sendSensorIndex].type == SensorType.GPS { lastGPSData = data }   // Store last gps data sent for min updates
                 sensorArray[sendSensorIndex].data = nil
                 incrementSensorIndex()
                 return
@@ -492,6 +691,20 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
             if startIdx == sendSensorIndex {
 //                println("------------------> No new data to send")
                 return
+            }
+        }
+        
+    }
+    
+    
+    func gpsIntervalComplete(timer:NSTimer) {
+        
+        //set last gpsdata sent as next gpsdata to send
+        for i in 0...(sensorArray.count-1) {
+            if (sensorArray[i].type == SensorType.GPS) && (sensorArray[i].data == nil) {
+//                println("--> gpsIntervalComplete - reloading last gps data")
+                sensorArray[i].data = lastGPSData
+                break
             }
         }
         
@@ -512,19 +725,20 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
         
         sendTimer?.invalidate()
         
-        accelSwitch.on = false
+        removeGPSTimer()
+        
+        accelButton.selected = false
         cmm.stopAccelerometerUpdates()
         
-        gyroSwitch.on = false
+        gyroButton.selected = false
         cmm.stopGyroUpdates()
         
-        magnetometerSwitch.on = false
+        magnetometerButton.selected = false
         cmm.stopMagnetometerUpdates()
-        
         
         cmm.stopDeviceMotionUpdates()
         
-        gpsSwitch.on = false
+        gpsButton.selected = false
         locationManager?.stopUpdatingLocation()
         
     }
@@ -535,10 +749,16 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: nil)
-        var switchView:UISwitch?
+        var buttonView:UIButton?
         
-        if indexPath.section == sensorArray.count {
-            cell.textLabel.text = "Control Pad"
+        if indexPath.section == (sensorArray.count){
+            cell.textLabel!.text = "Control Pad"
+            cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+            cell.selectionStyle = UITableViewCellSelectionStyle.Blue
+            return cell
+        }
+        else if indexPath.section == (sensorArray.count + 1){
+            cell.textLabel!.text = "Color Picker"
             cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
             cell.selectionStyle = UITableViewCellSelectionStyle.Blue
             return cell
@@ -549,25 +769,25 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
         if indexPath.row == 0 {
             switch indexPath.section {
             case 0:
-                cell.textLabel.text = "Quaternion"
-                switchView = quatSwitch
+                cell.textLabel!.text = "Quaternion"
+                buttonView = quatButton
             case 1:
-                cell.textLabel.text = "Accelerometer"
-                switchView = accelSwitch
+                cell.textLabel!.text = "Accelerometer"
+                buttonView = accelButton
             case 2:
-                cell.textLabel.text = "Gyro"
-                switchView = gyroSwitch
+                cell.textLabel!.text = "Gyro"
+                buttonView = gyroButton
             case 3:
-                cell.textLabel.text = "Magnetometer"
-                switchView = magnetometerSwitch
+                cell.textLabel!.text = "Magnetometer"
+                buttonView = magnetometerButton
             case 4:
-                cell.textLabel.text = "Location"
-                switchView = gpsSwitch
+                cell.textLabel!.text = "Location"
+                buttonView = gpsButton
             default:
                 break
             }
             
-            cell.accessoryView = switchView
+            cell.accessoryView = buttonView
             return cell
         }
         
@@ -577,13 +797,13 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
 //            case 0:
 //                break
 //            case 1: //Accel
-//                cell.textLabel.text = "TEST"
+//                cell.textLabel!.text = "TEST"
 //            case 2: //Gyro
-//                cell.textLabel.text = "TEST"
+//                cell.textLabel!.text = "TEST"
 //            case 3: //Mag
-//                cell.textLabel.text = "TEST"
+//                cell.textLabel!.text = "TEST"
 //            case 4: //GPS
-//                cell.textLabel.text = "TEST"
+//                cell.textLabel!.text = "TEST"
 //            default:
 //                break
 //            }
@@ -599,7 +819,7 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
         
         if section < sensorArray.count {
             var snsr = sensorArray[section]
-            if snsr.toggleSwitch.on == true {
+            if snsr.toggleButton.selected == true {
                 return snsr.valueCells.count+1
             }
             else {
@@ -662,7 +882,7 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
     
-        return sensorArray.count + 1
+        return sensorArray.count + 2
     
     }
     
@@ -674,7 +894,7 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
         }
         
         else if section == sensorArray.count {
-            return "Interface"
+            return "Module"
         }
         
         else {
@@ -693,6 +913,13 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
                 self.navigationController?.setNavigationBarHidden(true, animated: true)
             }
         }
+        else if indexPath.section == (sensorArray.count + 1) {
+            tableView.deselectRowAtIndexPath(indexPath, animated: false)
+            
+            let colorPicker = ColorPickerViewController(aDelegate: self)
+            
+            self.navigationController?.pushViewController(colorPicker, animated: true)
+        }
         
     }
     
@@ -708,7 +935,7 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
         var str = NSString(string: buttonPrefix + "\(sender.tag)" + "1")
         let data = NSData(bytes: str.UTF8String, length: str.length)
         
-        delegate?.sendData(data)
+        delegate?.sendData(appendCRC(data))
     
     }
     
@@ -722,7 +949,7 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
         var str = NSString(string: buttonPrefix + "\(sender.tag)" + "0")
         let data = NSData(bytes: str.UTF8String, length: str.length)
         
-        delegate?.sendData(data)
+        delegate?.sendData(appendCRC(data))
     }
     
     
@@ -749,4 +976,76 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
         
     }
     
+    
+    func appendCRC(data:NSMutableData) {
+        
+        //append crc
+        var len = data.length
+        var bdata = [UInt8](count: len, repeatedValue: 0)
+        var buf = [UInt8](count: len, repeatedValue: 0)
+        var crc:UInt8 = 0
+        data.getBytes(&bdata, length: len)
+        
+        for i in bdata {    //add all bytes
+            crc = crc &+ i
+        }
+        
+        crc = ~crc  //invert
+        
+        data.appendBytes(&crc, length: 1)
+        
+//        println("crc == \(crc)   length == \(data.length)")
+        
+    }
+    
+    
+    func appendCRC(data:NSData)->NSMutableData {
+        
+        var mData = NSMutableData(length: 0)
+        mData!.appendData(data)
+        appendCRC(mData!)
+        return mData!
+        
+    }
+    
+    
+    //Color Picker
+    
+    func sendColor(red:Byte, green:Byte, blue:Byte) {
+        
+        let pfx = NSString(string: colorPrefix)
+        var rv = red
+        var gv = green
+        var bv = blue
+        var data = NSMutableData(capacity: 3 + pfx.length)!
+        
+        data.appendBytes(pfx.UTF8String, length: pfx.length)
+        data.appendBytes(&rv, length: 1)
+        data.appendBytes(&gv, length: 1)
+        data.appendBytes(&bv, length: 1)
+        
+        appendCRC(data)
+        
+        delegate?.sendData(data)
+        
+    }
+    
+    
+    func helpViewControllerDidFinish(controller : HelpViewController) {
+        
+        delegate?.helpViewControllerDidFinish(controller)
+        
+    }
+    
+    
 }
+
+
+
+
+
+
+
+
+
+

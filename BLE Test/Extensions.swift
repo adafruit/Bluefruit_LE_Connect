@@ -17,7 +17,6 @@ extension NSData {
         var byteArray = [UInt8](count: self.length, repeatedValue: 0x0)
         // The Test Data is moved into the 8bit Array.
         self.getBytes(&byteArray, length:self.length)
-        //        self.debugDescription
         
         var hexBits = "" as String
         for value in byteArray {
@@ -36,7 +35,7 @@ extension NSData {
         let dataLength:Int = self.length
         var string = NSMutableString(capacity: dataLength*2)
         let dataBytes:UnsafePointer<Void> = self.bytes
-        for idx in 0...(dataLength-1) {
+        for idx in 0..<dataLength {
             string.appendFormat("%02x", [UInt(dataBytes[idx])] )
         }
         
@@ -54,7 +53,7 @@ extension NSData {
         
         self.getBytes(&data, length: dataLength)
         
-        for index in 0...dataLength-1 {
+        for index in 0..<dataLength {
             if (data[index] <= 0x1f) || (data[index] >= 0x80) { //null characters
                 if (data[index] != 0x9)       //0x9 == TAB
                     && (data[index] != 0xa)   //0xA == NL
@@ -88,7 +87,7 @@ extension NSString {
         var hexString = NSMutableString()
         var charString:NSString
         
-        for i in 0...(len-1) {
+        for i in 0..<len {
             charString = NSString(format: "0x%02X", charArray[Int(i)])
             
             if (charString.length == 1){
@@ -98,7 +97,6 @@ extension NSString {
             hexString.appendString(charString.stringByAppendingString(" "))
         }
         
-        //        free(chars)
         
         return hexString
     }
@@ -119,9 +117,6 @@ extension CBUUID {
         for value in byteArray {
             
             switch (value){
-                //            case 3:
-                //            case 5:
-                //            case 7:
             case 9:
                 outputString.appendFormat("%02x-", value)
                 break
@@ -185,3 +180,5 @@ func binaryforByte(value: UInt8) -> String {
     
     return str
 }
+
+

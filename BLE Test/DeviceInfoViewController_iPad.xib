@@ -10,7 +10,6 @@
                 <outlet property="headerView" destination="eEO-JL-u14" id="hq9-tZ-pSn"/>
                 <outlet property="helpViewController" destination="hjv-Z4-EYv" id="uHM-K5-ujL"/>
                 <outlet property="peripheralNameLabel" destination="R8j-DU-V2p" id="vsK-7u-gib"/>
-                <outlet property="peripheralUUIDLabel" destination="fuO-bl-U7k" id="HXo-al-HNO"/>
                 <outlet property="tableView" destination="QgY-fI-3zg" id="MAd-75-RQs"/>
                 <outlet property="view" destination="A2u-ag-L11" id="8q9-fP-btB"/>
             </connections>
@@ -34,7 +33,7 @@
                     </connections>
                 </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eEO-JL-u14" userLabel="deviceHeaderView">
-                    <rect key="frame" x="287" y="20" width="450" height="65"/>
+                    <rect key="frame" x="287" y="20" width="450" height="38"/>
                     <subviews>
                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" fixedFrame="YES" text="Peripheral Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R8j-DU-V2p" userLabel="nameLabel">
                             <rect key="frame" x="0.0" y="8" width="450" height="22"/>
@@ -42,23 +41,17 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" fixedFrame="YES" text="UUID:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="fuO-bl-U7k" userLabel="UUIDLabel">
-                            <rect key="frame" x="0.0" y="38" width="450" height="17"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="65" id="0re-Eb-Rb2"/>
+                        <constraint firstAttribute="height" constant="38" id="0re-Eb-Rb2"/>
                         <constraint firstAttribute="width" constant="450" id="at1-fh-QCk"/>
                     </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" white="0.14999999999999999" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="QgY-fI-3zg" firstAttribute="top" secondItem="eEO-JL-u14" secondAttribute="bottom" constant="8" id="0vf-oi-bea"/>
+                <constraint firstItem="QgY-fI-3zg" firstAttribute="top" secondItem="eEO-JL-u14" secondAttribute="bottom" constant="35" id="0vf-oi-bea"/>
                 <constraint firstAttribute="centerX" secondItem="eEO-JL-u14" secondAttribute="centerX" id="QaD-fC-wqa"/>
                 <constraint firstAttribute="bottom" secondItem="QgY-fI-3zg" secondAttribute="bottom" constant="8" id="bgw-GO-r5H"/>
                 <constraint firstItem="eEO-JL-u14" firstAttribute="top" secondItem="A2u-ag-L11" secondAttribute="top" constant="20" id="bso-6R-ajE"/>

@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ColorPickerViewController" customModule="BluetoothLE_Test" customModuleProvider="target">
+            <connections>
+                <outlet property="helpViewController" destination="i4b-60-4fE" id="d7r-FQ-VXk"/>
+                <outlet property="infoButton" destination="8HG-Gp-E2o" id="Y5n-Qo-nw8"/>
+                <outlet property="sendButton" destination="zZs-Vj-5Xg" id="UaG-Dp-RIF"/>
+                <outlet property="sendVertConstraint" destination="gfe-hf-2J7" id="XA4-W8-qV6"/>
+                <outlet property="valueLable" destination="Bsp-DR-Ndg" id="sjv-pp-U6x"/>
+                <outlet property="view" destination="Ogf-Ph-VoN" id="bbv-5k-2s2"/>
+                <outlet property="wellHeightConstraint" destination="7tw-pi-xzD" id="qQf-n1-Thc"/>
+                <outlet property="wellVertConstraint" destination="Uyx-Ce-zgF" id="xyK-C6-nMt"/>
+                <outlet property="wellView" destination="4ws-jO-LTS" id="mP3-et-SWI"/>
+                <outlet property="wheelHorzConstraint" destination="jf6-2V-RPZ" id="ozj-ak-5Rg"/>
+                <outlet property="wheelView" destination="FxF-Nd-Rhg" id="Ia6-pA-Hzo"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Ogf-Ph-VoN">
+            <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4ws-jO-LTS" userLabel="Well View">
+                    <rect key="frame" x="44" y="421" width="124" height="124"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="124" id="7tw-pi-xzD"/>
+                        <constraint firstAttribute="width" constant="124" id="ldt-iA-tSI"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zZs-Vj-5Xg" userLabel="Send Button">
+                    <rect key="frame" x="192" y="461" width="159" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="HWx-Jt-uqk"/>
+                        <constraint firstAttribute="width" constant="115" id="MJK-ZC-SXg"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <state key="normal" title="Send">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="MJK-ZC-SXg"/>
+                        </mask>
+                    </variation>
+                    <connections>
+                        <action selector="sendColor" destination="-1" eventType="touchUpInside" id="V6O-cn-fSO"/>
+                    </connections>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FxF-Nd-Rhg" userLabel="Wheel View">
+                    <rect key="frame" x="34" y="24" width="307" height="307"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="286" id="B0O-Rd-drW"/>
+                        <constraint firstAttribute="width" secondItem="FxF-Nd-Rhg" secondAttribute="height" multiplier="1:1" id="hs8-F0-nfF"/>
+                        <constraint firstAttribute="width" constant="286" id="vPi-9d-lKm"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="B0O-Rd-drW"/>
+                            <exclude reference="vPi-9d-lKm"/>
+                        </mask>
+                    </variation>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="R:255  G:255  B:255" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bsp-DR-Ndg" userLabel="Value Label">
+                    <rect key="frame" x="44" y="380" width="148" height="37"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="148" id="ZWZ-S0-ezq"/>
+                        <constraint firstAttribute="height" constant="37" id="fQw-f0-YHa"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="0.14999999999999999" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="zZs-Vj-5Xg" secondAttribute="trailing" constant="24" id="3Jk-uy-R9J"/>
+                <constraint firstAttribute="trailing" secondItem="FxF-Nd-Rhg" secondAttribute="trailing" constant="44" id="8Ba-Mh-biy"/>
+                <constraint firstAttribute="bottom" secondItem="FxF-Nd-Rhg" secondAttribute="bottom" constant="271" id="Glh-Ug-2nb"/>
+                <constraint firstAttribute="trailing" secondItem="FxF-Nd-Rhg" secondAttribute="trailing" constant="34" id="KQU-CO-1PD"/>
+                <constraint firstItem="FxF-Nd-Rhg" firstAttribute="top" secondItem="Ogf-Ph-VoN" secondAttribute="top" constant="46" id="SCK-MM-cjI"/>
+                <constraint firstItem="FxF-Nd-Rhg" firstAttribute="top" secondItem="Ogf-Ph-VoN" secondAttribute="top" constant="24" id="T2e-mO-LHf"/>
+                <constraint firstItem="4ws-jO-LTS" firstAttribute="leading" secondItem="Ogf-Ph-VoN" secondAttribute="leading" constant="44" id="T4H-4x-z4u"/>
+                <constraint firstAttribute="bottom" secondItem="4ws-jO-LTS" secondAttribute="bottom" constant="58" id="Uyx-Ce-zgF"/>
+                <constraint firstItem="zZs-Vj-5Xg" firstAttribute="leading" secondItem="4ws-jO-LTS" secondAttribute="trailing" constant="24" id="XRi-7A-H3c"/>
+                <constraint firstItem="Bsp-DR-Ndg" firstAttribute="leading" secondItem="Ogf-Ph-VoN" secondAttribute="leading" constant="44" id="cfo-dx-NTd"/>
+                <constraint firstAttribute="centerX" secondItem="FxF-Nd-Rhg" secondAttribute="centerX" id="fZ4-9B-c4v"/>
+                <constraint firstAttribute="bottom" secondItem="zZs-Vj-5Xg" secondAttribute="bottom" constant="98" id="gfe-hf-2J7"/>
+                <constraint firstItem="FxF-Nd-Rhg" firstAttribute="leading" secondItem="Ogf-Ph-VoN" secondAttribute="leading" constant="44" id="hLe-Ee-RnB"/>
+                <constraint firstItem="FxF-Nd-Rhg" firstAttribute="leading" secondItem="Ogf-Ph-VoN" secondAttribute="leading" constant="34" id="jf6-2V-RPZ"/>
+                <constraint firstAttribute="trailing" secondItem="zZs-Vj-5Xg" secondAttribute="trailing" constant="45" id="mNH-d4-Z0U"/>
+                <constraint firstAttribute="centerX" secondItem="FxF-Nd-Rhg" secondAttribute="centerX" id="rdw-vn-CMi"/>
+                <constraint firstItem="4ws-jO-LTS" firstAttribute="top" secondItem="Bsp-DR-Ndg" secondAttribute="bottom" constant="4" id="yUH-oa-3RM"/>
+            </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="8Ba-Mh-biy"/>
+                    <exclude reference="Glh-Ug-2nb"/>
+                    <exclude reference="SCK-MM-cjI"/>
+                    <exclude reference="fZ4-9B-c4v"/>
+                    <exclude reference="hLe-Ee-RnB"/>
+                    <exclude reference="mNH-d4-Z0U"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="1030.5" y="1000.5"/>
+        </view>
+        <customObject id="i4b-60-4fE" userLabel="HelpViewController" customClass="HelpViewController" customModule="BluetoothLE_Test" customModuleProvider="target">
+            <connections>
+                <outlet property="textView" destination="SNc-b7-5RG" id="czF-mQ-H05"/>
+                <outlet property="view" destination="RLL-Pm-Eu7" id="Rhg-vL-Dsv"/>
+            </connections>
+        </customObject>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="RLL-Pm-Eu7" userLabel="View - Help">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D80-Jm-DOn" userLabel="placeholderView">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="22"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="22" id="wiO-Yz-GhU"/>
+                    </constraints>
+                </view>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="white" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SNc-b7-5RG">
+                    <rect key="frame" x="48" y="86" width="280" height="561"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="280" id="WJi-4B-IKM"/>
+                    </constraints>
+                    <attributedString key="attributedText">
+                        <fragment>
+                            <string key="content">The Color Picker sends a color's RGB values to Bluefruit LE.  This can be used to control the state of RGB LEDs such as Neopixels.
+
+• Touch the color wheel to choose desired color
+
+• Press </string>
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="13" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural">
+                                    <tabStops>
+                                        <textTab alignment="left" location="36"/>
+                                        <textTab alignment="left" location="72"/>
+                                        <textTab alignment="left" location="108"/>
+                                        <textTab alignment="left" location="144"/>
+                                        <textTab alignment="left" location="180"/>
+                                        <textTab alignment="left" location="216"/>
+                                        <textTab alignment="left" location="252"/>
+                                        <textTab alignment="left" location="288"/>
+                                        <textTab alignment="left" location="324"/>
+                                        <textTab alignment="left" location="360"/>
+                                        <textTab alignment="left" location="396"/>
+                                        <textTab alignment="left" location="432"/>
+                                    </tabStops>
+                                </paragraphStyle>
+                            </attributes>
+                        </fragment>
+                        <fragment content="Send">
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="13" name="HelveticaNeue-Bold"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural">
+                                    <tabStops>
+                                        <textTab alignment="left" location="36"/>
+                                        <textTab alignment="left" location="72"/>
+                                        <textTab alignment="left" location="108"/>
+                                        <textTab alignment="left" location="144"/>
+                                        <textTab alignment="left" location="180"/>
+                                        <textTab alignment="left" location="216"/>
+                                        <textTab alignment="left" location="252"/>
+                                        <textTab alignment="left" location="288"/>
+                                        <textTab alignment="left" location="324"/>
+                                        <textTab alignment="left" location="360"/>
+                                        <textTab alignment="left" location="396"/>
+                                        <textTab alignment="left" location="432"/>
+                                    </tabStops>
+                                </paragraphStyle>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content"> to send the chosen color's red, green, and blue values to Bluefruit via UART in the following format:
+[ ‘!’ ] [ ‘C’ ] [ byte r ] [ byte g ] [ byte b ]</string>
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="13" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural">
+                                    <tabStops>
+                                        <textTab alignment="left" location="36"/>
+                                        <textTab alignment="left" location="72"/>
+                                        <textTab alignment="left" location="108"/>
+                                        <textTab alignment="left" location="144"/>
+                                        <textTab alignment="left" location="180"/>
+                                        <textTab alignment="left" location="216"/>
+                                        <textTab alignment="left" location="252"/>
+                                        <textTab alignment="left" location="288"/>
+                                        <textTab alignment="left" location="324"/>
+                                        <textTab alignment="left" location="360"/>
+                                        <textTab alignment="left" location="396"/>
+                                        <textTab alignment="left" location="432"/>
+                                    </tabStops>
+                                </paragraphStyle>
+                            </attributes>
+                        </fragment>
+                    </attributedString>
+                    <textInputTraits key="textInputTraits"/>
+                    <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                </textView>
+                <navigationBar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="black" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iis-Md-PUS">
+                    <rect key="frame" x="0.0" y="22" width="375" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="ns6-8j-pwb"/>
+                    </constraints>
+                    <items>
+                        <navigationItem title=" Color Picker Help" id="gb5-Nr-0uQ" userLabel="Navigation Item - Done">
+                            <barButtonItem key="leftBarButtonItem" systemItem="done" id="omN-Bx-LZs">
+                                <connections>
+                                    <action selector="done:" destination="i4b-60-4fE" id="zKH-T5-sTm"/>
+                                </connections>
+                            </barButtonItem>
+                        </navigationItem>
+                    </items>
+                </navigationBar>
+            </subviews>
+            <color key="backgroundColor" white="0.14999999999999999" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="iis-Md-PUS" firstAttribute="leading" secondItem="RLL-Pm-Eu7" secondAttribute="leading" id="1u9-zV-qdM"/>
+                <constraint firstAttribute="trailing" secondItem="D80-Jm-DOn" secondAttribute="trailing" id="DF3-su-0sW"/>
+                <constraint firstItem="iis-Md-PUS" firstAttribute="leading" secondItem="RLL-Pm-Eu7" secondAttribute="leading" id="E3b-lN-2Vu"/>
+                <constraint firstItem="iis-Md-PUS" firstAttribute="top" secondItem="D80-Jm-DOn" secondAttribute="bottom" id="O5F-CQ-0rt"/>
+                <constraint firstItem="D80-Jm-DOn" firstAttribute="leading" secondItem="RLL-Pm-Eu7" secondAttribute="leading" id="biq-v4-pmc"/>
+                <constraint firstAttribute="bottom" secondItem="SNc-b7-5RG" secondAttribute="bottom" constant="20" id="j5v-df-68t"/>
+                <constraint firstItem="D80-Jm-DOn" firstAttribute="leading" secondItem="RLL-Pm-Eu7" secondAttribute="leading" id="lmt-nY-e1b"/>
+                <constraint firstItem="SNc-b7-5RG" firstAttribute="top" secondItem="iis-Md-PUS" secondAttribute="bottom" constant="20" id="mNs-lC-DZN"/>
+                <constraint firstAttribute="trailing" secondItem="iis-Md-PUS" secondAttribute="trailing" id="nGK-Z8-4ZK"/>
+                <constraint firstItem="D80-Jm-DOn" firstAttribute="top" secondItem="RLL-Pm-Eu7" secondAttribute="top" id="olt-lX-G05"/>
+                <constraint firstAttribute="centerX" secondItem="SNc-b7-5RG" secondAttribute="centerX" id="y4X-V1-JAr"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+        </view>
+        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="8HG-Gp-E2o" userLabel="Info Button">
+            <rect key="frame" x="0.0" y="0.0" width="22" height="22"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <state key="normal">
+                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+            </state>
+            <point key="canvasLocation" x="778" y="563"/>
+        </button>
+    </objects>
+</document>

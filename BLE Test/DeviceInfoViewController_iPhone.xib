@@ -9,7 +9,6 @@
                 <outlet property="headerView" destination="7cG-V5-QLa" id="dRq-m9-rKO"/>
                 <outlet property="helpViewController" destination="7IE-0z-Oyd" id="N1H-H4-CoL"/>
                 <outlet property="peripheralNameLabel" destination="uXC-7R-dcK" id="q5c-EU-ZNr"/>
-                <outlet property="peripheralUUIDLabel" destination="ggd-mv-beh" id="o1A-1m-uRn"/>
                 <outlet property="tableView" destination="34h-CI-04E" id="a4p-hh-Rjd"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -36,7 +35,7 @@
                     </connections>
                 </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7cG-V5-QLa" userLabel="deviceHeaderView">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                     <subviews>
                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" fixedFrame="YES" text="Peripheral Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uXC-7R-dcK" userLabel="nameLabel">
                             <rect key="frame" x="8" y="8" width="304" height="28"/>
@@ -44,16 +43,10 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" fixedFrame="YES" text="UUID:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ggd-mv-beh" userLabel="UUIDLabel">
-                            <rect key="frame" x="8" y="44" width="304" height="13"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="65" id="d8b-Ub-TSP"/>
+                        <constraint firstAttribute="height" constant="44" id="d8b-Ub-TSP"/>
                     </constraints>
                 </view>
             </subviews>
@@ -61,7 +54,7 @@
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="7cG-V5-QLa" secondAttribute="trailing" id="70X-IB-axN"/>
                 <constraint firstAttribute="bottom" secondItem="34h-CI-04E" secondAttribute="bottom" id="7XJ-MB-nbC"/>
-                <constraint firstItem="34h-CI-04E" firstAttribute="top" secondItem="7cG-V5-QLa" secondAttribute="bottom" id="Plv-M6-gWd"/>
+                <constraint firstItem="34h-CI-04E" firstAttribute="top" secondItem="7cG-V5-QLa" secondAttribute="bottom" constant="21" id="Plv-M6-gWd"/>
                 <constraint firstAttribute="trailing" secondItem="34h-CI-04E" secondAttribute="trailing" id="Vfy-sF-KAZ"/>
                 <constraint firstItem="7cG-V5-QLa" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Zqu-Ge-YeH"/>
                 <constraint firstItem="7cG-V5-QLa" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="bp8-QD-TK9"/>

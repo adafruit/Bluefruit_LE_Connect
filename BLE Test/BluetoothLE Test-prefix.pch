@@ -1,0 +1,18 @@
+//
+//  BluetoothLE Test-prefix.pch
+//  Adafruit Bluefruit LE Connect
+//
+//  Created by Collin Cunningham on 1/27/15.
+//  Copyright (c) 2015 Adafruit Industries. All rights reserved.
+//
+
+#ifndef Adafruit_Bluefruit_LE_Connect_BluetoothLE_Test_prefix_pch
+#define Adafruit_Bluefruit_LE_Connect_BluetoothLE_Test_prefix_pch
+
+
+#endif
+
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#endif

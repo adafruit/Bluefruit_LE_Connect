@@ -160,8 +160,9 @@ class BLEDevice {
             array.append(entry)
         }
         
-        entry = ["UUID", UUIDString]
-        if entry[1] != nilString { array.append(entry) }
+//        entry = ["UUID", UUIDString]
+//        if entry[1] != nilString { array.append(entry) }
+        
         entry = ["Manufacturer Data", manufacturerData]
         if entry[1] != nilString { array.append(entry) }
         entry = ["Service Data", serviceData]
@@ -180,9 +181,8 @@ class BLEDevice {
         advertisementArray = array
         
         var nameString = peripheral.name
-                
         
-        //TODO: Delete
+        
         //FOR SCREENSHOTS v
 //        if nameString == "Apple TV" {
 //            var rand:String = "\(random())"

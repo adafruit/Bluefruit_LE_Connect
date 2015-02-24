@@ -25,6 +25,7 @@ let IOS_VERSION_FLOAT:Float = (CURRENT_DEVICE.systemVersion as NSString).floatVa
 let LOGGING = false
 let PREF_UART_SHOULD_ECHO_LOCAL = "UartEchoLocal"
 let cellSelectionColor = UIColor(red: 100.0/255.0, green: 182.0/255.0, blue: 255.0/255.0, alpha: 1.0)
+let bleBlueColor = UIColor(red: 24.0/255.0, green: 126.0/255.0, blue: 248.0/255.0, alpha: 1.0)
 
 
 func animateCellSelection(cell:UITableViewCell) {
@@ -108,37 +109,43 @@ func hardwareRevisionStringUUID()->CBUUID{
 }
 
 
-func manufacturerNameStringUUID()->CBUUID{    //    Manufacturer Name String	0x2A29
+func manufacturerNameStringUUID()->CBUUID{
     
     return CBUUID(string: "2A29")
 }
 
 
-func modelNumberStringUUID()->CBUUID{         //    Model Number String		0x2A24
+func modelNumberStringUUID()->CBUUID{
     
     return CBUUID(string: "2A24")
 }
 
 
-func firmwareRevisionStringUUID()->CBUUID{    //    Firmware Revision String	0x2A26
+func firmwareRevisionStringUUID()->CBUUID{
     
     return CBUUID(string: "2A26")
 }
 
 
-func softwareRevisionStringUUID()->CBUUID{    //    Software Revision String  0x2A28
+func softwareRevisionStringUUID()->CBUUID{
     
     return CBUUID(string: "2A28")
 }
 
 
-func serialNumberStringUUID()->CBUUID{    //    Software Revision String  0x2A28
+func serialNumberStringUUID()->CBUUID{
     
     return CBUUID(string: "2A25")
 }
 
 
-func dfuServiceUUID()->CBUUID{    //    Software Revision String  0x2A28
+func systemIDStringUUID()->CBUUID{
+    
+    return CBUUID(string: "2A23")
+}
+
+
+func dfuServiceUUID()->CBUUID{
     
     return CBUUID(string: "00001530-1212-efde-1523-785feabcd123")
 }

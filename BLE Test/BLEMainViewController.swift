@@ -617,8 +617,9 @@ class BLEMainViewController : UIViewController, UINavigationControllerDelegate, 
         
         //if status was connected, then disconnect was unexpected by the user, show alert
         let topVC = navController.topViewController
-        if  connectionStatus == ConnectionStatus.Connected &&
-            (topVC.isMemberOfClass(PinIOViewController) || topVC.isMemberOfClass(UARTViewController) || topVC.isMemberOfClass(DeviceInfoViewController) ) {
+        if  connectionStatus == ConnectionStatus.Connected && isModuleController(topVC) {
+                
+                printLog(self, "centralManager:didDisconnectPeripheral", "unexpected disconnect while connected")
                 
                 //return to main view
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -627,7 +628,7 @@ class BLEMainViewController : UIViewController, UINavigationControllerDelegate, 
                     //display disconnect alert
                     let alert = UIAlertView(title:"Disconnected",
                         message:"Peripheral disconnected unexpectedly",
-                        delegate:nil,
+                        delegate:self,
                         cancelButtonTitle:"OK")
                     
                     alert.show()
@@ -639,6 +640,8 @@ class BLEMainViewController : UIViewController, UINavigationControllerDelegate, 
             
             abortConnection()
             
+            printLog(self, "centralManager:didDisconnectPeripheral", "unexpected disconnect while connecting")
+            
             //return to main view
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.navController.popToRootViewControllerAnimated(true)
@@ -646,7 +649,7 @@ class BLEMainViewController : UIViewController, UINavigationControllerDelegate, 
                 //display disconnect alert
                 let alert = UIAlertView(title:"Disconnected",
                     message:"Peripheral disconnected unexpectedly",
-                    delegate:nil,
+                    delegate:self,
                     cancelButtonTitle:"OK")
                 
                 alert.show()
@@ -669,6 +672,29 @@ class BLEMainViewController : UIViewController, UINavigationControllerDelegate, 
         pinIoViewController = nil
         uartViewController = nil
         deviceInfoViewController = nil
+        
+    }
+    
+    
+    func isModuleController(anObject:AnyObject)->Bool{
+        
+        var verdict = false
+        if     anObject.isMemberOfClass(PinIOViewController)
+            || anObject.isMemberOfClass(UARTViewController)
+            || anObject.isMemberOfClass(DeviceInfoViewController)
+            || anObject.isMemberOfClass(ControllerViewController)
+            || (anObject.title == "Control Pad")
+            || (anObject.title == "Color Picker") {
+                verdict = true
+        }
+        
+        //all controllers are modules except BLEMainViewController - weak
+//        var verdict = true
+//        if anObject.isMemberOfClass(BLEMainViewController) {
+//            verdict = false
+//        }
+        
+        return verdict
         
     }
     
@@ -771,6 +797,8 @@ class BLEMainViewController : UIViewController, UINavigationControllerDelegate, 
         
         //respond to device disconnecting
         
+        printLog(self, "peripheralDidDisconnect", "")
+        
         //if we were in the process of scanning/connecting, dismiss alert
         if (currentAlertView != nil) {
             uartDidEncounterError("Peripheral disconnected")
@@ -778,9 +806,10 @@ class BLEMainViewController : UIViewController, UINavigationControllerDelegate, 
         
         //if status was connected, then disconnect was unexpected by the user, show alert
         let topVC = navController.topViewController
-        if  connectionStatus == ConnectionStatus.Connected &&
-            (topVC.isMemberOfClass(PinIOViewController) || topVC.isMemberOfClass(UARTViewController) || topVC.isMemberOfClass(DeviceInfoViewController) ) {
-                    
+        if  connectionStatus == ConnectionStatus.Connected && isModuleController(topVC) {
+                
+                printLog(self, "peripheralDidDisconnect", "unexpected disconnect while connected")
+                
                     //return to main view
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         self.navController.popToRootViewControllerAnimated(true)

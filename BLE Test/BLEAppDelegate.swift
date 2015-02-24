@@ -37,14 +37,14 @@ class BLEAppDelegate: UIResponder, UIApplicationDelegate {
         window!.makeKeyAndVisible()
         
         // Ask user for permision to show local notifications
-        if(UIApplication.instancesRespondToSelector(Selector("registerUserNotificationSettings:")))
-        {
-            application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: UIUserNotificationType.Sound | UIUserNotificationType.Alert | UIUserNotificationType.Badge, categories: nil))
-        }
-        else
-        {
-            //do iOS 7 stuff, which is pretty much nothing for local notifications.
-        }
+//        if(UIApplication.instancesRespondToSelector(Selector("registerUserNotificationSettings:")))
+//        {
+//            application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: UIUserNotificationType.Sound | UIUserNotificationType.Alert | UIUserNotificationType.Badge, categories: nil))
+//        }
+//        else
+//        {
+//            //do iOS 7 stuff, which is pretty much nothing for local notifications.
+//        }
         
         return true
         
@@ -68,6 +68,11 @@ class BLEAppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(application: UIApplication) {
         
         mainViewController?.didBecomeActive()
+    }
+    
+    
+    func applicationWillTerminate(application: UIApplication) {
+        println("application will terminate")
     }
     
 //    

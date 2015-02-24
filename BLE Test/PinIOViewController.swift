@@ -259,7 +259,7 @@ class PinIOViewController : UIViewController, UITableViewDataSource, UITableView
         let bytes:[UInt8] = [data0, data1]
         let newData = NSData(bytes: bytes, length: 2)
     
-        portMasks[Int(port)] = data1    //save new pin mask
+        portMasks[Int(port)] = data1    //save new pin
     
         delegate!.sendData(newData)
     
@@ -568,14 +568,14 @@ class PinIOViewController : UIViewController, UITableViewDataSource, UITableView
         
         var data = [UInt8](count: 20, repeatedValue: 0)
         var buf = [UInt8](count: 512, repeatedValue: 0)  //static only works on classes & structs in swift
-        var length:Int = 0;                             //again, was static
+        var length:Int = 0                             //again, was static
         var dataLength:Int = newData.length
         
         newData.getBytes(&data, length: dataLength)
         
         if (dataLength < 20){
             
-            memcpy(&buf, data, UInt(dataLength))    //TODO: Check
+            memcpy(&buf, data, UInt(dataLength))
             //        memcpy(&buf[length], data, dataLength)
             
             length += dataLength

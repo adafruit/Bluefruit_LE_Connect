@@ -16,7 +16,7 @@ class DeviceInfoViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet var tableView:UITableView!
     @IBOutlet var headerView:UIView!
     @IBOutlet var peripheralNameLabel:UILabel!
-    @IBOutlet var peripheralUUIDLabel:UILabel!
+//    @IBOutlet var peripheralUUIDLabel:UILabel!
     @IBOutlet var helpViewController:HelpViewController!
     var delegate:HelpViewControllerDelegate?
 //    @IBOutlet var serviceCell:UITableViewCell!
@@ -56,7 +56,8 @@ class DeviceInfoViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     
-//    convenience init(delegate:HelpViewControllerDelegate){  //FOR SCREENSHOTS
+    //FOR SCREENSHOTS
+//    convenience init(delegate:HelpViewControllerDelegate){
 //        
 //        //Separate NIBs for iPhone 3.5", iPhone 4", & iPad
 //        
@@ -89,7 +90,9 @@ class DeviceInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         
         
         peripheralNameLabel.text = peripheral.name
-        peripheralUUIDLabel.text = "UUID: " + peripheral.identifier.UUIDString
+//        peripheralUUIDLabel.text = "UUID: " + peripheral.identifier.UUIDString
+        
+        // … and add \(__FUNCTION__) to printLogs
     }
 
     
@@ -133,9 +136,9 @@ class DeviceInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         }
         
         //Set up cell
-        cell?.textLabel.adjustsFontSizeToFitWidth = true
-        cell?.textLabel.minimumScaleFactor = 0.5
-        cell?.textLabel.text = title
+        cell?.textLabel?.adjustsFontSizeToFitWidth = true
+        cell?.textLabel?.minimumScaleFactor = 0.5
+        cell?.textLabel?.text = title
         cell?.detailTextLabel?.text = detailTitle
         cell?.selectionStyle = UITableViewCellSelectionStyle.None
         cell?.userInteractionEnabled = selectable

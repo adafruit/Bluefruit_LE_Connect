@@ -48,7 +48,7 @@ class BLEDevice {
             if nameString == nil {
                 nameString = nilString
             }
-        return nameString!
+        return nameString! as String
     }
     
     var manufacturerData:String {
@@ -104,7 +104,7 @@ class BLEDevice {
             let verdict = num!.boolValue
         
         //Enable connect button according to connectable value
-        if self.deviceCell?.connectButton? != nil {
+        if self.deviceCell?.connectButton != nil {
             deviceCell?.connectButton.enabled = verdict
         }
             

@@ -40,7 +40,7 @@ class DeviceInfoViewController: UIViewController, UITableViewDelegate, UITableVi
             nibName = "DeviceInfoViewController_iPad"
         }
         
-        self.init(nibName: nibName, bundle: NSBundle.mainBundle())
+        self.init(nibName: nibName as String, bundle: NSBundle.mainBundle())
         
         self.peripheral = cbPeripheral
         self.delegate = delegate
@@ -104,7 +104,7 @@ class DeviceInfoViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        var service = peripheral.services[indexPath.section] as CBService
+        var service = peripheral.services[indexPath.section] as! CBService
         var identifier = characteristicCellIdentifier
         var style = UITableViewCellStyle.Subtitle
         var title = ""
@@ -122,7 +122,7 @@ class DeviceInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         
         //Characteristic row
         else {
-            let chstc = service.characteristics[indexPath.row-1] as CBCharacteristic
+            let chstc = service.characteristics[indexPath.row-1] as! CBCharacteristic
 //            let dsctr = chstc.descriptors[0] as CBDescriptor
 //            let uuidString = chstc.UUID.UUIDString
             title = displayNameforUUID(chstc.UUID)

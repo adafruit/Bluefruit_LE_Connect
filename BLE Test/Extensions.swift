@@ -39,7 +39,7 @@ extension NSData {
             string.appendFormat("%02x", [UInt(dataBytes[idx])] )
         }
         
-        return string
+        return string as String
     }
     
     
@@ -66,7 +66,7 @@ extension NSData {
         
         let newString = NSString(bytes: &data, length: dataLength, encoding: NSUTF8StringEncoding)
         
-        return newString!
+        return newString! as String
         
     }
     
@@ -91,7 +91,7 @@ extension NSString {
             charString = NSString(format: "0x%02X", charArray[Int(i)])
             
             if (charString.length == 1){
-                charString = "0".stringByAppendingString(charString)
+                charString = "0".stringByAppendingString(charString as String)
             }
             
             hexString.appendString(charString.stringByAppendingString(" "))
@@ -146,7 +146,7 @@ extension CBUUID {
         
 //        println("\(self.representativeString()) ?= \(aString)")
         
-        verdict = aString.compare(self.representativeString(), options: options, range: nil, locale: NSLocale.currentLocale()) == NSComparisonResult.OrderedSame
+        verdict = aString.compare(self.representativeString() as String, options: options, range: nil, locale: NSLocale.currentLocale()) == NSComparisonResult.OrderedSame
         
         return verdict
         
@@ -169,7 +169,7 @@ func printLog(obj:AnyObject, funcName:String, logString:String) {
 func binaryforByte(value: UInt8) -> String {
     
     var str = String(value, radix: 2)
-    let len = countElements(str)
+    let len = count(str)
     if len < 8 {
         var addzeroes = 8 - len
         while addzeroes > 0 {

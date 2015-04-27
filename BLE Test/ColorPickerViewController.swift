@@ -10,7 +10,7 @@ import UIKit
 
 protocol ColorPickerViewControllerDelegate: HelpViewControllerDelegate {
     
-    func sendColor(red:Byte, green:Byte, blue:Byte)
+    func sendColor(red:UInt8, green:UInt8, blue:UInt8)
     
 }
 
@@ -53,7 +53,7 @@ class ColorPickerViewController: UIViewController, UITextFieldDelegate, ISColorW
             nibName = "ColorPickerViewController_iPad"
         }
         
-        self.init(nibName: nibName, bundle: NSBundle.mainBundle())
+        self.init(nibName: nibName as String, bundle: NSBundle.mainBundle())
         
         self.delegate = aDelegate
         self.title = "Color Picker"
@@ -70,7 +70,7 @@ class ColorPickerViewController: UIViewController, UITextFieldDelegate, ISColorW
         
         //add info bar button
         let archivedData = NSKeyedArchiver.archivedDataWithRootObject(infoButton)
-        let buttonCopy = NSKeyedUnarchiver.unarchiveObjectWithData(archivedData) as UIButton
+        let buttonCopy = NSKeyedUnarchiver.unarchiveObjectWithData(archivedData) as! UIButton
         buttonCopy.addTarget(self, action: Selector("showInfo:"), forControlEvents: UIControlEvents.TouchUpInside)
         infoBarButton = UIBarButtonItem(customView: buttonCopy)
         self.navigationItem.rightBarButtonItem = infoBarButton
@@ -251,7 +251,7 @@ class ColorPickerViewController: UIViewController, UITextFieldDelegate, ISColorW
         
         colorWheel.currentColor().getRed(&r, green: &g, blue: &b, alpha: nil)
         
-        delegate.sendColor((Byte(255.0 * Float(r))), green: (Byte(255.0 * Float(g))), blue: (Byte(255.0 * Float(b))))
+        delegate.sendColor((UInt8(255.0 * Float(r))), green: (UInt8(255.0 * Float(g))), blue: (UInt8(255.0 * Float(b))))
     }
     
     

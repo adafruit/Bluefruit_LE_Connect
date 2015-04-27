@@ -82,8 +82,8 @@ class PinCell: UITableViewCell {
     var isServo:Bool! = false
     
     
-    override init() {
-        super.init()
+    required init() {
+        super.init(style: UITableViewCellStyle.Default, reuseIdentifier: nil)
     }
     
     

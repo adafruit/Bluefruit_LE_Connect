@@ -62,7 +62,7 @@ class PinIOViewController : UIViewController, UITableViewDataSource, UITableView
             nibName = "PinIOViewController_iPad"
         }
         
-        self.init(nibName: nibName, bundle: NSBundle.mainBundle())
+        self.init(nibName: nibName as String, bundle: NSBundle.mainBundle())
         
         self.delegate = aDelegate
         self.title = "Pin I/O"
@@ -119,29 +119,29 @@ class PinIOViewController : UIViewController, UITableViewDataSource, UITableView
         for (var i = 0; i<MAX_CELL_COUNT; i++) {
             
             let cellData = NSKeyedArchiver.archivedDataWithRootObject(digitalPinCell!)
-            let cell:PinCell = NSKeyedUnarchiver.unarchiveObjectWithData(cellData) as PinCell
+            let cell:PinCell = NSKeyedUnarchiver.unarchiveObjectWithData(cellData) as! PinCell
             
             //Assign properties via tags
-            cell.pinLabel = cell.viewWithTag(100) as UILabel
-            cell.modeLabel = cell.viewWithTag(101) as UILabel
-            cell.valueLabel = cell.viewWithTag(102) as UILabel
+            cell.pinLabel = cell.viewWithTag(100) as! UILabel
+            cell.modeLabel = cell.viewWithTag(101) as! UILabel
+            cell.valueLabel = cell.viewWithTag(102) as! UILabel
             
-            cell.toggleButton = cell.viewWithTag(103) as UIButton
+            cell.toggleButton = cell.viewWithTag(103) as! UIButton
             cell.toggleButton.addTarget(self, action: Selector("cellButtonTapped:"), forControlEvents: UIControlEvents.TouchUpInside)
             //set tag to indicate digital pin number
             cell.toggleButton.tag = i
             
-            cell.modeControl = cell.viewWithTag(104) as UISegmentedControl
+            cell.modeControl = cell.viewWithTag(104) as! UISegmentedControl
             cell.modeControl.addTarget(self, action: Selector("modeControlChanged:"), forControlEvents: UIControlEvents.ValueChanged)
             //set tag to indicate digital pin number
             cell.modeControl.tag = i
             
-            cell.digitalControl = cell.viewWithTag(105) as UISegmentedControl
+            cell.digitalControl = cell.viewWithTag(105) as! UISegmentedControl
             cell.digitalControl.addTarget(self, action: Selector("digitalControlChanged:"), forControlEvents: UIControlEvents.ValueChanged)
             //set tag to indicate digital pin number
             cell.digitalControl.tag = i
             
-            cell.valueSlider = cell.viewWithTag(106) as UISlider
+            cell.valueSlider = cell.viewWithTag(106) as! UISlider
             cell.valueSlider.addTarget(self, action: Selector("valueControlChanged:"), forControlEvents: UIControlEvents.ValueChanged)
             //set tag to indicate digital pin number
             cell.valueSlider.tag = i
@@ -287,7 +287,7 @@ class PinIOViewController : UIViewController, UITableViewDataSource, UITableView
         //Enable analog read for a pin
         
         //Enable by pin
-        var data0:UInt8 = 0xc0 + pin          //start analog reporting for pin (192 + pin#)
+        var data0:UInt8 = 0xc0 + UInt8(pin)          //start analog reporting for pin (192 + pin#)
         var data1:UInt8 = 0    //Enable
         if enabled {data1 = 1}
         
@@ -568,14 +568,14 @@ class PinIOViewController : UIViewController, UITableViewDataSource, UITableView
         
         var data = [UInt8](count: 20, repeatedValue: 0)
         var buf = [UInt8](count: 512, repeatedValue: 0)  //static only works on classes & structs in swift
-        var length:Int = 0                             //again, was static
+        var length:Int = 0                               //again, was static
         var dataLength:Int = newData.length
         
         newData.getBytes(&data, length: dataLength)
         
         if (dataLength < 20){
             
-            memcpy(&buf, data, UInt(dataLength))
+            memcpy(&buf, data, Int(dataLength))
             //        memcpy(&buf[length], data, dataLength)
             
             length += dataLength
@@ -659,7 +659,7 @@ class PinIOViewController : UIViewController, UITableViewDataSource, UITableView
     
         //scroll output to bottom
         if (debugConsole!.hidden == false) {
-            let range = NSMakeRange(countElements(debugConsole!.text), 0)
+            let range = NSMakeRange(count(debugConsole!.text), 0)
             debugConsole!.scrollRangeToVisible(range)
             
             debugConsole!.scrollEnabled = false
@@ -765,7 +765,6 @@ class PinIOViewController : UIViewController, UITableViewDataSource, UITableView
         if (cell == nil){
             NSLog("-------> making a placeholder cell")
             cell = PinCell()
-            
             var test: Void = UITextField.initialize()
         }
         
@@ -870,7 +869,7 @@ class PinIOViewController : UIViewController, UITableViewDataSource, UITableView
                 break
             }
             if aView?.superview is UITableViewCell {
-                let theCell = aView?.superview as UITableViewCell
+                let theCell = aView?.superview as! UITableViewCell
                 indexPath = pinTable?.indexPathForCell(theCell)
             }
             else {

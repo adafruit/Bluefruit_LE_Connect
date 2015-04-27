@@ -253,7 +253,7 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
             nibName = "ControllerViewController_iPad"
         }
         
-        self.init(nibName: nibName, bundle: NSBundle.mainBundle())
+        self.init(nibName: nibName as String, bundle: NSBundle.mainBundle())
         
         self.delegate = aDelegate
         self.title = "Controller"
@@ -558,9 +558,9 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
     func newValueCell(prefixString:String!)->SensorValueCell {
         
         let cellData = NSKeyedArchiver.archivedDataWithRootObject(self.valueCell)
-        let cell:SensorValueCell = NSKeyedUnarchiver.unarchiveObjectWithData(cellData) as SensorValueCell
+        let cell:SensorValueCell = NSKeyedUnarchiver.unarchiveObjectWithData(cellData) as! SensorValueCell
         cell.selectionStyle = UITableViewCellSelectionStyle.None
-        cell.valueLabel = cell.viewWithTag(100) as UILabel
+        cell.valueLabel = cell.viewWithTag(100) as! UILabel
 //        let cell = SensorValueCell()
         
         cell.prefixString = prefixString
@@ -609,7 +609,7 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
     
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
         
-        let loc = locations.last as CLLocation
+        let loc = locations.last as! CLLocation
         
         let eventDate = loc.timestamp
         let howRecent = eventDate.timeIntervalSinceNow
@@ -661,7 +661,7 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
             sensorArray[idx].valueCells[3].updateValue(wv)
         }
         
-        appendCRC(data)
+        appendCRCmutable(data)
         
         sensorArray[idx].data = data
         
@@ -983,7 +983,7 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     
-    func appendCRC(data:NSMutableData) {
+    func appendCRCmutable(data:NSMutableData) {
         
         //append crc
         var len = data.length
@@ -1009,7 +1009,7 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
         
         var mData = NSMutableData(length: 0)
         mData!.appendData(data)
-        appendCRC(mData!)
+        appendCRCmutable(mData!)
         return mData!
         
     }
@@ -1017,7 +1017,7 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
     
     //Color Picker
     
-    func sendColor(red:Byte, green:Byte, blue:Byte) {
+    func sendColor(red:UInt8, green:UInt8, blue:UInt8) {
         
         let pfx = NSString(string: colorPrefix)
         var rv = red
@@ -1030,7 +1030,7 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
         data.appendBytes(&gv, length: 1)
         data.appendBytes(&bv, length: 1)
         
-        appendCRC(data)
+        appendCRCmutable(data)
         
         delegate?.sendData(data)
         

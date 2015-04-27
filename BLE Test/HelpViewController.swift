@@ -30,9 +30,9 @@ class HelpViewController : UIViewController {
     }
     
     
-    override init() {
-        super.init()
-    }
+//    override init() {
+//        super.init()
+//    }
     
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
@@ -57,7 +57,7 @@ class HelpViewController : UIViewController {
         }
         
         //Set the app version # in the Help/Info view
-        let versionString: String = "v" + ((NSBundle.mainBundle().infoDictionary)?["CFBundleShortVersionString"] as String!)
+        let versionString: String = "v" + ((NSBundle.mainBundle().infoDictionary)?["CFBundleShortVersionString"] as! String!)
         
         //        let bundleVersionString: String =  "b" + ((NSBundle.mainBundle().infoDictionary)?["CFBundleVersion"] as String!)  // Build number
 //        versionLabel?.text =  versionString + " " + bundleVersionString

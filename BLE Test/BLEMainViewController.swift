@@ -179,7 +179,7 @@ class BLEMainViewController : UIViewController, UINavigationControllerDelegate, 
         
         //add info bar button to mode controllers
         let archivedData = NSKeyedArchiver.archivedDataWithRootObject(infoButton)
-        let buttonCopy = NSKeyedUnarchiver.unarchiveObjectWithData(archivedData) as UIButton
+        let buttonCopy = NSKeyedUnarchiver.unarchiveObjectWithData(archivedData) as! UIButton
         buttonCopy.addTarget(self, action: Selector("showInfo:"), forControlEvents: UIControlEvents.TouchUpInside)
         infoBarButton = UIBarButtonItem(customView: buttonCopy)
         deviceListViewController = DeviceListViewController(aDelegate: self)
@@ -762,7 +762,7 @@ class BLEMainViewController : UIViewController, UINavigationControllerDelegate, 
         }
         
         //Display error alert
-        let alert = UIAlertView(title: "Error", message: error, delegate: nil, cancelButtonTitle: "OK")
+        let alert = UIAlertView(title: "Error", message: error as String, delegate: nil, cancelButtonTitle: "OK")
         alert.show()
     }
     

@@ -169,7 +169,7 @@ class BLEPeripheral: NSObject, CBPeripheralDelegate {
         //        println("\(self.classForCoder.description()) didDiscoverServices")
         
         
-        let services = peripheral.services as [CBService]
+        let services = peripheral.services as! [CBService]
         
         for s in services {
             
@@ -220,7 +220,7 @@ class BLEPeripheral: NSObject, CBPeripheralDelegate {
         // UART mode
         if delegate.connectionMode == ConnectionMode.UART || delegate.connectionMode == ConnectionMode.PinIO || delegate.connectionMode == ConnectionMode.Controller {
             
-            for c in (service.characteristics as [CBCharacteristic]) {
+            for c in (service.characteristics as! [CBCharacteristic]) {
                 
                 switch c.UUID {
                 case rxCharacteristicUUID():         //"6e400003-b5a3-f393-e0a9-e50e24dcca9e"
@@ -249,7 +249,7 @@ class BLEPeripheral: NSObject, CBPeripheralDelegate {
         // Info mode
         else if delegate.connectionMode == ConnectionMode.Info {
             
-            for c in (service.characteristics as [CBCharacteristic]) {
+            for c in (service.characteristics as! [CBCharacteristic]) {
                 
                 //Read readable characteristic values
                 if (c.properties.rawValue & CBCharacteristicProperties.Read.rawValue) != 0 {
@@ -276,7 +276,7 @@ class BLEPeripheral: NSObject, CBPeripheralDelegate {
         else {
             if characteristic.descriptors.count != 0 {
                 for d in characteristic.descriptors {
-                    let desc = d as CBDescriptor
+                    let desc = d as! CBDescriptor
                     printLog(self, "didDiscoverDescriptorsForCharacteristic", "\(desc.description)")
                     
 //                    currentPeripheral.readValueForDescriptor(desc)
@@ -290,7 +290,7 @@ class BLEPeripheral: NSObject, CBPeripheralDelegate {
         var allCharacteristics:[CBCharacteristic] = []
         for s in knownServices {
             for c in s.characteristics {
-                allCharacteristics.append(c as CBCharacteristic)
+                allCharacteristics.append(c as! CBCharacteristic)
             }
         }
         for idx in 0...(allCharacteristics.count-1) {
@@ -383,7 +383,7 @@ class BLEPeripheral: NSObject, CBPeripheralDelegate {
         //            currentPeripheral.discoverIncludedServices(nil, forService: service)
         //        }
         
-        for s in (service.includedServices as [CBService]) {
+        for s in (service.includedServices as! [CBService]) {
             
             printLog(self, "didDiscoverIncludedServicesForService", "\(s.description)")
         }

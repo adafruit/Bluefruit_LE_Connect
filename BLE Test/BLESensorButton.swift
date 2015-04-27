@@ -10,21 +10,24 @@ import UIKit
 
 class BLESensorButton: UIButton {
 
-    override init() {
-        dimmed = false
-        super.init()
-        self.customizeButton()
-    }
+//    override init() {
+//        dimmed = false
+//        super.init()
+//        self.customizeButton()
+//    }
     
     override init(frame: CGRect) {
         dimmed = false
         super.init(frame: frame)
+        self.customizeButton()
     }
 
     required init(coder aDecoder: NSCoder) {
         dimmed = false
         super.init(coder: aDecoder)
+        self.customizeButton()
     }
+    
     
     let offColor = bleBlueColor
     let onColor = UIColor.whiteColor()

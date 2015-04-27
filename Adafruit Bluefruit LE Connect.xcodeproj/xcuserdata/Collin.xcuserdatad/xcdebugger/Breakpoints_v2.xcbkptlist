@@ -136,6 +136,7 @@
                   continueAfterRunningActions = "No"
                   symbolName = "BluetoothLE_Test.BLEMainViewController.connectPeripheral (BluetoothLE_Test.BLEMainViewController)(ObjectiveC.CBPeripheral, mode : BluetoothLE_Test.ConnectionMode) -&gt; ()"
                   moduleName = "BluetoothLE Test"
+                  usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Volumes/Boat/Xcode%20Projects/Bluefruit%20Connect/BLE%20Test/BLEMainViewController.swift"
                   timestampString = "436404065.048664"
                   startingColumnNumber = "9223372036854775807"
@@ -150,6 +151,7 @@
                   continueAfterRunningActions = "No"
                   symbolName = "protocol witness for BluetoothLE_Test.DeviceListViewControllerDelegate.connectPeripheral &lt;A : BluetoothLE_Test.DeviceListViewControllerDelegate&gt;(BluetoothLE_Test.DeviceListViewControllerDelegate.Self)(ObjectiveC.CBPeripheral, mode : BluetoothLE_Test.ConnectionMode) -&gt; () in conformance BluetoothLE_Test.BLEMainViewController : BluetoothLE_Test.DeviceListViewControllerDelegate"
                   moduleName = "BluetoothLE Test"
+                  usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Volumes/Boat/Xcode%20Projects/Bluefruit%20Connect/BLE%20Test/BLEMainViewController.swift"
                   timestampString = "436404065.048927"
                   startingColumnNumber = "9223372036854775807"
@@ -230,6 +232,7 @@
                   continueAfterRunningActions = "No"
                   symbolName = "BluetoothLE_Test.BLEMainViewController.connectionFinalized (BluetoothLE_Test.BLEMainViewController)() -&gt; ()"
                   moduleName = "BluetoothLE Test"
+                  usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Volumes/Boat/Xcode%20Projects/Bluefruit%20Connect/BLE%20Test/BLEMainViewController.swift"
                   timestampString = "438685442.535406"
                   startingColumnNumber = "9223372036854775807"
@@ -244,6 +247,7 @@
                   continueAfterRunningActions = "No"
                   symbolName = "protocol witness for BluetoothLE_Test.BLEPeripheralDelegate.connectionFinalized &lt;A : BluetoothLE_Test.BLEPeripheralDelegate&gt;(inout BluetoothLE_Test.BLEPeripheralDelegate.Self)() -&gt; () in conformance BluetoothLE_Test.BLEMainViewController : BluetoothLE_Test.BLEPeripheralDelegate"
                   moduleName = "BluetoothLE Test"
+                  usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Volumes/Boat/Xcode%20Projects/Bluefruit%20Connect/BLE%20Test/BLEMainViewController.swift"
                   timestampString = "438685442.535595"
                   startingColumnNumber = "9223372036854775807"
@@ -253,22 +257,6 @@
                   offsetFromSymbolStart = "20">
                </Location>
             </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BLE Test/BLESensorButton.swift"
-            timestampString = "444655275.077694"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "16"
-            endingLineNumber = "16"
-            landmarkName = "init()"
-            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

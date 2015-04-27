@@ -44,7 +44,7 @@ class DeviceListViewController : UIViewController, UITableViewDelegate, UITableV
             nibName = "DeviceListViewController_iPad"
         }
         
-        self.init(nibName: nibName, bundle: NSBundle.mainBundle())
+        self.init(nibName: nibName as String, bundle: NSBundle.mainBundle())
         
         self.delegate = aDelegate
         self.title = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleDisplayName") as? String
@@ -91,7 +91,7 @@ class DeviceListViewController : UIViewController, UITableViewDelegate, UITableV
         }
         
         //if same button is tapped as previous, close the cell
-        let senderCell = tableView.cellForRowAtIndexPath(indexPath) as DeviceCell
+        let senderCell = tableView.cellForRowAtIndexPath(indexPath) as! DeviceCell
         
         animateCellSelection(tableView.cellForRowAtIndexPath(indexPath)!)
         
@@ -284,18 +284,18 @@ class DeviceListViewController : UIViewController, UITableViewDelegate, UITableV
             
             //Create Device Cell from NIB
             let cellData = NSKeyedArchiver.archivedDataWithRootObject(deviceCell)
-            let cell:DeviceCell = NSKeyedUnarchiver.unarchiveObjectWithData(cellData) as DeviceCell
+            let cell:DeviceCell = NSKeyedUnarchiver.unarchiveObjectWithData(cellData) as! DeviceCell
             
             //Assign properties via view tags set in IB
-            cell.nameLabel = cell.viewWithTag(100) as UILabel
-            cell.rssiLabel = cell.viewWithTag(101) as UILabel
-            cell.connectButton = cell.viewWithTag(102) as UIButton
+            cell.nameLabel = cell.viewWithTag(100) as! UILabel
+            cell.rssiLabel = cell.viewWithTag(101) as! UILabel
+            cell.connectButton = cell.viewWithTag(102) as! UIButton
             cell.connectButton.addTarget(self, action: Selector("connectButtonTapped:"), forControlEvents: UIControlEvents.TouchUpInside)
             cell.connectButton.layer.cornerRadius = 4.0
-            cell.toggleButton = cell.viewWithTag(103) as UIButton
+            cell.toggleButton = cell.viewWithTag(103) as! UIButton
             cell.toggleButton.addTarget(self, action: Selector("cellButtonTapped:"), forControlEvents: UIControlEvents.TouchUpInside)
-            cell.signalImageView = cell.viewWithTag(104) as UIImageView
-            cell.uartCapableLabel = cell.viewWithTag(105) as UILabel
+            cell.signalImageView = cell.viewWithTag(104) as! UIImageView
+            cell.uartCapableLabel = cell.viewWithTag(105) as! UILabel
             //set tag to indicate digital pin number
             cell.toggleButton.tag = indexPath.section   // Button tags are now device indexes, not view references
             cell.connectButton.tag = indexPath.section
@@ -313,11 +313,11 @@ class DeviceListViewController : UIViewController, UITableViewDelegate, UITableV
         else {
             //Create Device Cell from NIB
             let cellData = NSKeyedArchiver.archivedDataWithRootObject(attributeCell)
-            let cell:AttributeCell = NSKeyedUnarchiver.unarchiveObjectWithData(cellData) as AttributeCell
+            let cell:AttributeCell = NSKeyedUnarchiver.unarchiveObjectWithData(cellData) as! AttributeCell
             
             //Assign properties via tags
-            cell.label = cell.viewWithTag(100) as UILabel
-            cell.button = cell.viewWithTag(103) as UIButton
+            cell.label = cell.viewWithTag(100) as! UILabel
+            cell.button = cell.viewWithTag(103) as! UIButton
             cell.button.addTarget(self, action: Selector("selectAttributeCell:"), forControlEvents: UIControlEvents.TouchUpInside)
             cell.dataStrings = devices[indexPath.section].advertisementArray[indexPath.row - 1]
             
@@ -411,7 +411,7 @@ class DeviceListViewController : UIViewController, UITableViewDelegate, UITableV
                 break
             }
             if aView?.superview is UITableViewCell {
-                let theCell = aView?.superview as UITableViewCell
+                let theCell = aView?.superview as! UITableViewCell
                 indexPath = tableView.indexPathForCell(theCell)
             }
             else {
@@ -429,7 +429,7 @@ class DeviceListViewController : UIViewController, UITableViewDelegate, UITableV
         
         let indexPath = indexPathForSubview(sender)
         
-        let cell = tableView.cellForRowAtIndexPath(indexPath) as AttributeCell
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as! AttributeCell
         
         tableView.selectRowAtIndexPath(indexPath, animated: true, scrollPosition: UITableViewScrollPosition.None)
         

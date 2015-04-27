@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-import dispatch
+import Dispatch
 
 
 protocol UARTViewControllerDelegate: HelpViewControllerDelegate {
@@ -73,7 +73,7 @@ class UARTViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
             nibName = "UARTViewController_iPad"
         }
         
-        self.init(nibName: nibName, bundle: NSBundle.mainBundle())
+        self.init(nibName: nibName as String, bundle: NSBundle.mainBundle())
         
         self.delegate = aDelegate
         self.title = "UART"
@@ -184,7 +184,7 @@ class UARTViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
             
             
             let newString = NSString(bytes: &data, length: dataLength, encoding: NSUTF8StringEncoding)
-            printLog(self, "updateConsoleWithIncomingData", newString!)
+            printLog(self, "updateConsoleWithIncomingData", newString! as String)
             
             //Check for notification command & send if needed
 //            if newString?.containsString(self.notificationCommandString) == true {
@@ -196,12 +196,12 @@ class UARTViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
             
             //Update ASCII text on background thread A
             let appendString = "" // or "\n"
-            let attrAString = NSAttributedString(string: (newString!+appendString), attributes: self.redFontDict)
+            let attrAString = NSAttributedString(string: ((newString! as String)+appendString), attributes: self.redFontDict as? [NSObject : AnyObject])
             let newAsciiText = NSMutableAttributedString(attributedString: self.consoleAsciiText!)
             newAsciiText.appendAttributedString(attrAString)
             
             let newHexString = newData.hexRepresentationWithSpaces(true)
-            let attrHString = NSAttributedString(string: newHexString, attributes: self.redFontDict)
+            let attrHString = NSAttributedString(string: newHexString as String, attributes: self.redFontDict as? [NSObject : AnyObject])
             let newHexText = NSMutableAttributedString(attributedString: self.consoleHexText!)
             newHexText.appendAttributedString(attrHString)
             
@@ -272,14 +272,14 @@ class UARTViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
         
         //Update ASCII text
         let appendString = "" // or "\n"
-        let attrString = NSAttributedString(string: (newString+appendString), attributes: blueFontDict )
+        let attrString = NSAttributedString(string: (newString as String) + appendString, attributes: blueFontDict as? [NSObject : AnyObject])
         let newAsciiText = NSMutableAttributedString(attributedString: self.consoleAsciiText!)
         newAsciiText.appendAttributedString(attrString)
         consoleAsciiText = newAsciiText
         
         
         //Update Hex text
-        let attrHexString = NSAttributedString(string: newString.toHexSpaceSeparated(), attributes: blueFontDict )
+        let attrHexString = NSAttributedString(string: newString.toHexSpaceSeparated() as String, attributes: blueFontDict as? [NSObject : AnyObject])
         let newHexText = NSMutableAttributedString(attributedString: self.consoleHexText!)
         newHexText.appendAttributedString(attrHexString)
         consoleHexText = newHexText

@@ -16,6 +16,7 @@ class BLEDevice {
     
     var peripheral: CBPeripheral!
     var isUART:Bool = false
+//    var isDFU:Bool = false
     private var advertisementData: [NSObject : AnyObject]
     var RSSI:NSNumber {
         didSet {
@@ -203,11 +204,14 @@ class BLEDevice {
         }
         self.name = nameString
         
-        //Check for UART service
+        //Check for UART & DFU services
         for id in completServiceUUIDs {
             if uartServiceUUID().equalsString(id, caseSensitive: false, omitDashes: true) {
                 isUART = true
             }
+//            else if dfuServiceUUID().equalsString(id, caseSensitive: false, omitDashes: true) {
+//                isDFU = true
+//            }
         }
         
     }

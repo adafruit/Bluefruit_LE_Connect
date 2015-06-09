@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UpdateDialogViewController">
+            <connections>
+                <outlet property="dialogView" destination="Yam-X0-5BY" id="Y17-EB-ovr"/>
+                <outlet property="progressLabel" destination="ZvS-hj-Mbl" id="jx3-VL-gps"/>
+                <outlet property="progressView" destination="IDt-Ki-1lo" id="Ewg-rY-qpD"/>
+                <outlet property="titleLabel" destination="DPa-t4-ZqZ" id="9Vn-Wo-aCQ"/>
+                <outlet property="view" destination="Yav-Of-HwL" id="aBh-eZ-eGr"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view opaque="NO" contentMode="scaleToFill" id="Yav-Of-HwL">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yam-X0-5BY">
+                    <rect key="frame" x="16" y="254" width="568" height="93"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Updating..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DPa-t4-ZqZ">
+                            <rect key="frame" x="8" y="8" width="528" height="18"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IDt-Ki-1lo">
+                            <rect key="frame" x="8" y="46" width="552" height="2"/>
+                        </progressView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0%" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZvS-hj-Mbl">
+                            <rect key="frame" x="537" y="68" width="23" height="17"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kqn-7z-MKv">
+                            <rect key="frame" x="512" y="2" width="48" height="30"/>
+                            <state key="normal" title="Cancel">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="onClickCancel:" destination="-1" eventType="touchUpInside" id="yow-2p-6oG"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="ZvS-hj-Mbl" firstAttribute="trailing" secondItem="Yam-X0-5BY" secondAttribute="trailingMargin" id="6cn-Ov-FYo"/>
+                        <constraint firstItem="ZvS-hj-Mbl" firstAttribute="top" secondItem="IDt-Ki-1lo" secondAttribute="bottom" constant="20" id="IXn-3y-Gdj"/>
+                        <constraint firstItem="IDt-Ki-1lo" firstAttribute="trailing" secondItem="Yam-X0-5BY" secondAttribute="trailingMargin" id="RGP-Df-wZe"/>
+                        <constraint firstItem="DPa-t4-ZqZ" firstAttribute="top" secondItem="Yam-X0-5BY" secondAttribute="topMargin" id="VtW-SB-x29"/>
+                        <constraint firstAttribute="bottomMargin" secondItem="ZvS-hj-Mbl" secondAttribute="bottom" id="am2-4G-uEY"/>
+                        <constraint firstItem="IDt-Ki-1lo" firstAttribute="leading" secondItem="Yam-X0-5BY" secondAttribute="leadingMargin" id="blH-Bj-kEn"/>
+                        <constraint firstItem="Kqn-7z-MKv" firstAttribute="baseline" secondItem="DPa-t4-ZqZ" secondAttribute="baseline" id="kVg-6m-eaN"/>
+                        <constraint firstItem="DPa-t4-ZqZ" firstAttribute="leading" secondItem="Yam-X0-5BY" secondAttribute="leadingMargin" id="kWE-OU-hJC"/>
+                        <constraint firstItem="Kqn-7z-MKv" firstAttribute="leading" secondItem="DPa-t4-ZqZ" secondAttribute="trailing" constant="-24" id="oxp-y5-9eX"/>
+                        <constraint firstItem="Kqn-7z-MKv" firstAttribute="trailing" secondItem="Yam-X0-5BY" secondAttribute="trailingMargin" id="vhi-LB-wh8"/>
+                        <constraint firstItem="IDt-Ki-1lo" firstAttribute="top" secondItem="DPa-t4-ZqZ" secondAttribute="bottom" constant="20" id="w1k-Tj-z5X"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="Yam-X0-5BY" firstAttribute="leading" secondItem="Yav-Of-HwL" secondAttribute="leadingMargin" constant="8" id="g6W-LP-ZSK"/>
+                <constraint firstAttribute="trailingMargin" secondItem="Yam-X0-5BY" secondAttribute="trailing" constant="8" id="hub-dn-TWo"/>
+                <constraint firstAttribute="centerY" secondItem="Yam-X0-5BY" secondAttribute="centerY" id="je8-qD-Hjb"/>
+            </constraints>
+            <point key="canvasLocation" x="196" y="722"/>
+        </view>
+    </objects>
+</document>

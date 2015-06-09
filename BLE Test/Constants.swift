@@ -151,47 +151,103 @@ func dfuServiceUUID()->CBUUID{
 }
 
 
-let knownUUIDs:[CBUUID] =  [
-    uartServiceUUID(),
-    txCharacteristicUUID(),
-    rxCharacteristicUUID(),
-    deviceInformationServiceUUID(),
-    hardwareRevisionStringUUID(),
-    manufacturerNameStringUUID(),
-    modelNumberStringUUID(),
-    firmwareRevisionStringUUID(),
-    softwareRevisionStringUUID(),
-    serialNumberStringUUID(),
-    dfuServiceUUID(),
-    CBUUID(string: CBUUIDCharacteristicAggregateFormatString),
-    CBUUID(string: CBUUIDCharacteristicExtendedPropertiesString),
-    CBUUID(string: CBUUIDCharacteristicFormatString),
-    CBUUID(string: CBUUIDCharacteristicUserDescriptionString),
-    CBUUID(string: CBUUIDClientCharacteristicConfigurationString),
-    CBUUID(string: CBUUIDServerCharacteristicConfigurationString)
-]
+func modelNumberCharacteristicUUID()->CBUUID{
+    
+    return CBUUID(string: "00002A24-0000-1000-8000-00805F9B34FB")
+}
 
 
+func manufacturerNameCharacteristicUUID() ->CBUUID {
+    
+    return CBUUID(string: "00002A29-0000-1000-8000-00805F9B34FB")
+}
 
-let knownUUIDNames:[String] =  [
-    "UART",
-    "TXD",
-    "RXD",
-    "Device Information",
-    "Hardware Revision",
-    "Manufacturer Name",
-    "Model Number",
-    "Firmware Revision",
-    "Software Revision",
-    "Serial Number",
-    "DFU Service",
-    "Characteristic Aggregate Format",
-    "Characteristic Extended Properties",
-    "Characteristic Format",
-    "Characteristic User Description",
-    "Client Characteristic Configuration",
-    "Server Characteristic Configuration",
-]
+
+func softwareRevisionCharacteristicUUID() ->CBUUID {
+    
+    return CBUUID(string: "00002A28-0000-1000-8000-00805F9B34FB")
+}
+
+
+func firmwareRevisionCharacteristicUUID() ->CBUUID {
+    
+    return CBUUID(string: "00002A26-0000-1000-8000-00805F9B34FB")
+}
+
+
+func dfuControlPointCharacteristicUUID() ->CBUUID {
+    
+    return CBUUID(string: "00001531-1212-EFDE-1523-785FEABCD123")
+}
+
+
+func dfuPacketCharacteristicUUID() ->CBUUID {
+    
+    return CBUUID(string: "00001532-1212-EFDE-1523-785FEABCD123")
+}
+
+
+func dfuVersionCharacteritsicUUID() ->CBUUID {
+    
+    return CBUUID(string: "00001534-1212-EFDE-1523-785FEABCD123")
+}
+
+
+//let knownUUIDs:[CBUUID] =  [
+//    uartServiceUUID(),
+//    txCharacteristicUUID(),
+//    rxCharacteristicUUID(),
+//    deviceInformationServiceUUID(),
+//    hardwareRevisionStringUUID(),
+//    manufacturerNameStringUUID(),
+//    modelNumberStringUUID(),
+//    firmwareRevisionStringUUID(),
+//    softwareRevisionStringUUID(),
+//    serialNumberStringUUID(),
+//    dfuServiceUUID(),
+//    modelNumberCharacteristicUUID(),
+//    manufacturerNameCharacteristicUUID(),
+//    softwareRevisionCharacteristicUUID(),
+//    firmwareRevisionCharacteristicUUID(),
+//    dfuControlPointCharacteristicUUID(),
+//    dfuPacketCharacteristicUUID(),
+//    dfuVersionCharacteritsicUUID(),
+//    CBUUID(string: CBUUIDCharacteristicAggregateFormatString),
+//    CBUUID(string: CBUUIDCharacteristicExtendedPropertiesString),
+//    CBUUID(string: CBUUIDCharacteristicFormatString),
+//    CBUUID(string: CBUUIDCharacteristicUserDescriptionString),
+//    CBUUID(string: CBUUIDClientCharacteristicConfigurationString),
+//    CBUUID(string: CBUUIDServerCharacteristicConfigurationString)
+//]
+//
+//
+//
+//let knownUUIDNames:[String] =  [
+//    "UART",
+//    "TXD",
+//    "RXD",
+//    "Device Information",
+//    "Hardware Revision",
+//    "Manufacturer Name",
+//    "Model Number",
+//    "Firmware Revision",
+//    "Software Revision",
+//    "Serial Number",
+//    "DFU Service",
+//    "Model Number",
+//    "Manufacturer Name",
+//    "Software Revision",
+//    "Firmware Revision",
+//    "DFU Control Point",
+//    "DFU Packet",
+//    "DFU Version",
+//    "Characteristic Aggregate Format",
+//    "Characteristic Extended Properties",
+//    "Characteristic Format",
+//    "Characteristic User Description",
+//    "Client Characteristic Configuration",
+//    "Server Characteristic Configuration",
+//]
 
 
 func UUIDsAreEqual(firstID:CBUUID, secondID:CBUUID)->Bool {

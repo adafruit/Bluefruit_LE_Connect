@@ -23,6 +23,7 @@ class DeviceInfoViewController: UIViewController, UITableViewDelegate, UITableVi
 //    @IBOutlet var characteristicCell:UITableViewCell!
     let serviceCellIdentifier = "serviceCell"
     let characteristicCellIdentifier = "characteristicCell"
+    let defaultServiceToggleState = true
     var peripheral:CBPeripheral!
     var gattDict:Dictionary<String,String>? //known UUID reference
     var serviceToggle:[Bool]!    //individual ref for service is open in table
@@ -51,7 +52,7 @@ class DeviceInfoViewController: UIViewController, UITableViewDelegate, UITableVi
             }
         }
         
-        self.serviceToggle = [Bool](count: peripheral.services.count, repeatedValue: false)
+        self.serviceToggle = [Bool](count: peripheral.services.count, repeatedValue: defaultServiceToggleState)
         
     }
     
@@ -110,6 +111,7 @@ class DeviceInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         var title = ""
         var detailTitle = ""
         var selectable = false
+//        var bkgColor = UIColor.whiteColor()
         
         //Service row
         if indexPath.row == 0 {
@@ -126,8 +128,16 @@ class DeviceInfoViewController: UIViewController, UITableViewDelegate, UITableVi
 //            let dsctr = chstc.descriptors[0] as CBDescriptor
 //            let uuidString = chstc.UUID.UUIDString
             title = displayNameforUUID(chstc.UUID)
-            if chstc.value != nil { detailTitle = chstc.value.stringRepresentation() }
+            if chstc.value != nil {
+                detailTitle = chstc.value.stringRepresentation()
+                
+                //Debugging unknown chars
+//                if detailTitle.rangeOfString("�") != nil {
+//                    println("-------------> detailTitle == " + detailTitle + " contains unknown char, hex value == " + chstc.value.hexRepresentation() + " description == " + chstc.value.description)
+//                }
+            }
             else { detailTitle = "Characteristic" }
+//            bkgColor = UIColor(white: 0.9, alpha: 1.0)
         }
         
         var cell = tableView.dequeueReusableCellWithIdentifier(identifier) as? UITableViewCell
@@ -142,6 +152,7 @@ class DeviceInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         cell?.detailTextLabel?.text = detailTitle
         cell?.selectionStyle = UITableViewCellSelectionStyle.None
         cell?.userInteractionEnabled = selectable
+//        cell?.backgroundColor = bkgColor
         return cell!
     }
     
@@ -249,24 +260,8 @@ class DeviceInfoViewController: UIViewController, UITableViewDelegate, UITableVi
     func displayNameforUUID(uuid:CBUUID)->String {
         
         let uuidString = uuid.UUIDString
-        //Check for matching name
         
         //Find description for UUID
-        
-        //Old method
-//        var name:String?
-//        for idx in 0...(knownUUIDs.count-1) {
-//            if UUIDsAreEqual(uuid, knownUUIDs[idx]) {
-//                name = knownUUIDNames[idx]
-//                break
-//            }
-//        }
-        //use UUID if no name is found
-//        if name == nil {
-//            name = uuid.UUIDString
-//        }
-        
-        //New method
         if let name = gattDict?[uuidString] {
             return name
         }

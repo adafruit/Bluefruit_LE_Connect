@@ -266,5 +266,19 @@
 	<string>Software Revision</string>
 	<key>00001530-1212-EFDE-1523-785FEABCD123</key>
 	<string>DFU Service</string>
+	<key>00002A24-0000-1000-8000-00805F9B34FB</key>
+	<string>Model Number</string>
+	<key>00002A29-0000-1000-8000-00805F9B34FB</key>
+	<string>Manufacturer Name</string>
+	<key>00002A28-0000-1000-8000-00805F9B34FB</key>
+	<string>Software revision</string>
+	<key>00002A26-0000-1000-8000-00805F9B34FB</key>
+	<string>Firmware Revision</string>
+	<key>00001531-1212-EFDE-1523-785FEABCD123</key>
+	<string>DFU Control Point</string>
+	<key>00001532-1212-EFDE-1523-785FEABCD123</key>
+	<string>DFU Packet</string>
+	<key>00001534-1212-EFDE-1523-785FEABCD123</key>
+	<string>DFU Version</string>
 </dict>
 </plist>

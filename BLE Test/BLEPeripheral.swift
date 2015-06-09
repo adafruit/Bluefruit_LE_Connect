@@ -29,7 +29,6 @@ class BLEPeripheral: NSObject, CBPeripheralDelegate {
     var txCharacteristic:CBCharacteristic?
     var knownServices:[CBService] = []
     
-    
     //MARK: Utility methods
     
     init(peripheral:CBPeripheral, delegate:BLEPeripheralDelegate){
@@ -39,7 +38,6 @@ class BLEPeripheral: NSObject, CBPeripheralDelegate {
         self.currentPeripheral = peripheral
         self.currentPeripheral.delegate = self
         self.delegate = delegate
-        
     }
     
     
@@ -59,7 +57,8 @@ class BLEPeripheral: NSObject, CBPeripheralDelegate {
         switch withMode.rawValue {
         case ConnectionMode.UART.rawValue,
              ConnectionMode.PinIO.rawValue,
-             ConnectionMode.Controller.rawValue:
+             ConnectionMode.Controller.rawValue,
+            ConnectionMode.DFU.rawValue:
             currentPeripheral.discoverServices([uartServiceUUID()])
         case ConnectionMode.Info.rawValue:
             currentPeripheral.discoverServices(nil)
@@ -178,25 +177,29 @@ class BLEPeripheral: NSObject, CBPeripheralDelegate {
                 self.peripheral(peripheral, didDiscoverCharacteristicsForService: s, error: nil)    // If characteristics have already been discovered, do not check again
             }
                 
-                //UART or Pin I/O mode
-            else if delegate.connectionMode == ConnectionMode.UART || delegate.connectionMode == ConnectionMode.PinIO || delegate.connectionMode == ConnectionMode.Controller {
+            //UART, Pin I/O, or Controller mode
+            else if delegate.connectionMode == ConnectionMode.UART ||
+                    delegate.connectionMode == ConnectionMode.PinIO ||
+                    delegate.connectionMode == ConnectionMode.Controller ||
+                    delegate.connectionMode == ConnectionMode.DFU {
                 if UUIDsAreEqual(s.UUID, uartServiceUUID()) {
                     uartService = s
                     peripheral.discoverCharacteristics([txCharacteristicUUID(), rxCharacteristicUUID()], forService: uartService)
                 }
             }
                 
-                // Info mode
+            // Info mode
             else if delegate.connectionMode == ConnectionMode.Info {
                 knownServices.append(s)
                 peripheral.discoverCharacteristics(nil, forService: s)
             }
             
-            // Device Information
-            //            else if UUIDsAreEqual(s.UUID, BLEPeripheral.deviceInformationServiceUUID()){
-            //                println("\(self.classForCoder.description()) didDiscoverServices : Device Information")
-            //                peripheral.discoverCharacteristics(nil, forService: s)
-            //            }
+            //DFU / Firmware Updater mode
+            else if delegate.connectionMode == ConnectionMode.DFU {
+                knownServices.append(s)
+                peripheral.discoverCharacteristics(nil, forService: s)
+            }
+            
         }
         
         printLog(self, "didDiscoverServices", "all top-level services discovered")
@@ -218,7 +221,10 @@ class BLEPeripheral: NSObject, CBPeripheralDelegate {
         printLog(self, "didDiscoverCharacteristicsForService", "\(service.description) with \(service.characteristics.count) characteristics")
         
         // UART mode
-        if delegate.connectionMode == ConnectionMode.UART || delegate.connectionMode == ConnectionMode.PinIO || delegate.connectionMode == ConnectionMode.Controller {
+        if  delegate.connectionMode == ConnectionMode.UART ||
+            delegate.connectionMode == ConnectionMode.PinIO ||
+            delegate.connectionMode == ConnectionMode.Controller ||
+            delegate.connectionMode == ConnectionMode.DFU {
             
             for c in (service.characteristics as! [CBCharacteristic]) {
                 

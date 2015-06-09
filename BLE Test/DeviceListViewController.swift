@@ -15,6 +15,7 @@ protocol DeviceListViewControllerDelegate: HelpViewControllerDelegate, UIAlertVi
     var connectionMode:ConnectionMode { get }
     var warningLabel:UILabel! { get }
     func connectPeripheral(peripheral:CBPeripheral, mode:ConnectionMode)
+    func launchDFU(peripheral:CBPeripheral)
     func stopScan()
     func startScan()
 }
@@ -161,6 +162,13 @@ class DeviceListViewController : UIViewController, UITableViewDelegate, UITableV
             self.connectInMode(ConnectionMode.Controller, peripheral: device.peripheral)
         }
         alertController.addAction(aaController)
+        
+        // DFU button
+        let aaUpdater = UIAlertAction(title: "Firmware Updater", style: UIAlertActionStyle.Default) { (aa:UIAlertAction!) -> Void in
+            delegate?.launchDFU(device.peripheral)
+        }
+        alertController.addAction(aaUpdater)
+        
         
         self.presentViewController(alertController, animated: true) { () -> Void in
             

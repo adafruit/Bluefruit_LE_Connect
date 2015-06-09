@@ -13,3 +13,6 @@
 #endif
 
 #import "ISColorWheel.h"
+#import "DFUViewController.h"
+#import "FirmwareUpdater.h"
+//#import "Utility.h"

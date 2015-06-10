@@ -154,11 +154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BLE Test/BLEMainViewController.swift"
-            timestampString = "453978346.887152"
+            timestampString = "455653022.512523"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "873"
-            endingLineNumber = "873"
+            startingLineNumber = "877"
+            endingLineNumber = "877"
             landmarkName = "connectionFinalized()"
             landmarkType = "5">
          </BreakpointContent>
@@ -170,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BLE Test/BLEMainViewController.swift"
-            timestampString = "453978346.887152"
+            timestampString = "455653022.512523"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "890"
-            endingLineNumber = "890"
+            startingLineNumber = "894"
+            endingLineNumber = "894"
             landmarkName = "launchDFU(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -346,11 +346,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BLE Test/BLEMainViewController.swift"
-            timestampString = "453978346.887152"
+            timestampString = "455653022.512523"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "721"
-            endingLineNumber = "721"
+            startingLineNumber = "725"
+            endingLineNumber = "725"
             landmarkName = "centralManager(_:didDisconnectPeripheral:error:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -394,11 +394,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BLE Test/BLEMainViewController.swift"
-            timestampString = "453978346.887152"
+            timestampString = "455653022.512523"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "897"
-            endingLineNumber = "897"
+            startingLineNumber = "901"
+            endingLineNumber = "901"
             landmarkName = "launchDFU(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -410,11 +410,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BLE Test/BLEMainViewController.swift"
-            timestampString = "453978346.887152"
+            timestampString = "455653022.512523"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "799"
-            endingLineNumber = "799"
+            startingLineNumber = "803"
+            endingLineNumber = "803"
             landmarkName = "dereferenceModeController()"
             landmarkType = "5">
          </BreakpointContent>

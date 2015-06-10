@@ -557,11 +557,15 @@ class BLEMainViewController : UIViewController, UINavigationControllerDelegate, 
     
     func pushViewController(vc:UIViewController) {
         
-        navController.pushViewController(vc, animated: true)
-        
         if currentAlertView != nil {
-            currentAlertView?.dismissViewControllerAnimated(true, completion: nil)
-            self.currentAlertView = nil
+            currentAlertView?.dismissViewControllerAnimated(false, completion: { () -> Void in
+                self.navController.pushViewController(vc, animated: true)
+                self.currentAlertView = nil
+            })
+        }
+            
+        else {
+            navController.pushViewController(vc, animated: true)
         }
         
     }

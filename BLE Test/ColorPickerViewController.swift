@@ -38,11 +38,14 @@ class ColorPickerViewController: UIViewController, UITextFieldDelegate, ISColorW
     @IBOutlet var wellVertConstraint:NSLayoutConstraint!    //34 for 3.5"
     @IBOutlet var wellHeightConstraint:NSLayoutConstraint!  //64 for 3.5"
     @IBOutlet var sendVertConstraint:NSLayoutConstraint!    //46 for 3.5"
+    @IBOutlet var brightnessSlider: UISlider!
+    @IBOutlet var sliderGradientView: GradientView!
+    
     var colorWheel:ISColorWheel!
     
     convenience init(aDelegate:ColorPickerViewControllerDelegate){
         
-        //Separate NIBs for iPhone 3.5", iPhone 4", & iPad
+        //Separate NIBs for iPhone & iPad
         
         var nibName:NSString
         
@@ -84,6 +87,13 @@ class ColorPickerViewController: UIViewController, UITextFieldDelegate, ISColorW
         wellView.layer.borderWidth = 1.0
         
         wheelView.backgroundColor = UIColor.clearColor()
+        
+        //customize brightness slider
+        let sliderTrackImage = UIImage(named: "clearPixel.png")
+        brightnessSlider.setMinimumTrackImage(sliderTrackImage, forState: UIControlState.Normal)
+        brightnessSlider.setMaximumTrackImage(sliderTrackImage, forState: UIControlState.Normal)
+        
+        sliderGradientView.endColor = wellView.backgroundColor!
         
         //adjust layout for 3.5" displays
         if (IS_IPHONE_4) {
@@ -240,7 +250,14 @@ class ColorPickerViewController: UIViewController, UITextFieldDelegate, ISColorW
         }
     }
     
+    
+    @IBAction func brightnessSliderChanged(sender: UISlider) {
+        
+        colorWheelDidChangeColor(colorWheel)
+        
+    }
 
+    
     @IBAction func sendColor() {
         
         //Send color bytes thru UART
@@ -249,7 +266,7 @@ class ColorPickerViewController: UIViewController, UITextFieldDelegate, ISColorW
         var g:CGFloat = 0.0
         var b:CGFloat = 0.0
         
-        colorWheel.currentColor().getRed(&r, green: &g, blue: &b, alpha: nil)
+        wellView.backgroundColor!.getRed(&r, green: &g, blue: &b, alpha: nil)
         
         delegate.sendColor((UInt8(255.0 * Float(r))), green: (UInt8(255.0 * Float(g))), blue: (UInt8(255.0 * Float(b))))
     }
@@ -257,17 +274,29 @@ class ColorPickerViewController: UIViewController, UITextFieldDelegate, ISColorW
     
     func colorWheelDidChangeColor(colorWheel:ISColorWheel) {
         
-        let color = colorWheel.currentColor()
+        let colorWheelColor = colorWheel.currentColor()
+        
+//        sliderTintView.backgroundColor = colorWheelColor
+        
+        sliderGradientView.endColor = colorWheelColor!
+        
+        let brightness = CGFloat(brightnessSlider.value)
+        var red:CGFloat = 0.0
+        var green:CGFloat = 0.0
+        var blue:CGFloat = 0.0
+        colorWheelColor.getRed(&red, green: &green, blue: &blue, alpha: nil)
+        red *= brightness; green *= brightness; blue *= brightness
+        let color = UIColor(red: red, green: green, blue: blue, alpha: 1.0)
         
         wellView.backgroundColor = color
         
-        var r:CGFloat = 0.0
-        var g:CGFloat = 0.0
-        var b:CGFloat = 0.0
-//        var a:UnsafeMutablePointer<CGFloat>
-        color.getRed(&r, green: &g, blue: &b, alpha: nil)
+//        var r:CGFloat = 0.0
+//        var g:CGFloat = 0.0
+//        var b:CGFloat = 0.0
+////        var a:UnsafeMutablePointer<CGFloat>
+//        color.getRed(&r, green: &g, blue: &b, alpha: nil)
         
-        valueLable.text = "R:\(Int(255.0 * Float(r)))  G:\(Int(255.0 * Float(g)))  B:\(Int(255.0 * Float(b)))"
+        valueLable.text = "R:\(Int(255.0 * Float(red)))  G:\(Int(255.0 * Float(green)))  B:\(Int(255.0 * Float(blue)))"
     
     }
 

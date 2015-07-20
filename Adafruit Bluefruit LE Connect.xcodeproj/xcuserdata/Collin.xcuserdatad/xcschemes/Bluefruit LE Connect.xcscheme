@@ -15,8 +15,22 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "F0A2C96516BBE44500F2FD12"
-               BuildableName = "BluetoothLE Test.app"
+               BuildableName = "Adafruit Bluefruit LE Connect.app"
                BlueprintName = "Adafruit Bluefruit LE Connect"
+               ReferencedContainer = "container:Adafruit Bluefruit LE Connect.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "F0CBE35A1B28C308009E0128"
+               BuildableName = "Adafruit Bluefruit LE Connect WatchKit App.app"
+               BlueprintName = "Adafruit Bluefruit LE Connect WatchKit App"
                ReferencedContainer = "container:Adafruit Bluefruit LE Connect.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -33,7 +47,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F0A2C96516BBE44500F2FD12"
-            BuildableName = "BluetoothLE Test.app"
+            BuildableName = "Adafruit Bluefruit LE Connect.app"
             BlueprintName = "Adafruit Bluefruit LE Connect"
             ReferencedContainer = "container:Adafruit Bluefruit LE Connect.xcodeproj">
          </BuildableReference>
@@ -48,11 +62,12 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F0A2C96516BBE44500F2FD12"
-            BuildableName = "BluetoothLE Test.app"
+            BuildableName = "Adafruit Bluefruit LE Connect.app"
             BlueprintName = "Adafruit Bluefruit LE Connect"
             ReferencedContainer = "container:Adafruit Bluefruit LE Connect.xcodeproj">
          </BuildableReference>
@@ -66,11 +81,12 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F0A2C96516BBE44500F2FD12"
-            BuildableName = "BluetoothLE Test.app"
+            BuildableName = "Adafruit Bluefruit LE Connect.app"
             BlueprintName = "Adafruit Bluefruit LE Connect"
             ReferencedContainer = "container:Adafruit Bluefruit LE Connect.xcodeproj">
          </BuildableReference>

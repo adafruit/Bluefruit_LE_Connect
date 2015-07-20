@@ -9,374 +9,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BLE Test/BLEPeripheral.swift"
-            timestampString = "452764151.086312"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "197"
-            endingLineNumber = "197"
-            landmarkName = "peripheral(_:didDiscoverServices:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BLE Test/BLEPeripheral.swift"
-            timestampString = "452756260.362047"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "184"
-            endingLineNumber = "184"
-            landmarkName = "peripheral(_:didDiscoverServices:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BLE Test/BLEMainViewController.swift"
-            timestampString = "453978346.887152"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "332"
-            endingLineNumber = "332"
-            landmarkName = "currentHelpViewController()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BLE Test/PeripheralDetailsViewController.m"
-            timestampString = "453847039.326537"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "254"
-            endingLineNumber = "254"
-            landmarkName = "-onFirmwareUpdatesAvailable:latestRelease:deviceInfoData:allReleases:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BLE Test/PeripheralDetailsViewController.m"
-            timestampString = "453847039.326537"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
-            landmarkName = "-viewWillAppear:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BLE Test/FirmwareUpdater.m"
-            timestampString = "453711875.182166"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "138"
-            endingLineNumber = "138"
-            landmarkName = "-connectToPeripheral:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BLE Test/FirmwareUpdater.m"
-            timestampString = "453712584.302086"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "135"
-            endingLineNumber = "135"
-            landmarkName = "-connectToPeripheral:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BLE Test/BLEMainViewController.swift"
-            timestampString = "453978346.887152"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "394"
-            endingLineNumber = "394"
-            landmarkName = "connectPeripheral(_:mode:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BLE Test/BLEMainViewController.swift"
-            timestampString = "453978346.887152"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "139"
-            endingLineNumber = "139"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BLE Test/BLEMainViewController.swift"
-            timestampString = "455653022.512523"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "877"
-            endingLineNumber = "877"
-            landmarkName = "connectionFinalized()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BLE Test/BLEMainViewController.swift"
-            timestampString = "455653022.512523"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "894"
-            endingLineNumber = "894"
-            landmarkName = "launchDFU(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BLE Test/PeripheralDetailsViewController.m"
-            timestampString = "453847039.326537"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
-            landmarkName = "-peripheralUnexpectedDisconnect"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BLE Test/FirmwareUpdater.m"
-            timestampString = "453807033.458026"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "197"
-            endingLineNumber = "197"
-            landmarkName = "-peripheral:didUpdateValueForCharacteristic:error:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BLE Test/BLEMainViewController.swift"
-            timestampString = "453978346.887152"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "380"
-            endingLineNumber = "380"
-            landmarkName = "connectPeripheral(_:mode:)"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "BluetoothLE_Test.BLEMainViewController.connectPeripheral (BluetoothLE_Test.BLEMainViewController)(ObjectiveC.CBPeripheral, mode : BluetoothLE_Test.ConnectionMode) -&gt; ()"
-                  moduleName = "BluetoothLE Test"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Volumes/Tab/Xcode%20Projects/Bluefruit_LE_Connect/BLE%20Test/BLEMainViewController.swift"
-                  timestampString = "453725572.685692"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "16">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "protocol witness for BluetoothLE_Test.DeviceListViewControllerDelegate.connectPeripheral &lt;A : BluetoothLE_Test.DeviceListViewControllerDelegate&gt;(BluetoothLE_Test.DeviceListViewControllerDelegate.Self)(ObjectiveC.CBPeripheral, mode : BluetoothLE_Test.ConnectionMode) -&gt; () in conformance BluetoothLE_Test.BLEMainViewController : BluetoothLE_Test.DeviceListViewControllerDelegate in BluetoothLE_Test"
-                  moduleName = "BluetoothLE Test"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Volumes/Tab/Xcode%20Projects/Bluefruit_LE_Connect/BLE%20Test/BLEMainViewController.swift"
-                  timestampString = "453725572.685843"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "388"
-                  endingLineNumber = "388"
-                  offsetFromSymbolStart = "16">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BLE Test/PeripheralDetailsViewController.m"
-            timestampString = "453847039.326537"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "261"
-            endingLineNumber = "261"
-            landmarkName = "-onFirmwareUpdatesAvailable:latestRelease:deviceInfoData:allReleases:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BLE Test/PeripheralDetailsViewController.m"
-            timestampString = "453847039.326537"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
-            landmarkName = "-viewDidLoad"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BLE Test/BLEMainViewController.swift"
-            timestampString = "453978346.887152"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "503"
-            endingLineNumber = "503"
-            landmarkName = "disconnect()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BLE Test/PeripheralDetailsViewController.m"
-            timestampString = "453847039.326537"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "136"
-            endingLineNumber = "136"
-            landmarkName = "-tableView:numberOfRowsInSection:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BLE Test/PeripheralDetailsViewController.m"
-            timestampString = "453967528.387451"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "365"
-            endingLineNumber = "365"
-            landmarkName = "-onUserFilesClick:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BLE Test/BLEMainViewController.swift"
-            timestampString = "455653022.512523"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "725"
-            endingLineNumber = "725"
-            landmarkName = "centralManager(_:didDisconnectPeripheral:error:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BLE Test/UpdateDialogViewController.m"
-            timestampString = "453798409.879612"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "238"
-            endingLineNumber = "238"
-            landmarkName = "-onReadDFUVersion:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "BLE Test/DeviceInfoViewController.swift"
             timestampString = "453975381.745396"
             startingColumnNumber = "9223372036854775807"
@@ -393,13 +25,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BLE Test/BLEMainViewController.swift"
-            timestampString = "455653022.512523"
+            filePath = "BLE Test/FirmwareUpdater.m"
+            timestampString = "456744379.155695"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "901"
-            endingLineNumber = "901"
-            landmarkName = "launchDFU(_:)"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
+            landmarkName = "+refreshSoftwareUpdatesDatabase"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -409,14 +41,78 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BLE Test/BLEMainViewController.swift"
-            timestampString = "455653022.512523"
+            filePath = "BLE Test/BLEAppDelegate.swift"
+            timestampString = "457172835.127891"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "803"
-            endingLineNumber = "803"
-            landmarkName = "dereferenceModeController()"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
+            landmarkName = "application(_:handleWatchKitExtensionRequest:reply:)"
             landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BLE Test/ControllerViewController.swift"
+            timestampString = "457317117.765811"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1043"
+            endingLineNumber = "1043"
+            landmarkName = "sendColor(_:green:blue:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BluetoothLE_Test.ControllerViewController.sendColor (BluetoothLE_Test.ControllerViewController)(Swift.UInt8, green : Swift.UInt8, blue : Swift.UInt8) -&gt; ()"
+                  moduleName = "BluetoothLE Test"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Tab/Xcode%20Projects/Bluefruit_LE_Connect/BLE%20Test/ControllerViewController.swift"
+                  timestampString = "456868246.08029"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1022"
+                  endingLineNumber = "1022"
+                  offsetFromSymbolStart = "32">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "protocol witness for BluetoothLE_Test.ColorPickerViewControllerDelegate.sendColor &lt;A : BluetoothLE_Test.ColorPickerViewControllerDelegate&gt;(BluetoothLE_Test.ColorPickerViewControllerDelegate.Self)(Swift.UInt8, green : Swift.UInt8, blue : Swift.UInt8) -&gt; () in conformance BluetoothLE_Test.ControllerViewController : BluetoothLE_Test.ColorPickerViewControllerDelegate in BluetoothLE_Test"
+                  moduleName = "BluetoothLE Test"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/Tab/Xcode%20Projects/Bluefruit_LE_Connect/BLE%20Test/ControllerViewController.swift"
+                  timestampString = "456868246.080495"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1020"
+                  endingLineNumber = "1020"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BluetoothLE Test WatchKit Extension/RootInterfaceController.swift"
+            timestampString = "457170299.667173"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "RootInterfaceController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

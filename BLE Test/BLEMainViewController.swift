@@ -25,7 +25,7 @@ protocol BLEMainViewControllerDelegate : Any {
 
 class BLEMainViewController : UIViewController, UINavigationControllerDelegate, HelpViewControllerDelegate, CBCentralManagerDelegate,
                               BLEPeripheralDelegate, UARTViewControllerDelegate, PinIOViewControllerDelegate,
-                              DeviceListViewControllerDelegate {
+DeviceListViewControllerDelegate {
     
     enum ConnectionStatus:Int {
         case Idle = 0
@@ -70,7 +70,7 @@ class BLEMainViewController : UIViewController, UINavigationControllerDelegate, 
     func centralManager()->CBCentralManager{
         
         return cm!;
-    
+        
     }
     
     
@@ -88,7 +88,7 @@ class BLEMainViewController : UIViewController, UINavigationControllerDelegate, 
         
         super.init(nibName: newNibName, bundle: NSBundle.mainBundle())
         
-//        println("init with NIB " + self.description)
+        //        println("init with NIB " + self.description)
         
     }
     
@@ -144,7 +144,7 @@ class BLEMainViewController : UIViewController, UINavigationControllerDelegate, 
         }
         
         //refresh updates for DFU
-        FirmwareUpdater.refreshSoftwareUpdatesDatabase()
+        //        FirmwareUpdater.refreshSoftwareUpdatesDatabase()
     }
     
     
@@ -158,11 +158,11 @@ class BLEMainViewController : UIViewController, UINavigationControllerDelegate, 
         
         
         //FOR SCREENSHOTS
-//        connectionMode = ConnectionMode.Info
-//        connectionStatus = ConnectionStatus.Connected
-//        deviceInfoViewController = DeviceInfoViewController(cbPeripheral: <#CBPeripheral#>, delegate: <#HelpViewControllerDelegate#>)
-//        uartViewController.navigationItem.rightBarButtonItem = infoBarButton
-//        pushViewController(uartViewController)
+        //        connectionMode = ConnectionMode.Info
+        //        connectionStatus = ConnectionStatus.Connected
+        //        deviceInfoViewController = DeviceInfoViewController(cbPeripheral: <#CBPeripheral#>, delegate: <#HelpViewControllerDelegate#>)
+        //        uartViewController.navigationItem.rightBarButtonItem = infoBarButton
+        //        pushViewController(uartViewController)
         
     }
     
@@ -233,8 +233,8 @@ class BLEMainViewController : UIViewController, UINavigationControllerDelegate, 
         if connectionStatus == ConnectionStatus.Scanning {
             stopScan()
         }
-        
-        // Start scan
+            
+            // Start scan
         else {
             startScan()
         }
@@ -262,10 +262,10 @@ class BLEMainViewController : UIViewController, UINavigationControllerDelegate, 
             scanButtonItem?.title = "Scan for peripherals"
         }
         
-            
-//        else if (connectionMode == ConnectionMode.UART) {
-//            
-//        }
+        
+        //        else if (connectionMode == ConnectionMode.UART) {
+        //
+        //        }
         
     }
     
@@ -328,7 +328,7 @@ class BLEMainViewController : UIViewController, UINavigationControllerDelegate, 
         else if navController.topViewController.isKindOfClass(ControllerViewController){
             hvc = controllerViewController.helpViewController
         }
-        //Add DFU help
+            //Add DFU help
             
         else{
             hvc = helpViewController
@@ -351,28 +351,28 @@ class BLEMainViewController : UIViewController, UINavigationControllerDelegate, 
         else if (IS_IPAD) {
             
             //close popover it is being shown
-//            if helpPopoverController != nil {
-//                if helpPopoverController!.popoverVisible {
-//                    helpPopoverController?.dismissPopoverAnimated(true)
-//                    helpPopoverController = nil
-//                }
-//                
-//            }
+            //            if helpPopoverController != nil {
+            //                if helpPopoverController!.popoverVisible {
+            //                    helpPopoverController?.dismissPopoverAnimated(true)
+            //                    helpPopoverController = nil
+            //                }
+            //
+            //            }
             
-                //show popover if it isn't shown
-//            else {
+            //show popover if it isn't shown
+            //            else {
             helpPopoverController?.dismissPopoverAnimated(true)
             
-                helpPopoverController = UIPopoverController(contentViewController: currentHelpViewController())
-                helpPopoverController?.backgroundColor = UIColor.darkGrayColor()
-                
-                let rightBBI:UIBarButtonItem! = navController.navigationBar.items.last!.rightBarButtonItem
-                let aFrame:CGRect = rightBBI!.customView!.frame
-                helpPopoverController?.presentPopoverFromRect(aFrame,
-                    inView: rightBBI.customView!.superview!,
-                    permittedArrowDirections: UIPopoverArrowDirection.Any,
-                    animated: true)
-//            }
+            helpPopoverController = UIPopoverController(contentViewController: currentHelpViewController())
+            helpPopoverController?.backgroundColor = UIColor.darkGrayColor()
+            
+            let rightBBI:UIBarButtonItem! = navController.navigationBar.items.last!.rightBarButtonItem
+            let aFrame:CGRect = rightBBI!.customView!.frame
+            helpPopoverController?.presentPopoverFromRect(aFrame,
+                inView: rightBBI.customView!.superview!,
+                permittedArrowDirections: UIPopoverArrowDirection.Any,
+                animated: true)
+            //            }
         }
     }
     
@@ -390,7 +390,7 @@ class BLEMainViewController : UIViewController, UINavigationControllerDelegate, 
         connectionTimer?.invalidate()
         
         if cm == nil {
-//            println(self.description)
+            //            println(self.description)
             printLog(self, (__FUNCTION__), "No central Manager found, unable to connect peripheral")
             return
         }
@@ -399,17 +399,17 @@ class BLEMainViewController : UIViewController, UINavigationControllerDelegate, 
         
         //Show connection activity alert view
         let alert = UIAlertController(title: "Connecting …", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
-//        let aaCancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler:{ (aa:UIAlertAction!) -> Void in
-//            self.currentAlertView = nil
-//            self.abortConnection()
-//        })
-//        alert.addAction(aaCancel)
+        //        let aaCancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler:{ (aa:UIAlertAction!) -> Void in
+        //            self.currentAlertView = nil
+        //            self.abortConnection()
+        //        })
+        //        alert.addAction(aaCancel)
         currentAlertView = alert
         self.presentViewController(alert, animated: true, completion: nil)
         
         //Cancel any current or pending connection to the peripheral
         if peripheral.state == CBPeripheralState.Connected || peripheral.state == CBPeripheralState.Connecting {
-                cm!.cancelPeripheralConnection(peripheral)
+            cm!.cancelPeripheralConnection(peripheral)
         }
         
         //Connect
@@ -426,7 +426,7 @@ class BLEMainViewController : UIViewController, UINavigationControllerDelegate, 
     
     func connectPeripheralForDFU(peripheral:CBPeripheral) {
         
-//        connect device w services: dfuServiceUUID, deviceInfoServiceUUID
+        //        connect device w services: dfuServiceUUID, deviceInfoServiceUUID
         
         printLog(self, (__FUNCTION__), self.description)
         
@@ -441,8 +441,8 @@ class BLEMainViewController : UIViewController, UINavigationControllerDelegate, 
         dfuPeripheral = peripheral
         
         //Show connection activity alert view
-//        currentAlertView = UIAlertView(title: "Connecting …", message: nil, delegate: self, cancelButtonTitle: nil)
-//        currentAlertView!.show()
+        //        currentAlertView = UIAlertView(title: "Connecting …", message: nil, delegate: self, cancelButtonTitle: nil)
+        //        currentAlertView!.show()
         
         //Cancel any current or pending connection to the peripheral
         if peripheral.state == CBPeripheralState.Connected || peripheral.state == CBPeripheralState.Connecting {
@@ -450,7 +450,7 @@ class BLEMainViewController : UIViewController, UINavigationControllerDelegate, 
         }
         
         //Connect
-//        currentPeripheral = BLEPeripheral(peripheral: peripheral, delegate: self)
+        //        currentPeripheral = BLEPeripheral(peripheral: peripheral, delegate: self)
         cm!.connectPeripheral(peripheral, options: [CBConnectPeripheralOptionNotifyOnDisconnectionKey: NSNumber(bool:true)])
         
         connectionMode = ConnectionMode.DFU
@@ -528,9 +528,9 @@ class BLEMainViewController : UIViewController, UINavigationControllerDelegate, 
     
     func alertDismissedOnError() {
         
-//        if buttonIndex == 77 {
-//            currentAlertView = nil
-//        }
+        //        if buttonIndex == 77 {
+        //            currentAlertView = nil
+        //        }
         
         if (connectionStatus == ConnectionStatus.Connected) {
             disconnect()
@@ -575,7 +575,6 @@ class BLEMainViewController : UIViewController, UINavigationControllerDelegate, 
     
     func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {
         
-        
         // Returning from a module, about to show device list ...
         if viewController === deviceListViewController {
             
@@ -585,8 +584,8 @@ class BLEMainViewController : UIViewController, UINavigationControllerDelegate, 
                     disconnect()
                 }
             }
-            
-            // Returning from UART
+                
+                // Returning from UART
             else if connectionMode == ConnectionMode.UART {
                 uartViewController?.inputTextView.resignFirstResponder()
                 
@@ -594,15 +593,15 @@ class BLEMainViewController : UIViewController, UINavigationControllerDelegate, 
                     disconnect()
                 }
             }
-            
-            // Returning from Pin I/O
+                
+                // Returning from Pin I/O
             else if connectionMode == ConnectionMode.PinIO {
                 if connectionStatus == ConnectionStatus.Connected {
                     disconnect()
                 }
             }
-            
-            // Returning from Controller
+                
+                // Returning from Controller
             else if connectionMode == ConnectionMode.Controller {
                 controllerViewController?.stopSensorUpdates()
                 if connectionStatus == ConnectionStatus.Connected {
@@ -610,19 +609,19 @@ class BLEMainViewController : UIViewController, UINavigationControllerDelegate, 
                 }
             }
                 
-            // Returning from DFU
+                // Returning from DFU
             else if connectionMode == ConnectionMode.DFU {
-//                if connectionStatus == ConnectionStatus.Connected {
-                    disconnect()
-//                }
+                //                if connectionStatus == ConnectionStatus.Connected {
+                disconnect()
+                //                }
                 //return cbcentralmanager delegation to self
                 cm?.delegate = self
                 connectionMode = ConnectionMode.None
                 dereferenceModeController()
             }
-            
-            // Starting in device list
-            // Start scaning if bluetooth is enabled
+                
+                // Starting in device list
+                // Start scaning if bluetooth is enabled
             else if (connectionStatus == ConnectionStatus.Idle) && (cm?.state != CBCentralManagerState.PoweredOff) {
                 startScan()
             }
@@ -634,8 +633,8 @@ class BLEMainViewController : UIViewController, UINavigationControllerDelegate, 
         else if dfuViewController != nil && viewController == dfuViewController {
             deviceListViewController.navigationItem.backBarButtonItem?.title = "Back"
         }
-        
-        //All modes hide toolbar except for device list
+            
+            //All modes hide toolbar except for device list
         else {
             deviceListViewController.navigationItem.backBarButtonItem?.title = "Disconnect"
             navController.setToolbarHidden(true, animated: false)
@@ -661,7 +660,7 @@ class BLEMainViewController : UIViewController, UINavigationControllerDelegate, 
     
     
     func centralManager(central: CBCentralManager!, didDiscoverPeripheral peripheral: CBPeripheral!, advertisementData: [NSObject : AnyObject]!, RSSI: NSNumber!) {
-
+        
         if connectionMode == ConnectionMode.None {
             dispatch_sync(dispatch_get_main_queue(), { () -> Void in
                 if self.deviceListViewController == nil {
@@ -742,24 +741,16 @@ class BLEMainViewController : UIViewController, UINavigationControllerDelegate, 
         //if status was connected, then disconnect was unexpected by the user, show alert
         let topVC = navController.topViewController
         if  connectionStatus == ConnectionStatus.Connected && isModuleController(topVC) {
-                
-                printLog(self, "centralManager:didDisconnectPeripheral", "unexpected disconnect while connected")
-                
-                //return to main view
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    self.navController.popToRootViewControllerAnimated(true)
-                    
-                    //display disconnect alert
-                    let alert = UIAlertView(title:"Disconnected",
-                        message:"Peripheral disconnected unexpectedly",
-                        delegate:self,
-                        cancelButtonTitle:"OK")
-                    
-                    alert.show()
-                })
+            
+            printLog(self, "centralManager:didDisconnectPeripheral", "unexpected disconnect while connected")
+            
+            //return to main view
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.respondToUnexpectedDisconnect()
+            })
         }
-        
-        // Disconnected while connecting
+            
+            // Disconnected while connecting
         else if connectionStatus == ConnectionStatus.Connecting {
             
             abortConnection()
@@ -768,15 +759,7 @@ class BLEMainViewController : UIViewController, UINavigationControllerDelegate, 
             
             //return to main view
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                self.navController.popToRootViewControllerAnimated(true)
-                
-                //display disconnect alert
-                let alert = UIAlertView(title:"Disconnected",
-                    message:"Peripheral disconnected unexpectedly",
-                    delegate:self,
-                    cancelButtonTitle:"OK")
-                
-                alert.show()
+                self.respondToUnexpectedDisconnect()
             })
             
         }
@@ -796,10 +779,32 @@ class BLEMainViewController : UIViewController, UINavigationControllerDelegate, 
         if (delegate != nil) {
             delegate!.onDeviceConnectionChange(peripheral)
         }
-    
+        
     }
     
     
+    func respondToUnexpectedDisconnect() {
+        
+        self.navController.popToRootViewControllerAnimated(true)
+        
+        //display disconnect alert
+        let alert = UIAlertView(title:"Disconnected",
+            message:"BlE device disconnected",
+            delegate:self,
+            cancelButtonTitle:"OK")
+        
+        let note = UILocalNotification()
+        note.fireDate = NSDate().dateByAddingTimeInterval(0.0)
+        note.alertBody = "BLE device disconnected"
+        note.soundName =  UILocalNotificationDefaultSoundName
+        UIApplication.sharedApplication().scheduleLocalNotification(note)
+        
+        alert.show()
+        
+        
+    }
+
+
     func dereferenceModeController() {
         
         pinIoViewController = nil
@@ -824,10 +829,10 @@ class BLEMainViewController : UIViewController, UINavigationControllerDelegate, 
         }
         
         //all controllers are modules except BLEMainViewController - weak
-//        var verdict = true
-//        if anObject.isMemberOfClass(BLEMainViewController) {
-//            verdict = false
-//        }
+        //        var verdict = true
+        //        if anObject.isMemberOfClass(BLEMainViewController) {
+        //            verdict = false
+        //        }
         
         return verdict
         
@@ -898,7 +903,7 @@ class BLEMainViewController : UIViewController, UINavigationControllerDelegate, 
         connectionMode = ConnectionMode.DFU
         dfuViewController = DFUViewController()
         dfuViewController.peripheral = peripheral
-//        dfuViewController.navigationItem.rightBarButtonItem = infoBarButton
+        //        dfuViewController.navigationItem.rightBarButtonItem = infoBarButton
         
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
             self.pushViewController(self.dfuViewController!)
@@ -964,21 +969,13 @@ class BLEMainViewController : UIViewController, UINavigationControllerDelegate, 
         //if status was connected, then disconnect was unexpected by the user, show alert
         let topVC = navController.topViewController
         if  connectionStatus == ConnectionStatus.Connected && isModuleController(topVC) {
-                
-                printLog(self, "peripheralDidDisconnect", "unexpected disconnect while connected")
-                
-                    //return to main view
-                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        self.navController.popToRootViewControllerAnimated(true)
-                        
-                        //display disconnect alert
-                        let alert = UIAlertView(title:"Disconnected",
-                            message:"Peripheral disconnected unexpectedly",
-                            delegate:nil,
-                            cancelButtonTitle:"OK")
-                        
-                        alert.show()
-                    })
+            
+            printLog(self, "peripheralDidDisconnect", "unexpected disconnect while connected")
+            
+            //return to main view
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.respondToUnexpectedDisconnect()
+            })
         }
         
         connectionStatus = ConnectionStatus.Idle
@@ -1034,5 +1031,31 @@ class BLEMainViewController : UIViewController, UINavigationControllerDelegate, 
         
     }
     
+    //WatchKit requests
+    
+    func connectedInControllerMode()->Bool{
+        
+        if connectionStatus == ConnectionStatus.Connected &&
+            connectionMode == ConnectionMode.Controller   &&
+            controllerViewController != nil {
+                return true
+        }
+        else {
+            return false
+        }
+    }
+    
+    
+    func disconnectviaWatch(){
+        
+//        NSLog("disconnectviaWatch")
+        
+        controllerViewController?.stopSensorUpdates()
+        disconnect()
+//        navController.popToRootViewControllerAnimated(true)
+        
+    }
     
 }
+    
+    

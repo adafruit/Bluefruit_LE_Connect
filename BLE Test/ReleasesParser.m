@@ -62,37 +62,67 @@
             [boardsReleases setObject:boardInfo forKey:boardName];
             
             // Read firmware releases
-            id firmwareNodes = [[boardDictionary objectForKey:@"firmware"] objectForKey:@"firmwarerelease"];
-            if ([firmwareNodes isKindOfClass:[NSArray class]])
-            {
-                for (NSDictionary *firmwareNode in firmwareNodes)
-                {
-                    FirmwareInfo *releaseInfo = [self parseFirmwareNode:firmwareNode boardName:boardName];
-                    [boardInfo.firmwareReleases addObject:releaseInfo];
-                }
+            id firmwareNodes = [boardDictionary objectForKey:@"firmware"];  //check for multiple firmware entries
+            NSArray *firmwareNodesArray;
+            if ([firmwareNodes isKindOfClass:[NSArray class]]) {
+//                DLog(@"MULTIPLE FIRMWARE ENTRIES");
+                firmwareNodesArray = (NSArray*)firmwareNodes;
             }
-            else        // Special case for only 1 firmwarerelease
-            {
-                FirmwareInfo *releaseInfo = [self parseFirmwareNode:firmwareNodes boardName:boardName];
-                [boardInfo.firmwareReleases addObject:releaseInfo];
+            else {
+//                DLog(@"SINGLE FIRMWARE ENTRY");
+                firmwareNodesArray = [NSArray arrayWithObject:firmwareNodes];
+            }
+            
+            for (NSDictionary *firmwareNode in firmwareNodesArray) {
+                
+                id firmwareReleaseNodes = [firmwareNode objectForKey:@"firmwarerelease"];    //parsing error on last?
+                if ([firmwareReleaseNodes isKindOfClass:[NSArray class]])
+                {
+                    for (NSDictionary *firmwareReleaseNode in firmwareReleaseNodes)
+                    {
+                        FirmwareInfo *releaseInfo = [self parseFirmwareReleaseNode:firmwareReleaseNode boardName:boardName];
+                        [boardInfo.firmwareReleases addObject:releaseInfo];
+                    }
+                }
+                else        // Special case for only 1 firmwarerelease
+                {
+                    FirmwareInfo *releaseInfo = [self parseFirmwareReleaseNode:firmwareReleaseNodes boardName:boardName];
+                    [boardInfo.firmwareReleases addObject:releaseInfo];
+                    
+                }
                 
             }
             
             // Read bootloader releases
-            id bootloaderNodes = [[boardDictionary objectForKey:@"bootloader"] objectForKey:@"bootloaderrelease"];
-            if ([bootloaderNodes isKindOfClass:[NSArray class]])
-            {
-                for (NSDictionary *bootloaderNode in bootloaderNodes)
-                {
-                    BootloaderInfo *bootloaderInfo = [self parseBootloaderNode:bootloaderNode boardName:boardName];
-                    [boardInfo.bootloaderReleases addObject:bootloaderInfo];
-                }
+            id bootloaderNodes = [boardDictionary objectForKey:@"bootloader"];  //check for multiple bootloader entries
+            NSArray *bootloaderNodesArray;
+            if ([bootloaderNodes isKindOfClass:[NSArray class]]) {
+//                DLog(@"MULTIPLE BOOTLOADER ENTRIES");
+                bootloaderNodesArray = (NSArray*)bootloaderNodes;
             }
-            else        // Special case for only 1 bootloaderrelease
-            {
-                BootloaderInfo *bootloaderInfo = [self parseBootloaderNode:bootloaderNodes boardName:boardName];
-                [boardInfo.bootloaderReleases addObject:bootloaderInfo];
-                
+            else {
+//                DLog(@"SINGLE BOOTLOADER ENTRY");
+                bootloaderNodesArray = [NSArray arrayWithObject:bootloaderNodes];
+            }
+            
+            for (NSDictionary * bootloaderNode in bootloaderNodesArray) {
+                id bootloaderReleaseNodes = [bootloaderNode objectForKey:@"bootloaderrelease"];
+                if ([bootloaderReleaseNodes isKindOfClass:[NSArray class]])
+                {
+//                DLog(@"Read bootloaderInfo");
+                    for (NSDictionary *bootloaderNode in bootloaderReleaseNodes)
+                    {
+                        BootloaderInfo *bootloaderInfo = [self parseBootloaderNode:bootloaderNode boardName:boardName];
+                        [boardInfo.bootloaderReleases addObject:bootloaderInfo];
+                    }
+                }
+                else        // Special case for only 1 bootloaderrelease
+                {
+//                DLog(@"Read bootloaderInfo single");
+                    BootloaderInfo *bootloaderInfo = [self parseBootloaderNode:bootloaderReleaseNodes boardName:boardName];
+                    [boardInfo.bootloaderReleases addObject:bootloaderInfo];
+                    
+                }
             }
 
         }
@@ -105,14 +135,14 @@
     return boardsReleases;
 }
 
-+ (FirmwareInfo *)parseFirmwareNode:(NSDictionary *)firmwareNode boardName:(NSString *)boardName
++ (FirmwareInfo *)parseFirmwareReleaseNode:(NSDictionary *)firmwareReleaseNode boardName:(NSString *)boardName
 {
     FirmwareInfo *releaseInfo = [FirmwareInfo new];
     releaseInfo.fileType = APPLICATION;
-    releaseInfo.version =[firmwareNode objectForKey:@"_version"];
-    releaseInfo.hexFileUrl =[firmwareNode objectForKey:@"_hexfile"];
-    releaseInfo.iniFileUrl =[firmwareNode objectForKey:@"_initfile"];
-    releaseInfo.minBootloaderVersion = [firmwareNode objectForKey:@"_minbootloader"];
+    releaseInfo.version =[firmwareReleaseNode objectForKey:@"_version"];
+    releaseInfo.hexFileUrl =[firmwareReleaseNode objectForKey:@"_hexfile"];
+    releaseInfo.iniFileUrl =[firmwareReleaseNode objectForKey:@"_initfile"];
+    releaseInfo.minBootloaderVersion = [firmwareReleaseNode objectForKey:@"_minbootloader"];
     releaseInfo.boardName = boardName;
 
     return releaseInfo;

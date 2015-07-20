@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ColorPickerViewController" customModule="BluetoothLE_Test" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ColorPickerViewController" customModule="Adafruit_Bluefruit_LE_Connect" customModuleProvider="target">
             <connections>
+                <outlet property="brightnessSlider" destination="20Z-qj-8vU" id="70I-F0-H6c"/>
                 <outlet property="helpViewController" destination="DY1-u5-Dpe" id="PX4-tc-UR4"/>
                 <outlet property="infoButton" destination="dUq-vd-03E" id="sXM-Y2-nGR"/>
                 <outlet property="sendButton" destination="pbF-dL-6h5" id="AOh-vC-CSF"/>
+                <outlet property="sliderGradientView" destination="Jwa-7p-9ob" id="awe-zZ-Tfe"/>
                 <outlet property="valueLable" destination="Q9a-UW-Nm7" id="cLO-uF-szb"/>
                 <outlet property="view" destination="plt-SJ-9Yk" id="2Oe-Mr-Z8y"/>
                 <outlet property="wellView" destination="NRl-0y-fFO" id="RBP-tP-gYk"/>
@@ -31,8 +33,18 @@
                             <rect key="frame" x="33" y="8" width="401" height="401"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
+                        <view opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jwa-7p-9ob" customClass="GradientView" customModule="Adafruit_Bluefruit_LE_Connect" customModuleProvider="target">
+                            <rect key="frame" x="33" y="430" width="400" height="11"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </view>
+                        <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="20Z-qj-8vU">
+                            <rect key="frame" x="30" y="420" width="406" height="31"/>
+                            <connections>
+                                <action selector="brightnessSliderChanged:" destination="-1" eventType="valueChanged" id="sEv-HU-SFA"/>
+                            </connections>
+                        </slider>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="R:255  G:255  B:255" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q9a-UW-Nm7" userLabel="Value Label">
-                            <rect key="frame" x="28" y="420" width="189" height="37"/>
+                            <rect key="frame" x="26" y="623" width="189" height="24"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -226,7 +238,7 @@ Cg
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="-320" y="146.5"/>
         </view>
-        <customObject id="DY1-u5-Dpe" userLabel="HelpViewController" customClass="HelpViewController" customModule="BluetoothLE_Test" customModuleProvider="target">
+        <customObject id="DY1-u5-Dpe" userLabel="HelpViewController" customClass="HelpViewController" customModule="Adafruit_Bluefruit_LE_Connect" customModuleProvider="target">
             <connections>
                 <outlet property="textView" destination="ZbC-Gh-yxo" id="TJ4-X2-kEu"/>
                 <outlet property="view" destination="1f6-1n-5GR" id="Lg4-ST-N2C"/>

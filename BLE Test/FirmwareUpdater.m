@@ -10,7 +10,7 @@
 #import "ReleasesParser.h"
 #import "LogHelper.h"
 //#import "BleManager.h"
-#import "BluetoothLE_Test-Swift.h"
+#import "Adafruit_Bluefruit_LE_Connect-Swift.h"
 
 #pragma mark - DeviceInfoData
 @implementation DeviceInfoData
@@ -52,6 +52,7 @@ static NSString* const kDefaultBootloaderVersion = @"0.0";
 
 //  Config
 static NSString *kDefaultUpdateServerUrl = @"https://raw.githubusercontent.com/adafruit/Adafruit_BluefruitLE_Firmware/master/releases.xml";
+static NSString *kReleasesXml = @"updatemanager_releasesxml";
 
 // Constants
 static  NSString* const kNordicDeviceFirmwareUpdateService = @"00001530-1212-EFDE-1523-785FEABCD123";
@@ -77,11 +78,13 @@ static  NSString* const kFirmwareRevisionCharacteristic = @"00002A26-0000-1000-8
 
 + (void)refreshSoftwareUpdatesDatabase
 {
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:kReleasesXml];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     // Download data
     NSURL *dataUrl = [NSURL URLWithString:kDefaultUpdateServerUrl];
     [FirmwareUpdater downloadDataFromURL:dataUrl withCompletionHandler:^(NSData *data) {
         // Save to user defaults
-        [[NSUserDefaults standardUserDefaults] setObject:data forKey:@"updatemanager_releasesxml"];
+        [[NSUserDefaults standardUserDefaults] setObject:data forKey:kReleasesXml];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }];
 }

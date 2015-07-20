@@ -15,9 +15,11 @@ class BLEAppDelegate: UIResponder, UIApplicationDelegate {
     var window:UIWindow?
     var mainViewController:BLEMainViewController?
     
+    
     required override init() {
         super.init()
     }
+    
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
         
@@ -29,18 +31,19 @@ class BLEAppDelegate: UIResponder, UIApplicationDelegate {
         window!.makeKeyAndVisible()
         
         // Ask user for permision to show local notifications
-//        if(UIApplication.instancesRespondToSelector(Selector("registerUserNotificationSettings:")))
-//        {
-//            application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: UIUserNotificationType.Sound | UIUserNotificationType.Alert | UIUserNotificationType.Badge, categories: nil))
-//        }
-//        else
-//        {
-//            //do iOS 7 stuff, which is pretty much nothing for local notifications.
-//        }
+        if(UIApplication.instancesRespondToSelector(Selector("registerUserNotificationSettings:")))
+        {
+            application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: UIUserNotificationType.Sound | UIUserNotificationType.Alert | UIUserNotificationType.Badge, categories: nil))
+        }
+        else
+        {
+            //do iOS 7 stuff, which is pretty much nothing for local notifications.
+        }
         
         return true
         
     }
+    
     
     func applicationWillResignActive(application: UIApplication) {
         
@@ -63,11 +66,82 @@ class BLEAppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     
-    func applicationWillTerminate(application: UIApplication) {
-        println("application will terminate")
+//    func applicationWillTerminate(application: UIApplication) {
+//        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+//    }
+    
+    
+    //WatchKit request
+    func application(application: UIApplication,
+        handleWatchKitExtensionRequest userInfo: [NSObject : AnyObject]?,
+        reply: (([NSObject : AnyObject]!) -> Void)!) {
+            
+            // 1
+            if let userInfo = userInfo, request = userInfo["type"] as? String {
+                if request == "isConnected" {
+//                    NSLog("app received connection status request")
+                    
+                    //check connection status
+                    if BLEMainViewController.sharedInstance.connectedInControllerMode() {
+                        reply(["connected":true])
+                    }
+                    else {
+                        reply(["connected":false])
+                    }
+                    return
+                }
+                else if request == "command" {
+                    if let command = userInfo["command"] as? String {
+                        if command == "disconnect" {
+//                            NSLog("BLEAppDelegate -> Disconnect command received")
+                            
+                            //disconnect device
+                            BLEMainViewController.sharedInstance.disconnectviaWatch()
+                            
+                            reply(["connected":false])
+                        }
+                    }
+                    
+                }
+                else if request == "sendData"{
+                    //check send data type - button or color
+                    if let red = userInfo["red"] as? Int, green = userInfo["green"] as? Int, blue = userInfo["blue"] as? Int {
+//                        NSLog("color request received")
+                        
+                        //forward data to mainviewController
+                        if BLEMainViewController.sharedInstance.connectedInControllerMode() {
+                            BLEMainViewController.sharedInstance.controllerViewController.sendColor(UInt8(red), green: UInt8(green), blue: UInt8(blue))
+                            reply(["connected":true])
+                        }
+                        else {
+                            reply(["connected":false])
+                        }
+                        return
+                    }
+                    else if let button = userInfo["button"] as? Int {
+                        
+//                        NSLog("button request " + button)
+                        //forward data to mainviewController
+                        if BLEMainViewController.sharedInstance.connectedInControllerMode() {
+                            BLEMainViewController.sharedInstance.controllerViewController.controlPadButtonTappedWithTag(button)
+                            reply(["connected":true])
+                        }
+                        else {
+                            reply(["connected":false])
+                        }
+                        return
+                    }
+                    
+                }
+                
+                else {
+                    //blank reply
+                    reply([:])
+                }
+            }
     }
     
-//    
+//
 //    - (void)applicationWillResignActive:(UIApplication*)application
 //    {
 //    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -88,11 +162,6 @@ class BLEAppDelegate: UIResponder, UIApplicationDelegate {
 //    - (void)applicationDidBecomeActive:(UIApplication*)application
 //    {
 //    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-//    }
-//    
-//    - (void)applicationWillTerminate:(UIApplication*)application
-//    {
-//    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 //    }
     
 }

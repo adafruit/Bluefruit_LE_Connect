@@ -151,26 +151,25 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
         super.viewDidAppear(animated)
         
         //Check to see if location services are enabled
-        if checkLocationServices() == false {
-            
-            //Warn the user that GPS isn't available
-            locationAlert = UIAlertController(title: "Location Services disabled", message: "Enable Location Services in \nSettings->Privacy to allow location data to be sent over Bluetooth", preferredStyle: UIAlertControllerStyle.Alert)
-            let aaOK = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: { (aa:UIAlertAction!) -> Void in
-                
-            })
-            locationAlert!.addAction(aaOK)
-            self.presentViewController(locationAlert!, animated: true, completion: { () -> Void in
-                //Set switch enabled again after alert close in case the user enabled services
-                let verdict = self.checkLocationServices()
-            })
-        }
+//        checkLocationServices()
         
-        else {
-            locationAlert?.dismissViewControllerAnimated(true, completion: { () -> Void in
-            })
-            
-            self.checkLocationServices()
-        }
+//        if checkLocationServices() == false {
+//            //Warn the user that GPS isn't available
+//            locationAlert = UIAlertController(title: "Location Services disabled", message: "Enable Location Services in \nSettings->Privacy to allow location data to be sent over Bluetooth", preferredStyle: UIAlertControllerStyle.Alert)
+//            let aaOK = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil)
+//            locationAlert!.addAction(aaOK)
+//            self.presentViewController(locationAlert!, animated: true, completion: { () -> Void in
+//                //Set switch enabled again after alert close in case the user enabled services
+//                let verdict = self.checkLocationServices()
+//            })
+//        }
+//        
+//        else {
+//            locationAlert?.dismissViewControllerAnimated(true, completion: { () -> Void in
+//            })
+//            
+//            self.checkLocationServices()
+//        }
         
     }
     
@@ -181,7 +180,7 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
         if (CLLocationManager.locationServicesEnabled() && CLLocationManager.authorizationStatus() == CLAuthorizationStatus.AuthorizedWhenInUse) {
             verdict = true
         }
-        gpsButton.dimmed = !verdict
+//        gpsButton.dimmed = !verdict
         return verdict
         
     }
@@ -938,11 +937,18 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
         
         sender.backgroundColor = cellSelectionColor
         
-        var str = NSString(string: buttonPrefix + "\(sender.tag)" + "1")
+        controlPadButtonPressedWithTag(sender.tag)
+    
+    }
+    
+    
+    func controlPadButtonPressedWithTag(tag:Int) {
+        
+        var str = NSString(string: buttonPrefix + "\(tag)" + "1")
         let data = NSData(bytes: str.UTF8String, length: str.length)
         
         delegate?.sendData(appendCRC(data))
-    
+        
     }
     
     
@@ -952,7 +958,13 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
         
         sender.backgroundColor = buttonColor
         
-        var str = NSString(string: buttonPrefix + "\(sender.tag)" + "0")
+        controlPadButtonReleasedWithTag(sender.tag)
+    }
+    
+    
+    func controlPadButtonReleasedWithTag(tag:Int) {
+        
+        var str = NSString(string: buttonPrefix + "\(tag)" + "0")
         let data = NSData(bytes: str.UTF8String, length: str.length)
         
         delegate?.sendData(appendCRC(data))
@@ -980,6 +992,17 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
         
         sender.backgroundColor = exitButtonColor
         
+    }
+    
+    
+    //WatchKit functions
+    func controlPadButtonTappedWithTag(tag:Int){
+        
+        //Press and release button
+        controlPadButtonPressedWithTag(tag)
+        delay(0.1, { () -> () in
+            self.controlPadButtonReleasedWithTag(tag)
+        })
     }
     
     

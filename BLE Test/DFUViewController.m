@@ -14,7 +14,7 @@
 #import "UpdateDialogViewController.h"
 #import "UserFilesTableViewCell.h"
 #import "FilesPickerViewController.h"
-#import "BluetoothLE_Test-Swift.h"
+#import "Adafruit_Bluefruit_LE_Connect-Swift.h"
 
 @interface DFUViewController () <UITableViewDataSource, UITableViewDelegate, FirmwareUpdaterDelegate, UpdateDialogViewControllerDelegate, UserFilesTableViewCellDelegate, FilesPickerViewControllerDelegate
 //    BleManagerDelegate
@@ -60,6 +60,9 @@ static const NSInteger kSection_BootloaderReleases = 2;
     {
         [self peripheralUnexpectedDisconnect];
     }
+    
+    //refresh updates for DFU
+    [FirmwareUpdater refreshSoftwareUpdatesDatabase];
     
     [baseTableView registerNib:[UINib nibWithNibName:@"UserFilesTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"UserFilesCell"];
 }

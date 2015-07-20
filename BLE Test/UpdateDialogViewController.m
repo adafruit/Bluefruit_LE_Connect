@@ -11,7 +11,7 @@
 //#import "BleManager.h"
 #import "FirmwareUpdater.h"
 #import "LogHelper.h"
-#import "BluetoothLE_Test-Swift.h"
+#import "Adafruit_Bluefruit_LE_Connect-Swift.h"
 
 @interface UpdateDialogViewController () <DFUOperationsDelegate>
 {

@@ -4,7 +4,12 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>BLEBB Test.xcscheme</key>
+		<key>Bluefruit LE Connect WatchKit App.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>Bluefruit LE Connect.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
@@ -13,6 +18,11 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>F0A2C96516BBE44500F2FD12</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F0CBE35A1B28C308009E0128</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -604,6 +604,7 @@ DeviceListViewControllerDelegate {
                 // Returning from Controller
             else if connectionMode == ConnectionMode.Controller {
                 controllerViewController?.stopSensorUpdates()
+                
                 if connectionStatus == ConnectionStatus.Connected {
                     disconnect()
                 }
@@ -724,6 +725,9 @@ DeviceListViewControllerDelegate {
         if connectionMode == ConnectionMode.DFU {
             connectionStatus = ConnectionStatus.Idle
             return
+        }
+        else if connectionMode == ConnectionMode.Controller {
+            controllerViewController.showNavbar()
         }
         
         printLog(self, "didDisconnectPeripheral", "")

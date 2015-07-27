@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BLE Test/ControllerViewController.swift"
-            timestampString = "457317117.765811"
+            timestampString = "459709941.062213"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1043"
-            endingLineNumber = "1043"
+            startingLineNumber = "1050"
+            endingLineNumber = "1050"
             landmarkName = "sendColor(_:green:blue:)"
             landmarkType = "5">
             <Locations>
@@ -113,6 +113,22 @@
             endingLineNumber = "27"
             landmarkName = "RootInterfaceController"
             landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BLE Test/BLEMainViewController.swift"
+            timestampString = "459709941.062213"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "717"
+            endingLineNumber = "717"
+            landmarkName = "centralManager(_:didDisconnectPeripheral:error:)"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

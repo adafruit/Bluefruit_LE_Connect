@@ -569,6 +569,13 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     
+    func showNavbar(){
+        
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        
+    }
+    
+    
     //MARK: Sensor data
     
     func didReceivedDeviceMotion(cmdm:CMDeviceMotion!, error:NSError!) {

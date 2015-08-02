@@ -18,7 +18,7 @@ protocol UARTViewControllerDelegate: HelpViewControllerDelegate {
 }
 
 
-class UARTViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
+class UARTViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, MqttManagerDelegate, UIPopoverControllerDelegate {
 
     enum ConsoleDataType {
         case Log
@@ -44,6 +44,10 @@ class UARTViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
     @IBOutlet var sendButton: UIButton!
     @IBOutlet var echoSwitch:UISwitch!
     
+    private var mqttBarButtonItem : UIBarButtonItem?
+    private var mqttBarButtonItemImageView : UIImageView?
+    private var mqttSettingsPopoverController:UIPopoverController?
+    
     private var echoLocal:Bool = false
     private var keyboardIsShown:Bool = false
     private var consoleAsciiText:NSAttributedString? = NSAttributedString(string: "")
@@ -55,10 +59,10 @@ class UARTViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
     private var scrollTimer:NSTimer?
     private var blueFontDict:NSDictionary!
     private var redFontDict:NSDictionary!
+    private var mqttFontDict:NSDictionary!
     private let unkownCharString:NSString = "�"
     private let kKeyboardAnimationDuration = 0.3
     private let notificationCommandString = "N!"
-    
     
     convenience init(aDelegate:UARTViewControllerDelegate){
         
@@ -94,15 +98,36 @@ class UARTViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
         //round corners on inputTextView
         self.inputTextView.clipsToBounds = true
         self.inputTextView.layer.cornerRadius = 4.0
-        
+
         //retrieve console font
         let consoleFont = consoleView.font
         blueFontDict = NSDictionary(objects: [consoleFont!, UIColor.blueColor()], forKeys: [NSFontAttributeName,NSForegroundColorAttributeName])
         redFontDict = NSDictionary(objects: [consoleFont!, UIColor.redColor()], forKeys: [NSFontAttributeName,NSForegroundColorAttributeName])
-        
+        mqttFontDict = NSDictionary(objects: [consoleFont!, UIColor(red: 85/255, green: 85/255, blue: 85/255, alpha: 1)], forKeys: [NSFontAttributeName,NSForegroundColorAttributeName])
+    
         //fix for UITextView
         consoleView.layoutManager.allowsNonContiguousLayout = false
         
+        // add MQTT button to the navigation bar
+        //mqttBarButtonItem = UIBarButtonItem(image: UIImage(named: "mqtt_disconnected"), style: .Plain, target: self, action: "onClickMqtt");
+        mqttBarButtonItemImageView = UIImageView(image: UIImage(named: "mqtt_disconnected")!.tintWithColor(self.view.tintColor))      // use a uiimageview as custom barbuttonitem to allow frame animations
+        mqttBarButtonItemImageView!.tintColor = self.view.tintColor
+        mqttBarButtonItemImageView?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "onClickMqtt"))
+        mqttBarButtonItem = UIBarButtonItem(customView: mqttBarButtonItemImageView!)
+        
+        self.navigationItem.rightBarButtonItems?.append(mqttBarButtonItem!);
+        
+        // MQTT init
+        let mqttManager = MqttManager.sharedInstance
+        if (MqttSettings.sharedInstance.isConnected) {
+            mqttManager.delegate = self
+            mqttManager.connectFromSavedSettings()
+        }
+    }
+    
+    deinit {
+        let mqttManager = MqttManager.sharedInstance
+        mqttManager.disconnect()
     }
     
     
@@ -129,9 +154,12 @@ class UARTViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
         
         //register for textfield notifications
         //        NSNotificationCenter.defaultCenter().addObserver(self, selector: "textFieldDidChange", name: "UITextFieldTextDidChangeNotification", object:self.view.window)
-        
+
+        // MQTT
+        MqttManager.sharedInstance.delegate = self
+        updateMqttStatus()
+
     }
-    
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
@@ -266,20 +294,21 @@ class UARTViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
     }
     
     
-    func updateConsoleWithOutgoingString(newString:NSString){
+    func updateConsoleWithOutgoingString(newString:NSString, wasReceivedFromMqtt : Bool){
         
         //Write new sent data to the console text view
+        let textColorDict = wasReceivedFromMqtt ? mqttFontDict:blueFontDict
         
         //Update ASCII text
         let appendString = "" // or "\n"
-        let attrString = NSAttributedString(string: (newString as String) + appendString, attributes: blueFontDict as? [NSObject : AnyObject])
+        let attrString = NSAttributedString(string: (newString as String) + appendString, attributes: textColorDict as? [NSObject : AnyObject])
         let newAsciiText = NSMutableAttributedString(attributedString: self.consoleAsciiText!)
         newAsciiText.appendAttributedString(attrString)
         consoleAsciiText = newAsciiText
         
         
         //Update Hex text
-        let attrHexString = NSAttributedString(string: newString.toHexSpaceSeparated() as String, attributes: blueFontDict as? [NSObject : AnyObject])
+        let attrHexString = NSAttributedString(string: newString.toHexSpaceSeparated() as String, attributes: textColorDict as? [NSObject : AnyObject])
         let newHexText = NSMutableAttributedString(attributedString: self.consoleHexText!)
         newHexText.appendAttributedString(attrHexString)
         consoleHexText = newHexText
@@ -356,16 +385,36 @@ class UARTViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
             return
         }
         let newString:NSString = inputTextView.text
-        let data = NSData(bytes: newString.UTF8String, length: newString.length)
-        delegate?.sendData(data)
+     
+        sendUartMessage(newString, wasReceivedFromMqtt: false)
         
 //        inputField.text = ""
         inputTextView.text = ""
         
-        if echoLocal == true {
-            updateConsoleWithOutgoingString(newString)
+      
+        
+    }
+    
+    func sendUartMessage(message: NSString, wasReceivedFromMqtt: Bool) {
+        // MQTT publish to TX
+        let mqttSettings = MqttSettings.sharedInstance
+        if(mqttSettings.isPublishEnabled) {
+            if let topic = mqttSettings.getPublishTopic(MqttSettings.PublishFeed.TX.rawValue) {
+                let qos = mqttSettings.getPublishQos(MqttSettings.PublishFeed.TX.rawValue)
+                MqttManager.sharedInstance.publish(message as String, topic: topic, qos: qos)
+            }
         }
         
+        // Send to uart
+        if (!wasReceivedFromMqtt || mqttSettings.subscribeBehaviour == .Transmit) {
+            let data = NSData(bytes: message.UTF8String, length: message.length)
+            delegate?.sendData(data)
+        }
+        
+        // Show on UI
+        if echoLocal == true {
+            updateConsoleWithOutgoingString(message, wasReceivedFromMqtt: wasReceivedFromMqtt)
+        }
     }
     
     
@@ -377,11 +426,21 @@ class UARTViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
         
     }
     
-    
     func receiveData(newData : NSData){
         
         if (isViewLoaded() && view.window != nil) {
+            // MQTT publish to RX
+            let mqttSettings = MqttSettings.sharedInstance
+            if(mqttSettings.isPublishEnabled) {
+                if let message = NSString(data: newData, encoding: NSUTF8StringEncoding) {
+                    if let topic = mqttSettings.getPublishTopic(MqttSettings.PublishFeed.RX.rawValue) {
+                        let qos = mqttSettings.getPublishQos(MqttSettings.PublishFeed.RX.rawValue)
+                        MqttManager.sharedInstance.publish(message as String, topic: topic, qos: qos)
+                    }
+                }
+            }
             
+            // Update UI
             updateConsoleWithIncomingData(newData)
         }
         
@@ -533,8 +592,95 @@ class UARTViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
         
         
     }
+
+    
+    // MARK: - MQTT
     
     
+    func onClickMqtt() {
+        let mqqtSettingsViewController = MqttSettingsViewController(nibName: "MqttSettingsViewController", bundle: nil)
+
+        if (IS_IPHONE) {
+            self.navigationController?.pushViewController(mqqtSettingsViewController, animated: true)
+        }
+        else if (IS_IPAD) {
+            mqttSettingsPopoverController?.dismissPopoverAnimated(true)
+            
+            mqttSettingsPopoverController = UIPopoverController(contentViewController: mqqtSettingsViewController)
+            mqttSettingsPopoverController?.delegate = self
+            mqqtSettingsViewController.view.backgroundColor = UIColor.darkGrayColor()
+            mqqtSettingsViewController.preferredContentSize = CGSizeMake(400, 0)
+            
+            let aFrame:CGRect = mqttBarButtonItem!.customView!.frame
+            mqttSettingsPopoverController?.presentPopoverFromRect(aFrame,
+                inView: mqttBarButtonItem!.customView!.superview!,
+                permittedArrowDirections: UIPopoverArrowDirection.Any,
+                animated: true)
+        }
+            }
+    
+    func updateMqttStatus() {
+        if let imageView = mqttBarButtonItemImageView {
+            let status = MqttManager.sharedInstance.status
+            let tintColor = self.view.tintColor
+            
+            switch (status) {
+            case .Connecting:
+                let imageFrames = [
+                    UIImage(named:"mqtt_connecting1")!.tintWithColor(tintColor),
+                    UIImage(named:"mqtt_connecting2")!.tintWithColor(tintColor),
+                    UIImage(named:"mqtt_connecting3")!.tintWithColor(tintColor)
+                ]
+                imageView.animationImages = imageFrames
+                imageView.animationDuration = 0.5 * Double(imageFrames.count)
+                imageView.animationRepeatCount = 0;
+                imageView.startAnimating()
+                
+            case .Connected:
+                imageView.stopAnimating()
+                imageView.image = UIImage(named:"mqtt_connected")!.tintWithColor(tintColor)
+                
+            default:
+                imageView.stopAnimating()
+                imageView.image = UIImage(named:"mqtt_disconnected")!.tintWithColor(tintColor)
+            }
+        }
+    }
+    
+    // MARK: MqttManagerDelegate
+    
+    func onMqttConnected() {
+        dispatch_async(dispatch_get_main_queue(), { [unowned self] in
+            self.updateMqttStatus()
+            })
+    }
+    
+    func onMqttDisconnected() {
+        dispatch_async(dispatch_get_main_queue(), { [unowned self] in
+            self.updateMqttStatus()
+            })
+    }
+    
+    func onMqttMessageReceived(message : String, topic: String) {
+        dispatch_async(dispatch_get_main_queue(), { [unowned self] in
+            self.sendUartMessage((message as NSString), wasReceivedFromMqtt: true)
+            })
+    }
+    
+    func onMqttError(message : String) {
+        var alert = UIAlertController(title:"Error", message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    // MARK: UIPopoverControllerDelegate
+    
+    func popoverControllerDidDismissPopover(popoverController: UIPopoverController) {
+        // MQTT
+        MqttManager.sharedInstance.delegate = self
+        updateMqttStatus()
+    }
+
 }
 
 

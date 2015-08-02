@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UARTViewController">
@@ -137,7 +137,7 @@
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" white="0.14999999999999999" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.14901960784313725" green="0.14901960784313725" blue="0.14901960784313725" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="1nR-Pl-EMn" secondAttribute="bottom" constant="117" id="2Iw-cU-o3x"/>
                 <constraint firstItem="iX4-yK-tww" firstAttribute="leading" secondItem="4Bs-rp-lml" secondAttribute="leading" constant="20" id="9q1-L7-Btf"/>
@@ -316,7 +316,7 @@
             <nil key="simulatedStatusBarMetrics"/>
             <point key="canvasLocation" x="477" y="514"/>
         </view>
-        <customObject id="e9D-JV-2Hc" customClass="HelpViewController" customModule="BluetoothLE_Test" customModuleProvider="target">
+        <customObject id="e9D-JV-2Hc" customClass="HelpViewController" customModule="Adafruit_Bluefruit_LE_Connect" customModuleProvider="target">
             <connections>
                 <outlet property="textView" destination="zja-cB-5O1" id="U6G-IP-Mtn"/>
                 <outlet property="view" destination="HuU-NG-Scm" id="DBz-UX-5xJ"/>

@@ -1,0 +1,8 @@
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
+LIBRARY_SEARCH_PATHS = "$(PODS_ROOT)/OpenSSL-Universal/lib-ios" "$(PODS_ROOT)/OpenSSL-Universal/lib-ios" "$(PODS_ROOT)/OpenSSL-Universal/lib-ios"
+OTHER_CFLAGS = -DWITH_THREADING -DWITH_TLS -DWITH_TLS_PSK $(inherited) -iquote "$CONFIGURATION_BUILD_DIR/Moscapsule.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/OpenSSL_Universal.framework/Headers"
+OTHER_LDFLAGS = $(inherited) -ObjC -l"crypto" -l"ssl" -framework "Moscapsule"
+OTHER_SWIFT_FLAGS = $(inherited) "-D" "COCOAPODS"
+PODS_FRAMEWORK_BUILD_PATH = $(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Pods
+PODS_ROOT = ${SRCROOT}/Pods

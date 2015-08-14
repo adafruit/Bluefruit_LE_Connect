@@ -54,7 +54,8 @@ static const NSInteger kSection_BootloaderReleases = 2;
     {
         firmwareUpdater = [FirmwareUpdater new];
         firmwareUpdaterRunning = YES;
-        [firmwareUpdater checkUpdatesForPeripheral:_peripheral delegate:self];
+        [firmwareUpdater connectAndCheckUpdatesForPeripheral:_peripheral delegate:self];
+
     }
     else
     {
@@ -62,7 +63,7 @@ static const NSInteger kSection_BootloaderReleases = 2;
     }
     
     //refresh updates for DFU
-    [FirmwareUpdater refreshSoftwareUpdatesDatabase];
+    //[FirmwareUpdater refreshSoftwareUpdatesDatabase];
     
     [baseTableView registerNib:[UINib nibWithNibName:@"UserFilesTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"UserFilesCell"];
 }
@@ -194,7 +195,7 @@ static const NSInteger kSection_BootloaderReleases = 2;
             NSArray *firmwareReleases = boardRelease.firmwareReleases;
             FirmwareInfo *firmwareInfo = [firmwareReleases objectAtIndex:row];
             
-            cell.textLabel.text = firmwareInfo.version;
+            cell.textLabel.text = [NSString stringWithFormat:firmwareInfo.isBeta?@"Beta Version %@":@"Version %@", firmwareInfo.version];
             cell.detailTextLabel.text = firmwareInfo.boardName;
         }
     }
@@ -214,16 +215,16 @@ static const NSInteger kSection_BootloaderReleases = 2;
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-        const NSInteger section = indexPath.section;
-        const NSInteger row = indexPath.row;
-        
-        if (section == kSection_FirmwareReleases)
-        {
-            NSArray *firmwareReleases = boardRelease.firmwareReleases;
-            FirmwareInfo *firmwareInfo = [firmwareReleases objectAtIndex:row];
-            [self confirmDfuUpdateWithFirmware:firmwareInfo];
-        }
-
+    const NSInteger section = indexPath.section;
+    const NSInteger row = indexPath.row;
+    
+    if (section == kSection_FirmwareReleases)
+    {
+        NSArray *firmwareReleases = boardRelease.firmwareReleases;
+        FirmwareInfo *firmwareInfo = [firmwareReleases objectAtIndex:row];
+        [self confirmDfuUpdateWithFirmware:firmwareInfo];
+    }
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -346,13 +347,13 @@ static const NSInteger kSection_BootloaderReleases = 2;
         __weak DFUViewController *weakSelf = self;
         UIAlertAction *okAction;
         if (exit) {
-            okAction = [UIAlertAction  actionWithTitle:@"Ok"  style:UIAlertActionStyleDefault  handler:^(UIAlertAction *action) {
+            okAction = [UIAlertAction  actionWithTitle:@"Ok" style:UIAlertActionStyleDefault  handler:^(UIAlertAction *action) {
                 DFUViewController *strongSelf = weakSelf;
                 [strongSelf.navigationController popViewControllerAnimated:YES];
             }];
         }
         else {
-            okAction = [UIAlertAction  actionWithTitle:@"Ok"  style:UIAlertActionStyleDefault  handler:nil];
+            okAction = [UIAlertAction  actionWithTitle:@"Ok" style:UIAlertActionStyleDefault  handler:nil];
         }
         [alertController addAction:okAction];
         [self presentViewController:alertController animated:YES completion:nil];

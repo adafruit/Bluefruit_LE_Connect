@@ -21,6 +21,7 @@
 @property NSString *hexFileUrl;
 @property NSString *iniFileUrl;
 @property NSString *boardName;
+@property BOOL isBeta;
 @end
 
 #pragma mark - FirmwareInfo

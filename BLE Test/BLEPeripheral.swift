@@ -59,7 +59,7 @@ class BLEPeripheral: NSObject, CBPeripheralDelegate {
              ConnectionMode.PinIO.rawValue,
              ConnectionMode.Controller.rawValue,
             ConnectionMode.DFU.rawValue:
-            currentPeripheral.discoverServices([uartServiceUUID()])
+            currentPeripheral.discoverServices([uartServiceUUID(), dfuServiceUUID(), deviceInformationServiceUUID()])       // Discover dfu and dis (needed to check if update is available)
         case ConnectionMode.Info.rawValue:
             currentPeripheral.discoverServices(nil)
             break

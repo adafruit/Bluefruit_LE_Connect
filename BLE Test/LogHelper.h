@@ -3,7 +3,6 @@
 //  
 //
 //  Created by Antonio García on 12/09/14.
-//  Copyright (c) 2014-2015 OpenRoad. All rights reserved.
 
 // Log macros
 #ifdef DEBUG

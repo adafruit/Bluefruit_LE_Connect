@@ -28,7 +28,7 @@
 - (void)dfuServiceNotFound;
 @end
 
-@interface FirmwareUpdater : NSObject
+@interface FirmwareUpdater : NSObject  <CBPeripheralDelegate>
 
 @property DeviceInfoData *deviceInfoData;
 
@@ -40,5 +40,5 @@
 
 // Check updates
 - (void)checkUpdatesForPeripheral:(CBPeripheral *)peripheral delegate:(id<FirmwareUpdaterDelegate>) delegate;
-
+- (void)connectAndCheckUpdatesForPeripheral:(CBPeripheral *)peripheral delegate:(id<FirmwareUpdaterDelegate>) delegate;
 @end

@@ -24,8 +24,7 @@ protocol BLEMainViewControllerDelegate : Any {
 }
 
 class BLEMainViewController : UIViewController, UINavigationControllerDelegate, HelpViewControllerDelegate, CBCentralManagerDelegate,
-                              BLEPeripheralDelegate, UARTViewControllerDelegate, PinIOViewControllerDelegate,
-DeviceListViewControllerDelegate {
+                              BLEPeripheralDelegate, UARTViewControllerDelegate, PinIOViewControllerDelegate, DeviceListViewControllerDelegate, FirmwareUpdaterDelegate {
     
     enum ConnectionStatus:Int {
         case Idle = 0
@@ -63,6 +62,7 @@ DeviceListViewControllerDelegate {
     private let connectionTimeOutIntvl:NSTimeInterval = 30.0
     private var connectionTimer:NSTimer?
     
+    private var firmwareUpdater : FirmwareUpdater?
     
     static let sharedInstance = BLEMainViewController()
     
@@ -144,7 +144,11 @@ DeviceListViewControllerDelegate {
         }
         
         //refresh updates for DFU
-        //        FirmwareUpdater.refreshSoftwareUpdatesDatabase()
+        FirmwareUpdater.refreshSoftwareUpdatesDatabase()
+        let areAutomaticFirmwareUpdatesEnabled = NSUserDefaults.standardUserDefaults().boolForKey("updatescheck_preference");
+        if (areAutomaticFirmwareUpdatesEnabled) {
+            firmwareUpdater = FirmwareUpdater()
+        }
     }
     
     
@@ -557,17 +561,18 @@ DeviceListViewControllerDelegate {
     
     func pushViewController(vc:UIViewController) {
         
-        if currentAlertView != nil {
-            currentAlertView?.dismissViewControllerAnimated(false, completion: { () -> Void in
+        //if currentAlertView != nil {
+        if ((self.presentedViewController) != nil) {
+            self.presentedViewController!.dismissViewControllerAnimated(false, completion: { () -> Void in
                 self.navController.pushViewController(vc, animated: true)
-                self.currentAlertView = nil
+              //  self.currentAlertView = nil
             })
         }
-            
         else {
             navController.pushViewController(vc, animated: true)
         }
         
+        self.currentAlertView = nil
     }
     
     
@@ -863,6 +868,19 @@ DeviceListViewControllerDelegate {
         
         connectionStatus = ConnectionStatus.Connected
         
+        // Check if automatic update should be presented to the user
+        if (firmwareUpdater != nil && connectionMode != .DFU) {
+            // Wait till an updates are checked
+             printLog(self, "connectionFinalized", "Check if updates are available")
+            firmwareUpdater!.checkUpdatesForPeripheral(currentPeripheral!.currentPeripheral, delegate: self)
+        }
+        else {
+            // Automatic updates not enabled. Just go to the mode selected by the user
+            launchViewControllerForSelectedMode()
+        }
+    }
+
+    func launchViewControllerForSelectedMode() {
         //Push appropriate viewcontroller onto the navcontroller
         var vc:UIViewController? = nil
         switch connectionMode {
@@ -896,7 +914,6 @@ DeviceListViewControllerDelegate {
                 self.pushViewController(vc!)
             })
         }
-        
     }
     
     
@@ -1060,6 +1077,60 @@ DeviceListViewControllerDelegate {
         
     }
     
+    // MARK: - FirmwareUpdaterDelegate
+    func onFirmwareUpdatesAvailable(isUpdateAvailable: Bool, latestRelease: FirmwareInfo!, deviceInfoData: DeviceInfoData!, allReleases: [NSObject : AnyObject]!) {
+        printLog(self, "onFirmwareUpdatesAvailable", "\(isUpdateAvailable)")
+        
+        cm?.delegate = self
+        
+        if (isUpdateAvailable) {
+            dispatch_async(dispatch_get_main_queue(), { [unowned self] in
+                
+                // Dismiss current dialog
+                self.currentAlertView = nil
+                if (self.presentedViewController != nil) {
+                    self.presentedViewController!.dismissViewControllerAnimated(true, completion: { _ in
+                        self.currentAlertView = nil
+                        self.showUpdateAvailableForRelease(latestRelease)
+                    })
+                }
+                else {
+                    self.showUpdateAvailableForRelease(latestRelease)
+                }
+            })
+        }
+        else {
+            launchViewControllerForSelectedMode()
+        }
+    }
+    
+    func dfuServiceNotFound() {
+        printLog(self, "dfuServiceNotFound", "")
+        
+        cm?.delegate = self
+        launchViewControllerForSelectedMode()
+    }
+    
+    func showUpdateAvailableForRelease(latestRelease: FirmwareInfo!) {
+        var alert = UIAlertController(title:"Update available", message: "Software version \(latestRelease.version) is available", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        alert.addAction(UIAlertAction(title: "Go to updates", style: UIAlertActionStyle.Default, handler: { _ in
+            self.launchDFU(self.currentPeripheral!.currentPeripheral)
+            return
+        }))
+        alert.addAction(UIAlertAction(title: "Ask later", style: UIAlertActionStyle.Default, handler: { _ in
+            self.launchViewControllerForSelectedMode()
+        }))
+        alert.addAction(UIAlertAction(title: "Ignore", style: UIAlertActionStyle.Cancel, handler: { _ in
+            NSUserDefaults.standardUserDefaults().setObject(latestRelease.version, forKey: "softwareUpdateIgnoredVersion")
+            self.launchViewControllerForSelectedMode()
+        }))
+        self.presentViewController(alert, animated: true, completion: nil)
+        //self.currentAlertView = alert
+
+
+    }
+    
 }
-    
-    
+
+

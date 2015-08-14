@@ -40,6 +40,13 @@ class BLEAppDelegate: UIResponder, UIApplicationDelegate {
             //do iOS 7 stuff, which is pretty much nothing for local notifications.
         }
         
+        // Register Settings bundle and set default values
+        var appDefaults = Dictionary<String, AnyObject>()
+        appDefaults["updatescheck_preference"] = true;
+        appDefaults["betareleases_preference"] = false;
+        NSUserDefaults.standardUserDefaults().registerDefaults(appDefaults)
+        NSUserDefaults.standardUserDefaults().synchronize()
+        
         return true
         
     }

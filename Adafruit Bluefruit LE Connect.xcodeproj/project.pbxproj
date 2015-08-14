@@ -35,6 +35,7 @@
 		A9C61DE71B6A70F8005C3D9B /* MqttManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C61DE61B6A70F8005C3D9B /* MqttManager.swift */; };
 		A9C61DEB1B6A961F005C3D9B /* MqttSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C61DEA1B6A961F005C3D9B /* MqttSettings.swift */; };
 		A9C61DED1B6AC782005C3D9B /* MqttSettingsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C61DEC1B6AC782005C3D9B /* MqttSettingsHeaderCell.swift */; };
+		A9C88E7A1B7E47ED00A3F330 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A9C88E791B7E47ED00A3F330 /* Settings.bundle */; };
 		D799733A6FE07F51B41A7F65 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F99478C57E5542A6C520337F /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		F007EDBA1A3064B60023FCD6 /* ControllerViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = F007EDB91A3064B60023FCD6 /* ControllerViewController_iPad.xib */; };
 		F007EDC31A3191BC0023FCD6 /* ble-arrow_button_down.png in Resources */ = {isa = PBXBuildFile; fileRef = F007EDBB1A3191BC0023FCD6 /* ble-arrow_button_down.png */; };
@@ -223,6 +224,7 @@
 		A9C61DE61B6A70F8005C3D9B /* MqttManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MqttManager.swift; sourceTree = "<group>"; };
 		A9C61DEA1B6A961F005C3D9B /* MqttSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MqttSettings.swift; sourceTree = "<group>"; };
 		A9C61DEC1B6AC782005C3D9B /* MqttSettingsHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MqttSettingsHeaderCell.swift; sourceTree = "<group>"; };
+		A9C88E791B7E47ED00A3F330 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		ADDE3DF62E9F32DA6CD326FB /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		F007EDB91A3064B60023FCD6 /* ControllerViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ControllerViewController_iPad.xib; sourceTree = "<group>"; };
 		F007EDBB1A3191BC0023FCD6 /* ble-arrow_button_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ble-arrow_button_down.png"; sourceTree = "<group>"; };
@@ -459,8 +461,8 @@
 			children = (
 				F03A23851AF9CF3500075364 /* nordic dfu library */,
 				F03A23691AF9CE9A00075364 /* utils */,
-				F0CCCF991B0F266D0061558B /* DFUViewController.m */,
 				F0CCCF9A1B0F266D0061558B /* DFUViewController.h */,
+				F0CCCF991B0F266D0061558B /* DFUViewController.m */,
 				F03A235F1AF9CE8900075364 /* UpdateDialogViewController.h */,
 				F03A23601AF9CE8900075364 /* UpdateDialogViewController.m */,
 				F03A23631AF9CE8900075364 /* FilesPickerViewController.h */,
@@ -542,6 +544,7 @@
 		F0A2C95D16BBE44500F2FD12 = {
 			isa = PBXGroup;
 			children = (
+				A9C88E791B7E47ED00A3F330 /* Settings.bundle */,
 				F08F81111B0BF3FD000F3A87 /* BluetoothLE Test.entitlements */,
 				F05E7E0218BEF399005E25F6 /* Images.xcassets */,
 				F0A2C96F16BBE44500F2FD12 /* Classes */,
@@ -947,6 +950,7 @@
 				F07D974119FA46F200CA88CF /* DeviceInfoViewController_iPhone.xib in Resources */,
 				F08ACA6C16DD0C0400A377D1 /* cellGradient3-150h.png in Resources */,
 				F0FB078818C02D9800D263DD /* UARTViewController_iPhone.xib in Resources */,
+				A9C88E7A1B7E47ED00A3F330 /* Settings.bundle in Resources */,
 				F007EDD51A3195110023FCD6 /* ble-button_numbers-2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1206,6 +1210,7 @@
 				INFOPLIST_FILE = "BLE Test/BluetoothLE Test-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -D DEBUG ";
 				PRODUCT_NAME = "Adafruit Bluefruit LE Connect";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "BLE Test/BluetoothLE Test-Bridging-Header.h";

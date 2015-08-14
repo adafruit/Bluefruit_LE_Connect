@@ -61,71 +61,114 @@
             BoardInfo *boardInfo = [BoardInfo new];
             [boardsReleases setObject:boardInfo forKey:boardName];
             
+            //
+            // Firmwares
+            //
+            id firmwareParentNode = [boardDictionary objectForKey:@"firmware"];
+
             // Read firmware releases
-            id firmwareNodes = [boardDictionary objectForKey:@"firmware"];  //check for multiple firmware entries
-            NSArray *firmwareNodesArray;
-            if ([firmwareNodes isKindOfClass:[NSArray class]]) {
-//                DLog(@"MULTIPLE FIRMWARE ENTRIES");
-                firmwareNodesArray = (NSArray*)firmwareNodes;
-            }
-            else {
-//                DLog(@"SINGLE FIRMWARE ENTRY");
-                firmwareNodesArray = [NSArray arrayWithObject:firmwareNodes];
-            }
-            
-            for (NSDictionary *firmwareNode in firmwareNodesArray) {
-                
-                id firmwareReleaseNodes = [firmwareNode objectForKey:@"firmwarerelease"];    //parsing error on last?
-                if ([firmwareReleaseNodes isKindOfClass:[NSArray class]])
-                {
-                    for (NSDictionary *firmwareReleaseNode in firmwareReleaseNodes)
+            {
+                id firmwareNodes = [firmwareParentNode objectForKey:@"firmwarerelease"];
+                if (firmwareNodes) {
+                    if ([firmwareNodes isKindOfClass:[NSArray class]])
                     {
-                        FirmwareInfo *releaseInfo = [self parseFirmwareReleaseNode:firmwareReleaseNode boardName:boardName];
+                        for (NSDictionary *firmwareNode in firmwareNodes)
+                        {
+                            FirmwareInfo *releaseInfo = [self parseFirmwareNode:firmwareNode boardName:boardName isBeta:NO];
+                            [boardInfo.firmwareReleases addObject:releaseInfo];
+                        }
+                    }
+                    else        // Special case for only 1 firmwarerelease
+                    {
+                        FirmwareInfo *releaseInfo = [self parseFirmwareNode:firmwareNodes boardName:boardName isBeta:NO];
                         [boardInfo.firmwareReleases addObject:releaseInfo];
+                        
                     }
                 }
-                else        // Special case for only 1 firmwarerelease
-                {
-                    FirmwareInfo *releaseInfo = [self parseFirmwareReleaseNode:firmwareReleaseNodes boardName:boardName];
-                    [boardInfo.firmwareReleases addObject:releaseInfo];
-                    
-                }
-                
             }
             
-            // Read bootloader releases
-            id bootloaderNodes = [boardDictionary objectForKey:@"bootloader"];  //check for multiple bootloader entries
-            NSArray *bootloaderNodesArray;
-            if ([bootloaderNodes isKindOfClass:[NSArray class]]) {
-//                DLog(@"MULTIPLE BOOTLOADER ENTRIES");
-                bootloaderNodesArray = (NSArray*)bootloaderNodes;
-            }
-            else {
-//                DLog(@"SINGLE BOOTLOADER ENTRY");
-                bootloaderNodesArray = [NSArray arrayWithObject:bootloaderNodes];
-            }
-            
-            for (NSDictionary * bootloaderNode in bootloaderNodesArray) {
-                id bootloaderReleaseNodes = [bootloaderNode objectForKey:@"bootloaderrelease"];
-                if ([bootloaderReleaseNodes isKindOfClass:[NSArray class]])
-                {
-//                DLog(@"Read bootloaderInfo");
-                    for (NSDictionary *bootloaderNode in bootloaderReleaseNodes)
+            // Read beta firmware releases
+            const BOOL showBetaReleases = [[NSUserDefaults standardUserDefaults] boolForKey:@"betareleases_preference"];
+            if (showBetaReleases)
+            {
+                id firmwareNodes = [firmwareParentNode objectForKey:@"firmwarebeta"];
+                if (firmwareNodes) {
+                    if ([firmwareNodes isKindOfClass:[NSArray class]])
                     {
-                        BootloaderInfo *bootloaderInfo = [self parseBootloaderNode:bootloaderNode boardName:boardName];
+                        for (NSDictionary *firmwareNode in firmwareNodes)
+                        {
+                            FirmwareInfo *releaseInfo = [self parseFirmwareNode:firmwareNode boardName:boardName isBeta:YES];
+                            [boardInfo.firmwareReleases addObject:releaseInfo];
+                        }
+                    }
+                    else        // Special case for only 1 firmwarerelease
+                    {
+                        FirmwareInfo *releaseInfo = [self parseFirmwareNode:firmwareNodes boardName:boardName isBeta:YES];
+                        [boardInfo.firmwareReleases addObject:releaseInfo];
+                        
+                    }
+                }
+            }
+            
+            // Sort based on version (descending)
+            [boardInfo.firmwareReleases sortUsingComparator:^NSComparisonResult(FirmwareInfo *obj1, FirmwareInfo *obj2) {
+                return -[obj1.version compare:obj2.version options:NSNumericSearch];
+            }];
+
+
+            //
+            // Booloaders
+            //
+            id bootloaderParentNode = [boardDictionary objectForKey:@"bootloader"];
+
+            // Read bootloader releases
+            {
+                id bootloaderNodes = [bootloaderParentNode objectForKey:@"bootloaderrelease"];
+                if (bootloaderNodes) {
+                    if ([bootloaderNodes isKindOfClass:[NSArray class]])
+                    {
+                        for (NSDictionary *bootloaderNode in bootloaderNodes)
+                        {
+                            BootloaderInfo *bootloaderInfo = [self parseBootloaderNode:bootloaderNode boardName:boardName isBeta:NO];
+                            [boardInfo.bootloaderReleases addObject:bootloaderInfo];
+                        }
+                    }
+                    else        // Special case for only 1 bootloaderrelease
+                    {
+                        BootloaderInfo *bootloaderInfo = [self parseBootloaderNode:bootloaderNodes boardName:boardName isBeta:NO];
                         [boardInfo.bootloaderReleases addObject:bootloaderInfo];
                     }
                 }
-                else        // Special case for only 1 bootloaderrelease
-                {
-//                DLog(@"Read bootloaderInfo single");
-                    BootloaderInfo *bootloaderInfo = [self parseBootloaderNode:bootloaderReleaseNodes boardName:boardName];
-                    [boardInfo.bootloaderReleases addObject:bootloaderInfo];
-                    
+            }
+            
+            // Read bootloader releases
+            if (showBetaReleases)
+            {
+                id bootloaderNodes = [bootloaderParentNode objectForKey:@"bootloaderbeta"];
+                if (bootloaderNodes) {
+                    if ([bootloaderNodes isKindOfClass:[NSArray class]])
+                    {
+                        for (NSDictionary *bootloaderNode in bootloaderNodes)
+                        {
+                            BootloaderInfo *bootloaderInfo = [self parseBootloaderNode:bootloaderNode boardName:boardName isBeta:YES];
+                            [boardInfo.bootloaderReleases addObject:bootloaderInfo];
+                        }
+                    }
+                    else        // Special case for only 1 bootloaderrelease
+                    {
+                        BootloaderInfo *bootloaderInfo = [self parseBootloaderNode:bootloaderNodes boardName:boardName isBeta:YES];
+                        [boardInfo.bootloaderReleases addObject:bootloaderInfo];
+                    }
                 }
             }
 
+            // Sort based on version (descending)
+            [boardInfo.bootloaderReleases sortUsingComparator:^NSComparisonResult(BootloaderInfo *obj1, BootloaderInfo *obj2) {
+                return -[obj1.version compare:obj2.version options:NSNumericSearch];
+            }];
+
         }
+    
         
     }@catch(NSException *e) {
         DLog(@"Error parsing releases.xml");
@@ -135,7 +178,7 @@
     return boardsReleases;
 }
 
-+ (FirmwareInfo *)parseFirmwareReleaseNode:(NSDictionary *)firmwareReleaseNode boardName:(NSString *)boardName
++ (FirmwareInfo *)parseFirmwareNode:(NSDictionary *)firmwareReleaseNode boardName:(NSString *)boardName isBeta:(BOOL)isBeta
 {
     FirmwareInfo *releaseInfo = [FirmwareInfo new];
     releaseInfo.fileType = APPLICATION;
@@ -144,11 +187,12 @@
     releaseInfo.iniFileUrl =[firmwareReleaseNode objectForKey:@"_initfile"];
     releaseInfo.minBootloaderVersion = [firmwareReleaseNode objectForKey:@"_minbootloader"];
     releaseInfo.boardName = boardName;
+    releaseInfo.isBeta = isBeta;
 
     return releaseInfo;
 }
 
-+ (BootloaderInfo *)parseBootloaderNode:(NSDictionary *)bootloaderNode boardName:(NSString *)boardName
++ (BootloaderInfo *)parseBootloaderNode:(NSDictionary *)bootloaderNode boardName:(NSString *)boardName isBeta:(BOOL)isBeta
 {
     BootloaderInfo *bootloaderInfo = [BootloaderInfo new];
     bootloaderInfo.fileType = BOOTLOADER;
@@ -156,6 +200,7 @@
     bootloaderInfo.hexFileUrl =[bootloaderNode objectForKey:@"_hexfile"];
     bootloaderInfo.iniFileUrl =[bootloaderNode objectForKey:@"_initfile"];
     bootloaderInfo.boardName = boardName;
+    bootloaderInfo.isBeta = isBeta;
 
     return bootloaderInfo;
 }

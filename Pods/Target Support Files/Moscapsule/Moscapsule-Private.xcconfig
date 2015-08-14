@@ -1,0 +1,9 @@
+#include "Moscapsule.xcconfig"
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Private" "${PODS_ROOT}/Headers/Private/Moscapsule" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/Moscapsule" "${PODS_ROOT}/Headers/Public/OpenSSL-Universal" "${PODS_ROOT}/Headers/Public/OpenSSL-Universal/openssl"
+LIBRARY_SEARCH_PATHS = ${MOSCAPSULE_LIBRARY_SEARCH_PATHS}
+OTHER_CFLAGS = ${MOSCAPSULE_OTHER_CFLAGS}
+OTHER_LDFLAGS = ${MOSCAPSULE_OTHER_LDFLAGS}
+OTHER_SWIFT_FLAGS = $(inherited) "-D" "COCOAPODS"
+PODS_ROOT = ${SRCROOT}
+SKIP_INSTALL = YES

@@ -22,7 +22,11 @@ let IS_IPHONE_5:Bool = MAIN_SCREEN.bounds.size.height == 568.0
 let IS_IPHONE_4:Bool = MAIN_SCREEN.bounds.size.height == 480.0
 let IS_RETINA:Bool = MAIN_SCREEN.respondsToSelector("scale") && (MAIN_SCREEN.scale == 2.0)
 let IOS_VERSION_FLOAT:Float = (CURRENT_DEVICE.systemVersion as NSString).floatValue
+#if DEBUG
+let LOGGING = true
+#else
 let LOGGING = false
+#endif
 let PREF_UART_SHOULD_ECHO_LOCAL = "UartEchoLocal"
 let cellSelectionColor = UIColor(red: 100.0/255.0, green: 182.0/255.0, blue: 255.0/255.0, alpha: 1.0)
 let bleBlueColor = UIColor(red: 24.0/255.0, green: 126.0/255.0, blue: 248.0/255.0, alpha: 1.0)

@@ -281,7 +281,7 @@ class BLEMainViewController : UIViewController, UINavigationControllerDelegate, 
             return
         }
         
-        cm!.scanForPeripheralsWithServices(nil, options: [CBCentralManagerScanOptionAllowDuplicatesKey: NSNumber(bool:true)])
+        cm!.scanForPeripheralsWithServices(nil, options: [CBCentralManagerScanOptionAllowDuplicatesKey: true])
         //Check if scan indicator is in toolbar items
         var indicatorShown = false
         for i in deviceListViewController.toolbarItems! {

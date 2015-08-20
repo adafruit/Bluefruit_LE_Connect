@@ -18,7 +18,7 @@
             <rect key="frame" x="0.0" y="0.0" width="299" height="148"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cSa-2r-ukx" id="qc3-Is-nnW">
-                <rect key="frame" x="0.0" y="0.0" width="299" height="147.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="299" height="147"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="100" contentMode="left" text="Pin 1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gmg-kc-0UQ" userLabel="Label - Pin">
@@ -126,7 +126,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" indicatorStyle="white" editable="NO" usesAttributedText="YES" id="ib0-CR-IRP">
-                    <rect key="frame" x="20" y="20" width="280" height="413"/>
+                    <rect key="frame" x="20" y="20" width="280" height="520"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <attributedString key="attributedText">
                         <fragment content="Pin I/O Mode Instructions:">
@@ -139,6 +139,9 @@
                         <fragment>
                             <string key="content">
 
+• The Pin I/O mode uses works with an Arduino Uno running the BLEFirmata sketch.  More info can be found here:
+https://learn.adafruit.com/bluefruit-le-connect-for-ios/pin-i-slash-o
+
 • Tap a row in the table corresponding to the </string>
                             <attributes>
                                 <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -150,7 +153,6 @@
                             <attributes>
                                 <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <font key="NSFont" size="15" name="HelveticaNeue-Bold"/>
-                                <font key="NSOriginalFont" size="15" name="HelveticaNeue-Bold"/>
                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                             </attributes>
                         </fragment>
@@ -169,7 +171,6 @@
                             <attributes>
                                 <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <font key="NSFont" size="15" name="HelveticaNeue-Bold"/>
-                                <font key="NSOriginalFont" size="15" name="HelveticaNeue-Bold"/>
                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                             </attributes>
                         </fragment>
@@ -186,7 +187,6 @@
                             <attributes>
                                 <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <font key="NSFont" size="15" name="HelveticaNeue-Bold"/>
-                                <font key="NSOriginalFont" size="15" name="HelveticaNeue-Bold"/>
                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                             </attributes>
                         </fragment>
@@ -203,7 +203,6 @@
                             <attributes>
                                 <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <font key="NSFont" size="15" name="HelveticaNeue-Bold"/>
-                                <font key="NSOriginalFont" size="15" name="HelveticaNeue-Bold"/>
                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                             </attributes>
                         </fragment>
@@ -237,7 +236,6 @@
                             <attributes>
                                 <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <font key="NSFont" size="15" name="HelveticaNeue-Bold"/>
-                                <font key="NSOriginalFont" size="15" name="HelveticaNeue-Bold"/>
                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                             </attributes>
                         </fragment>
@@ -252,7 +250,6 @@
                             <attributes>
                                 <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <font key="NSFont" size="15" name="HelveticaNeue-Bold"/>
-                                <font key="NSOriginalFont" size="15" name="HelveticaNeue-Bold"/>
                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                             </attributes>
                         </fragment>

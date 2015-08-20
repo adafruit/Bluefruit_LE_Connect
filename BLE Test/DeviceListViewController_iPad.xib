@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DeviceListViewController" customModule="BluetoothLE_Test" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DeviceListViewController" customModule="Adafruit_Bluefruit_LE_Connect" customModuleProvider="target">
             <connections>
                 <outlet property="attributeCell" destination="dFu-6m-DST" id="MwR-D4-UgJ"/>
                 <outlet property="deviceCell" destination="lFr-VI-7u2" id="sx8-Sg-Nrx"/>
@@ -57,13 +57,13 @@
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
             <point key="canvasLocation" x="68" y="155"/>
         </view>
-        <customObject id="8k0-dh-rEQ" customClass="HelpViewController" customModule="BluetoothLE_Test" customModuleProvider="target">
+        <customObject id="8k0-dh-rEQ" customClass="HelpViewController" customModule="Adafruit_Bluefruit_LE_Connect" customModuleProvider="target">
             <connections>
                 <outlet property="versionLabel" destination="lUH-7k-6Fw" id="8Lc-uI-ULl"/>
                 <outlet property="view" destination="yYN-Nq-OAX" id="xVK-sl-PFb"/>
             </connections>
         </customObject>
-        <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="48" id="lFr-VI-7u2" customClass="DeviceCell" customModule="BluetoothLE_Test" customModuleProvider="target">
+        <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="48" id="lFr-VI-7u2" customClass="DeviceCell" customModule="Adafruit_Bluefruit_LE_Connect" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="299" height="48"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lFr-VI-7u2" id="zFI-Av-r6X">
@@ -146,7 +146,7 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <point key="canvasLocation" x="-271.5" y="-438"/>
         </tableViewCell>
-        <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" rowHeight="22" id="dFu-6m-DST" userLabel="Attribute Cell" customClass="AttributeCell" customModule="BluetoothLE_Test" customModuleProvider="target">
+        <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" rowHeight="22" id="dFu-6m-DST" userLabel="Attribute Cell" customClass="AttributeCell" customModule="Adafruit_Bluefruit_LE_Connect" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="299" height="22"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dFu-6m-DST" id="gq9-3L-79S">
@@ -203,11 +203,14 @@
                     <color key="shadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <size key="shadowOffset" width="0.0" height="0.0"/>
                 </label>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="white" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3dw-Sa-oee">
-                    <rect key="frame" x="20" y="172" width="280" height="606"/>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" indicatorStyle="white" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3dw-Sa-oee">
+                    <rect key="frame" x="20" y="172" width="280" height="806"/>
                     <attributedString key="attributedText">
                         <fragment>
-                            <string key="content">• Configure Bluefruit LE using instructions found here: 
+                            <string key="content">• A detailed guide to using this app can be found here:
+https://learn.adafruit.com/bluefruit-le-connect-for-ios
+
+• Configure your Bluefruit LE hardware using instructions found here: 
 http://www.adafruit.com/bluefruitle
 
 • Tap the Scan button on the bottom toolbar to start/stop peripheral scanning.
@@ -271,7 +274,7 @@ Pin I/O</string>
                         </fragment>
                         <fragment>
                             <string key="content"> - uses Bluefruit's UART to control Arduino running BLEFirmata sketch:
-http://www.adafruit.com/bluefruitle
+https://learn.adafruit.com/getting-started-with-the-nrf8001-bluefruit-le-breakout/software-bluefruit-firmata
 
 </string>
                             <attributes>

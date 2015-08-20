@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DeviceListViewController" customModule="BluetoothLE_Test" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DeviceListViewController" customModule="Adafruit_Bluefruit_LE_Connect" customModuleProvider="target">
             <connections>
                 <outlet property="attributeCell" destination="JkO-yz-rpB" id="kPZ-QO-ZyA"/>
                 <outlet property="deviceCell" destination="9hq-Hj-3DE" id="bbI-jq-Fea"/>
@@ -43,7 +43,7 @@
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <point key="canvasLocation" x="-224" y="112"/>
         </view>
-        <customObject id="UiI-1G-fVn" customClass="HelpViewController" customModule="BluetoothLE_Test" customModuleProvider="target">
+        <customObject id="UiI-1G-fVn" customClass="HelpViewController" customModule="Adafruit_Bluefruit_LE_Connect" customModuleProvider="target">
             <connections>
                 <outlet property="textView" destination="cSI-jn-4wf" id="QCx-u4-fak"/>
                 <outlet property="versionLabel" destination="XdQ-bI-A6d" id="FIk-zk-7JL"/>
@@ -76,11 +76,14 @@
                         <constraint firstAttribute="height" constant="22" id="jiz-bt-akC"/>
                     </constraints>
                 </view>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="white" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cSI-jn-4wf">
-                    <rect key="frame" x="28" y="219" width="319" height="428"/>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" indicatorStyle="white" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cSI-jn-4wf">
+                    <rect key="frame" x="28" y="219" width="319" height="717"/>
                     <attributedString key="attributedText">
                         <fragment>
-                            <string key="content">• Configure Bluefruit LE using instructions found here: 
+                            <string key="content">• A detailed guide to using this app can be found here:
+https://learn.adafruit.com/bluefruit-le-connect-for-ios
+
+• Configure your Bluefruit LE hardware using instructions found here: 
 http://www.adafruit.com/bluefruitle
 
 • Tap the Scan button on the bottom toolbar to start/stop peripheral scanning.
@@ -137,15 +140,14 @@ http://www.adafruit.com/bluefruitle
                             <string key="content">
 Pin I/O</string>
                             <attributes>
-                                <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <font key="NSFont" size="15" name="HelveticaNeue-Bold"/>
-                                <font key="NSOriginalFont" size="15" name="HelveticaNeue-Bold"/>
                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                             </attributes>
                         </fragment>
                         <fragment>
                             <string key="content"> - uses Bluefruit's UART to control Arduino running BLEFirmata sketch:
-http://www.adafruit.com/bluefruitle
+https://learn.adafruit.com/getting-started-with-the-nrf8001-bluefruit-le-breakout/software-bluefruit-firmata
 
 </string>
                             <attributes>
@@ -219,7 +221,7 @@ http://www.adafruit.com/bluefruitle
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
             <point key="canvasLocation" x="195.5" y="161.5"/>
         </view>
-        <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="48" id="9hq-Hj-3DE" customClass="DeviceCell" customModule="BluetoothLE_Test" customModuleProvider="target">
+        <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="48" id="9hq-Hj-3DE" customClass="DeviceCell" customModule="Adafruit_Bluefruit_LE_Connect" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="299" height="48"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9hq-Hj-3DE" id="qHX-Dw-Jr8">
@@ -302,7 +304,7 @@ http://www.adafruit.com/bluefruitle
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <point key="canvasLocation" x="-271.5" y="-438"/>
         </tableViewCell>
-        <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" rowHeight="22" id="JkO-yz-rpB" userLabel="Attribute Cell" customClass="AttributeCell" customModule="BluetoothLE_Test" customModuleProvider="target">
+        <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" rowHeight="22" id="JkO-yz-rpB" userLabel="Attribute Cell" customClass="AttributeCell" customModule="Adafruit_Bluefruit_LE_Connect" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="299" height="22"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JkO-yz-rpB" id="0bF-Ap-o4e">

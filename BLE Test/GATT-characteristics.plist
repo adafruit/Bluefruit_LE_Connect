@@ -271,7 +271,7 @@
 	<key>00002A29-0000-1000-8000-00805F9B34FB</key>
 	<string>Manufacturer Name</string>
 	<key>00002A28-0000-1000-8000-00805F9B34FB</key>
-	<string>Software revision</string>
+	<string>Software Revision</string>
 	<key>00002A26-0000-1000-8000-00805F9B34FB</key>
 	<string>Firmware Revision</string>
 	<key>00001531-1212-EFDE-1523-785FEABCD123</key>
@@ -280,5 +280,27 @@
 	<string>DFU Packet</string>
 	<key>00001534-1212-EFDE-1523-785FEABCD123</key>
 	<string>DFU Version</string>
+	<key>EE0C2080-8786-40BA-AB96-99B91AC981D8</key>
+	<string>Eddystone Configuration Service</string>
+	<key>EE0C2081-8786-40BA-AB96-99B91AC981D8</key>
+	<string>Eddystone Lock State</string>
+	<key>EE0C2082-8786-40BA-AB96-99B91AC981D8</key>
+	<string>Eddystone Lock</string>
+	<key>EE0C2083-8786-40BA-AB96-99B91AC981D8</key>
+	<string>Eddystone Unlock</string>
+	<key>EE0C2084-8786-40BA-AB96-99B91AC981D8</key>
+	<string>Eddystone URI Data</string>
+	<key>EE0C2085-8786-40BA-AB96-99B91AC981D8</key>
+	<string>Eddystone Flags</string>
+	<key>EE0C2086-8786-40BA-AB96-99B91AC981D8</key>
+	<string>Eddystone Advertised TX Power Levels</string>
+	<key>EE0C2087-8786-40BA-AB96-99B91AC981D8</key>
+	<string>Eddystone TX Power Mode</string>
+	<key>EE0C2088-8786-40BA-AB96-99B91AC981D8</key>
+	<string>Eddystone Beacon Period</string>
+	<key>EE0C2089-8786-40BA-AB96-99B91AC981D8</key>
+	<string>Eddystone Reset</string>
+	<key>EE0C2090-8786-40BA-AB96-99B91AC981D8</key>
+	<string>Eddystone (Reserved)</string>
 </dict>
 </plist>

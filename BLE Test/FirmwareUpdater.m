@@ -204,7 +204,9 @@ static  NSString* const kFirmwareRevisionCharacteristic = @"00002A26-0000-1000-8
     else
     {
         DLog(@"Peripheral has no dfu or dis service available");
-        [self.delegate dfuServiceNotFound];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.delegate dfuServiceNotFound];
+        });
     }
 }
 

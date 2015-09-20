@@ -120,7 +120,7 @@ static NSString *const kApplicationIniFilename = @"application.bin";        // d
         }
         else
         {
-            [self setTitleText:@"Downloading ini file"];
+            [self setTitleText:@"Downloading init file"];
             __weak UpdateDialogViewController *weakSelf = self;
             [FirmwareUpdater downloadDataFromURL:iniUrl withCompletionHandler:^(NSData * iniData) {
                 UpdateDialogViewController *strongSelf = weakSelf;

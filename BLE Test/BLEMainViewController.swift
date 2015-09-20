@@ -1116,7 +1116,6 @@ class BLEMainViewController : UIViewController, UINavigationControllerDelegate, 
         
         alert.addAction(UIAlertAction(title: "Go to updates", style: UIAlertActionStyle.Default, handler: { _ in
             self.launchDFU(self.currentPeripheral!.currentPeripheral)
-            return
         }))
         alert.addAction(UIAlertAction(title: "Ask later", style: UIAlertActionStyle.Default, handler: { _ in
             self.launchViewControllerForSelectedMode()

@@ -137,11 +137,12 @@ static const NSInteger kSection_BootloaderReleases = 2;
             return 1;
             
         case kSection_FirmwareReleases: {
+            NSInteger numRows = 1;      // at least a custom firmware button
             if (boardRelease && boardRelease.firmwareReleases) {
                 NSArray *firmwareReleases = boardRelease.firmwareReleases;
-                return (firmwareReleases?firmwareReleases.count:0) + 1;     // +1 custom firmware button
+                numRows += (firmwareReleases?firmwareReleases.count:0);
             }
-            else return 0;
+            return numRows;
         }
         case kSection_BootloaderReleases:
             return 0;
@@ -173,7 +174,7 @@ static const NSInteger kSection_BootloaderReleases = 2;
     }
     else if (section == kSection_FirmwareReleases)
     {
-        if (row == [self tableView:tableView numberOfRowsInSection:section] -1)     // If is the last row
+        if (row == [self tableView:tableView numberOfRowsInSection:section] -1)     // If is the last row (UserFiles)
         {
             static NSString *kCellIdentifier = @"UserFilesCell";
             UserFilesTableViewCell *userFilesCell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier forIndexPath:indexPath];
@@ -218,7 +219,7 @@ static const NSInteger kSection_BootloaderReleases = 2;
     const NSInteger section = indexPath.section;
     const NSInteger row = indexPath.row;
     
-    if (section == kSection_FirmwareReleases)
+    if (section == kSection_FirmwareReleases &&  row != [self tableView:tableView numberOfRowsInSection:section] -1)     // If is not the last row (UserFiles)
     {
         NSArray *firmwareReleases = boardRelease.firmwareReleases;
         FirmwareInfo *firmwareInfo = [firmwareReleases objectAtIndex:row];

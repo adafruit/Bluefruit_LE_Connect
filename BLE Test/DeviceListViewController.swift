@@ -121,11 +121,13 @@ class DeviceListViewController : UIViewController, UITableViewDelegate, UITableV
         
         let device = devices[sender.tag]
         
+        /*
         // If device is not uart capable, go straight to Info mode
         if device.isUART == false {
             connectInMode(ConnectionMode.Info, peripheral: device.peripheral)
             return
         }
+*/
         
         //Show connection options for UART capable devices
         var style = UIAlertControllerStyle.ActionSheet
@@ -145,23 +147,25 @@ class DeviceListViewController : UIViewController, UITableViewDelegate, UITableV
         }
         alertController.addAction(aaInfo)
         
-        //UART button
-        let aaUART = UIAlertAction(title: "UART", style: UIAlertActionStyle.Default) { (aa:UIAlertAction!) -> Void in
-            self.connectInMode(ConnectionMode.UART, peripheral: device.peripheral)
+        if (device.isUART) {
+            //UART button
+            let aaUART = UIAlertAction(title: "UART", style: UIAlertActionStyle.Default) { (aa:UIAlertAction!) -> Void in
+                self.connectInMode(ConnectionMode.UART, peripheral: device.peripheral)
+            }
+            alertController.addAction(aaUART)
+            
+            //Pin I/O button
+            let aaPinIO = UIAlertAction(title: "Pin I/O", style: UIAlertActionStyle.Default) { (aa:UIAlertAction!) -> Void in
+                self.connectInMode(ConnectionMode.PinIO, peripheral: device.peripheral)
+            }
+            alertController.addAction(aaPinIO)
+            
+            //Controller Button
+            let aaController = UIAlertAction(title: "Controller", style: UIAlertActionStyle.Default) { (aa:UIAlertAction!) -> Void in
+                self.connectInMode(ConnectionMode.Controller, peripheral: device.peripheral)
+            }
+            alertController.addAction(aaController)
         }
-        alertController.addAction(aaUART)
-        
-        //Pin I/O button
-        let aaPinIO = UIAlertAction(title: "Pin I/O", style: UIAlertActionStyle.Default) { (aa:UIAlertAction!) -> Void in
-            self.connectInMode(ConnectionMode.PinIO, peripheral: device.peripheral)
-        }
-        alertController.addAction(aaPinIO)
-        
-        //Controller Button
-        let aaController = UIAlertAction(title: "Controller", style: UIAlertActionStyle.Default) { (aa:UIAlertAction!) -> Void in
-            self.connectInMode(ConnectionMode.Controller, peripheral: device.peripheral)
-        }
-        alertController.addAction(aaController)
         
         // DFU button
         let aaUpdater = UIAlertAction(title: "Firmware Updater", style: UIAlertActionStyle.Default) { (aa:UIAlertAction!) -> Void in
@@ -171,9 +175,8 @@ class DeviceListViewController : UIViewController, UITableViewDelegate, UITableV
         
         
         self.presentViewController(alertController, animated: true) { () -> Void in
-            
         }
-        
+    
     }
     
     

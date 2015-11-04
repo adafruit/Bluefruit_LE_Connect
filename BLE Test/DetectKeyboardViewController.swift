@@ -35,7 +35,7 @@ class KeyboardAwareViewController: UIViewController {
     
     func keyboardWillBeShown(notification : NSNotification) {
         var info = notification.userInfo!
-        var keyboardFrame: CGRect = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
+        let keyboardFrame: CGRect = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
        
         keyboardPositionChanged(keyboardFrame, keyboardShown: true)
     }

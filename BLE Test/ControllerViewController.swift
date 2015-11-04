@@ -299,7 +299,7 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
                 
                 if cmm.accelerometerAvailable == true {
                     cmm.accelerometerUpdateInterval = pollInterval
-                    cmm.startAccelerometerUpdatesToQueue(NSOperationQueue.mainQueue(), withHandler: { (data:CMAccelerometerData!, error:NSError!) -> Void in
+                    cmm.startAccelerometerUpdatesToQueue(NSOperationQueue.mainQueue(), withHandler: { (data:CMAccelerometerData?, error:NSError?) -> Void in
                         self.didReceiveAccelData(data, error: error)
                     })
                     
@@ -312,7 +312,7 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
                     
                 }
                 else {
-                    printLog(self, "buttonValueChanged", "accelerometer unavailable")
+                    printLog(self, funcName: "buttonValueChanged", logString: "accelerometer unavailable")
                 }
             }
                 //button switched off
@@ -334,7 +334,7 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
         else if sender === gyroButton {
             
             //rows to add or remove
-            var valuePaths: [NSIndexPath] = [
+            let valuePaths: [NSIndexPath] = [
                 NSIndexPath(forRow: 1, inSection: 2),
                 NSIndexPath(forRow: 2, inSection: 2),
                 NSIndexPath(forRow: 3, inSection: 2)
@@ -344,7 +344,7 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
                 
                 if cmm.gyroAvailable == true {
                     cmm.gyroUpdateInterval = pollInterval
-                    cmm.startGyroUpdatesToQueue(NSOperationQueue.mainQueue(), withHandler: { (data:CMGyroData!, error:NSError!) -> Void in
+                    cmm.startGyroUpdatesToQueue(NSOperationQueue.mainQueue(), withHandler: { (data:CMGyroData?, error:NSError?) -> Void in
                         self.didReceiveGyroData(data, error: error)
                     })
                     sender.selected = true
@@ -354,7 +354,7 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
                     controlTable.endUpdates()
                 }
                 else {
-                    printLog(self, "buttonValueChanged", "gyro unavailable")
+                    printLog(self, funcName: "buttonValueChanged", logString: "gyro unavailable")
                 }
                 
             }
@@ -374,7 +374,7 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
         else if sender === magnetometerButton {
             
             //rows to add or remove
-            var valuePaths: [NSIndexPath] = [
+            let valuePaths: [NSIndexPath] = [
                 NSIndexPath(forRow: 1, inSection: 3),
                 NSIndexPath(forRow: 2, inSection: 3),
                 NSIndexPath(forRow: 3, inSection: 3)
@@ -383,7 +383,7 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
             if (sender.selected == false) {
                 if cmm.magnetometerAvailable == true {
                     cmm.magnetometerUpdateInterval = pollInterval
-                    cmm.startMagnetometerUpdatesToQueue(NSOperationQueue.mainQueue(), withHandler: { (data:CMMagnetometerData!, error:NSError!) -> Void in
+                    cmm.startMagnetometerUpdatesToQueue(NSOperationQueue.mainQueue(), withHandler: { (data:CMMagnetometerData?, error:NSError?) -> Void in
                         self.didReceiveMagnetometerData(data, error: error)
                     })
                     sender.selected = true
@@ -393,7 +393,7 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
                     controlTable.endUpdates()
                 }
                 else {
-                    printLog(self, "buttonValueChanged", "magnetometer unavailable")
+                    printLog(self, funcName: "buttonValueChanged", logString: "magnetometer unavailable")
                 }
             }
                 //button switched off
@@ -413,7 +413,7 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
         else if sender === gpsButton {
             
             //rows to add or remove
-            var valuePaths: [NSIndexPath] = [
+            let valuePaths: [NSIndexPath] = [
                 NSIndexPath(forRow: 1, inSection: 4),
                 NSIndexPath(forRow: 2, inSection: 4),
                 NSIndexPath(forRow: 3, inSection: 4)
@@ -437,7 +437,7 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
                         }
                     }
                     else {
-                        printLog(self, "buttonValueChanged", "Location Manager authorization not found")
+                        printLog(self, funcName: "buttonValueChanged", logString: "Location Manager authorization not found")
                         gpsButton.selected = false
                         removeGPSTimer()
                         locationManager = nil
@@ -484,7 +484,7 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
         //Quaternion / Device Motion
         else if sender === quatButton {
             //rows to add or remove
-            var valuePaths: [NSIndexPath] = [
+            let valuePaths: [NSIndexPath] = [
                 NSIndexPath(forRow: 1, inSection: 0),
                 NSIndexPath(forRow: 2, inSection: 0),
                 NSIndexPath(forRow: 3, inSection: 0),
@@ -494,7 +494,7 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
             if (sender.selected == false) {
                 if cmm.deviceMotionAvailable == true {
                     cmm.deviceMotionUpdateInterval = pollInterval
-                    cmm.startDeviceMotionUpdatesToQueue(NSOperationQueue.mainQueue(), withHandler: { (cmdm:CMDeviceMotion!, error:NSError!) -> Void in
+                    cmm.startDeviceMotionUpdatesToQueue(NSOperationQueue.mainQueue(), withHandler: { (cmdm:CMDeviceMotion?, error:NSError?) -> Void in
                         self.didReceivedDeviceMotion(cmdm, error: error)
                     })
                     
@@ -505,7 +505,7 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
                     controlTable.endUpdates()
                 }
                 else {
-                    printLog(self, "buttonValueChanged", "device motion unavailable")
+                    printLog(self, funcName: "buttonValueChanged", logString: "device motion unavailable")
                 }
             }
                 //button switched off
@@ -613,9 +613,9 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     
-    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-        let loc = locations.last as! CLLocation
+        let loc = locations.last as CLLocation!
         
         let eventDate = loc.timestamp
         let howRecent = eventDate.timeIntervalSinceNow
@@ -645,9 +645,9 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
     
     func storeSensorData(type:SensorType, x:Double, y:Double, z:Double, w:Double?) {    //called in sensor queue
         
-        var idx = type.rawValue
+        let idx = type.rawValue
         
-        var data = NSMutableData(capacity: 0)!
+        let data = NSMutableData(capacity: 0)!
         let pfx = NSString(string: sensorArray[idx].prefix)
         var xv = Float(x)
         var yv = Float(y)
@@ -676,8 +676,7 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
     
     func sendSensorData(timer:NSTimer) {
         
-        var startIdx = sendSensorIndex
-        var foundIdx:Int
+        let startIdx = sendSensorIndex
         
         var data:NSData?
         
@@ -830,7 +829,7 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if section < sensorArray.count {
-            var snsr = sensorArray[section]
+            let snsr = sensorArray[section]
             if snsr.toggleButton.selected == true {
                 return snsr.valueCells.count+1
             }
@@ -951,7 +950,7 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
     
     func controlPadButtonPressedWithTag(tag:Int) {
         
-        var str = NSString(string: buttonPrefix + "\(tag)" + "1")
+        let str = NSString(string: buttonPrefix + "\(tag)" + "1")
         let data = NSData(bytes: str.UTF8String, length: str.length)
         
         delegate?.sendData(appendCRC(data))
@@ -971,7 +970,7 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
     
     func controlPadButtonReleasedWithTag(tag:Int) {
         
-        var str = NSString(string: buttonPrefix + "\(tag)" + "0")
+        let str = NSString(string: buttonPrefix + "\(tag)" + "0")
         let data = NSData(bytes: str.UTF8String, length: str.length)
         
         delegate?.sendData(appendCRC(data))
@@ -1007,7 +1006,7 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
         
         //Press and release button
         controlPadButtonPressedWithTag(tag)
-        delay(0.1, { () -> () in
+        delay(0.1, closure: { () -> () in
             self.controlPadButtonReleasedWithTag(tag)
         })
     }
@@ -1016,9 +1015,9 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
     func appendCRCmutable(data:NSMutableData) {
         
         //append crc
-        var len = data.length
+        let len = data.length
         var bdata = [UInt8](count: len, repeatedValue: 0)
-        var buf = [UInt8](count: len, repeatedValue: 0)
+//        var buf = [UInt8](count: len, repeatedValue: 0)
         var crc:UInt8 = 0
         data.getBytes(&bdata, length: len)
         
@@ -1037,7 +1036,7 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
     
     func appendCRC(data:NSData)->NSMutableData {
         
-        var mData = NSMutableData(length: 0)
+        let mData = NSMutableData(length: 0)
         mData!.appendData(data)
         appendCRCmutable(mData!)
         return mData!
@@ -1053,7 +1052,7 @@ class ControllerViewController: UIViewController, UITableViewDataSource, UITable
         var rv = red
         var gv = green
         var bv = blue
-        var data = NSMutableData(capacity: 3 + pfx.length)!
+        let data = NSMutableData(capacity: 3 + pfx.length)!
         
         data.appendBytes(pfx.UTF8String, length: pfx.length)
         data.appendBytes(&rv, length: 1)

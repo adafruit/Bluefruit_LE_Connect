@@ -52,7 +52,7 @@ class DeviceInfoViewController: UIViewController, UITableViewDelegate, UITableVi
             }
         }
         
-        self.serviceToggle = [Bool](count: peripheral.services.count, repeatedValue: defaultServiceToggleState)
+        self.serviceToggle = [Bool](count: peripheral.services!.count, repeatedValue: defaultServiceToggleState)
         
     }
     
@@ -105,9 +105,9 @@ class DeviceInfoViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        var service = peripheral.services[indexPath.section] as! CBService
+        let service = peripheral.services![indexPath.section]
         var identifier = characteristicCellIdentifier
-        var style = UITableViewCellStyle.Subtitle
+        let style = UITableViewCellStyle.Subtitle
         var title = ""
         var detailTitle = ""
         var selectable = false
@@ -124,23 +124,22 @@ class DeviceInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         
         //Characteristic row
         else {
-            let chstc = service.characteristics[indexPath.row-1] as! CBCharacteristic
-//            let dsctr = chstc.descriptors[0] as CBDescriptor
-//            let uuidString = chstc.UUID.UUIDString
-            title = displayNameforUUID(chstc.UUID)
-            if chstc.value != nil {
-                detailTitle = chstc.value.stringRepresentation()
+            if let chstc = service.characteristics?[indexPath.row-1] as CBCharacteristic! {
                 
-                //Debugging unknown chars
-//                if detailTitle.rangeOfString("�") != nil {
-//                    println("-------------> detailTitle == " + detailTitle + " contains unknown char, hex value == " + chstc.value.hexRepresentation() + " description == " + chstc.value.description)
-//                }
+                title = displayNameforUUID(chstc.UUID)
+                if chstc.value != nil {
+                    detailTitle = chstc.value!.stringRepresentation()
+                    
+                    //Debugging unknown chars
+                    //                if detailTitle.rangeOfString("�") != nil {
+                    //                    println("-------------> detailTitle == " + detailTitle + " contains unknown char, hex value == " + chstc.value.hexRepresentation() + " description == " + chstc.value.description)
+                    //                }
+                }
+                else { detailTitle = "Characteristic" }
             }
-            else { detailTitle = "Characteristic" }
-//            bkgColor = UIColor(white: 0.9, alpha: 1.0)
         }
         
-        var cell = tableView.dequeueReusableCellWithIdentifier(identifier) as? UITableViewCell
+        var cell = tableView.dequeueReusableCellWithIdentifier(identifier) as UITableViewCell?
         if (cell == nil) {
             cell = UITableViewCell(style: style, reuseIdentifier: identifier)
         }
@@ -159,7 +158,7 @@ class DeviceInfoViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         
-        return peripheral.services.count
+        return peripheral.services!.count
         
     }
     
@@ -167,11 +166,11 @@ class DeviceInfoViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         
-        if let service = peripheral.services[section] as? CBService {
+        if let service = peripheral.services?[section] {
             
             //service is open/being viewed
             if serviceToggle[section] == true {
-                return service.characteristics.count + 1
+                return service.characteristics!.count + 1
             }
             //service is closed
             else {
@@ -216,7 +215,7 @@ class DeviceInfoViewController: UIViewController, UITableViewDelegate, UITableVi
         
         let section = indexPath.section
         
-        if let charCount = peripheral.services[section].characteristics?.count {
+        if let charCount = peripheral.services?[section].characteristics?.count {
             
             var attributePathArray:[NSIndexPath] = []
             for i in 1...(charCount) {

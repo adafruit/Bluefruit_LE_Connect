@@ -73,7 +73,7 @@ class MqttManager
         }
 
         mqttConfig.onConnectCallback = { [ weak delegate = self.delegate,  unowned self /*, weak mqttClient = self.mqttClient*/ ] returnCode  in
-            printLog("", (__FUNCTION__), "MQTT connectedCallback \(returnCode.description)")
+            printLog("", funcName: (__FUNCTION__), logString: "MQTT connectedCallback \(returnCode.description)")
 
             self.status = returnCode == .Success ? ConnectionStatus.Connected : ConnectionStatus.Error
             let mqttSettings = MqttSettings.sharedInstance
@@ -97,25 +97,25 @@ class MqttManager
         }
 
         mqttConfig.onDisconnectCallback = { [weak delegate = self.delegate] reasonCode  in
-            printLog("", (__FUNCTION__), "MQTT onDisconnectCallback")
+            printLog("", funcName: (__FUNCTION__), logString: "MQTT onDisconnectCallback")
 
             self.status = reasonCode == .Disconnect_Requested ? .Disconnected : .Error
             delegate?.onMqttDisconnected()
         }
 
         mqttConfig.onPublishCallback = { messageId in
-            printLog("", (__FUNCTION__), "published (mid=\(messageId))")
+            printLog("", funcName: (__FUNCTION__), logString: "published (mid=\(messageId))")
         }
         
         mqttConfig.onMessageCallback = { [weak delegate = self.delegate] mqttMessage in
-            var payload = NSString(data: mqttMessage.payload, encoding: NSUTF8StringEncoding) as! String
-            printLog("", (__FUNCTION__), "MQTT Message received: payload=\(payload)")
+            let payload = NSString(data: mqttMessage.payload, encoding: NSUTF8StringEncoding) as! String
+            printLog("", funcName: (__FUNCTION__), logString: "MQTT Message received: payload=\(payload)")
 
             delegate?.onMqttMessageReceived(payload, topic: mqttMessage.topic)
         }
         
         // create new MQTT Connection
-        printLog(self, (__FUNCTION__), "MQTT connect")
+        printLog(self, funcName: (__FUNCTION__), logString: "MQTT connect")
         MqttSettings.sharedInstance.isConnected = true
         status = ConnectionStatus.Connecting
         mqttClient = MQTT.newConnection(mqttConfig)

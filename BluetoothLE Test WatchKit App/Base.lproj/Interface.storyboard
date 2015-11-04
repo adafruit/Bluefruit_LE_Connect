@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="9059" systemVersion="14F1021" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="9019"/>
     </dependencies>
     <scenes>
         <!--Bluefruit LE-->
@@ -10,12 +10,6 @@
             <objects>
                 <controller identifier="Root" title="Bluefruit LE" id="AgC-eL-Hgc" customClass="RootInterfaceController" customModule="Adafruit_Bluefruit_LE_Connect_WatchKit_Extension">
                     <items>
-                        <label width="1" height="1" alignment="center" textAlignment="left" numberOfLines="8" id="azE-X3-199">
-                            <string key="text">No Device Connected
-
-Use the Bluefruit LE Connect iPhone app to connect to a device in Controller mode</string>
-                            <fontDescription key="font" style="UICTFontTextStyleCaption1"/>
-                        </label>
                         <group width="1" height="0.69999999999999996" alignment="left" hidden="YES" layout="vertical" id="rI9-Qg-hkD">
                             <items>
                                 <label alignment="center" text="mode:" id="z1f-O1-u4J">
@@ -35,6 +29,12 @@ Use the Bluefruit LE Connect iPhone app to connect to a device in Controller mod
                                 </button>
                             </items>
                         </group>
+                        <label width="1" height="1" alignment="center" textAlignment="left" numberOfLines="8" id="azE-X3-199">
+                            <string key="text">No Device Connected
+
+Use the Bluefruit LE Connect iPhone app to connect to a device in Controller mode</string>
+                            <fontDescription key="font" style="UICTFontTextStyleCaption1"/>
+                        </label>
                     </items>
                     <connections>
                         <outlet property="controllerModeGroup" destination="rI9-Qg-hkD" id="Sqh-AW-kiT"/>
@@ -42,7 +42,7 @@ Use the Bluefruit LE Connect iPhone app to connect to a device in Controller mod
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="683" y="358"/>
+            <point key="canvasLocation" x="683" y="396"/>
         </scene>
         <!--Control Pad-->
         <scene sceneID="7J5-B2-IG6">
@@ -54,7 +54,7 @@ Use the Bluefruit LE Connect iPhone app to connect to a device in Controller mod
                                 <group width="0.33000000000000002" height="1" alignment="left" layout="vertical" id="RDv-oR-9mU">
                                     <items>
                                         <button alignment="left" verticalAlignment="center" id="Vw1-5g-rKQ">
-                                            <group key="contentGroup" width="1" height="0.33000000000000002" alignment="left" backgroundImage="arrowLeft" contentMode="center" id="V69-Zl-7ys">
+                                            <group key="contentGroup" width="1" height="0.33000000000000002" alignment="left" backgroundImage="arrowleft" contentMode="center" id="V69-Zl-7ys">
                                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             </group>
                                             <connections>

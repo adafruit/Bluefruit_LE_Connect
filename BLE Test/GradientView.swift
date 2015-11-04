@@ -24,7 +24,7 @@ class GradientView: UIView {
 //    }
     required init(coder aDecoder: NSCoder) {
         endColor = UIColor.whiteColor()
-        super.init(coder: aDecoder)
+        super.init(coder: aDecoder)!
     }
     
     override func drawRect(rect: CGRect) {
@@ -52,7 +52,7 @@ class GradientView: UIView {
         let startPoint = CGPointMake(CGRectGetMinX(rect), CGRectGetMidY(rect))
         let endPoint = CGPointMake(CGRectGetMaxX(rect), CGRectGetMidY(rect))
         
-        CGContextDrawLinearGradient(context, gradient, startPoint, endPoint, 0)
+        CGContextDrawLinearGradient(context, gradient, startPoint, endPoint, CGGradientDrawingOptions.DrawsBeforeStartLocation)
 //        CGGradientRelease(gradient), gradient = NULL
         
         CGContextRestoreGState(context)

@@ -88,7 +88,7 @@ class PinCell: UITableViewCell {
     
     
     required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        super.init(coder: aDecoder)!
     }
     
     
@@ -105,14 +105,14 @@ class PinCell: UITableViewCell {
                 self.valueLabel.text = "High"
                 break
             default:
-                printLog(self, "setDigitalValue", "Attempting to set digital pin \(self.digitalPin) to analog value")
+                printLog(self, funcName: "setDigitalValue", logString: "Attempting to set digital pin \(self.digitalPin) to analog value")
                 break
             }
         }
             
         else{
             
-            printLog(self, "setDigitalValue", "\(self.analogPin) to digital value")
+            printLog(self, funcName: "setDigitalValue", logString: "\(self.analogPin) to digital value")
         }
         
     }
@@ -130,7 +130,7 @@ class PinCell: UITableViewCell {
             
         else {
             
-            printLog(self, "setAnalogValue", "\(self.digitalPin) to analog value")
+            printLog(self, funcName: "setAnalogValue", logString: "\(self.digitalPin) to analog value")
         }
         
     }
@@ -148,7 +148,7 @@ class PinCell: UITableViewCell {
             
         else {
             
-            printLog(self, "setPwmValue", "\(self.digitalPin) to non-PWM value")
+            printLog(self, funcName: "setPwmValue", logString: "\(self.digitalPin) to non-PWM value")
             
         }
         

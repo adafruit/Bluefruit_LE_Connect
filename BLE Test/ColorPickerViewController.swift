@@ -79,7 +79,7 @@ class ColorPickerViewController: UIViewController, UITextFieldDelegate, ISColorW
         self.navigationItem.rightBarButtonItem = infoBarButton
         
         sendButton.layer.cornerRadius = 4.0
-        sendButton.layer.borderColor = sendButton.currentTitleColor?.CGColor
+        sendButton.layer.borderColor = sendButton.currentTitleColor.CGColor
         sendButton.layer.borderWidth = 1.0;
         
         wellView.backgroundColor = UIColor.whiteColor()
@@ -241,7 +241,7 @@ class ColorPickerViewController: UIViewController, UITextFieldDelegate, ISColorW
             
             helpPopoverController = UIPopoverController(contentViewController: helpViewController)
             helpPopoverController?.backgroundColor = UIColor.darkGrayColor()
-            let rightBBI:UIBarButtonItem! = self.navigationController?.navigationBar.items.last!.rightBarButtonItem
+            let rightBBI:UIBarButtonItem! = self.navigationController?.navigationBar.items?.last!.rightBarButtonItem
             let aFrame:CGRect = rightBBI!.customView!.frame
             helpPopoverController?.presentPopoverFromRect(aFrame,
                 inView: rightBBI.customView!.superview!,

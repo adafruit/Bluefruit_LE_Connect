@@ -8,27 +8,25 @@
 
 import WatchKit
 import Foundation
+import WatchConnectivity
 
-
-class RootInterfaceController: BLEInterfaceController {
-    
-    @IBOutlet weak var noConnectionLabel: WKInterfaceLabel!
-    @IBOutlet weak var controllerModeGroup: WKInterfaceGroup!
+class RootInterfaceController: BLEInterfaceController, WCSessionDelegate {
     
     private var checkConnectionTimer:NSTimer?
     
 //    static let sharedInstance = RootInterfaceController()
     
-    override func awakeWithContext(context: AnyObject?) {
-        super.awakeWithContext(context)
-        
-    }
+//    override func awakeWithContext(context: AnyObject?) {
+//        super.awakeWithContext(context)
+//    }
 
     
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
-        checkConnectionTimer = NSTimer(timeInterval: 3.0, target: self, selector: Selector("checkConnection"), userInfo: nil, repeats: true)
+        
+        checkConnection()
+        checkConnectionTimer = NSTimer(timeInterval: 5.0, target: self, selector: Selector("checkConnection"), userInfo: nil, repeats: true)
         checkConnectionTimer!.tolerance = 2.0
         NSRunLoop.currentRunLoop().addTimer(checkConnectionTimer!, forMode: NSDefaultRunLoopMode)
         
@@ -44,18 +42,9 @@ class RootInterfaceController: BLEInterfaceController {
     }
     
     
-    override func respondToConnected() {
+    func checkConnection(){
         
-        self.noConnectionLabel.setHidden(true)
-        self.controllerModeGroup.setHidden(false)
-        
-    }
-    
-    
-    override func respondToNotConnected() {
-        
-        self.noConnectionLabel.setHidden(false)
-        self.controllerModeGroup.setHidden(true)
+        sendRequest(["type":"isConnected"])
         
     }
     
@@ -245,9 +234,9 @@ class ColorPickerInterfaceController: BLEInterfaceController {
         var blue:CGFloat = 0.0
         var alpha:CGFloat = 0.0
         color.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
-        var redInt = Int(Float(255)*Float(red))
-        var blueInt = Int(Float(255)*Float(blue))
-        var greenInt = Int(Float(255)*Float(green))
+        let redInt = Int(Float(255)*Float(red))
+        let blueInt = Int(Float(255)*Float(blue))
+        let greenInt = Int(Float(255)*Float(green))
         let request = [ "type":"sendData",
                         "red":redInt,
                         "blue":blueInt,
@@ -277,7 +266,7 @@ class ColorPickerInterfaceController: BLEInterfaceController {
         var alpha:CGFloat = 0.0
         swatchColor.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
         
-        var newColor = UIColor(red: CGFloat(value), green: green, blue: blue, alpha: 1.0)
+        let newColor = UIColor(red: CGFloat(value), green: green, blue: blue, alpha: 1.0)
         setRGBColor(newColor)
         
     }
@@ -292,7 +281,7 @@ class ColorPickerInterfaceController: BLEInterfaceController {
         var alpha:CGFloat = 0.0
         swatchColor.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
         
-        var newColor = UIColor(red: red, green: CGFloat(value), blue: blue, alpha: 1.0)
+        let newColor = UIColor(red: red, green: CGFloat(value), blue: blue, alpha: 1.0)
         setRGBColor(newColor)
         
     }
@@ -307,7 +296,7 @@ class ColorPickerInterfaceController: BLEInterfaceController {
         var alpha:CGFloat = 0.0
         swatchColor.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
         
-        var newColor = UIColor(red: red, green: green, blue: CGFloat(value), alpha: 1.0)
+        let newColor = UIColor(red: red, green: green, blue: CGFloat(value), alpha: 1.0)
         setRGBColor(newColor)
         
     }

@@ -8,9 +8,10 @@
 
 import Foundation
 import UIKit
+import WatchConnectivity
 
 @UIApplicationMain
-class BLEAppDelegate: UIResponder, UIApplicationDelegate {
+class BLEAppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
     
     var window:UIWindow?
     var mainViewController:BLEMainViewController?
@@ -33,7 +34,8 @@ class BLEAppDelegate: UIResponder, UIApplicationDelegate {
         // Ask user for permision to show local notifications
         if(UIApplication.instancesRespondToSelector(Selector("registerUserNotificationSettings:")))
         {
-            application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: UIUserNotificationType.Sound | UIUserNotificationType.Alert | UIUserNotificationType.Badge, categories: nil))
+            let settings = UIUserNotificationSettings(forTypes: [.Sound, .Alert, .Badge], categories: nil)
+            application.registerUserNotificationSettings(settings)
         }
         else
         {
@@ -46,6 +48,20 @@ class BLEAppDelegate: UIResponder, UIApplicationDelegate {
         appDefaults["betareleases_preference"] = false;
         NSUserDefaults.standardUserDefaults().registerDefaults(appDefaults)
         NSUserDefaults.standardUserDefaults().synchronize()
+        
+        if WCSession.isSupported() {
+            print("creating WCSession …")
+            let session = WCSession.defaultSession()
+            session.delegate = self
+            session.activateSession()
+            
+            if session.reachable == true {
+                print("WCSession is reachable")
+            }
+            else {
+                print("WCSession is not reachable")
+            }
+        }
         
         return true
         
@@ -79,9 +95,77 @@ class BLEAppDelegate: UIResponder, UIApplicationDelegate {
     
     
     //WatchKit request
+    
+    func session(session: WCSession, didReceiveMessage message: [String : AnyObject], replyHandler: ([String : AnyObject]) -> Void) {
+        
+        if let request = message["type"] as? String {
+            if request == "isConnected" {
+                //                    NSLog("app received connection status request")
+                
+                //check connection status
+                if BLEMainViewController.sharedInstance.connectedInControllerMode() {
+                    replyHandler(["connected":true])
+                }
+                else {
+                    replyHandler(["connected":false])
+                }
+                return
+            }
+            else if request == "command" {
+                if let command = message["command"] as? String {
+                    if command == "disconnect" {
+                        //                            NSLog("BLEAppDelegate -> Disconnect command received")
+                        
+                        //disconnect device
+                        BLEMainViewController.sharedInstance.disconnectviaWatch()
+                        
+                        replyHandler(["connected":false])
+                    }
+                }
+                
+            }
+            else if request == "sendData"{
+                //check send data type - button or color
+                if let red = message["red"] as? Int, green = message["green"] as? Int, blue = message["blue"] as? Int {
+                    //                        NSLog("color request received")
+                    
+                    //forward data to mainviewController
+                    if BLEMainViewController.sharedInstance.connectedInControllerMode() {
+                        BLEMainViewController.sharedInstance.controllerViewController.sendColor(UInt8(red), green: UInt8(green), blue: UInt8(blue))
+                        replyHandler(["connected":true])
+                    }
+                    else {
+                        replyHandler(["connected":false])
+                    }
+                    return
+                }
+                else if let button = message["button"] as? Int {
+                    
+                    //                        NSLog("button request " + button)
+                    //forward data to mainviewController
+                    if BLEMainViewController.sharedInstance.connectedInControllerMode() {
+                        BLEMainViewController.sharedInstance.controllerViewController.controlPadButtonTappedWithTag(button)
+                        replyHandler(["connected":true])
+                    }
+                    else {
+                        replyHandler(["connected":false])
+                    }
+                    return
+                }
+                
+            }
+                
+            else {
+                //blank reply
+                replyHandler([:])
+            }
+        }
+        
+    }
+    
     func application(application: UIApplication,
         handleWatchKitExtensionRequest userInfo: [NSObject : AnyObject]?,
-        reply: (([NSObject : AnyObject]!) -> Void)!) {
+        reply: (([NSObject : AnyObject]?) -> Void)) {
             
             // 1
             if let userInfo = userInfo, request = userInfo["type"] as? String {

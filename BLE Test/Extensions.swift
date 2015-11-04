@@ -33,7 +33,7 @@ extension NSData {
     func hexRepresentation()->String {
         
         let dataLength:Int = self.length
-        var string = NSMutableString(capacity: dataLength*2)
+        let string = NSMutableString(capacity: dataLength*2)
         let dataBytes:UnsafePointer<Void> = self.bytes
         for idx in 0..<dataLength {
             string.appendFormat("%02x", [UInt(dataBytes[idx])] )
@@ -84,7 +84,7 @@ extension NSString {
         
         self.getCharacters(&charArray)
         
-        var hexString = NSMutableString()
+        let hexString = NSMutableString()
         var charString:NSString
         
         for i in 0..<len {
@@ -161,7 +161,7 @@ func printLog(obj:AnyObject, funcName:String, logString:String) {
         return
     }
     
-    println("\(obj.classForCoder?.description()) \(funcName) : \(logString)")
+    print("\(obj.classForCoder?.description()) \(funcName) : \(logString)")
     
 }
 
@@ -169,7 +169,7 @@ func printLog(obj:AnyObject, funcName:String, logString:String) {
 func binaryforByte(value: UInt8) -> String {
     
     var str = String(value, radix: 2)
-    let len = count(str)
+    let len = str.characters.count
     if len < 8 {
         var addzeroes = 8 - len
         while addzeroes > 0 {
@@ -195,7 +195,7 @@ extension UIImage
         CGContextTranslateCTM(context, 0.0, -self.size.height)
         
         // multiply blend mode
-        CGContextSetBlendMode(context, kCGBlendModeMultiply)
+        CGContextSetBlendMode(context, CGBlendMode.Multiply)
         
         let rect = CGRectMake(0, 0, self.size.width, self.size.height)
         CGContextClipToMask(context, rect, self.CGImage)

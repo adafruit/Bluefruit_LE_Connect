@@ -85,7 +85,7 @@ class MqttSettingsViewController: KeyboardAwareViewController, UITableViewDelega
     }
 
     func subscriptionTopicChanged(newTopic: String?, qos: MqttManager.MqttQos) {
-        printLog(self, (__FUNCTION__), "subscription changed from: \(previousSubscriptionTopic) to: \(newTopic)");
+        printLog(self, funcName: (__FUNCTION__), logString: "subscription changed from: \(previousSubscriptionTopic) to: \(newTopic)");
         
         let mqttManager = MqttManager.sharedInstance
         if (previousSubscriptionTopic != nil) {
@@ -400,7 +400,7 @@ class MqttSettingsViewController: KeyboardAwareViewController, UITableViewDelega
                     mqttSettings.serverAddress = textField.text
                 }
                 else if (row == 1) {    // Server Port
-                    if let port = textField.text.toInt() {
+                    if let port = Int(textField.text!) {
                         mqttSettings.serverPort = port
                     }
                     else {
@@ -490,9 +490,9 @@ class MqttSettingsViewController: KeyboardAwareViewController, UITableViewDelega
         return pickerViewType == .Action ? 2:3
     }
 
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String!
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?
     {
-        let labels : [String];
+//        let labels : [String];
 
         switch(pickerViewType) {
         case .Qos:
@@ -532,7 +532,7 @@ class MqttSettingsViewController: KeyboardAwareViewController, UITableViewDelega
     
     func onMqttError(message : String) {
         dispatch_async(dispatch_get_main_queue(), { [unowned self] in
-            var alert = UIAlertController(title:"Error", message: message, preferredStyle: UIAlertControllerStyle.Alert)
+            let alert = UIAlertController(title:"Error", message: message, preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
             

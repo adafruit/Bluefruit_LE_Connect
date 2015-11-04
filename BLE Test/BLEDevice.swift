@@ -53,7 +53,7 @@ class BLEDevice {
     }
     
     var manufacturerData:String {
-        var newData = advertisementData[CBAdvertisementDataManufacturerDataKey] as? NSData
+        let newData = advertisementData[CBAdvertisementDataManufacturerDataKey] as? NSData
             if newData == nil {
                 return nilString
             }
@@ -63,7 +63,7 @@ class BLEDevice {
     }
     
     var serviceData:String {
-        var dict = advertisementData[CBAdvertisementDataServiceDataKey] as? NSDictionary
+        let dict = advertisementData[CBAdvertisementDataServiceDataKey] as? NSDictionary
             if dict == nil {
                 return nilString
             }
@@ -128,7 +128,7 @@ class BLEDevice {
     
     var identifier:NSUUID? {
         if self.peripheral == nil {
-            printLog(self, "identifier", "attempting to retrieve peripheral ID before peripheral set")
+            printLog(self, funcName: "identifier", logString: "attempting to retrieve peripheral ID before peripheral set")
             return nil
         }
         else {
@@ -202,7 +202,7 @@ class BLEDevice {
         if nameString == nil || nameString == "" {
             nameString = "N/A"
         }
-        self.name = nameString
+        self.name = nameString!
         
         //Check for UART & DFU services
         for id in completServiceUUIDs {
@@ -234,11 +234,11 @@ class BLEDevice {
     func printAdData(){
         
         if LOGGING {
-            println("- - - -")
+            print("- - - -")
             for a in advertisementArray {
-                println(a)
+                print(a)
             }
-            println("- - - -")
+            print("- - - -")
         }
         
     }

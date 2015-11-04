@@ -12,6 +12,10 @@ import Foundation
 class BLEInterfaceController: WKInterfaceController {
     
     
+    @IBOutlet weak var noConnectionLabel: WKInterfaceLabel?
+    @IBOutlet weak var controllerModeGroup: WKInterfaceGroup?
+    @IBOutlet weak var debugLabel: WKInterfaceLabel?
+    
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         
@@ -20,67 +24,66 @@ class BLEInterfaceController: WKInterfaceController {
     }
     
     
-    override func willActivate() {
-        // This method is called when watch view controller is about to be visible to user
-        super.willActivate()
-        
-        checkConnection()
-    }
-    
-    
-    func checkConnection(){
-        
-        let request = ["type":"isConnected"]
-        sendRequest(request)
-        
-    }
-    
-    
-    func respondToNotConnected(){
-        
-        //pop to root controller if connection is lost
-        WKInterfaceController.reloadRootControllersWithNames(["Root"], contexts: nil)
-        
-    }
-    
-    
-    func respondToConnected(){
-        
-        //override to respond to connected status
-    
-    }
-    
-    
-    @IBAction func disconnectButtonTapped() {
+    func disconnectButtonTapped() {
         
         sendRequest(["type":"command", "command":"disconnect"])
         
     }
 
     
-    func sendRequest(request:[String:AnyObject]){
+    func sendRequest(message:[String:AnyObject]){
         
-        WKInterfaceController.openParentApplication(request,
-            reply: { (replyInfo, error) -> Void in
-                //parse reply info
-                switch (replyInfo?["connected"] as? Bool, error) { //received correctly formatted reply
-                case let (connected, nil) where connected != nil:
-                    if connected == true {  //app has connection to ble device
-//                        NSLog("reply received == connected")
-                        self.respondToConnected()
-                    }
-                    else {  //app has NO connection to ble device
-//                        NSLog("reply received == not connected")
-                        self.respondToNotConnected()
-                    }
-                case let (_, .Some(error)):
-                    println("reply received with error: \(error)") // received reply w error
-                default:
-                    println("reply received with no error or data ...") // received reply with no data or error
-                }
-        })
-        
+        BLESessionManager.sharedInstance.sendRequest(message, sender: self)
         
     }
+    
+    
+    func respondToConnected() {
+        
+        self.noConnectionLabel?.setHidden(true)
+        self.controllerModeGroup?.setHidden(false)
+        
+    }
+    
+    
+    func respondToNotConnected() {
+        
+        self.noConnectionLabel?.setHidden(false)
+        self.controllerModeGroup?.setHidden(true)
+        
+        WKInterfaceController.reloadRootControllersWithNames(["Root"], contexts: nil)
+        
+    }
+    
+    
+    func showDebugInfo(message:String) {
+        
+        self.debugLabel?.setText(message)
+        
+    }
+    
+    
+        //OLD METHOD
+//        WKInterfaceController.openParentApplication(request,
+//            reply: { (replyInfo, error) -> Void in
+//                //parse reply info
+//                switch (replyInfo["connected"] as? Bool, error) { //received correctly formatted reply
+//                case let (connected, nil) where connected != nil:
+//                    if connected == true {  //app has connection to ble device
+////                        NSLog("reply received == connected")
+//                        self.respondToConnected()
+//                    }
+//                    else {  //app has NO connection to ble device
+////                        NSLog("reply received == not connected")
+//                        self.respondToNotConnected()
+//                    }
+//                case let (_, .Some(error)):
+//                    print("reply received with error: \(error)") // received reply w error
+//                default:
+//                    print("reply received with no error or data ...") // received reply with no data or error
+//                }
+//        })
+        
+//    }
     
 }

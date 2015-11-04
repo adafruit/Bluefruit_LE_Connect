@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ControllerViewController" customModule="BluetoothLE_Test" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ControllerViewController" customModule="Adafruit_Bluefruit_LE_Connect" customModuleProvider="target">
             <connections>
                 <outlet property="controlPadViewController" destination="HoB-Un-ekh" id="LRT-1V-rme"/>
                 <outlet property="controlTable" destination="5yi-v1-A24" id="eZ7-4a-DgY"/>
@@ -413,7 +414,7 @@ Note: Any activated sensor data streams will continue while using the Control Pa
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
             <point key="canvasLocation" x="-393.5" y="748.5"/>
         </view>
-        <customObject id="Srb-10-gh5" customClass="HelpViewController" customModule="BluetoothLE_Test" customModuleProvider="target">
+        <customObject id="Srb-10-gh5" customClass="HelpViewController" customModule="Adafruit_Bluefruit_LE_Connect" customModuleProvider="target">
             <connections>
                 <outlet property="textView" destination="i8p-DC-yff" id="UJq-XQ-RIR"/>
                 <outlet property="view" destination="VBH-Lb-tAh" id="1g6-zq-qAd"/>
@@ -586,11 +587,11 @@ Note: Any activated sensor data streams will continue while using the Control Pa
             </connections>
             <point key="canvasLocation" x="-374" y="-15"/>
         </viewController>
-        <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" shouldIndentWhileEditing="NO" rowHeight="22" id="np8-DO-2zs" userLabel="Value Cell" customClass="SensorValueCell" customModule="BluetoothLE_Test" customModuleProvider="target">
+        <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" shouldIndentWhileEditing="NO" rowHeight="22" id="np8-DO-2zs" userLabel="Value Cell" customClass="SensorValueCell" customModule="Adafruit_Bluefruit_LE_Connect" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="299" height="22"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="np8-DO-2zs" id="xnK-63-aZk">
-                <rect key="frame" x="0.0" y="0.0" width="299" height="147"/>
+                <rect key="frame" x="0.0" y="0.0" width="299" height="21"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="100" contentMode="left" text="--" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GOf-qd-xnC" userLabel="nameLabel">

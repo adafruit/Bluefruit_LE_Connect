@@ -80,7 +80,7 @@ class DeviceListViewController : UIViewController, UITableViewDelegate, UITableV
 //        println("\(self.classForCoder.description()) cellButtonTapped: \(sender.tag)")
         
         if tableIsLoading == true {
-            printLog(self, "cellButtonTapped", "ignoring tap during table load")
+            printLog(self, funcName: "cellButtonTapped", logString: "ignoring tap during table load")
             return
         }
         
@@ -113,10 +113,10 @@ class DeviceListViewController : UIViewController, UITableViewDelegate, UITableV
     
     func connectButtonTapped(sender: UIButton) {
         
-        printLog(self, "connectButtonTapped", "\(sender.tag)")
+        printLog(self, funcName: "connectButtonTapped", logString: "\(sender.tag)")
         
         if tableIsLoading == true {
-            printLog(self, "connectButtonTapped", "ignoring button while table loads")
+            printLog(self, funcName: "connectButtonTapped", logString: "ignoring button while table loads")
         }
         
         let device = devices[sender.tag]
@@ -169,7 +169,7 @@ class DeviceListViewController : UIViewController, UITableViewDelegate, UITableV
         
         // DFU button
         let aaUpdater = UIAlertAction(title: "Firmware Updater", style: UIAlertActionStyle.Default) { (aa:UIAlertAction!) -> Void in
-            delegate?.launchDFU(device.peripheral)
+            self.delegate?.launchDFU(device.peripheral)
         }
         alertController.addAction(aaUpdater)
         
@@ -238,14 +238,14 @@ class DeviceListViewController : UIViewController, UITableViewDelegate, UITableV
         delegate?.stopScan()
         
         tableView.beginUpdates()
-        tableView.deleteSections(NSIndexSet(indexesInRange: NSMakeRange(0, tableView.numberOfSections())), withRowAnimation: UITableViewRowAnimation.Fade)
+        tableView.deleteSections(NSIndexSet(indexesInRange: NSMakeRange(0, tableView.numberOfSections)), withRowAnimation: UITableViewRowAnimation.Fade)
         devices.removeAll(keepCapacity: false)
         tableView.endUpdates()
         
-        delay(0.45, { () -> () in
+        delay(0.45, closure: { () -> () in
             sender.endRefreshing()
             
-            delay(0.25, { () -> () in
+            delay(0.25, closure: { () -> () in
                 self.tableIsLoading = true
                 self.tableView.reloadData()
                 self.tableIsLoading = false
@@ -262,7 +262,7 @@ class DeviceListViewController : UIViewController, UITableViewDelegate, UITableV
         delegate?.stopScan()
         
         tableView.beginUpdates()
-        tableView.deleteSections(NSIndexSet(indexesInRange: NSMakeRange(0, tableView.numberOfSections())), withRowAnimation: UITableViewRowAnimation.Fade)
+        tableView.deleteSections(NSIndexSet(indexesInRange: NSMakeRange(0, tableView.numberOfSections)), withRowAnimation: UITableViewRowAnimation.Fade)
         devices.removeAll(keepCapacity: false)
         tableView.endUpdates()
         
@@ -340,8 +340,8 @@ class DeviceListViewController : UIViewController, UITableViewDelegate, UITableV
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        var device:BLEDevice? = devices[section]
-        var cell = device?.deviceCell
+        let device:BLEDevice? = devices[section]
+        let cell = device?.deviceCell
         
         if (cell == nil) || (cell?.isOpen == false) {  //When table is first loaded
             return 1
@@ -414,7 +414,7 @@ class DeviceListViewController : UIViewController, UITableViewDelegate, UITableV
         
         var indexPath: NSIndexPath?
         var counter = 0
-        var limit = 20
+        let limit = 20
         var aView:UIView? = theView
         
         while (indexPath == nil) {
@@ -459,7 +459,7 @@ class DeviceListViewController : UIViewController, UITableViewDelegate, UITableV
         
 //        var style = UIAlertControllerStyle.ActionSheet
 //        if IS_IPAD {
-            var style = UIAlertControllerStyle.Alert
+            let style = UIAlertControllerStyle.Alert
 //        }
         let alertController = UIAlertController(title: ttl, message: msg, preferredStyle: style)
         

@@ -61,7 +61,6 @@ class BLEMainViewController : UIViewController, UINavigationControllerDelegate, 
     private let cbcmQueue = dispatch_queue_create("com.adafruit.bluefruitconnect.cbcmqueue", DISPATCH_QUEUE_CONCURRENT)
     private let connectionTimeOutIntvl:NSTimeInterval = 30.0
     private var connectionTimer:NSTimer?
-    
     private var firmwareUpdater : FirmwareUpdater?
     
     static let sharedInstance = BLEMainViewController()
@@ -604,6 +603,7 @@ class BLEMainViewController : UIViewController, UINavigationControllerDelegate, 
                 // Returning from Pin I/O
             else if connectionMode == ConnectionMode.PinIO {
                 if connectionStatus == ConnectionStatus.Connected {
+                    pinIoViewController.systemReset()
                     disconnect()
                 }
             }
@@ -957,7 +957,7 @@ class BLEMainViewController : UIViewController, UINavigationControllerDelegate, 
         
         //Data incoming from UART peripheral, forward to current view controller
         
-        printLog(self, funcName: "didReceiveData", logString: "\(newData.stringRepresentation())")
+        printLog(self, funcName: "didReceiveData", logString: "\(newData.hexRepresentationWithSpaces(true))")
         
         if (connectionStatus == ConnectionStatus.Connected ) {
             //UART
@@ -1055,6 +1055,7 @@ class BLEMainViewController : UIViewController, UINavigationControllerDelegate, 
         
     }
     
+    
     //WatchKit requests
     
     func connectedInControllerMode()->Bool{
@@ -1080,7 +1081,9 @@ class BLEMainViewController : UIViewController, UINavigationControllerDelegate, 
         
     }
     
+    
     // MARK: - FirmwareUpdaterDelegate
+    
     func onFirmwareUpdatesAvailable(isUpdateAvailable: Bool, latestRelease: FirmwareInfo!, deviceInfoData: DeviceInfoData!, allReleases: [NSObject : AnyObject]!) {
         printLog(self, funcName: "onFirmwareUpdatesAvailable", logString: "\(isUpdateAvailable)")
         

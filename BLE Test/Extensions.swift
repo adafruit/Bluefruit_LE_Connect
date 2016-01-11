@@ -155,13 +155,18 @@ extension CBUUID {
 }
 
 
-func printLog(obj:AnyObject, funcName:String, logString:String) {
+func printLog(obj:AnyObject, funcName:String, logString:String?) {
     
     if LOGGING != true {
         return
     }
     
-    print("\(obj.classForCoder?.description()) \(funcName) : \(logString)")
+    if logString != nil {
+        print("\(obj.classForCoder!.description()) \(funcName) : \(logString!)")
+    }
+    else {
+        print("\(obj.classForCoder!.description()) \(funcName)")
+    }
     
 }
 

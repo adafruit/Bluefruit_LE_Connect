@@ -39,15 +39,27 @@ class PinCell: UITableViewCell {
     var modeControl:UISegmentedControl!
     var digitalControl:UISegmentedControl!
     var valueSlider:UISlider!
-    var digitalPin:Int!
     
-    var analogPin:Int! {
+    var digitalPin:Int = -1 {
         didSet {
-            if (analogPin > -1) {
-                self.isAnalog = true
+            if oldValue != self.digitalPin{
+                updatePinLabel()
             }
-            else {
-                self.isAnalog = false
+        }
+    }
+    
+    var analogPin:Int = -1 {
+        didSet {
+            if oldValue != self.analogPin{
+                updatePinLabel()
+            }
+        }
+    }
+    
+    var isDigital:Bool = false {
+        didSet {
+            if oldValue != self.isDigital {
+                configureModeControl()
             }
         }
     }
@@ -92,6 +104,18 @@ class PinCell: UITableViewCell {
     }
     
     
+    func updatePinLabel() {
+        
+        if analogPin == -1 {
+            pinLabel.text = "Pin \(digitalPin)"
+        }
+        else {
+            pinLabel.text = "Pin \(digitalPin), Analog \(analogPin)"
+        }
+        
+    }
+    
+    
     func setDigitalValue(value:Int){
         
         //Set a cell's digital Low/High value
@@ -100,19 +124,21 @@ class PinCell: UITableViewCell {
             switch (value) {
             case 0:
                 self.valueLabel.text = "Low"
+//                printLog(self, funcName: "setDigitalValue", logString: "Setting pin \(self.digitalPin) LOW")
                 break
             case 1:
                 self.valueLabel.text = "High"
+//                printLog(self, funcName: "setDigitalValue", logString: "Setting pin \(self.digitalPin) HIGH")
                 break
             default:
-                printLog(self, funcName: "setDigitalValue", logString: "Attempting to set digital pin \(self.digitalPin) to analog value")
+//                printLog(self, funcName: "setDigitalValue", logString: "Attempting to set digital pin \(self.digitalPin) to analog value")
                 break
             }
         }
             
         else{
             
-            printLog(self, funcName: "setDigitalValue", logString: "\(self.analogPin) to digital value")
+//            printLog(self, funcName: "setDigitalValue", logString: "\(self.analogPin) to digital value")
         }
         
     }
@@ -221,6 +247,26 @@ class PinCell: UITableViewCell {
     }
     
     
+    func setMode(modeInt:UInt8) {
+        
+        switch modeInt {
+        case 0:
+            self.mode = PinMode.Input
+        case 1:
+            self.mode = PinMode.Output
+        case 2:
+            self.mode = PinMode.Analog
+        case 3:
+            self.mode = PinMode.PWM
+        case 4:
+            self.mode = PinMode.Servo
+        default:
+            printLog(self, funcName: (__FUNCTION__), logString: "Attempting to set pin mode w non-matching int")
+        }
+        
+    }
+    
+    
     func setDefaultsWithMode(aMode:PinMode){
     
         //load initial default values
@@ -242,9 +288,10 @@ class PinCell: UITableViewCell {
         
         modeControl.removeAllSegments()
         
-        //All cells are digital capable
-        modeControl.insertSegmentWithTitle("Input", atIndex: 0, animated: false)
-        modeControl.insertSegmentWithTitle("Output", atIndex: 1, animated: false)
+        if isDigital == true {
+            modeControl.insertSegmentWithTitle("Input", atIndex: 0, animated: false)
+            modeControl.insertSegmentWithTitle("Output", atIndex: 1, animated: false)
+        }
         
         if isAnalog == true {
             modeControl.insertSegmentWithTitle("Analog", atIndex: modeControl.numberOfSegments, animated: false)

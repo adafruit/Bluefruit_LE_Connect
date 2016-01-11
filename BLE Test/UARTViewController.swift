@@ -64,6 +64,7 @@ class UARTViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
     private let kKeyboardAnimationDuration = 0.3
     private let notificationCommandString = "N!"
     
+    
     convenience init(aDelegate:UARTViewControllerDelegate){
         
         //Separate NIBs for iPhone 3.5", iPhone 4", & iPad
@@ -125,6 +126,7 @@ class UARTViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
         }
     }
     
+    
     deinit {
         let mqttManager = MqttManager.sharedInstance
         mqttManager.disconnect()
@@ -160,6 +162,7 @@ class UARTViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
         updateMqttStatus()
 
     }
+    
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
@@ -395,6 +398,7 @@ class UARTViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
         
     }
     
+    
     func sendUartMessage(message: NSString, wasReceivedFromMqtt: Bool) {
         // MQTT publish to TX
         let mqttSettings = MqttSettings.sharedInstance
@@ -425,6 +429,7 @@ class UARTViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
         echoLocal = boo
         
     }
+    
     
     func receiveData(newData : NSData){
         

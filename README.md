@@ -1,7 +1,7 @@
 Bluefruit LE Connect
 =================
 
-iOS app for use with Adafruit's Bluefruit LE breakout board connected to Arduino
+iOS app for use with Adafruit's Bluefruit LE hardware line
 
 Pick up a breakout to use along with this app here: http://www.adafruit.com/products/1697
 
@@ -12,21 +12,6 @@ In progress!
 Adafruit invests time and resources providing this open source code, please support Adafruit and open-source hardware by purchasing products from Adafruit!
 
 
-Version 1.5
+Important!
 =================
-
-• Controller Module
-• Control Pad UI
-
-
-Version 1.4
-=================
-
-• Info module
-• UART packet optimizations
-
-
-Version 1.3
-=================
-
-• Initial release
+Open this project in Xcode by using the .xcworkspace file and not the .xcodeproj file

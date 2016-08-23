@@ -1,6 +1,8 @@
 Bluefruit LE Connect
 =================
 
+For the latest version of this app go to - https://github.com/adafruit/Bluefruit_LE_Connect_v2
+
 iOS app for use with Adafruit's Bluefruit LE hardware line
 
 Pick up a breakout to use along with this app here: http://www.adafruit.com/products/1697

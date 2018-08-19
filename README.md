@@ -1,7 +1,7 @@
-Bluefruit LE Connect
+Bluefruit LE Connect - DEPRECATED
 =================
 
-For the latest version of this app go to - https://github.com/adafruit/Bluefruit_LE_Connect_v2
+This repository is no longer supported or maintained - For the latest version of this app go to - https://github.com/adafruit/Bluefruit_LE_Connect_v2
 
 iOS app for use with Adafruit's Bluefruit LE hardware line
 
